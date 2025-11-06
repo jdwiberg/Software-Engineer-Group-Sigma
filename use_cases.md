@@ -1,5 +1,5 @@
 ## Shopper Use Cases
-- Register Shopper
+Use Case: Register Shopper
 - Login Shopper
 - Show Account Dashboard
 - Review History
@@ -45,3 +45,7 @@ Exit Criteria:
 Flow of events
  1. User requests SOMETHING VALID
  2. ShopComp app SOMETHING VALID and refreshed display
+
+
+
+ ADDING FIRST COMMIT TO TIM BRANCH
