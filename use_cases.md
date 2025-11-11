@@ -1,4 +1,4 @@
-## Shopper Use Cases
+# Shopper Use Cases
 Use Case: Register Shopper
 - Login Shopper
 - Show Account Dashboard
@@ -7,7 +7,7 @@ Use Case: Register Shopper
 - Search Recent Purchases
 
 
-## Receipt Use Cases 
+# Receipt Use Cases 
 - Create Item
 - Add Item to Receipt
 - Remove Item from Receipt
@@ -16,15 +16,15 @@ Use Case: Register Shopper
 - Analyze Receipt Image (AI)
 
 
-## Shopping List Use Cases for Shopper
+# Shopping List Use Cases for Shopper
 - Create Shopping List
 - Add Item to Shopping List
 - Remove Item From Shopping List
 - Report Options for Shopping List
 
 
-## Store Use Cases for Shopper
-# Use Case: List Chains
+# Store Use Cases for Shopper
+## Use Case: List Chains
 - Participating Actor: User
 - Entry Condition
     - user is logged in
@@ -34,7 +34,7 @@ Use Case: Register Shopper
     1. User Requests to see store chains
     2. ShopComp displays chains and refreshes page
 
-# Use Case: Add Chain
+## Use Case: Add Chain
 - Participating Actor: User
 - Entry Condition
     - user is logged in
@@ -44,7 +44,7 @@ Use Case: Register Shopper
     1. User Requests to add chain
     2. ShopComp adds chain and refreshes page
 
-# Add Store To Chain
+## Add Store To Chain
 - Participating Actor: User
 - Entry Condition
     - user is logged in
@@ -55,8 +55,8 @@ Use Case: Register Shopper
     1. User Requests to add store to chain
     2. ShopComp adds store to chain and refreshes page
 
-## Admin Use Cases
-# Use Case: Login Administrator
+# Admin Use Cases
+## Use Case: Login Administrator
 - Participating Actor: Admin
 - Entry Condition
     - Admin is not logged in
@@ -68,7 +68,7 @@ Use Case: Register Shopper
     3. Admin requests to login
     4. ShopComp authenticates credentials and refreshes display
 
-# Use Case: Show Admin Dash
+## Use Case: Show Admin Dash
 - Participating Actor: Admin
 - Entry Condition
     - Admin is logged in as administrator
@@ -78,7 +78,7 @@ Use Case: Register Shopper
     1. Admin requests to see admin dash
     2. ShopComp displays dash and refreshes page
 
-# Use Case: Remove Chain
+## Use Case: Remove Chain
 - Participating Actor: Admin
 - Entry Condition
     - Admin is logged in as administrator
@@ -90,7 +90,7 @@ Use Case: Register Shopper
     1. Admin requests to see remove chain from chains
     2. ShopComp removes chain and all stores inside chain and refreshes page
 
-# Use Case: Remove Store
+## Use Case: Remove Store
 - Participating Actor: Admin
 - Entry Condition
     - Admin is logged in as administrator
@@ -102,8 +102,8 @@ Use Case: Register Shopper
     2. ShopComp removes store from its chain and refreshes page
 
 
-## Use Case Structure
-# Use case: VERB NOUN
+# Use Case Structure
+## Use case: VERB NOUN
 - Participating Actor: Initiated by user
 - Entry Condition: 
     - Valid
