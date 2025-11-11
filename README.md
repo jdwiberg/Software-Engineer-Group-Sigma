@@ -4,7 +4,7 @@
 
 ## When you are going to do work
 Make a branch and do the work there:
-- git checkout -b feature/jake-UI
+- git checkout -b branch_name
 
 ## After doing your work
 - git add .
