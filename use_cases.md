@@ -88,39 +88,51 @@
 
 
 ## Shopping List Use Cases for Shopper
-- Create Shopping List
-### Use Case: Create List
-Participating Actor: Initiated by Shopper  
-Entry Condition: "Create Shopping List" button is clicked  
-Exit Criteria: An empty shopping list is created and the display updated  
-Flow of Events 
+### Use Case: Create Shopping List
+**Participating Actor:** Initiated by Shopper  
+**Entry Condition:** 
+- "Create Shopping List" button is clicked
+
+**Exit Criteria:** 
+- An empty shopping list is created and the display updated
+
+**Flow of Events :**
 1. Shopper requests to create a shopping list 
 2. ShopComp app creates empty shopping list and refreshes display  
 
-- Add Item to Shopping List
-### Use Case: Add Grocery  
-Participating Actor: Initiated by Shopper  
-Entry Condition: "Add Item" button is clicked  
-Exit Criteria: An item is added to the shopping list and the display updated  
-Flow of Events  
+### Use Case: Add To List  
+**Participating Actor:** Initiated by Shopper  
+**Entry Condition:**
+- "Add Item" button is clicked    
+
+**Exit Criteria:**
+- An item is added to the shopping list and the display updated    
+
+**Flow of Events:**  
 1. Shopper requests to add an item a shopping list 
 2. ShopComp app adds an item to the shopping list and refreshes display
 
-- Remove Item From Shopping List
-### Use Case: Remove Grocery  
-Participating Actor: Initiated by Shopper  
-Entry Condition: "Remove Item" button is clicked  
-Exit Criteria: An item is removed from the shopping list and the display updated  
-Flow of Events  
+### Use Case: Remove From List  
+**Participating Actor:** Initiated by Shopper  
+**Entry Condition:**
+- "Remove Item" button is clicked   
+
+**Exit Criteria:** 
+- An item is removed from the shopping list and the display updated   
+
+**Flow of Events**
 1. Shopper requests to remove an item a shopping list 
 2. ShopComp app removes the item from the shopping list and refreshes display
 
-- Report Options for Shopping List // what does this even mean
-### Use Case: Remove Grocery  
-Participating Actor: Initiated by Shopper  
-Entry Condition: "Report Options" button is clicked  
-Exit Criteria:   
-Flow of Events  
+### Use Case: Report Options  
+**Participating Actor:** Initiated by Shopper  
+**Entry Condition:**
+- "Report Options" button is clicked  
+
+**Exit Criteria:**
+- ?
+
+**Flow of Events:** 
 1. Shopper requests to 
 2. ShopComp app 
 
