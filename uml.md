@@ -10,6 +10,7 @@
 ## Store
 - id : Number
 - items : Item[0 .. *]
+- location : String
 
 # Receipt
  - id : Number
@@ -17,7 +18,6 @@
  - items : Item[1 .. 0]
 
 ## Item
- - id : Number
  - name : String
  - price : Number
 
