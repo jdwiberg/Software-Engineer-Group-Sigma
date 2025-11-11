@@ -1,15 +1,84 @@
 # Gold Standard Group Use Cases
 
 ## Shopper Use Cases
-- Register Shopper
-- Login Shopper
-- Show Account Dashboard
-- Review History
-- Reveiw Activity
-- Search Recent Purchases
+### Use Case: Register Shopper
+**Participating Actor:** Initiated by Shopper  
+**Entry Condition:**
+ - Shopper is not registered yet
+
+**Exit Condition:**
+ - New shopper is registered to the database
+
+**Flow of Events:**
+1. Shopper requests to register.
+2. ShopComp app registers new shopper info to database and refreshes display.
+
+### Use Case: Login Shopper
+**Participating Actor:** Initiated by Shopper  
+**Entry Condition:**
+ - Shopper is registered
+ - Shopper is not logged in
+ - Shopper enters their correct credentials
+
+**Exit condition:**
+ - Shopper is logged into their account
+
+**Flow of Events:**
+1. Shopper requests to log into their account and enters their credentials.
+2. ShopComp app retrieves shopper's account info and refreshes display.
+
+### Use Case: Show Account Dashboard
+**Participating Actor:** Initiated by Shopper
+**Entry Condition:**
+ - Shopper is logged into their account
+
+**Exit Condition:**
+ - Account dashboard is shown to shopper
+
+**Flow of Events:**
+1. Shopper requests to see their account dashboard.
+2. ShopComp app retrieves shopper's dashboard info and refreshes display.
+
+### Use Case: Review History
+**Participating Actor:** Initiated by Shopper
+**Entry Condition:**
+ - Shopper is logged into their account
+
+**Exit Condition:**
+ - Receipt history is shown to shopper
+
+**Flow of Events:**
+1. Shopper requests to see their receipt history.
+2. ShopComp app retrieves shopper's receipt history and refreshes display.
+
+### Use Case: Reveiw Activity
+**Participating Actor:** Initiated by Shopper
+**Entry Condition:**
+ - Shopper is logged into their account
+
+**Exit Condition:**
+ - ?
+
+**Flow of Events:**
+1. ?
+2. ?
+
+### Use Case: Search Recent Purchases
+**Participating Actor:** Initiated by Shopper
+**Entry Condition:**
+ - Shopper is logged into their account
+ - Shopper has made at least one purchase
+
+**Exit Condition:**
+ - Recent purchases are provided to shopper
+
+**Flow of Events:**
+1. Shopper requests to search through their recent purchases.
+2. ShopComp app provides shopper's target search item and refreshes display.
 
 
-## Receipt Use Cases 
+
+# Receipt Use Cases 
 - Create Item
 - Add Item to Receipt
 - Remove Item from Receipt
@@ -18,7 +87,7 @@
 - Analyze Receipt Image (AI)
 
 
-## Shopping List Use Cases for Shopper
+# Shopping List Use Cases for Shopper
 - Create Shopping List
 ### Use Case: Create List
 Participating Actor: Initiated by Shopper  
@@ -56,25 +125,104 @@ Flow of Events
 2. ShopComp app 
 
 
-## Store Use Cases for Shopper
-- List Store Chains
-- Add Chain
-- Add Store To Chain
+# Store Use Cases for Shopper
+## Use Case: List Chains
+- Participating Actor: User
+- Entry Condition
+    - user is logged in
+- Exit Condition
+    - store chains are displayed
+- Flow of events
+    1. User Requests to see store chains
+    2. ShopComp displays chains and refreshes page
 
-## Admin Use Cases
-- Login Administrator
-- Show Admin Dash
-- Remove Store Chain
-- Remove Store
+## Use Case: Add Chain
+- Participating Actor: User
+- Entry Condition
+    - user is logged in
+- Exit Condition
+    - chain has been added to app
+- Flow of events
+    1. User Requests to add chain
+    2. ShopComp adds chain and refreshes page
+
+## Add Store To Chain
+- Participating Actor: User
+- Entry Condition
+    - user is logged in
+    - chain exists
+- Exit Condition
+    - store has been added to chain
+- Flow of events
+    1. User Requests to add store to chain
+    2. ShopComp adds store to chain and refreshes page
+
+# Admin Use Cases
+## Use Case: Login Administrator
+- Participating Actor: Admin
+- Entry Condition
+    - Admin is not logged in
+- Exit Condition
+    - Admin is logged in
+- Flow of events
+    1. Admin inputs username and password
+    2. Shopcomp updates page
+    3. Admin requests to login
+    4. ShopComp authenticates credentials and refreshes display
+
+## Use Case: Show Admin Dash
+- Participating Actor: Admin
+- Entry Condition
+    - Admin is logged in as administrator
+- Exit Condition
+    - Admin dash is displayed
+- Flow of events
+    1. Admin requests to see admin dash
+    2. ShopComp displays dash and refreshes page
+
+## Use Case: Remove Chain
+- Participating Actor: Admin
+- Entry Condition
+    - Admin is logged in as administrator
+    - Chain exists
+- Exit Condition
+    - Chain removed from store chains
+    - All stores in chain removed
+- Flow of events
+    1. Admin requests to see remove chain from chains
+    2. ShopComp removes chain and all stores inside chain and refreshes page
+
+## Use Case: Remove Store
+- Participating Actor: Admin
+- Entry Condition
+    - Admin is logged in as administrator
+    - Store exists
+- Exit Condition
+    - Store has been removed from chain [NOTE: CHAIN MAY OR MAY NOT BE NECESSARY]
+- Flow of events
+    1. Admin requests to remove store
+    2. ShopComp removes store from its chain and refreshes page
 
 
-## Use Case Structure
-Use case: VERB NOUN
-Participating Actor: Initiated by shopper
-Entry Condition: 
- - Valid
-Exit Criteria:
- - Valid
-Flow of events
- 1. User requests SOMETHING VALID
- 2. ShopComp app SOMETHING VALID and refreshed display
+# Use Case Structure
+## Use case: VERB NOUN
+- Participating Actor: Initiated by user
+- Entry Condition: 
+    - Valid
+- Exit Criteria:
+    - Valid
+- Flow of events
+    1. User requests SOMETHING VALID
+    2. ShopComp app SOMETHING VALID and refreshed display
+
+
+## Notes
+- is a store always inside of a chain?
+    - standalones could be standalone or chains with one store
+    - could be name = chain name and id = unique id
+    - or name = name, id = unique id, boolean chain = T or F, map to chian = link
+- can chains be empty?
+    - probably
+- can a store belong to multiple chains?
+    - probably not i think
+- should the participating actor for admin stuff be user or admin?
