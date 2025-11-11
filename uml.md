@@ -12,26 +12,26 @@
 - items : Item[0 .. *]
 
 # Receipt
-id : Number
-store : Store
-items : Item[1 .. 0]
+ - id : Number
+ - store : Store
+ - items : Item[1 .. 0]
 
 ## Item
-id : Number
-name : String
-price : Number
+ - id : Number
+ - name : String
+ - price : Number
 
 ## Shopper
-id : Number
-unique_name : String (no spaces, max length = 20)
-password : String (no spaces, max le = 20)
-reciepts : Reciept[0 .. *]
-shopping_list : ShoppingList
+ - id : Number
+ - unique_name : String (no spaces, max length = 20)
+ - password : String (no spaces, max le = 20)
+ - reciepts : Reciept[0 .. *]
+ - shopping_list : ShoppingList
 
 ## ShoppingList
-id : Number
-items : Item[0 .. *]
+ - id : Number
+ - items : Item[0 .. *]
 
 ## Admin
-password : Number
+ - password : Number
 
