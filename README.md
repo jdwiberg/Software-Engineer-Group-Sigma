@@ -9,7 +9,7 @@ Make a branch and do the work there:
 ## After doing your work
 - git add .
 - git commit -m 'message'
-- git push origin <mybrachname>
+- git push origin branch_name
 
 ## After pushing
 - go into github
