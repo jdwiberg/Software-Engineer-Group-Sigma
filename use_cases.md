@@ -78,13 +78,105 @@
 
 
 
-## Receipt Use Cases 
-- Create Item
-- Add Item to Receipt
-- Remove Item from Receipt
-- Edit Item on Receipt
-- Submit Receipt
-- Analyze Receipt Image (AI)
+## ...Receipt Use Cases... ##
+## Use Case: CreateItem
++ **Participating Actor:** Initiated by: User 
++ **Entry condition:**
+    - User clicks button to create a new item
+
++ **Exit condition:**
+    - A new item is added to a list of items
+
++ **Flow of Events:**
+    1. User requests to create a new item
+    2. CreateItem() creates a new item and adds it to a list of items
+
+
+
+## USE CASE: AddItemReceipt
++ **Participating Actor:** Initiated by: User 
++ **Entry condition:**
+    - User clicks button to add a given item to the recipt
+
++ **Exit condition:**
+    - An item is added to the receipt 
+
++ **Flow of Events:**
+    1. User requests to add an item to the receipt
+    2. AddItem() adds the selected item to the receipt and refreshes the display
+
+
+
+## USE CASE: AddItemReceipt
++ **Participating Actor:** Initiated by: User 
++ **Entry condition:**
+    - User clicks button to add a given item to the recipt
+
++ **Exit condition:**
+    - An item is added to the receipt 
+
++ **Flow of Events:**
+    1. User requests to add an item to the receipt
+    2. AddItem() adds the selected item to the receipt and refreshes the display
+
+
+
+## USE CASE: EditItemReceipt
++ **Participating Actor:** Initiated by: User 
++ **Entry condition:**
+    - User clicks button to edit a given item in the recipt
+
++ **Exit condition:**
+    - The info/properties of an item in the receipt are modified 
+
++ **Flow of Events:**
+    1. User requests to edit an item in the receipt
+    2. EditItem() edits the info/properties from an item in the receipt and refreshes the display
+
+
+
+## USE CASE: RemoveItemReceipt
++ **Participating Actor:** Initiated by: User 
++ **Entry condition:**
+    - User clicks button to remove a given item from the recipt
+
++ **Exit condition:**
+    - An item is removed from the receipt 
+
++ **Flow of Events:**
+    1. User requests to remove an item from the receipt
+    2. RemoveItem() removes the selected item from the receipt and refreshes the display
+
+
+
+## USE CASE: SubmitReceipt
++ **Participating Actor:** Initiated by: User 
++ **Entry condition:**
+    - User clicks button to submit current receipt
+
++ **Exit condition:**
+    - The receipt is submitted and stored in a list 
+
++ **Flow of Events:**
+    1. User requests to submit the receipt
+    2. SubmitReceipt() submits the current receipt to a list of the user's receipts and refreshes the display
+
+
+
+## USE CASE: AnalyzeReceiptAI
++ **Participating Actor:** Initiated by: User 
++ **Entry condition:**
+    - User clicks button to add an image of a receipt and uploads the image
+
++ **Exit condition:**
+    - A new receipt identical to the uploaded image is returned
+    - This receipt is added to the list of the user's receipt  
+
++ **Flow of Events:**
+    1. User requests to upload an item of a receipt
+    2. AnalyzeReceipt() uploads the image of the receipt to an AI, returns a receipt identical to the one in uploaded image, and refreshes the display
+
+
 
 
 ## Shopping List Use Cases for Shopper
