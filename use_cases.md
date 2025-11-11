@@ -127,34 +127,34 @@ Flow of Events
 
 # Store Use Cases for Shopper
 ## Use Case: List Chains
-- Participating Actor: User
+- Participating Actor: Shopper
 - Entry Condition
-    - user is logged in
+    - Shopper is logged in
 - Exit Condition
     - store chains are displayed
 - Flow of events
-    1. User Requests to see store chains
+    1. Shopper Requests to see store chains
     2. ShopComp displays chains and refreshes page
 
 ## Use Case: Add Chain
-- Participating Actor: User
+- Participating Actor: Shopper
 - Entry Condition
-    - user is logged in
+    - Shopper is logged in
 - Exit Condition
     - chain has been added to app
 - Flow of events
-    1. User Requests to add chain
+    1. Shopper Requests to add chain
     2. ShopComp adds chain and refreshes page
 
 ## Add Store To Chain
-- Participating Actor: User
+- Participating Actor: Shopper
 - Entry Condition
-    - user is logged in
+    - Shopper is logged in
     - chain exists
 - Exit Condition
     - store has been added to chain
 - Flow of events
-    1. User Requests to add store to chain
+    1. Shopper Requests to add store to chain
     2. ShopComp adds store to chain and refreshes page
 
 # Admin Use Cases
@@ -165,7 +165,7 @@ Flow of Events
 - Exit Condition
     - Admin is logged in
 - Flow of events
-    1. Admin inputs username and password
+    1. Admin inputs Shoppername and password
     2. Shopcomp updates page
     3. Admin requests to login
     4. ShopComp authenticates credentials and refreshes display
@@ -206,23 +206,19 @@ Flow of Events
 
 # Use Case Structure
 ## Use case: VERB NOUN
-- Participating Actor: Initiated by user
+- Participating Actor: Initiated by Shopper
 - Entry Condition: 
     - Valid
 - Exit Criteria:
     - Valid
 - Flow of events
-    1. User requests SOMETHING VALID
+    1. Shopper requests SOMETHING VALID
     2. ShopComp app SOMETHING VALID and refreshed display
 
 
 ## Notes
-- is a store always inside of a chain?
-    - standalones could be standalone or chains with one store
-    - could be name = chain name and id = unique id
-    - or name = name, id = unique id, boolean chain = T or F, map to chian = link
-- can chains be empty?
-    - probably
+- Store is always inside of chain
+Chains can be empty
 - can a store belong to multiple chains?
     - probably not i think
-- should the participating actor for admin stuff be user or admin?
+- should the participating actor for admin stuff be Shopper or admin?
