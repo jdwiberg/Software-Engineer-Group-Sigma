@@ -78,7 +78,7 @@
 
 
 
-# Receipt Use Cases 
+## Receipt Use Cases 
 - Create Item
 - Add Item to Receipt
 - Remove Item from Receipt
@@ -87,47 +87,59 @@
 - Analyze Receipt Image (AI)
 
 
-# Shopping List Use Cases for Shopper
-- Create Shopping List
-### Use Case: Create List
-Participating Actor: Initiated by Shopper  
-Entry Condition: "Create Shopping List" button is clicked  
-Exit Criteria: An empty shopping list is created and the display updated  
-Flow of Events 
+## Shopping List Use Cases for Shopper
+### Use Case: Create Shopping List
+**Participating Actor:** Initiated by Shopper  
+**Entry Condition:** 
+- "Create Shopping List" button is clicked
+
+**Exit Criteria:** 
+- An empty shopping list is created and the display updated
+
+**Flow of Events :**
 1. Shopper requests to create a shopping list 
 2. ShopComp app creates empty shopping list and refreshes display  
 
-- Add Item to Shopping List
-### Use Case: Add Grocery  
-Participating Actor: Initiated by Shopper  
-Entry Condition: "Add Item" button is clicked  
-Exit Criteria: An item is added to the shopping list and the display updated  
-Flow of Events  
+### Use Case: Add To List  
+**Participating Actor:** Initiated by Shopper  
+**Entry Condition:**
+- "Add Item" button is clicked    
+
+**Exit Criteria:**
+- An item is added to the shopping list and the display updated    
+
+**Flow of Events:**  
 1. Shopper requests to add an item a shopping list 
 2. ShopComp app adds an item to the shopping list and refreshes display
 
-- Remove Item From Shopping List
-### Use Case: Remove Grocery  
-Participating Actor: Initiated by Shopper  
-Entry Condition: "Remove Item" button is clicked  
-Exit Criteria: An item is removed from the shopping list and the display updated  
-Flow of Events  
+### Use Case: Remove From List  
+**Participating Actor:** Initiated by Shopper  
+**Entry Condition:**
+- "Remove Item" button is clicked   
+
+**Exit Criteria:** 
+- An item is removed from the shopping list and the display updated   
+
+**Flow of Events**
 1. Shopper requests to remove an item a shopping list 
 2. ShopComp app removes the item from the shopping list and refreshes display
 
-- Report Options for Shopping List // what does this even mean
-### Use Case: Remove Grocery  
-Participating Actor: Initiated by Shopper  
-Entry Condition: "Report Options" button is clicked  
-Exit Criteria:   
-Flow of Events  
+### Use Case: Report Options  
+**Participating Actor:** Initiated by Shopper  
+**Entry Condition:**
+- "Report Options" button is clicked  
+
+**Exit Criteria:**
+- ?
+
+**Flow of Events:** 
 1. Shopper requests to 
 2. ShopComp app 
 
 
-# Store Use Cases for Shopper
-## Use Case: List Chains
-- Participating Actor: Shopper
+## Store Use Cases for Shopper
+### Use Case: List Chains
+- Participating Actor: User
 - Entry Condition
     - Shopper is logged in
 - Exit Condition
@@ -136,8 +148,8 @@ Flow of Events
     1. Shopper Requests to see store chains
     2. ShopComp displays chains and refreshes page
 
-## Use Case: Add Chain
-- Participating Actor: Shopper
+### Use Case: Add Chain
+- Participating Actor: User
 - Entry Condition
     - Shopper is logged in
 - Exit Condition
@@ -146,8 +158,8 @@ Flow of Events
     1. Shopper Requests to add chain
     2. ShopComp adds chain and refreshes page
 
-## Add Store To Chain
-- Participating Actor: Shopper
+### Add Store To Chain
+- Participating Actor: User
 - Entry Condition
     - Shopper is logged in
     - chain exists
@@ -157,8 +169,8 @@ Flow of Events
     1. Shopper Requests to add store to chain
     2. ShopComp adds store to chain and refreshes page
 
-# Admin Use Cases
-## Use Case: Login Administrator
+## Admin Use Cases
+### Use Case: Login Administrator
 - Participating Actor: Admin
 - Entry Condition
     - Admin is not logged in
@@ -170,7 +182,7 @@ Flow of Events
     3. Admin requests to login
     4. ShopComp authenticates credentials and refreshes display
 
-## Use Case: Show Admin Dash
+### Use Case: Show Admin Dash
 - Participating Actor: Admin
 - Entry Condition
     - Admin is logged in as administrator
@@ -180,7 +192,7 @@ Flow of Events
     1. Admin requests to see admin dash
     2. ShopComp displays dash and refreshes page
 
-## Use Case: Remove Chain
+### Use Case: Remove Chain
 - Participating Actor: Admin
 - Entry Condition
     - Admin is logged in as administrator
@@ -192,7 +204,7 @@ Flow of Events
     1. Admin requests to see remove chain from chains
     2. ShopComp removes chain and all stores inside chain and refreshes page
 
-## Use Case: Remove Store
+### Use Case: Remove Store
 - Participating Actor: Admin
 - Entry Condition
     - Admin is logged in as administrator
@@ -204,9 +216,9 @@ Flow of Events
     2. ShopComp removes store from its chain and refreshes page
 
 
-# Use Case Structure
-## Use case: VERB NOUN
-- Participating Actor: Initiated by Shopper
+## Use Case Structure
+### Use case: VERB NOUN
+- Participating Actor: Initiated by user
 - Entry Condition: 
     - Valid
 - Exit Criteria:
