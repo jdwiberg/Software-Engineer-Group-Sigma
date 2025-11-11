@@ -1,11 +1,11 @@
 ## Shopper Use Cases
-Use Case: Register Shopper
-Participating Actor: Initiated by Shopper
-Entry Condition:
+### Use Case: Register Shopper
+**Participating Actor:** Initiated by Shopper
+**Entry Condition:**
  - Shopper is not registered yet
-Exit Condition:
+**Exit Condition:**
  - New shopper is registered to the database
-Flow of Events:
+**Flow of Events:**
 1. Shopper requests to register.
 2. ShopComp app registers new shopper info to database and refreshes display.
 
