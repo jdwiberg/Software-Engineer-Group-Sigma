@@ -5,10 +5,8 @@
 **Participating Actor:** Initiated by Shopper  
 **Entry Condition:**
  - Shopper is not registered yet
-
 **Exit Condition:**
  - New shopper is registered to the database
-
 **Flow of Events:**
 1. Shopper requests to register.
 2. ShopComp app registers new shopper info to database and refreshes display.
@@ -19,10 +17,8 @@
  - Shopper is registered
  - Shopper is not logged in
  - Shopper enters their correct credentials
-
 **Exit condition:**
  - Shopper is logged into their account
-
 **Flow of Events:**
 1. Shopper requests to log into their account and enters their credentials.
 2. ShopComp app retrieves shopper's account info and refreshes display.
@@ -31,10 +27,8 @@
 **Participating Actor:** Initiated by Shopper
 **Entry Condition:**
  - Shopper is logged into their account
-
 **Exit Condition:**
  - Account dashboard is shown to shopper
-
 **Flow of Events:**
 1. Shopper requests to see their account dashboard.
 2. ShopComp app retrieves shopper's dashboard info and refreshes display.
@@ -43,10 +37,8 @@
 **Participating Actor:** Initiated by Shopper
 **Entry Condition:**
  - Shopper is logged into their account
-
 **Exit Condition:**
  - Receipt history is shown to shopper
-
 **Flow of Events:**
 1. Shopper requests to see their receipt history.
 2. ShopComp app retrieves shopper's receipt history and refreshes display.
@@ -68,113 +60,92 @@
 **Entry Condition:**
  - Shopper is logged into their account
  - Shopper has made at least one purchase
-
 **Exit Condition:**
  - Recent purchases are provided to shopper
-
 **Flow of Events:**
 1. Shopper requests to search through their recent purchases.
 2. ShopComp app provides shopper's target search item and refreshes display.
 
 
 
-## ...Receipt Use Cases... ##
-## Use Case: CreateItem
-+ **Participating Actor:** Initiated by: User 
-+ **Entry condition:**
-    - User clicks button to create a new item
-
-+ **Exit condition:**
-    - A new item is added to a list of items
-
-+ **Flow of Events:**
-    1. User requests to create a new item
-    2. CreateItem() creates a new item and adds it to a list of items
+## Receipt Use Cases
+### Use Case: CreateItem
+**Participating Actor:** Initiated by: User 
+**Entry condition:**
+- User clicks button to create a new item
+**Exit condition:**
+- A new item is added to a list of items
+**Flow of Events:**
+1. User requests to create a new item
+2. CreateItem() creates a new item and adds it to a list of items
 
 
-
-## USE CASE: AddItemReceipt
-+ **Participating Actor:** Initiated by: User 
-+ **Entry condition:**
-    - User clicks button to add a given item to the recipt
-
-+ **Exit condition:**
-    - An item is added to the receipt 
-
-+ **Flow of Events:**
-    1. User requests to add an item to the receipt
-    2. AddItem() adds the selected item to the receipt and refreshes the display
+### Use Case: AddItemReceipt
+**Participating Actor:** Initiated by: User 
+**Entry condition:**
+- User clicks button to add a given item to the recipt
+**Exit condition:**
+- An item is added to the receipt 
+**Flow of Events:**
+1. User requests to add an item to the receipt
+2. AddItem() adds the selected item to the receipt and refreshes the display
 
 
-
-## USE CASE: AddItemReceipt
-+ **Participating Actor:** Initiated by: User 
-+ **Entry condition:**
-    - User clicks button to add a given item to the recipt
-
-+ **Exit condition:**
-    - An item is added to the receipt 
-
-+ **Flow of Events:**
-    1. User requests to add an item to the receipt
-    2. AddItem() adds the selected item to the receipt and refreshes the display
+### Use Case: AddItemReceipt
+**Participating Actor:** Initiated by: User 
+**Entry condition:**
+- User clicks button to add a given item to the recipt
+**Exit condition:**
+- An item is added to the receipt 
+**Flow of Events:**
+1. User requests to add an item to the receipt
+2. AddItem() adds the selected item to the receipt and refreshes the display
 
 
-
-## USE CASE: EditItemReceipt
-+ **Participating Actor:** Initiated by: User 
-+ **Entry condition:**
-    - User clicks button to edit a given item in the recipt
-
-+ **Exit condition:**
-    - The info/properties of an item in the receipt are modified 
-
-+ **Flow of Events:**
-    1. User requests to edit an item in the receipt
-    2. EditItem() edits the info/properties from an item in the receipt and refreshes the display
+### Use Case: EditItemReceipt
+**Participating Actor:** Initiated by: User 
+**Entry condition:**
+- User clicks button to edit a given item in the recipt
+**Exit condition:**
+- The info/properties of an item in the receipt are modified 
+**Flow of Events:**
+1. User requests to edit an item in the receipt
+2. EditItem() edits the info/properties from an item in the receipt and refreshes the display
 
 
+### Use Case: Remove Receipt Item
+**Participating Actor:** Initiated by: User 
+**Entry condition:**
+- User clicks button to remove a given item from the recipt
+**Exit condition:**
+- An item is removed from the receipt 
+**Flow of Events:**
+1. User requests to remove an item from the receipt
+2. RemoveItem() removes the selected item from the receipt and refreshes the display
 
-## USE CASE: RemoveItemReceipt
-+ **Participating Actor:** Initiated by: User 
-+ **Entry condition:**
-    - User clicks button to remove a given item from the recipt
 
-+ **Exit condition:**
-    - An item is removed from the receipt 
-
-+ **Flow of Events:**
-    1. User requests to remove an item from the receipt
-    2. RemoveItem() removes the selected item from the receipt and refreshes the display
+## USE CASE: Submit Receipt
+**Participating Actor:** Initiated by: User 
+**Entry condition:**
+- User clicks button to submit current receipt
+**Exit condition:**
+- The receipt is submitted and stored in a list 
+**Flow of Events:**
+1. User requests to submit the receipt
+2. SubmitReceipt() submits the current receipt to a list of the user's receipts and refreshes the display
 
 
 
-## USE CASE: SubmitReceipt
-+ **Participating Actor:** Initiated by: User 
-+ **Entry condition:**
-    - User clicks button to submit current receipt
-
-+ **Exit condition:**
-    - The receipt is submitted and stored in a list 
-
-+ **Flow of Events:**
-    1. User requests to submit the receipt
-    2. SubmitReceipt() submits the current receipt to a list of the user's receipts and refreshes the display
-
-
-
-## USE CASE: AnalyzeReceiptAI
-+ **Participating Actor:** Initiated by: User 
-+ **Entry condition:**
-    - User clicks button to add an image of a receipt and uploads the image
-
-+ **Exit condition:**
-    - A new receipt identical to the uploaded image is returned
-    - This receipt is added to the list of the user's receipt  
-
-+ **Flow of Events:**
-    1. User requests to upload an item of a receipt
-    2. AnalyzeReceipt() uploads the image of the receipt to an AI, returns a receipt identical to the one in uploaded image, and refreshes the display
+## Use Case: AnalyzeReceiptAI
+**Participating Actor:** Initiated by: User 
+**Entry condition:**
+- User clicks button to add an image of a receipt and uploads the image
+**Exit condition:**
+- A new receipt identical to the uploaded image is returned
+- This receipt is added to the list of the user's receipt  
+**Flow of Events:**
+1. User requests to upload an item of a receipt
+2. AnalyzeReceipt() uploads the image of the receipt to an AI, returns a receipt identical to the one in uploaded image, and refreshes the display
 
 
 
