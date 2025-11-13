@@ -166,7 +166,7 @@
 
 ---
 
-## Use Case: Submit Receipt
+### Use Case: Submit Receipt
 **Participating Actor:** Initiated by Shopper  
 **Entry Condition:**  
 - Shopper clicks button to submit current receipt  
@@ -180,7 +180,7 @@
 
 ---
 
-## Use Case: AI Analyze Receipt
+### Use Case: AI Analyze Receipt
 **Participating Actor:** Initiated by Shopper  
 **Entry Condition:**  
 - Shopper clicks button to add an image of a receipt and uploads the image  
@@ -200,10 +200,10 @@
 ### Use Case: Create Shopping List
 **Participating Actor:** Initiated by Shopper  
 **Entry Condition:**  
-- "Create Shopping List" button is clicked  
+- The Shopper clicks the "Create Shopping List" button  
 
 **Exit Criteria:**  
-- An empty shopping list is created and the display updated  
+- A new empty shopping list is created and the display updated  
 
 **Flow of Events:**  
 1. Shopper requests to create a shopping list.  
@@ -214,10 +214,11 @@
 ### Use Case: Add To List
 **Participating Actor:** Initiated by Shopper  
 **Entry Condition:**  
-- "Add Item" button is clicked  
+- The Shopper has an active shopping list
+- The Shopper clicks the "Add Item" button  
 
 **Exit Criteria:**  
-- An item is added to the shopping list and the display updated  
+- The item is added to the shopping list and the display updated  
 
 **Flow of Events:**  
 1. Shopper requests to add an item to a shopping list.  
@@ -228,10 +229,11 @@
 ### Use Case: Remove From List
 **Participating Actor:** Initiated by Shopper  
 **Entry Condition:**  
-- "Remove Item" button is clicked  
+- The Shopper has at least one item in their shopping list
+- The Shopper clicks the "Remove Item" button   
 
 **Exit Criteria:**  
-- An item is removed from the shopping list and the display updated  
+- The item is removed from the shopping list and the display updated  
 
 **Flow of Events:**  
 1. Shopper requests to remove an item from a shopping list.  
@@ -242,31 +244,29 @@
 ### Use Case: Delete Shopping List
 **Participating Actor:** Initiated by Shopper  
 **Entry Condition:**  
-- Shopper is logged in 
-- Shopping List exists
+- The Shopper has made a shopping list 
+- The Shopping clicks the "Remove List" button
 
 **Exit Criteria:**  
-- Shopping list has been deleted
-- Shopping list items in shopping list have been deleted
+- The shopping list and its items is deleted and the display updated
 
 **Flow of Events:**  
-1. Shopper requests to delete shopping list
-2. Shopcomp deletes shopping list and its items then refreshes page 
+1. Shopper requests to delete a shopping list
+2. Shopcomp deletes the shopping list and its items then refreshes page 
 
 ---
 
 ### Use Case: Report Options (all options of where to buy for a given item)
 **Participating Actor:** Initiated by Shopper  
 **Entry Condition:**  
-- Shopper is logged in
-- Shopper has specified which item to report for
+- The Shopper clicks the "Remove List" button
 
 **Exit Criteria:**  
-- All areas where item can be found are listed
+- A list of all stores an item appears in is displayed
 
 **Flow of Events:**  
 1. Shopper requests to report options
-2. Shopcomp lists all options for purchasing item and refreshes page
+2. Shopcomp lists all stores an item appears and refreshes page
 
 ---
 
