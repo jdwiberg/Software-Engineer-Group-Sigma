@@ -20,7 +20,7 @@
 
 ## Shopper Use Cases
 
-### Use Case: Register Shopper
+### Use Case: Register Shopper (1st)
 **Participating Actor:** Initiated by Shopper  
 **Entry Condition:**  
 - Shopper is not registered yet  
@@ -34,7 +34,7 @@
 
 ---
 
-### Use Case: Login Shopper
+### Use Case: Login Shopper (2nd)
 **Participating Actor:** Initiated by Shopper  
 **Entry Condition:**  
 - Shopper is registered  
@@ -50,7 +50,7 @@
 
 ---
 
-### Use Case: Show Account Dashboard
+### Use Case: Show Account Dashboard (3rd)
 **Participating Actor:** Initiated by Shopper  
 **Entry Condition:**  
 - Shopper is logged into their account  
@@ -124,10 +124,11 @@
 
 ---
 
-### Use Case: Add Receipt Item
+### Use Case: Add Receipt Item (6th)
 **Participating Actor:** Initiated by Shopper  
 **Entry Condition:**  
 - Shopper clicks button to add a given item to the receipt  
+- Receipt exists
 
 **Exit Condition:**  
 - An item is added to the receipt  
@@ -317,7 +318,7 @@
 
 ## Admin Use Cases
 
-### Use Case: Login Administrator
+### Use Case: Login Administrator (4th)
 **Participating Actor:** Admin  
 **Entry Condition:**  
 - Admin is not logged in  
@@ -333,7 +334,7 @@
 
 ---
 
-### Use Case: Show Admin Dash
+### Use Case: Show Admin Dash (5th)
 **Participating Actor:** Admin  
 **Entry Condition:**  
 - Admin is logged in as administrator  
