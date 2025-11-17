@@ -74,3 +74,136 @@ Put JSON APIs here
         "storesLength": "<number>"
     }
     400 {"error": "store not found"}
+
+
+Shopper use cases --> APIs
+/showAccountDash
+    POST 
+    {"username" : "<name>"}  //must post credentials to get correct info
+        200: 
+        {"shoppingLists" : [
+                {
+                    "listName": "<name>"
+                    "listItems" : [
+                        {
+                            "name" : "<name>"
+                        },
+                        {
+                            "name" : "<name>"
+                        }
+                    ]
+                }, 
+                { 
+                    "listName": "<name>"
+                    "listItems" : [
+                        {
+                            "name" : "<name>"
+                        },
+                        {
+                            "name" : "<name>"
+                        }
+                    ]
+                } 
+            ]
+        }
+        400:
+        {}
+
+/reviewHistory
+    POST
+    {"username" : "<name>"}
+        200:
+        {"receipts" : [
+                {
+                    "storeName" : "<name>",
+                    "date" : "<date>",
+                    "items" : [
+                        {
+                            "name" : "<name>",
+                            "category" : "<name>",
+                            "price" : "<number>",
+                            "quantity" : "<number>"
+                        }, 
+                        {
+                            "name" : "<name>",
+                            "category" : "<name>",
+                            "price" : "<number>",
+                            "quantity" : "<number>"
+                        }
+                    ]
+                }, 
+                {
+                    "receiptId" : "2",
+                    "receiptName" : "Second Receipt"
+                    "items" : [
+                        {
+                            "name" : "<name>",
+                            "category" : "<name>",
+                            "price" : "<number>",
+                            "quantity" : "<number>"
+                        }, 
+                        {
+                            "name" : "<name>",
+                            "category" : "<name>",
+                            "price" : "<number>",
+                            "quantity" : "<number>"
+                        }
+                    ]
+                }
+            ]
+        }
+        400:
+        {}
+
+/reviewActivity
+    POST 
+    {"type" : "weekly",
+    //credentials}
+        200:
+        {"weeks" : [
+                {   
+                    "week" : "<date> - <date>",
+                    "reportName" : "weekly purchase report",
+                    "totalSpent" : "<number>",
+                    "stores" : ["<name>", ""<name>"],
+                    "numReceipts" : "<number>"
+                },
+                {
+                    "week" : "<date> - <date>",
+                    "reportName" : "weekly purchase report",
+                    "totalSpent" : "<number>",
+                    "stores" : ["<name>", ""<name>"],
+                    "numReceipts" : "<number>"
+                }
+            ]
+        }
+        400:
+        {}
+
+
+/searchRecentPurchases
+    POST
+    {"username" : "<name>",
+    "category" : "<name>",
+    "date" : "<number>"}
+        200:
+        {"recentItems" : [
+                {
+                    "date" : "<date>",
+                    "name" : "<name>",
+                    "price" : "<number>",
+                    "quantity" : "<number>",
+                    "store" : "<name>"
+                }, 
+                {
+                    "date" : "<date>",
+                    "name" : "<name>",
+                    "price" : "<number>",
+                    "quantity" : "<number>",
+                    "store" : "<name>"
+                }
+            ]
+        }
+        400:
+        {}
+
