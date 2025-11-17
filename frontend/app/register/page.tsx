@@ -23,12 +23,20 @@ export default function RegisterShopperPage() {
                 body: JSON.stringify({ username, password })
             }
         )
-
+        
         const data = await res.json()
+
+        let body
+        try {
+          body = JSON.parse(data.body);
+        } catch (err) {
+          console.error("Failed to parse body", err);
+        }
+
         if (data.statusCode != 200) {
             setError(data.error)
         } else {
-            setMessage(data.message)
+            setMessage(body.message)
             setUsername("")
             setPassword("")
         }
@@ -44,6 +52,7 @@ export default function RegisterShopperPage() {
       <form onSubmit={handleSubmit}>
 
         <input 
+          name='username'
           type="text"
           placeholder='Username'
           value={username}
@@ -52,6 +61,7 @@ export default function RegisterShopperPage() {
         />
 
         <input 
+          name='username'
           type="text" 
           placeholder='Password'
           value={password}
