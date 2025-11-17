@@ -83,7 +83,7 @@ Shopper use cases --> APIs
         200: 
         {"shoppingLists" : [
                 {
-                    "listName": "<name>"
+                    "listName": "<name>",
                     "listItems" : [
                         {
                             "name" : "<name>"
@@ -94,7 +94,7 @@ Shopper use cases --> APIs
                     ]
                 }, 
                 { 
-                    "listName": "<name>"
+                    "listName": "<name>",
                     "listItems" : [
                         {
                             "name" : "<name>"
@@ -207,3 +207,201 @@ Shopper use cases --> APIs
         400:
         {}
 
+Shopping List Use Cases for Shopper --> APIs
+/createShoppingList
+    POST {
+        "listName": "<name>"    
+    }
+
+    200 {
+        {"shoppingLists" : [
+                {
+                    "listName": "<name>",
+                    "listItems" : [
+                        {
+                            "name" : "<name>"
+                        },
+                        {
+                            "name" : "<name>"
+                        }
+                    ]
+                }, 
+                { 
+                    "listName": "<name>",
+                    "listItems" : [
+                        {
+                            "name" : "<name>"
+                        },
+                        {
+                            "name" : "<name>"
+                        }
+                    ]
+                } 
+            ]
+        }
+
+    400 {
+        {"error" : "Could not create shopping list"}
+    }
+    }
+
+/addToList 
+    POST {
+        "listName": "<name>",
+        "itemName": "<name>"
+    }
+
+    200 {
+        {"shoppingLists" : [
+                {
+                    "listName": "<name>",
+                    "listItems" : [
+                        {
+                            "name" : "<name>"
+                        },
+                        {
+                            "name" : "<name>"
+                        }
+                    ]
+                }, 
+                { 
+                    "listName": "<name>",
+                    "listItems" : [
+                        {
+                            "name" : "<name>"
+                        },
+                        {
+                            "name" : "<name>"
+                        }
+                    ]
+                } 
+            ]
+        }
+    }
+
+    400 {
+        {"error" : "Could not add item to list"}
+    }
+
+/removeFromList
+    POST {
+        "listName": "<name>",
+        "itemName": "<name>"
+    }
+
+    200 {
+        {"shoppingLists" : [
+                {
+                    "listName": "<name>",
+                    "listItems" : [
+                        {
+                            "name" : "<name>"
+                        },
+                        {
+                            "name" : "<name>"
+                        }
+                    ]
+                }, 
+                { 
+                    "listName": "<name>",
+                    "listItems" : [
+                        {
+                            "name" : "<name>"
+                        },
+                        {
+                            "name" : "<name>"
+                        }
+                    ]
+                } 
+            ]
+        }
+    }
+
+    400 {
+        {"error" : "Could not remove item from list"}
+    }
+
+/deleteShoppingList
+    POST {
+        "listName": "<name>"    
+    }
+
+    200 {
+        {"shoppingLists" : [
+                {
+                    "listName": "<name>",
+                    "listItems" : [
+                        {
+                            "name" : "<name>"
+                        },
+                        {
+                            "name" : "<name>"
+                        }
+                    ]
+                }, 
+                { 
+                    "listName": "<name>",
+                    "listItems" : [
+                        {
+                            "name" : "<name>"
+                        },
+                        {
+                            "name" : "<name>"
+                        }
+                    ]
+                } 
+            ]
+        }
+    }
+
+    400 {
+        {"error" : "Could not delete shopping list"}
+    }
+
+// For a shopping list, the shopper can compute options for purchasing those items, based on the available data in the system
+/Report Options
+    POST {
+        "listName": "<name>"    
+    }
+
+    200 {
+        {"purchaseOptions" : [
+                {
+                    "storeName" : "<name>",
+                    "totalPrice" : "<number>",
+                    "items" : [
+                        {
+                            "name" : "<name>",
+                            "price" : "<number>",
+                            "quantity" : "<number>"
+                        },
+                        {
+                            "name" : "<name>",
+                            "price" : "<number>",
+                            "quantity" : "<number>"
+                        }
+                    ]
+                }, 
+                {
+                    "storeName" : "<name>",
+                    "totalPrice" : "<number>",
+                    "items" : [
+                        {
+                            "name" : "<name>",
+                            "price" : "<number>",
+                            "quantity" : "<number>"
+                        },
+                        {
+                            "name" : "<name>",
+                            "price" : "<number>",
+                            "quantity" : "<number>"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+    
+    400 {
+        {"error" : "Could not compute purchase options"}
+    }
