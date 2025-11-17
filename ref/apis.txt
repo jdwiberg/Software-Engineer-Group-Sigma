@@ -31,13 +31,37 @@ Put JSON APIs here
     200 {
         "numShoppers": "<number>",
         "totalSales": "<number>",
-        "totalStores": "<number>"
+        "totalStores": "<number>",
+        "chains" : [
+            {
+                "chainName" : "chain 1"
+                "stores" : [
+                    {
+                        "address" : "address 1"
+                    },
+                    {
+                        "address" : "address 2"
+                    }
+                ]
+            },
+            {
+                "chainName" : "chain 2"
+                "stores" : [
+                    {
+                        "address" : "address 1"
+                    },
+                    {
+                        "address" : "address 2"
+                    }
+                ]
+            }
+        ]
     }
 
 /ReportSales
     GET
-    200 [
-        {
+    200
+    {
             "chainName": "<name>",
             "sales": "<number>"
             "stores": [
@@ -45,11 +69,10 @@ Put JSON APIs here
                 "sales": "<number>"
             ]
         }
-    ]
 
 /ShowShoppers
     GET
-    200 {
+    200: {
         "shoppers": [
             "username": "<name>",
             "numReceipts": "<number>",
@@ -58,20 +81,44 @@ Put JSON APIs here
     }
 
 /RemoveChain
-    POST {"ChainName": "<name>"}
-    200 {"chainsLength": "<number>"}
-    400 {"error": "chain not found"}
+    POST 
+    {"ChainName": "chain 1"}
+        200: 
+        {"chains" : [
+                {
+                    "chainName" : "chain 2"
+                    "stores" : [
+                        {
+                            "address" : "address 1"
+                        },
+                        {
+                            "address" : "address 2"
+                        }
+                    ]
+                }
+            ]
+        }
+        400: {"error": "chain not found"}
 
 
 /RemoveStore
     POST {
         "chainName": "<name>",
-        "storeName": "<name>"
+        "storeName": "store 2"
     }
 
-    200 {
+    200: {
         "chainName": "<name>",
-        "storesLength": "<number>"
+        "storesLength": "<number>",
+        "stores" : [
+            {
+                "address" : "address 1"
+            },
+            {
+                "address" : "address 3"
+            }
+        ]
+
     }
     400 {"error": "store not found"}
 
