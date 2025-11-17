@@ -162,7 +162,8 @@ Shopper use cases --> APIs
         200:
         {"receipts" : [
                 {
-                    "storeName" : "<name>",
+                    "chainName" : "<name>",
+                    "address" : "<name>",
                     "date" : "<date>",
                     "items" : [
                         {
@@ -180,8 +181,9 @@ Shopper use cases --> APIs
                     ]
                 }, 
                 {
-                    "receiptId" : "2",
-                    "receiptName" : "Second Receipt"
+                    "chainName" : "<name>",
+                    "address" : "<name>",
+                    "date" : "<date>",
                     "items" : [
                         {
                             "name" : "<name>",
@@ -204,8 +206,10 @@ Shopper use cases --> APIs
 
 /reviewActivity
     POST 
-    {"type" : "weekly",
-    //credentials}
+    {
+        "type" : "weekly",
+        "username" : "<name>"
+    }
         200:
         {"weeks" : [
                 {   
@@ -230,9 +234,11 @@ Shopper use cases --> APIs
 
 /searchRecentPurchases
     POST
-    {"username" : "<name>",
-    "category" : "<name>",
-    "date" : "<number>"}
+    {
+        "username" : "<name>",
+        "category" : "<name>",
+        "date" : "<number>"
+    }
         200:
         {"recentItems" : [
                 {
@@ -254,3 +260,76 @@ Shopper use cases --> APIs
         400:
         {}
 
+/createReceipt
+    POST
+    {
+        "chainName" : "<name>",
+        "storeAddress" : "<name>",
+        "date" : "<number>"
+    }
+        200:
+        {"receipts" : [
+                {
+                    "chainName" : "<name>",
+                    "address" : "<name>",
+                    "date" : "<date>",
+                    "items" : [
+                        {
+                            "name" : "<name>",
+                            "category" : "<name>",
+                            "price" : "<number>",
+                            "quantity" : "<number>"
+                        }
+                    ]
+                }, 
+                {
+                    "chainName" : "<name>",
+                    "address" : "<name>",
+                    "date" : "<date>",
+                    "items" : []
+                }
+            ]
+        }
+    400: 
+    {"error" : "Information entered is invalid"}
+
+/addReceiptItem
+    POST
+    {
+        "name" : "newItem",
+        "category" : "newCategory",
+        "price" : "10",
+        "quantity" : "2"
+    }
+        200:
+        {
+            "receiptItems" : [
+                {
+                    "name" : "<name>",
+                    "category" : "<name>",
+                    "price" : "<number>",
+                    "quantity" : "<number>"
+                },
+                {
+                    "name" : "newItem",
+                    "category" : "newCategory",
+                    "price" : "10",
+                    "quantity" : "2"
+                }
+            ]
+        }
+        400: 
+        {"error" : "Information entered is invalid"}
+
+/editReceiptItem
+    POST
+    {"price" : "<corrected price>"}
+        200:
+        {
+            "name" : "<name>",
+            "category" : "<name>",
+            "price" : "<corrected price>",
+            "quantity" : "<number>"
+        }
+        400: 
+        {"error" : "Information entered is invalid"}
