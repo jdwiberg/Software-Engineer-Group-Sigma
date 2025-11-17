@@ -296,6 +296,7 @@ Shopper use cases --> APIs
 /addReceiptItem
     POST
     {
+        "receiptID" : "<string>"
         "name" : "newItem",
         "category" : "newCategory",
         "price" : "10",
@@ -305,8 +306,8 @@ Shopper use cases --> APIs
         {
             "receiptItems" : [
                 {
-                    "name" : "<name>",
-                    "category" : "<name>",
+                    "name" : "oldItem",
+                    "category" : "oldCategory",
                     "price" : "<number>",
                     "quantity" : "<number>"
                 },
@@ -323,7 +324,11 @@ Shopper use cases --> APIs
 
 /editReceiptItem
     POST
-    {"price" : "<corrected price>"}
+    {
+        "receiptID" : "<string>",
+        "itemID" : "<string>"
+        "price" : "<corrected price>"
+    }
         200:
         {
             "name" : "<name>",
@@ -333,3 +338,87 @@ Shopper use cases --> APIs
         }
         400: 
         {"error" : "Information entered is invalid"}
+
+/removeReceiptItem
+    POST
+    {
+        "receiptID" : "<string>",
+        "itemID" : "<string>"
+    }
+        200: 
+        {
+            "receiptItems" : [
+                {
+                    "name" : "oldItem",
+                    "category" : "oldCategory",
+                    "price" : "<number>",
+                    "quantity" : "<number>"
+                }
+            ]
+        }
+        400: 
+        {"error" : "item does not exist"}
+
+/submitReceipt
+    POST
+    {"receiptID" : "<string>"}
+        200:
+        {"receipts" : [
+                {
+                    "chainName" : "<name>",
+                    "address" : "<name>",
+                    "date" : "<date>",
+                    "items" : [
+                        {
+                            "name" : "<name>",
+                            "category" : "<name>",
+                            "price" : "<number>",
+                            "quantity" : "<number>"
+                        }
+                    ]
+                }, 
+                {
+                    "chainName" : "new chain",
+                    "address" : "new address",
+                    "date" : "<date>",
+                    "items" : [
+                        {
+                            "name" : "new item",
+                            "category" : "newCategory",
+                            "price" : "<number>",
+                            "quantity" : "<number>"
+                        }
+                    ]
+                }, 
+            ]
+        }
+        400:
+        {"error" : "receipt information invalid"}
+
+/aiAnalyzeReceipt
+    POST
+    {"image" : Image}
+    200:  
+    {
+        
+        "chain" : "<name>",
+        "address" : "<name>",
+        "receiptDate" : "<date>",
+        "receiptItems" : [
+            {
+                "name" : "<name>",
+                "category" : "<name>",
+                "price" : "<number>",
+                "quantity" : "<number>"
+            },
+            {
+                "name" : "<name>",
+                "category" : "<name>",
+                "price" : "<number>",
+                "quantity" : "<number>"
+            }
+        ]
+    }
+    400:
+    {"error" : "no image provided"}
+    {"error" : "image not recognized"}
