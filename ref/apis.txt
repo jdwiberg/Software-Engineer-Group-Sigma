@@ -36,25 +36,11 @@ Put JSON APIs here
             "chains" : [
                 {
                     "chainName" : "chain 1"
-                    "stores" : [
-                        {
-                            "address" : "address 1"
-                        },
-                        {
-                            "address" : "address 2"
-                        }
-                    ]
+                    "stores" : ["address1", "address 2"]
                 },
                 {
                     "chainName" : "chain 2"
-                    "stores" : [
-                        {
-                            "address" : "address 1"
-                        },
-                        {
-                            "address" : "address 2"
-                        }
-                    ]
+                    "stores" : ["address 1", "address 2"]
                 }
             ]
         }
@@ -89,11 +75,7 @@ Put JSON APIs here
     POST
     {"chainName" : "<name>"}
         200:
-            {"chains" : [
-                    {"chainName" : "<name>"},
-                    {"chainName" : "<name>"},
-                    {"chainName" : "<name>"}
-                ]
+            {"chains" : ["chain 1", "chain 2", "new chain"]
             }
         400: {"error" : "chain already exists"}
         400: {"error" : "chain name invalid"}
@@ -104,14 +86,7 @@ Put JSON APIs here
         200:
             {
                 "chainName" : "<name>",
-                "stores" : [
-                    {
-                        "address" : "<name>"
-                    },
-                    {
-                        "address" : "<new address>"
-                    }
-                ]
+                "stores" : ["address 1", "new address"]
             }
         400: {"error" : "store name invalid"}
         400: {"error" : "store already exists"}
@@ -123,14 +98,7 @@ Put JSON APIs here
             {"chains" : [
                     {
                         "chainName" : "chain 2"
-                        "stores" : [
-                            {
-                                "address" : "address 1"
-                            },
-                            {
-                                "address" : "address 2"
-                            }
-                        ]
+                        "stores" : ["address 1", "address 2"]
                     }
                 ]
             }
@@ -148,14 +116,7 @@ Put JSON APIs here
         {
             "chainName": "<name>",
             "storesLength": "<number>",
-            "stores" : [
-                {
-                    "address" : "address 1"
-                },
-                {
-                    "address" : "address 3"
-                }
-            ]
+            "stores" : ["address 1", "address 3"]
 
         }
     400: {"error" : "store not found"}
@@ -169,26 +130,12 @@ Shopper use cases --> APIs
         200: 
         {"shoppingLists" : [
                 {
-                    "listName": "<name>",
-                    "listItems" : [
-                        {
-                            "name" : "<name>"
-                        },
-                        {
-                            "name" : "<name>"
-                        }
-                    ]
+                    "listName": "<name>"
+                    "listItems" : ["<name>", "<name>"]
                 }, 
                 { 
-                    "listName": "<name>",
-                    "listItems" : [
-                        {
-                            "name" : "<name>"
-                        },
-                        {
-                            "name" : "<name>"
-                        }
-                    ]
+                    "listName": "<name>"
+                    "listItems" : ["<name>", "<name>"]
                 } 
             ]
         }
