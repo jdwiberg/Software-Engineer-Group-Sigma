@@ -493,3 +493,34 @@ Shopping List Use Cases for Shopper --> APIs
     400 {
         {"error" : "Could not compute purchase options"}
     }
+
+/listChains
+    GET
+        200: 
+            {
+                "chains" : [
+                    {
+                        "chainName" : "chain 1"
+                        "stores" : [
+                            {
+                                "address" : "address 1"
+                            },
+                            {
+                                "address" : "address 2"
+                            }
+                        ]
+                    },
+                    {
+                        "chainName" : "chain 2"
+                        "stores" : [
+                            {
+                                "address" : "address 1"
+                            },
+                            {
+                                "address" : "address 2"
+                            }
+                        ]
+                    }
+                ]
+            }
+        400: {}
