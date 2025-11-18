@@ -488,67 +488,8 @@ Shopping List Use Cases for Shopper --> APIs
                 }
             ]
         }
-<<<<<<< HEAD
     }
     
     400 {
         {"error" : "Could not compute purchase options"}
     }
-=======
-         400:{}
-
-/reportOptions
-    POST
-    {"listName" : "<name>",
-    "itemName" : "<name>",
-    "itemCategory" : "<name>"}
-        200:
-            {
-                "stores" : [
-                    {
-                        "chainName" : "<name>",
-                        "address" : "<name>",
-                        "itemName" : "<name>",
-                        "price" : "<number>"
-                    },
-                    {
-                        "chainName" : "<name>",
-                        "address" : "<name>",
-                        "itemName" : "<name>",
-                        "price" : "<number>"
-                    }
-                ]
-            }
-        400: {"error" : "no item selected"}
-
-/listChains
-    GET
-        200: 
-            {
-                "chains" : [
-                    {
-                        "chainName" : "chain 1"
-                        "stores" : [
-                            {
-                                "address" : "address 1"
-                            },
-                            {
-                                "address" : "address 2"
-                            }
-                        ]
-                    },
-                    {
-                        "chainName" : "chain 2"
-                        "stores" : [
-                            {
-                                "address" : "address 1"
-                            },
-                            {
-                                "address" : "address 2"
-                            }
-                        ]
-                    }
-                ]
-            }
-        400: {}
->>>>>>> 829249805b8c6c1bc6ead31d0e6f894f6bc6c472
