@@ -1,90 +1,50 @@
 Put JSON APIs here
 /RegisterShopper
-    POST {
+    POST 
+    {
         "username": "<name>",
         "password": "<password>",
     }
-    200 {
-        "success": "Shopper registered"
-    }
-    400 {"error": "username taken"}
-    400 {"error": "invalid password"}
+        200: {"success": "Shopper registered"}
+        400: {"error": "username taken"}
+        400: {"error": "invalid password"}
 
 /LoginShopper
-    POST {
+    POST 
+    {
         "username": "<name>",
         "password": "<password>",
     }
-    200 {"success": "login was successful"}
-    400 {"error": "invalid username or password"}
+        200: {"success": "login was successful"}
+        400: {"error": "invalid username or password"}
 
 /LoginAdmin
-    POST {
+    POST 
+    {
         "password" : "<password>",
     }
-
-    200 {"success" : "Log in succeeded"}
-    401 {"error": "Unauthorized: Incorrect login credentials"}
+        200: {"success" : "Log in succeeded"}
+        401: {"error": "Unauthorized: Incorrect login credentials"}
 
 /ShowAdminDash
     GET
-    200 {
-        "numShoppers": "<number>",
-        "totalSales": "<number>",
-        "totalStores": "<number>",
-        "chains" : [
-            {
-                "chainName" : "chain 1"
-                "stores" : [
-                    {
-                        "address" : "address 1"
-                    },
-                    {
-                        "address" : "address 2"
-                    }
-                ]
-            },
-            {
-                "chainName" : "chain 2"
-                "stores" : [
-                    {
-                        "address" : "address 1"
-                    },
-                    {
-                        "address" : "address 2"
-                    }
-                ]
-            }
-        ]
-    }
-
-/ReportSales
-    GET
-    200
-    {
-            "chainName": "<name>",
-            "sales": "<number>"
-            "stores": [
-                "storeName": "<name>",
-                "sales": "<number>"
-            ]
-        }
-
-/ShowShoppers
-    GET
-    200: {
-        "shoppers": [
-            "username": "<name>",
-            "numReceipts": "<number>",
-            "sales": "<number>"
-        ]
-    }
-
-/RemoveChain
-    POST 
-    {"ChainName": "chain 1"}
-        200: 
-        {"chains" : [
+    200: 
+        {
+            "numShoppers": "<number>",
+            "totalSales": "<number>",
+            "totalStores": "<number>",
+            "chains" : [
+                {
+                    "chainName" : "chain 1"
+                    "stores" : [
+                        {
+                            "address" : "address 1"
+                        },
+                        {
+                            "address" : "address 2"
+                        }
+                    ]
+                },
                 {
                     "chainName" : "chain 2"
                     "stores" : [
@@ -98,29 +58,108 @@ Put JSON APIs here
                 }
             ]
         }
-        400: {"error": "chain not found"}
+    400: {"error" : "admin is not logged in"}
+
+/ReportSales
+    GET
+    200:
+        {
+            "chainName": "<name>",
+            "sales": "<number>"
+            "stores": [
+                "storeName": "<name>",
+                "sales": "<number>"
+            ]
+        }
+    400:{}
+
+/ShowShoppers
+    GET
+    200: 
+        {
+            "shoppers": [
+                "username": "<name>",
+                "numReceipts": "<number>",
+                "sales": "<number>"
+            ]
+        }
+    400:{}
+
+/addChain
+    POST
+    {"chainName" : "<name>"}
+        200:
+            {"chains" : [
+                    {"chainName" : "<name>"},
+                    {"chainName" : "<name>"},
+                    {"chainName" : "<name>"}
+                ]
+            }
+        400: {"error" : "chain already exists"}
+        400: {"error" : "chain name invalid"}
+
+/addStore
+    POST
+    {"chainName" : "<name>"}
+        200:
+            {
+                "chainName" : "<name>",
+                "stores" : [
+                    {
+                        "address" : "<name>"
+                    },
+                    {
+                        "address" : "<new address>"
+                    }
+                ]
+            }
+        400: {"error" : "store name invalid"}
+        400: {"error" : "store already exists"}
+
+/RemoveChain
+    POST 
+    {"ChainName": "chain 1"}
+        200: 
+            {"chains" : [
+                    {
+                        "chainName" : "chain 2"
+                        "stores" : [
+                            {
+                                "address" : "address 1"
+                            },
+                            {
+                                "address" : "address 2"
+                            }
+                        ]
+                    }
+                ]
+            }
+        400: {"error" : "chain not found"}
+        400: {"error" : "admin is not logged in"}
 
 
 /RemoveStore
-    POST {
+    POST 
+    {
         "chainName": "<name>",
         "storeName": "store 2"
     }
+    200: 
+        {
+            "chainName": "<name>",
+            "storesLength": "<number>",
+            "stores" : [
+                {
+                    "address" : "address 1"
+                },
+                {
+                    "address" : "address 3"
+                }
+            ]
 
-    200: {
-        "chainName": "<name>",
-        "storesLength": "<number>",
-        "stores" : [
-            {
-                "address" : "address 1"
-            },
-            {
-                "address" : "address 3"
-            }
-        ]
-
-    }
-    400 {"error": "store not found"}
+        }
+    400: {"error" : "store not found"}
+    400: {"error" : "admin is not logged in}
 
 
 Shopper use cases --> APIs
@@ -153,8 +192,7 @@ Shopper use cases --> APIs
                 } 
             ]
         }
-        400:
-        {}
+        400:{}
 
 /reviewHistory
     POST
@@ -201,8 +239,7 @@ Shopper use cases --> APIs
                 }
             ]
         }
-        400:
-        {}
+        400: {}
 
 /reviewActivity
     POST 
@@ -228,8 +265,7 @@ Shopper use cases --> APIs
                 }
             ]
         }
-        400:
-        {}
+        400: {}
 
 
 /searchRecentPurchases
@@ -257,8 +293,7 @@ Shopper use cases --> APIs
                 }
             ]
         }
-        400:
-        {}
+        400: {}
 
 /createReceipt
     POST
@@ -290,8 +325,7 @@ Shopper use cases --> APIs
                 }
             ]
         }
-    400: 
-    {"error" : "Information entered is invalid"}
+    400: {"error" : "Information entered is invalid"}
 
 /addReceiptItem
     POST
@@ -319,8 +353,7 @@ Shopper use cases --> APIs
                 }
             ]
         }
-        400: 
-        {"error" : "Information entered is invalid"}
+        400: {"error" : "Information entered is invalid"}
 
 /editReceiptItem
     POST
@@ -336,8 +369,7 @@ Shopper use cases --> APIs
             "price" : "<corrected price>",
             "quantity" : "<number>"
         }
-        400: 
-        {"error" : "Information entered is invalid"}
+        400: {"error" : "Information entered is invalid"}
 
 /removeReceiptItem
     POST
@@ -347,6 +379,8 @@ Shopper use cases --> APIs
     }
         200: 
         {
+            "storeName" : "<name>",
+            "date" : "<date>",
             "receiptItems" : [
                 {
                     "name" : "oldItem",
@@ -356,8 +390,7 @@ Shopper use cases --> APIs
                 }
             ]
         }
-        400: 
-        {"error" : "item does not exist"}
+        400: {"error" : "item does not exist"}
 
 /submitReceipt
     POST
@@ -392,15 +425,13 @@ Shopper use cases --> APIs
                 }, 
             ]
         }
-        400:
-        {"error" : "receipt information invalid"}
+        400: {"error" : "receipt information invalid"}
 
 /aiAnalyzeReceipt
     POST
     {"image" : Image}
     200:  
     {
-        
         "chain" : "<name>",
         "address" : "<name>",
         "receiptDate" : "<date>",
@@ -419,6 +450,149 @@ Shopper use cases --> APIs
             }
         ]
     }
-    400:
-    {"error" : "no image provided"}
-    {"error" : "image not recognized"}
+    400:{"error" : "no image provided"}
+    400:{"error" : "image not recognized"}
+
+/createShoppingList
+    POST
+    {"listName" : "<name>"}
+        200: 
+            {
+                "shoppingLists" : [    
+                    {
+                        "listName" : "grocery",
+                        "items" : [
+                            {
+                                "name" : "<name>",
+                                category" : "<name>"
+                            },
+                            {
+                                "name" : "<name>",
+                                category" : "<name>"
+                            }
+                        ]
+                    },
+                    {
+                        "listName" : "new list",
+                        "items" : []
+                    }
+                ]
+            }
+
+        400: {"error" : "list name already taken"}
+        400: {"error" : "list name invalid"}
+
+/addToList
+    POST
+    {"itemName" : "<name>",
+    "itemCategory" : "<name>",
+    "listName" : "<name>"}
+        200: 
+        {
+            "listName" : "<name>",
+            "items" : [
+                {
+                    "name" : "<name>",
+                    category" : "<name>"
+                },
+                                {
+                    "name" : "new item",
+                    category" : "new category"
+                }
+            ]
+        }
+        400: {"error" : "item already exists"}
+        400: {"error" : "item name invalid"}
+
+/removeFromList
+    POST
+    {"itemName" : "<name>"}
+        200:
+        {
+            "listName" : "<name>",
+            "items" : [
+                {
+                    "name" : "old item",
+                    category" : "<name>"
+                }
+            ]
+        }
+    400: {}
+
+/deleteShoppingList
+    POST
+    {"sl_name" : "groceries"}
+    200:
+        {
+            "shoppingLists" : [   
+                {
+                    "listName" : "<name>",
+                    "items" : [
+                        {
+                            "name" : "<name>",
+                            category" : "<name>"
+                        },
+                                        {
+                            "name" : "new item",
+                            category" : "new category"
+                        }
+                    ]
+                }
+            ]
+        }
+         400:{}
+
+/reportOptions
+    POST
+    {"listName" : "<name>",
+    "itemName" : "<name>",
+    "itemCategory" : "<name>"}
+        200:
+            {
+                "stores" : [
+                    {
+                        "chainName" : "<name>",
+                        "address" : "<name>",
+                        "itemName" : "<name>",
+                        "price" : "<number>"
+                    },
+                    {
+                        "chainName" : "<name>",
+                        "address" : "<name>",
+                        "itemName" : "<name>",
+                        "price" : "<number>"
+                    }
+                ]
+            }
+        400: {"error" : "no item selected"}
+
+/listChains
+    GET
+        200: 
+            {
+                "chains" : [
+                    {
+                        "chainName" : "chain 1"
+                        "stores" : [
+                            {
+                                "address" : "address 1"
+                            },
+                            {
+                                "address" : "address 2"
+                            }
+                        ]
+                    },
+                    {
+                        "chainName" : "chain 2"
+                        "stores" : [
+                            {
+                                "address" : "address 1"
+                            },
+                            {
+                                "address" : "address 2"
+                            }
+                        ]
+                    }
+                ]
+            }
+        400: {}
