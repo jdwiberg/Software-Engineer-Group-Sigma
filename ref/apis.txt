@@ -242,276 +242,204 @@ Shopper use cases --> APIs
         }
         400: {}
 
-/createReceipt
-    POST
-    {
-        "chainName" : "<name>",
-        "storeAddress" : "<name>",
-        "date" : "<number>"
-    }
-        200:
-        {"receipts" : [
-                {
-                    "chainName" : "<name>",
-                    "address" : "<name>",
-                    "date" : "<date>",
-                    "items" : [
-                        {
-                            "name" : "<name>",
-                            "category" : "<name>",
-                            "price" : "<number>",
-                            "quantity" : "<number>"
-                        }
-                    ]
-                }, 
-                {
-                    "chainName" : "<name>",
-                    "address" : "<name>",
-                    "date" : "<date>",
-                    "items" : []
-                }
-            ]
-        }
-    400: {"error" : "Information entered is invalid"}
-
-/addReceiptItem
-    POST
-    {
-        "receiptID" : "<string>"
-        "name" : "newItem",
-        "category" : "newCategory",
-        "price" : "10",
-        "quantity" : "2"
-    }
-        200:
-        {
-            "receiptItems" : [
-                {
-                    "name" : "oldItem",
-                    "category" : "oldCategory",
-                    "price" : "<number>",
-                    "quantity" : "<number>"
-                },
-                {
-                    "name" : "newItem",
-                    "category" : "newCategory",
-                    "price" : "10",
-                    "quantity" : "2"
-                }
-            ]
-        }
-        400: {"error" : "Information entered is invalid"}
-
-/editReceiptItem
-    POST
-    {
-        "receiptID" : "<string>",
-        "itemID" : "<string>"
-        "price" : "<corrected price>"
-    }
-        200:
-        {
-            "name" : "<name>",
-            "category" : "<name>",
-            "price" : "<corrected price>",
-            "quantity" : "<number>"
-        }
-        400: {"error" : "Information entered is invalid"}
-
-/removeReceiptItem
-    POST
-    {
-        "receiptID" : "<string>",
-        "itemID" : "<string>"
-    }
-        200: 
-        {
-            "storeName" : "<name>",
-            "date" : "<date>",
-            "receiptItems" : [
-                {
-                    "name" : "oldItem",
-                    "category" : "oldCategory",
-                    "price" : "<number>",
-                    "quantity" : "<number>"
-                }
-            ]
-        }
-        400: {"error" : "item does not exist"}
-
-/submitReceipt
-    POST
-    {"receiptID" : "<string>"}
-        200:
-        {"receipts" : [
-                {
-                    "chainName" : "<name>",
-                    "address" : "<name>",
-                    "date" : "<date>",
-                    "items" : [
-                        {
-                            "name" : "<name>",
-                            "category" : "<name>",
-                            "price" : "<number>",
-                            "quantity" : "<number>"
-                        }
-                    ]
-                }, 
-                {
-                    "chainName" : "new chain",
-                    "address" : "new address",
-                    "date" : "<date>",
-                    "items" : [
-                        {
-                            "name" : "new item",
-                            "category" : "newCategory",
-                            "price" : "<number>",
-                            "quantity" : "<number>"
-                        }
-                    ]
-                }, 
-            ]
-        }
-        400: {"error" : "receipt information invalid"}
-
-/aiAnalyzeReceipt
-    POST
-    {"image" : Image}
-    200:  
-    {
-        "chain" : "<name>",
-        "address" : "<name>",
-        "receiptDate" : "<date>",
-        "receiptItems" : [
-            {
-                "name" : "<name>",
-                "category" : "<name>",
-                "price" : "<number>",
-                "quantity" : "<number>"
-            },
-            {
-                "name" : "<name>",
-                "category" : "<name>",
-                "price" : "<number>",
-                "quantity" : "<number>"
-            }
-        ]
-    }
-    400:{"error" : "no image provided"}
-    400:{"error" : "image not recognized"}
-
+Shopping List Use Cases for Shopper --> APIs
 /createShoppingList
-    POST
-    {"listName" : "<name>"}
-        200: 
-            {
-                "shoppingLists" : [    
-                    {
-                        "listName" : "grocery",
-                        "items" : [
-                            {
-                                "name" : "<name>",
-                                category" : "<name>"
-                            },
-                            {
-                                "name" : "<name>",
-                                category" : "<name>"
-                            }
-                        ]
-                    },
-                    {
-                        "listName" : "new list",
-                        "items" : []
-                    }
-                ]
-            }
+    POST {
+        "listName": "<name>"    
+    }
 
-        400: {"error" : "list name already taken"}
-        400: {"error" : "list name invalid"}
-
-/addToList
-    POST
-    {"itemName" : "<name>",
-    "itemCategory" : "<name>",
-    "listName" : "<name>"}
-        200: 
-        {
-            "listName" : "<name>",
-            "items" : [
+    200 {
+        {"shoppingLists" : [
                 {
-                    "name" : "<name>",
-                    category" : "<name>"
-                },
-                {
-                    "name" : "new item",
-                    category" : "new category"
-                }
+                    "listName": "<name>",
+                    "listItems" : [
+                        {
+                            "name" : "<name>"
+                        },
+                        {
+                            "name" : "<name>"
+                        }
+                    ]
+                }, 
+                { 
+                    "listName": "<name>",
+                    "listItems" : [
+                        {
+                            "name" : "<name>"
+                        },
+                        {
+                            "name" : "<name>"
+                        }
+                    ]
+                } 
             ]
         }
-        400: {"error" : "item already exists"}
-        400: {"error" : "item name invalid"}
+
+    400 {
+        {"error" : "Could not create shopping list"}
+    }
+    }
+
+/addToList 
+    POST {
+        "listName": "<name>",
+        "itemName": "<name>"
+    }
+
+    200 {
+        {"shoppingLists" : [
+                {
+                    "listName": "<name>",
+                    "listItems" : [
+                        {
+                            "name" : "<name>"
+                        },
+                        {
+                            "name" : "<name>"
+                        }
+                    ]
+                }, 
+                { 
+                    "listName": "<name>",
+                    "listItems" : [
+                        {
+                            "name" : "<name>"
+                        },
+                        {
+                            "name" : "<name>"
+                        }
+                    ]
+                } 
+            ]
+        }
+    }
+
+    400 {
+        {"error" : "Could not add item to list"}
+    }
 
 /removeFromList
-    POST
-    {"itemName" : "<name>"}
-        200:
-        {
-            "listName" : "<name>",
-            "items" : [
+    POST {
+        "listName": "<name>",
+        "itemName": "<name>"
+    }
+
+    200 {
+        {"shoppingLists" : [
                 {
-                    "name" : "old item",
-                    category" : "<name>"
-                }
+                    "listName": "<name>",
+                    "listItems" : [
+                        {
+                            "name" : "<name>"
+                        },
+                        {
+                            "name" : "<name>"
+                        }
+                    ]
+                }, 
+                { 
+                    "listName": "<name>",
+                    "listItems" : [
+                        {
+                            "name" : "<name>"
+                        },
+                        {
+                            "name" : "<name>"
+                        }
+                    ]
+                } 
             ]
         }
-    400: {}
+    }
+
+    400 {
+        {"error" : "Could not remove item from list"}
+    }
 
 /deleteShoppingList
-    POST
-    {"sl_name" : "groceries"}
-    200:
-        {
-            "shoppingLists" : [   
+    POST {
+        "listName": "<name>"    
+    }
+
+    200 {
+        {"shoppingLists" : [
                 {
-                    "listName" : "<name>",
+                    "listName": "<name>",
+                    "listItems" : [
+                        {
+                            "name" : "<name>"
+                        },
+                        {
+                            "name" : "<name>"
+                        }
+                    ]
+                }, 
+                { 
+                    "listName": "<name>",
+                    "listItems" : [
+                        {
+                            "name" : "<name>"
+                        },
+                        {
+                            "name" : "<name>"
+                        }
+                    ]
+                } 
+            ]
+        }
+    }
+
+    400 {
+        {"error" : "Could not delete shopping list"}
+    }
+
+// For a shopping list, the shopper can compute options for purchasing those items, based on the available data in the system
+/Report Options
+    POST {
+        "listName": "<name>"    
+    }
+
+    200 {
+        {"purchaseOptions" : [
+                {
+                    "storeName" : "<name>",
+                    "totalPrice" : "<number>",
                     "items" : [
                         {
                             "name" : "<name>",
-                            category" : "<name>"
+                            "price" : "<number>",
+                            "quantity" : "<number>"
                         },
-                                        {
-                            "name" : "new item",
-                            category" : "new category"
+                        {
+                            "name" : "<name>",
+                            "price" : "<number>",
+                            "quantity" : "<number>"
+                        }
+                    ]
+                }, 
+                {
+                    "storeName" : "<name>",
+                    "totalPrice" : "<number>",
+                    "items" : [
+                        {
+                            "name" : "<name>",
+                            "price" : "<number>",
+                            "quantity" : "<number>"
+                        },
+                        {
+                            "name" : "<name>",
+                            "price" : "<number>",
+                            "quantity" : "<number>"
                         }
                     ]
                 }
             ]
         }
-         400:{}
-
-/reportOptions
-    POST
-    {"listName" : "<name>",
-    "itemName" : "<name>",
-    "itemCategory" : "<name>"}
-        200:
-            {
-                "stores" : [
-                    {
-                        "chainName" : "<name>",
-                        "address" : "<name>",
-                        "itemName" : "<name>",
-                        "price" : "<number>"
-                    },
-                    {
-                        "chainName" : "<name>",
-                        "address" : "<name>",
-                        "itemName" : "<name>",
-                        "price" : "<number>"
-                    }
-                ]
-            }
-        400: {"error" : "no item selected"}
+    }
+    
+    400 {
+        {"error" : "Could not compute purchase options"}
+    }
 
 /listChains
     GET
