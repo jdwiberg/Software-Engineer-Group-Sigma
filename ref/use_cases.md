@@ -110,17 +110,17 @@
 
 ## Receipt Use Cases
 
-### Use Case: Create Item
+### Use Case: Create Receipt
 **Participating Actor:** Initiated by Shopper  
 **Entry Condition:**  
-- Shopper clicks button to create a new item  
+- Shopper requests to create a new receipt  
 
 **Exit Condition:**  
-- A new item is added to a list of items  
+- A new receipt is added to a list of receipts  
 
 **Flow of Events:**  
-1. Shopper requests to create a new item.  
-2. Shopcomp creates a new item and adds it to a list of items.
+1. Shopper requests to create a new receipt.  
+2. Shopcomp creates a new receipt and adds it to a list of receipts.
 
 ---
 
