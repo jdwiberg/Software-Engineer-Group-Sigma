@@ -1,42 +1,68 @@
 Put JSON APIs here
 /RegisterShopper
-    POST {
+    POST 
+    {
         "username": "<name>",
         "password": "<password>",
     }
-    200 {
-        "success": "Shopper registered"
-    }
-    400 {"error": "username taken"}
-    400 {"error": "invalid password"}
+        200: {"success": "Shopper registered"}
+        400: {"error": "username taken"}
+        400: {"error": "invalid password"}
 
 /LoginShopper
-    POST {
+    POST 
+    {
         "username": "<name>",
         "password": "<password>",
     }
-    200 {"success": "login was successful"}
-    400 {"error": "invalid username or password"}
+        200: {"success": "login was successful"}
+        400: {"error": "invalid username or password"}
 
 /LoginAdmin
-    POST {
+    POST 
+    {
         "password" : "<password>",
     }
-
-    200 {"success" : "Log in succeeded"}
-    401 {"error": "Unauthorized: Incorrect login credentials"}
+        200: {"success" : "Log in succeeded"}
+        401: {"error": "Unauthorized: Incorrect login credentials"}
 
 /ShowAdminDash
     GET
-    200 {
-        "numShoppers": "<number>",
-        "totalSales": "<number>",
-        "totalStores": "<number>"
-    }
+    200: 
+        {
+            "numShoppers": "<number>",
+            "totalSales": "<number>",
+            "totalStores": "<number>",
+            "chains" : [
+                {
+                    "chainName" : "chain 1"
+                    "stores" : [
+                        {
+                            "address" : "address 1"
+                        },
+                        {
+                            "address" : "address 2"
+                        }
+                    ]
+                },
+                {
+                    "chainName" : "chain 2"
+                    "stores" : [
+                        {
+                            "address" : "address 1"
+                        },
+                        {
+                            "address" : "address 2"
+                        }
+                    ]
+                }
+            ]
+        }
+    400: {"error" : "admin is not logged in"}
 
 /ReportSales
     GET
-    200 [
+    200:
         {
             "chainName": "<name>",
             "sales": "<number>"
@@ -45,35 +71,95 @@ Put JSON APIs here
                 "sales": "<number>"
             ]
         }
-    ]
+    400:{}
 
 /ShowShoppers
     GET
-    200 {
-        "shoppers": [
-            "username": "<name>",
-            "numReceipts": "<number>",
-            "sales": "<number>"
-        ]
-    }
+    200: 
+        {
+            "shoppers": [
+                "username": "<name>",
+                "numReceipts": "<number>",
+                "sales": "<number>"
+            ]
+        }
+    400:{}
+
+/addChain
+    POST
+    {"chainName" : "<name>"}
+        200:
+            {"chains" : [
+                    {"chainName" : "<name>"},
+                    {"chainName" : "<name>"},
+                    {"chainName" : "<name>"}
+                ]
+            }
+        400: {"error" : "chain already exists"}
+        400: {"error" : "chain name invalid"}
+
+/addStore
+    POST
+    {"chainName" : "<name>"}
+        200:
+            {
+                "chainName" : "<name>",
+                "stores" : [
+                    {
+                        "address" : "<name>"
+                    },
+                    {
+                        "address" : "<new address>"
+                    }
+                ]
+            }
+        400: {"error" : "store name invalid"}
+        400: {"error" : "store already exists"}
 
 /RemoveChain
-    POST {"ChainName": "<name>"}
-    200 {"chainsLength": "<number>"}
-    400 {"error": "chain not found"}
+    POST 
+    {"ChainName": "chain 1"}
+        200: 
+            {"chains" : [
+                    {
+                        "chainName" : "chain 2"
+                        "stores" : [
+                            {
+                                "address" : "address 1"
+                            },
+                            {
+                                "address" : "address 2"
+                            }
+                        ]
+                    }
+                ]
+            }
+        400: {"error" : "chain not found"}
+        400: {"error" : "admin is not logged in"}
 
 
 /RemoveStore
-    POST {
+    POST 
+    {
         "chainName": "<name>",
-        "storeName": "<name>"
+        "storeName": "store 2"
     }
+    200: 
+        {
+            "chainName": "<name>",
+            "storesLength": "<number>",
+            "stores" : [
+                {
+                    "address" : "address 1"
+                },
+                {
+                    "address" : "address 3"
+                }
+            ]
 
-    200 {
-        "chainName": "<name>",
-        "storesLength": "<number>"
-    }
-    400 {"error": "store not found"}
+        }
+    400: {"error" : "store not found"}
+    400: {"error" : "admin is not logged in}
 
 
 Shopper use cases --> APIs
@@ -106,8 +192,7 @@ Shopper use cases --> APIs
                 } 
             ]
         }
-        400:
-        {}
+        400:{}
 
 /reviewHistory
     POST
@@ -115,7 +200,8 @@ Shopper use cases --> APIs
         200:
         {"receipts" : [
                 {
-                    "storeName" : "<name>",
+                    "chainName" : "<name>",
+                    "address" : "<name>",
                     "date" : "<date>",
                     "items" : [
                         {
@@ -133,8 +219,9 @@ Shopper use cases --> APIs
                     ]
                 }, 
                 {
-                    "receiptId" : "2",
-                    "receiptName" : "Second Receipt"
+                    "chainName" : "<name>",
+                    "address" : "<name>",
+                    "date" : "<date>",
                     "items" : [
                         {
                             "name" : "<name>",
@@ -152,13 +239,14 @@ Shopper use cases --> APIs
                 }
             ]
         }
-        400:
-        {}
+        400: {}
 
 /reviewActivity
     POST 
-    {"type" : "weekly",
-    //credentials}
+    {
+        "type" : "weekly",
+        "username" : "<name>"
+    }
         200:
         {"weeks" : [
                 {   
@@ -177,15 +265,16 @@ Shopper use cases --> APIs
                 }
             ]
         }
-        400:
-        {}
+        400: {}
 
 
 /searchRecentPurchases
     POST
-    {"username" : "<name>",
-    "category" : "<name>",
-    "date" : "<number>"}
+    {
+        "username" : "<name>",
+        "category" : "<name>",
+        "date" : "<number>"
+    }
         200:
         {"recentItems" : [
                 {
@@ -204,8 +293,7 @@ Shopper use cases --> APIs
                 }
             ]
         }
-        400:
-        {}
+        400: {}
 
 Shopping List Use Cases for Shopper --> APIs
 /createShoppingList
@@ -400,8 +488,67 @@ Shopping List Use Cases for Shopper --> APIs
                 }
             ]
         }
+<<<<<<< HEAD
     }
     
     400 {
         {"error" : "Could not compute purchase options"}
     }
+=======
+         400:{}
+
+/reportOptions
+    POST
+    {"listName" : "<name>",
+    "itemName" : "<name>",
+    "itemCategory" : "<name>"}
+        200:
+            {
+                "stores" : [
+                    {
+                        "chainName" : "<name>",
+                        "address" : "<name>",
+                        "itemName" : "<name>",
+                        "price" : "<number>"
+                    },
+                    {
+                        "chainName" : "<name>",
+                        "address" : "<name>",
+                        "itemName" : "<name>",
+                        "price" : "<number>"
+                    }
+                ]
+            }
+        400: {"error" : "no item selected"}
+
+/listChains
+    GET
+        200: 
+            {
+                "chains" : [
+                    {
+                        "chainName" : "chain 1"
+                        "stores" : [
+                            {
+                                "address" : "address 1"
+                            },
+                            {
+                                "address" : "address 2"
+                            }
+                        ]
+                    },
+                    {
+                        "chainName" : "chain 2"
+                        "stores" : [
+                            {
+                                "address" : "address 1"
+                            },
+                            {
+                                "address" : "address 2"
+                            }
+                        ]
+                    }
+                ]
+            }
+        400: {}
+>>>>>>> 829249805b8c6c1bc6ead31d0e6f894f6bc6c472
