@@ -13,6 +13,7 @@ export class BackendStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
+    // --------- Stuff we don't need to change ----------------
     // Virtual Private Cloud
     const vpc = ec2.Vpc.fromVpcAttributes(this, "VPC", {
       vpcId: "vpc-04874411a4f0ea21f",
@@ -54,10 +55,6 @@ export class BackendStack extends cdk.Stack {
         allowMethods: apigw.Cors.ALL_METHODS,
       },
     })
-
-    // All lambda funcitons will get a new resource
-    const registerShopperResource = api_endpoint.root.addResource('registerShopper')
-    const loginShopperResource = api_endpoint.root.addResource('loginShopper')
     
     // Integration and Response Parameters (CONSTANT)
     const integration_parameters = { 
@@ -116,6 +113,11 @@ export class BackendStack extends cdk.Stack {
   
       }
     ]}
+
+    // ----------------- Stuff we will add to ----------------
+    // All lambda funcitons will get a new resource
+    const registerShopperResource = api_endpoint.root.addResource('registerShopper')
+    const loginShopperResource = api_endpoint.root.addResource('loginShopper')
     
     // All lambda functions will get a config here that references the handler function in its folder
     // Add methods below each configuration
