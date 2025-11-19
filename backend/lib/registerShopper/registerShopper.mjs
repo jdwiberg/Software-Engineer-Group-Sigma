@@ -1,10 +1,10 @@
-import * as mysql from 'mysql'
+import * as mysql2 from 'mysql2'
 
 var pool
 
 let CreateShopper = (username, password) => {
     return new Promise((resolve, reject) => {
-        pool.query("INSERT INTO shoppers (username, password) VALUES (?, ?);", [username, password], (error) => {
+        pool.query("INSERT INTO shopper (username, password) VALUES (?, ?);", [username, password], (error) => {
             if (error) {
                 if (error.code === 'ER_DUP_ENTRY') {
                     return reject(new Error("Username is taken"))
@@ -16,16 +16,15 @@ let CreateShopper = (username, password) => {
     })
 }
 
-
 export const handler = async (event) => {
     let result
     let code
 
-    pool = mysql.createPool({
-        host     : process.env.RDS_HOST,
-        user     : process.env.RDS_USER,
-        password : process.env.RDS_PASSWORD,
-        database : process.env.RDS_DATABASE
+    pool = mysql2.createPool({
+        host: process.env.rdsHost,
+        user: process.env.rdsUser,
+        password: process.env.rdsPassword,
+        database: process.env.rdsDatabase
     });
 
     try {
@@ -36,7 +35,7 @@ export const handler = async (event) => {
         const pword = event.password
 
         await CreateShopper(uname, pword)
-        result = { message: username + " registered as new shopper"}
+        result = { message: uname + " registered as new shopper"}
         code = 200
 
         } catch (err) {
