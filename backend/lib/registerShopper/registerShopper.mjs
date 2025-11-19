@@ -7,7 +7,7 @@ let CreateShopper = (username, password) => {
         pool.query("INSERT INTO shopper (username, password) VALUES (?, ?);", [username, password], (error) => {
             if (error) {
                 if (error.code === 'ER_DUP_ENTRY') {
-                    return reject(new Error("Username is taken"))
+                    return reject("Username is taken")
                 }
                 return reject(error)
             }
