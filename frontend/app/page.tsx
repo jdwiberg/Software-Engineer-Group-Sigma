@@ -6,7 +6,7 @@ export default function Home() {
 
     return (
         <div>
-          <Link href="/register">Register Shopper</Link>
+          <Link href="/registerShopper">Register Shopper</Link>
         </div>
     )
 }
