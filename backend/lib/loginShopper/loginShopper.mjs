@@ -4,7 +4,10 @@ var pool
 
 let loginShopper = (username, password) => {
     return new Promise((resolve, reject) => {
-        pool.query("SELECT * FROM shopper WHERE username = ? AND password = ?", [username, password], (error) => {
+        pool.query("SELECT * FROM shopper WHERE username = ? AND password = ?", [username, password], (error, rows) => {
+            if (error){
+                return reject(error)
+            }
             if(rows.length === 0){
                 return {statusCode : 400, body : "invalid username or password" }
             }
