@@ -453,7 +453,8 @@ Shopper use cases --> APIs
 
 /removeFromList
     POST
-    {"itemName" : "<name>"}
+    {"itemName" : "<name>",
+    "listName" : "<name>"}
         200:
         {
             "listName" : "<name>",
@@ -477,11 +478,11 @@ Shopper use cases --> APIs
                     "items" : [
                         {
                             "name" : "<name>",
-                            category" : "<name>"
+                            "category" : "<name>"
                         },
                                         {
-                            "name" : "new item",
-                            category" : "new category"
+                            "name" : "<name>",
+                            "category" : "<name>"
                         }
                     ]
                 }
