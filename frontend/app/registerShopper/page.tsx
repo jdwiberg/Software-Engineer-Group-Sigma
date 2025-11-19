@@ -17,7 +17,7 @@ export default function RegisterShopperPage() {
 
     try {
         const res = await fetch(
-            "https://7ytdy7y5xl.execute-api.us-east-1.amazonaws.com/Dev/shopper/register",
+            "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/registerShopper",
             {
                 method: "POST",
                 body: JSON.stringify({ username, password })
