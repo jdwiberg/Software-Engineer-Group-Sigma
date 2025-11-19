@@ -11,7 +11,7 @@ let loginShopper = (username, password) => {
             if(rows.length === 0){
                 return {statusCode : 400, body : "invalid username or password" }
             }
-            resolve()
+            resolve({ username })
         })
     })
 }
@@ -32,11 +32,9 @@ export const handler = async (event) =>{
         if ( !event.username || !event.password ) {
             throw new Error("Both 'username' and 'password' required")
         }
-        const uname = event.username
-        const pword = event.password
 
-        await loginShopper (uname, pword)
-        result = { message: uname + " logged in successfully"}
+        const username = await loginShopper(event.username, event.password)
+        result = { message: "logged in successfully", username: username}
         code = 200
 
         } catch (err) {

@@ -61,7 +61,7 @@ export default function RegisterShopperPage() {
         />
 
         <input 
-          name='username'
+          name='password'
           type="text" 
           placeholder='Password'
           value={password}
