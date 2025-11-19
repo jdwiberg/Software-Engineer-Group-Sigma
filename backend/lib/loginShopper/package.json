@@ -1,0 +1,8 @@
+{
+  "name": "login-shopper",
+  "version": "1.0.0",
+  "main": "loginShopper.mjs",
+  "dependencies": {
+    "mysql2": "^3.15.3"
+  }
+}
