@@ -55,9 +55,10 @@ export class BackendStack extends cdk.Stack {
       },
     })
 
+    // All lambda funcitons will get a new resource
     const registerShopperResource = api_endpoint.root.addResource('registerShopper')
     
-    // Integration and Response Parameters
+    // Integration and Response Parameters (CONSTANT)
     const integration_parameters = { 
       proxy: false,
       passthroughBehavior: apigw.PassthroughBehavior.WHEN_NO_MATCH,
@@ -114,7 +115,9 @@ export class BackendStack extends cdk.Stack {
   
       }
     ]}
-  
+    
+    // All lambda functions will get a config here that references the handler function in its folder
+    // Add methods below each configuration
     const registerShopper_fn = new lambdaNodejs.NodejsFunction(this, 'registerShopper', {
       runtime: lambda.Runtime.NODEJS_22_X,
       handler: 'registerShopper.handler',
