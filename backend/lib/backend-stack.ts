@@ -57,6 +57,7 @@ export class BackendStack extends cdk.Stack {
 
     // All lambda funcitons will get a new resource
     const registerShopperResource = api_endpoint.root.addResource('registerShopper')
+    const loginShopperResource = api_endpoint.root.addResource('loginShopper')
     
     // Integration and Response Parameters (CONSTANT)
     const integration_parameters = { 
@@ -128,6 +129,17 @@ export class BackendStack extends cdk.Stack {
       timeout: Duration.seconds(3)
     })
     registerShopperResource.addMethod('POST', new apigw.LambdaIntegration(registerShopper_fn, integration_parameters), response_parameters)
+      
+    const loginShopper_fn = new lambdaNodejs.NodejsFunction(this, 'loginShopper', {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'loginShopper.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, 'loginShopper')),
+      vpc: vpc,
+      securityGroups: [securityGroup],
+      environment: environment,
+      timeout: Duration.seconds(3)
+    })
+    loginShopperResource.addMethod('POST', new apigw.LambdaIntegration(loginShopper_fn, integration_parameters), response_parameters)
 
   }
 }
