@@ -75,25 +75,26 @@ Put JSON APIs here
     POST
     {"chainName" : "<name>"}
         200:
-            {"chains" : ["chain 1", "chain 2", "new chain"]
-            }
+            {"chainNames" : ["chain 1", "chain 2", "new chain"]}
         400: {"error" : "chain already exists"}
         400: {"error" : "chain name invalid"}
 
 /addStore
     POST
-    {"chainName" : "<name>"}
+    {"chainName" : "<name>",
+    "storeAddress" : "new address"}
         200:
             {
                 "chainName" : "<name>",
                 "stores" : ["address 1", "new address"]
             }
-        400: {"error" : "store name invalid"}
+        400: {"error" : "chain invalid"}
+        400: {"error" : "store invalid"}
         400: {"error" : "store already exists"}
 
 /RemoveChain
     POST 
-    {"ChainName": "chain 1"}
+    {"chainName": "chain 1"}
         200: 
             {"chains" : [
                     {
@@ -115,18 +116,16 @@ Put JSON APIs here
     200: 
         {
             "chainName": "<name>",
-            "storesLength": "<number>",
             "stores" : ["address 1", "address 3"]
-
         }
     400: {"error" : "store not found"}
-    400: {"error" : "admin is not logged in}
+    400: {"error" : "admin is not logged in"}
 
 
 Shopper use cases --> APIs
 /showAccountDash
     POST 
-    {"username" : "<name>"}  //must post credentials to get correct info
+    {"username" : "<name>"}
         200: 
         {"shoppingLists" : [
                 {
@@ -139,7 +138,7 @@ Shopper use cases --> APIs
                 } 
             ]
         }
-        400:{}
+        400:{"error" : "shopper is not logged in"}
 
 /reviewHistory
     POST
@@ -200,14 +199,14 @@ Shopper use cases --> APIs
                     "week" : "<date> - <date>",
                     "reportName" : "weekly purchase report",
                     "totalSpent" : "<number>",
-                    "stores" : ["<name>", ""<name>"],
+                    "stores" : ["<name>", "<name>"],
                     "numReceipts" : "<number>"
                 },
                 {
                     "week" : "<date> - <date>",
                     "reportName" : "weekly purchase report",
                     "totalSpent" : "<number>",
-                    "stores" : ["<name>", ""<name>"],
+                    "stores" : ["<name>", "<name>"],
                     "numReceipts" : "<number>"
                 }
             ]
@@ -220,7 +219,7 @@ Shopper use cases --> APIs
     {
         "username" : "<name>",
         "category" : "<name>",
-        "date" : "<number>"
+        "date" : "<date>"
     }
         200:
         {"recentItems" : [
@@ -500,13 +499,13 @@ Shopper use cases --> APIs
                 "stores" : [
                     {
                         "chainName" : "<name>",
-                        "address" : "<name>",
+                        "address" : "<address>",
                         "itemName" : "<name>",
                         "price" : "<number>"
                     },
                     {
                         "chainName" : "<name>",
-                        "address" : "<name>",
+                        "address" : "<address>",
                         "itemName" : "<name>",
                         "price" : "<number>"
                     }
@@ -521,25 +520,11 @@ Shopper use cases --> APIs
                 "chains" : [
                     {
                         "chainName" : "chain 1"
-                        "stores" : [
-                            {
-                                "address" : "address 1"
-                            },
-                            {
-                                "address" : "address 2"
-                            }
-                        ]
+                        "stores" : ["address 1", "address 2"]
                     },
                     {
                         "chainName" : "chain 2"
-                        "stores" : [
-                            {
-                                "address" : "address 1"
-                            },
-                            {
-                                "address" : "address 2"
-                            }
-                        ]
+                        "stores" : ["address 1", "address 2"]
                     }
                 ]
             }
