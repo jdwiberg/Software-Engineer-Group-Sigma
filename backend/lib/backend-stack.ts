@@ -118,6 +118,8 @@ export class BackendStack extends cdk.Stack {
     // All lambda funcitons will get a new resource
     const registerShopperResource = api_endpoint.root.addResource('registerShopper')
     const loginShopperResource = api_endpoint.root.addResource('loginShopper')
+    const showShopperDashResource = api_endpoint.root.addResource('showShopperDash')
+
     
     // All lambda functions will get a config here that references the handler function in its folder
     // Add methods below each configuration
@@ -142,6 +144,17 @@ export class BackendStack extends cdk.Stack {
       timeout: Duration.seconds(3)
     })
     loginShopperResource.addMethod('POST', new apigw.LambdaIntegration(loginShopper_fn, integration_parameters), response_parameters)
+
+    const showShopperDash_fn = new lambdaNodejs.NodejsFunction(this, 'showShopperDash', {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'showShopperDash.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, 'showShopperDash')),
+      vpc: vpc,
+      securityGroups: [securityGroup],
+      environment: environment,
+      timeout: Duration.seconds(3)
+    })
+    showShopperDashResource.addMethod('POST', new apigw.LambdaIntegration(showShopperDash_fn, integration_parameters), response_parameters)
 
   }
 }
