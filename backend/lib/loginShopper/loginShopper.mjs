@@ -37,10 +37,10 @@ export const handler = async (event) =>{
         result = { message: "logged in successfully", username: username}
         code = 200
 
-        } catch (err) {
+    } catch (err) {
         result = { error: err.message }
         code = 400
-        }
+    }
 
     const response = {
         statusCode: code,
