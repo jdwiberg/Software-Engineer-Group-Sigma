@@ -2,16 +2,20 @@ import * as mysql2 from 'mysql2'
 
 var pool
 
-let showShopperDash = (shopperID) => {
+let getShopperLists = (username) => {
     return new Promise((resolve, reject) => {
         pool.query(`SELECT 
-                        sl.sl_name, sli.sli_name, sli.sli_category 
+                        sl.sl_name,
+                        sli.sli_name,
+                        sli.sli_category
                     FROM 
                         shoppingList sl
                     LEFT JOIN 
-                        shoppingListItem sli ON sl.sl_id = sli.sl_id 
+                        shoppingListItem sli ON sl.sl_id = sli.sl_id
+                    JOIN
+                        shopper sh ON sl.sh_id = sh.sh_id
                     WHERE 
-                        sh_id = ?`, [shopperID], (error, results) => {
+                        sh.username = ?`, [username], (error, results) => {
             if (error){
                 return reject(error)
             }
@@ -34,11 +38,11 @@ export const handler = async (event) =>{
     });
 
     try {
-        if ( !event.shopperID ) {
+        if ( !event.username ) {
             throw new Error("User is not logged in")
         }
 
-        const shoppingLists = await showShopperDash(event.shopperID)
+        const shoppingLists = await getShopperLists(event.username)
         result = { message: "retrieved shopping lists", shoppingLists: shoppingLists}
         code = 200
 
