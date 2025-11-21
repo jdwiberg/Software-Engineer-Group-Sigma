@@ -119,6 +119,7 @@ export class BackendStack extends cdk.Stack {
     const registerShopperResource = api_endpoint.root.addResource('registerShopper')
     const loginShopperResource = api_endpoint.root.addResource('loginShopper')
     const loginAdminResource = api_endpoint.root.addResource('loginAdmin')
+    const getShopperListsResource = api_endpoint.root.addResource('showShopperDash')
 
     
     // All lambda functions will get a config here that references the handler function in its folder
@@ -149,12 +150,17 @@ export class BackendStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_22_X,
       handler: 'loginAdmin.handler',
       code: lambda.Code.fromAsset(path.join(__dirname, 'loginAdmin')),
+    const getShopperLists_fn = new lambdaNodejs.NodejsFunction(this, 'getShopperLists', {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'getShopperLists.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, 'getShopperLists')),
       vpc: vpc,
       securityGroups: [securityGroup],
       environment: environment,
       timeout: Duration.seconds(3)
     })
     loginAdminResource.addMethod('POST', new apigw.LambdaIntegration(loginAdmin_fn, integration_parameters), response_parameters)
+    getShopperListsResource.addMethod('POST', new apigw.LambdaIntegration(getShopperLists_fn, integration_parameters), response_parameters)
 
   }
 }
