@@ -1,7 +1,7 @@
 {
-  "name": "show-shopper-dash",
+  "name": "get-shopper-lists",
   "version": "1.0.0",
-  "main": "showShopperDash.mjs",
+  "main": "getShopperLists.mjs",
   "dependencies": {
     "mysql2": "^3.15.3"
   }
