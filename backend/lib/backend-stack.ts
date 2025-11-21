@@ -150,6 +150,13 @@ export class BackendStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_22_X,
       handler: 'loginAdmin.handler',
       code: lambda.Code.fromAsset(path.join(__dirname, 'loginAdmin')),
+      vpc: vpc,
+      securityGroups: [securityGroup],
+      environment: environment,
+      timeout: Duration.seconds(3)
+    })
+    loginAdminResource.addMethod('POST', new apigw.LambdaIntegration(loginAdmin_fn, integration_parameters), response_parameters)
+
     const getShopperLists_fn = new lambdaNodejs.NodejsFunction(this, 'getShopperLists', {
       runtime: lambda.Runtime.NODEJS_22_X,
       handler: 'getShopperLists.handler',
@@ -159,8 +166,6 @@ export class BackendStack extends cdk.Stack {
       environment: environment,
       timeout: Duration.seconds(3)
     })
-    loginAdminResource.addMethod('POST', new apigw.LambdaIntegration(loginAdmin_fn, integration_parameters), response_parameters)
     getShopperListsResource.addMethod('POST', new apigw.LambdaIntegration(getShopperLists_fn, integration_parameters), response_parameters)
-
   }
 }
