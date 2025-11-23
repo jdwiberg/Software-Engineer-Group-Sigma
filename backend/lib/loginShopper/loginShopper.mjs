@@ -11,7 +11,7 @@ let loginShopper = (username, password) => {
             if(rows.length === 0){
                 return {statusCode : 400, body : "invalid username or password" }
             }
-            resolve({ username })
+            resolve(username)
         })
     })
 }
@@ -34,7 +34,7 @@ export const handler = async (event) =>{
         }
 
         const username = await loginShopper(event.username, event.password)
-        result = { message: "logged in successfully", username: username}
+        result = { message: "logged in successfully", username}
         code = 200
 
     } catch (err) {
