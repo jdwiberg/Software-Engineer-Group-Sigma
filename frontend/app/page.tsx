@@ -44,7 +44,7 @@ export default function Login() {
             setMessage(body.message)
             setUsername("")
             setPassword("")
-            router.push('/shopperDashboard')
+            router.push('/shopperLists')
         }
     } catch (err) {
         console.error("something went wrong: ", err);

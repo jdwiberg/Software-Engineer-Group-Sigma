@@ -11,7 +11,8 @@ export default function ShopperDashboard() {
 
   return (
     <div>
-      <h1>Welcome, {username}!</h1>
+      
+      <h1>Welcome, {String(username)}!</h1>
     </div>
   )
 }
