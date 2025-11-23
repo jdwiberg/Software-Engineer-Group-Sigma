@@ -17,9 +17,13 @@ export default function ShopperDashboard() {
     if (u) setUsername(u)
   }, [])
 
-    async function handleSubmit(e: React.FormEvent) {
-      e.preventDefault();
-  
+  useEffect(() => {
+    if (username) {
+      showLists()
+    }
+  }, [username])
+
+   async function showLists() {  
       try {
           const res = await fetch(
               "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/showShopperDash",
@@ -52,8 +56,6 @@ export default function ShopperDashboard() {
   return (
     <div>
       <h1>Welcome, {username}!</h1>
-      <p>{message}</p>
-
       {shoppingLists.length > 0 ? (
         <ul>
           {shoppingLists.map((shoppingList, idx) => (
