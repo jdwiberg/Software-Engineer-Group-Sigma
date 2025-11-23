@@ -2,10 +2,15 @@
 import { useEffect, useState } from 'react'
 
 export default function ShopperDashboard() {
+  type shoppingList = {
+    sl_name: string,
+    sl_date: string
+  }
+
   const [username, setUsername] = useState("")
   const [error, setError] = useState("")
   const [message, setMessage] = useState("")
-  const [items, setItems] = useState([]);
+  const [shoppingLists, setShoppingLists] = useState<shoppingList[]>([]);
 
   useEffect(() => {
     const u = localStorage.getItem("username")
@@ -17,7 +22,7 @@ export default function ShopperDashboard() {
   
       try {
           const res = await fetch(
-              "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/getShopperLists",
+              "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/showShopperDash",
               {
                   method: "POST",
                   body: JSON.stringify({ username })
@@ -37,7 +42,7 @@ export default function ShopperDashboard() {
               setError(data.error)
           } else {
               setMessage(body.message)
-              setItems(body.items || [])
+              setShoppingLists(body.shoppingLists || [])
           }
       } catch (err) {
           console.error("something went wrong: ", err);
@@ -47,21 +52,20 @@ export default function ShopperDashboard() {
   return (
     <div>
       <h1>Welcome, {username}!</h1>
-  <p>{message}</p>
+      <p>{message}</p>
 
-  {items.length > 0 ? (
-    <ul>
-      {items.map((item, idx) => (
-        <li key={idx}>
-          <strong>List:</strong> {item.sl_name} <br />
-          <strong>Item:</strong> {item.sli_name} <br />
-          <strong>Category:</strong> {item.sli_category}
-        </li>
-      ))}
-    </ul>
-  ) : (
-    <p>No items found</p>
-  )}
+      {shoppingLists.length > 0 ? (
+        <ul>
+          {shoppingLists.map((shoppingList, idx) => (
+            <li key={idx}>
+              <strong>List:</strong> {shoppingList.sl_name} <br />
+              <strong>Date Created:</strong> {shoppingList.sl_date} <br />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No items found</p>
+      )}
     </div>
   )
 }
