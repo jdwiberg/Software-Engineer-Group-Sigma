@@ -11,7 +11,7 @@ let loginShopper = (username, password) => {
             if(rows.length === 0){
                 return {statusCode : 400, body : "invalid username or password" }
             }
-            resolve({ username })
+            resolve(username)
         })
     })
 }
