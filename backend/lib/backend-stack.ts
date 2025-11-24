@@ -121,6 +121,7 @@ export class BackendStack extends cdk.Stack {
     const loginAdminResource = api_endpoint.root.addResource('loginAdmin')
     const getShopperListsResource = api_endpoint.root.addResource('showShopperDash')
     const getReceiptItems = api_endpoint.root.addResource('getReceiptItems')
+    const getListResource = api_endpoint.root.addResource('getList')
 
     
     // All lambda functions will get a config here that references the handler function in its folder
@@ -179,5 +180,19 @@ export class BackendStack extends cdk.Stack {
       timeout: Duration.seconds(3)
     })
     getReceiptItems.addMethod('POST', new apigw.LambdaIntegration(getReceiptItems_fn, integration_parameters), response_parameters)
+
+    const getList_fn = new lambdaNodejs.NodejsFunction(this, 'getList', {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'getList.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, 'getList')),
+      vpc: vpc,
+      securityGroups: [securityGroup],
+      environment: environment,
+      timeout: Duration.seconds(3)
+    })
+    getListResource.addMethod('POST', new apigw.LambdaIntegration(getList_fn, integration_parameters), response_parameters)
+
   }
+
+
 }
