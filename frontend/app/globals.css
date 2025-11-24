@@ -24,3 +24,10 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Mask characters as • while typing */
+.masked-password {
+  -webkit-text-security: disc; /* Safari/Chrome/Edge */
+  text-security: disc;         /* Non-standard, limited support */
+}
+

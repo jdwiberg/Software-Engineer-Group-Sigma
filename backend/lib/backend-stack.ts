@@ -133,7 +133,7 @@ export class BackendStack extends cdk.Stack {
       vpc: vpc,
       securityGroups: [securityGroup],
       environment: environment,
-      timeout: Duration.seconds(3)
+      timeout: Duration.seconds(6)
     })
     registerShopperResource.addMethod('POST', new apigw.LambdaIntegration(registerShopper_fn, integration_parameters), response_parameters)
       
