@@ -123,6 +123,7 @@ export class BackendStack extends cdk.Stack {
     const getReceiptItemsResource = api_endpoint.root.addResource('getReceiptItems')
     const addStoreChainResource = api_endpoint.root.addResource('addStoreChain')
     const getStoreChainsResource = api_endpoint.root.addResource('getStoreChains')
+    const getListResource = api_endpoint.root.addResource('getList')
 
     
     // All lambda functions will get a config here that references the handler function in its folder
@@ -134,7 +135,7 @@ export class BackendStack extends cdk.Stack {
       vpc: vpc,
       securityGroups: [securityGroup],
       environment: environment,
-      timeout: Duration.seconds(3)
+      timeout: Duration.seconds(6)
     })
     registerShopperResource.addMethod('POST', new apigw.LambdaIntegration(registerShopper_fn, integration_parameters), response_parameters)
       
@@ -203,5 +204,9 @@ export class BackendStack extends cdk.Stack {
       timeout: Duration.seconds(3)
     })
     getStoreChainsResource.addMethod('GET', new apigw.LambdaIntegration(getStoreChains_fn, integration_parameters), response_parameters)
+    getListResource.addMethod('POST', new apigw.LambdaIntegration(getList_fn, integration_parameters), response_parameters)
+
   }
+
+
 }

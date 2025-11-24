@@ -1,5 +1,6 @@
 import * as mysql2 from 'mysql2'
-
+import bcrypt from 'bcryptjs'
+const SALT_ROUNDS = 8
 var pool
 
 let CreateShopper = (username, password) => {
@@ -32,7 +33,7 @@ export const handler = async (event) => {
             throw new Error("Both 'username' and 'password' required")
         }
         const uname = event.username
-        const pword = event.password
+        const pword = await bcrypt.hash(event.password, SALT_ROUNDS)
 
         await CreateShopper(uname, pword)
         result = { message: uname + " registered as new shopper"}
