@@ -23,8 +23,6 @@ let getListItems = (username, sl_name) => {
     })
 }
 
-//need to add a quantity column to shoppingListItem
-
 export const handler = async (event) =>{
     let result
     let code
@@ -37,7 +35,7 @@ export const handler = async (event) =>{
     });
 
     try {
-        if ( !event.username ) {
+        if ( !event.username || !event.sl_name ) {
             throw new Error("Shopping list invalid")
         }
 
