@@ -1,17 +1,26 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useState } from "react";
+import Lists from "./Lists";
+import Receipts from "./Receipts";
+import History from "./History";
+
+type Tab = "lists" | "receipts" | "history";
 
 export default function ShopperDashboard() {
-  const [username, setUsername] = useState("")
-
-  useEffect(() => {
-    const u = localStorage.getItem("username")
-    if (u) setUsername(u)
-  }, [])
+  const [tab, setTab] = useState<Tab>("lists");
 
   return (
     <div>
-      <h1>Welcome, {username}!</h1>
+      <h1>Shopper Dashboard</h1>
+      <div style={{ display: "flex", gap: 8 }}>
+        <button onClick={() => setTab("lists")}>Shopping Lists</button>
+        <button onClick={() => setTab("receipts")}>Receipts</button>
+        <button onClick={() => setTab("history")}>History</button>
+      </div>
+      <hr />
+      {tab === "lists" && <Lists />}
+      {tab === "receipts" && <Receipts />}
+      {tab === "history" && <History />}
     </div>
-  )
+  );
 }
