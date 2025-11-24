@@ -39,6 +39,7 @@ export default function Login() {
 
         if (data.statusCode != 200) {
             setError(data.error)
+            setMessage("Incorrect username or password, please try again.")
         } else {
             localStorage.setItem("username", body.username)
             setMessage(body.message)
@@ -68,7 +69,7 @@ export default function Login() {
 
           <input 
             name='password'
-            type="text" 
+            type="password" 
             placeholder='Password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
