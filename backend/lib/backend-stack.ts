@@ -120,7 +120,9 @@ export class BackendStack extends cdk.Stack {
     const loginShopperResource = api_endpoint.root.addResource('loginShopper')
     const loginAdminResource = api_endpoint.root.addResource('loginAdmin')
     const getShopperListsResource = api_endpoint.root.addResource('showShopperDash')
-    const getReceiptItems = api_endpoint.root.addResource('getReceiptItems')
+    const getReceiptItemsResource = api_endpoint.root.addResource('getReceiptItems')
+    const addStoreChainResource = api_endpoint.root.addResource('addStoreChain')
+    const getStoreChainsResource = api_endpoint.root.addResource('getStoreChains')
 
     
     // All lambda functions will get a config here that references the handler function in its folder
@@ -178,6 +180,28 @@ export class BackendStack extends cdk.Stack {
       environment: environment,
       timeout: Duration.seconds(3)
     })
-    getReceiptItems.addMethod('POST', new apigw.LambdaIntegration(getReceiptItems_fn, integration_parameters), response_parameters)
+    getReceiptItemsResource.addMethod('POST', new apigw.LambdaIntegration(getReceiptItems_fn, integration_parameters), response_parameters)
+
+    const addStoreChain_fn = new lambdaNodejs.NodejsFunction(this, 'addStoreChain', {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'addStoreChain.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, 'addStoreChain')),
+      vpc: vpc,
+      securityGroups: [securityGroup],
+      environment: environment,
+      timeout: Duration.seconds(3)
+    })
+    addStoreChainResource.addMethod('POST', new apigw.LambdaIntegration(addStoreChain_fn, integration_parameters), response_parameters)
+    
+    const getStoreChains_fn = new lambdaNodejs.NodejsFunction(this, 'getStoreChains', {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'getStoreChains.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, 'getStoreChains')),
+      vpc: vpc,
+      securityGroups: [securityGroup],
+      environment: environment,
+      timeout: Duration.seconds(3)
+    })
+    getStoreChainsResource.addMethod('GET', new apigw.LambdaIntegration(getStoreChains_fn, integration_parameters), response_parameters)
   }
 }

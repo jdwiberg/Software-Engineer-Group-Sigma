@@ -1,11 +1,11 @@
 'use client'
 import { useEffect, useState } from 'react'
 
-export default function History() {
+export default function Stores() {
 
     return (
     <div>
-        Put some history here
+        Put some stores here
     </div>
     )
 }
