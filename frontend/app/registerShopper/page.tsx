@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function RegisterShopperPage() {
   const [username, setUsername] = useState("")
@@ -8,6 +9,7 @@ export default function RegisterShopperPage() {
   const [message, setMessage] = useState("")
   const [error, setError] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const router = useRouter()
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -36,9 +38,11 @@ export default function RegisterShopperPage() {
         if (data.statusCode != 200) {
             setError(data.error)
         } else {
+            localStorage.setItem("username", body.username)
             setMessage(body.message)
             setUsername("")
             setPassword("")
+            router.push("/shopperDashboard")
         }
     } catch (err) {
         console.error("something went wrong: ", err);
