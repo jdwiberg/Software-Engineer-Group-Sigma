@@ -122,6 +122,8 @@ export class BackendStack extends cdk.Stack {
     const getShopperListsResource = api_endpoint.root.addResource('showShopperDash')
     const getReceiptItems = api_endpoint.root.addResource('getReceiptItems')
     const getListResource = api_endpoint.root.addResource('getList')
+    const addStoreChainsResource = api_endpoint.root.addResource('addStoreChain')
+    const getStoreChainsResource = api_endpoint.root.addResource('getStoreChains')
 
     
     // All lambda functions will get a config here that references the handler function in its folder
@@ -191,8 +193,28 @@ export class BackendStack extends cdk.Stack {
       timeout: Duration.seconds(3)
     })
     getListResource.addMethod('POST', new apigw.LambdaIntegration(getList_fn, integration_parameters), response_parameters)
+    
+    const addStoreChain_fn = new lambdaNodejs.NodejsFunction(this, 'addStoreChain', {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'addStoreChain.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, 'addStoreChain')),
+      vpc: vpc,
+      securityGroups: [securityGroup],
+      environment: environment,
+      timeout: Duration.seconds(3)
+    })
+    addStoreChainsResource.addMethod('POST', new apigw.LambdaIntegration(addStoreChain_fn, integration_parameters), response_parameters)
 
+    const getStoreChains_fn = new lambdaNodejs.NodejsFunction(this, 'getStoreChains', {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'getStoreChains.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, 'getStoreChains')),
+      vpc: vpc,
+      securityGroups: [securityGroup],
+      environment: environment,
+      timeout: Duration.seconds(3)
+    })
+    getStoreChainsResource.addMethod('POST', new apigw.LambdaIntegration(getStoreChains_fn, integration_parameters), response_parameters)
   }
-
 
 }
