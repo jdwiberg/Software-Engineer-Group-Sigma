@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 export default function Lists() {
 
     type shoppingList = {
+        sl_id: number,
         sl_name: string,
         sl_date: string
     }
@@ -14,6 +15,8 @@ export default function Lists() {
 
     const [username, setUsername] = useState("")
     const [listName, setListName] = useState("") //for adding a new list
+    const [listID, setListID] = useState<number | null>(null) //for removing list
+    const [isDeleting, setIsDeleting] = useState(false)
     const [error, setError] = useState("")
     const [message, setMessage] = useState("")
     const [shoppingLists, setShoppingLists] = useState<shoppingList[]>([])
@@ -21,6 +24,7 @@ export default function Lists() {
     const [open, setOpen] = useState(false)
     const [selectedList, setSelectedList] = useState<string | null>(null) // for selecting a list to display items
     const [isSubmitting, setIsSubmitting] = useState(false)
+
     
     useEffect(() => {
         const u = localStorage.getItem("username")
@@ -132,6 +136,44 @@ export default function Lists() {
         }
       }
 
+    async function removeList(sl_id : number) {
+        setListID(sl_id)
+        setMessage("")
+        setError("")
+        setIsDeleting(true)
+    
+        try {
+            const res = await fetch(
+                "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/remShoppingList",
+                {
+                    method: "POST",
+                    body: JSON.stringify({ sl_id })
+                }
+            )
+            
+            const data = await res.json()
+    
+            let body
+            try {
+              body = JSON.parse(data.body);
+            } catch (err) {
+              console.error("Failed to parse body", err);
+            }
+    
+            if (data.statusCode != 200) {
+                setError(data.error)
+                setMessage("Some error")
+            } else {
+                setMessage(body.message)
+            }
+        } catch (err) {
+            console.error("something went wrong: ", err);
+        } finally {
+            setListID(null)
+        }
+      }
+
+
 
     return (
     <div>
@@ -154,13 +196,6 @@ export default function Lists() {
           {isSubmitting ? "Making list... " : "Create List" }
           </button>
         </form>
-
-        {message && (
-          <p>{message}</p>
-        )}
-        {error && (
-          <p>{error}</p>
-        )}
         {shoppingLists.length > 0 ? (
         <>
             <ul>
@@ -177,6 +212,15 @@ export default function Lists() {
                     className="px-4 py-2 bg-blue-500 text-white rounded"
                 >
                     View {shoppingList.sl_name}
+                </button>
+                <button
+                    type='submit'
+                    disabled={listID === shoppingList.sl_id}
+                    onClick={() => {
+                        removeList(shoppingList.sl_id);
+                    }}
+                >
+                    {listID === shoppingList.sl_id ? "Deleting... " : "Delete list"}
                 </button>
                 </li>
             ))}
