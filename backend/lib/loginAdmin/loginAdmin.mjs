@@ -5,6 +5,7 @@ export const handler = async (event) =>{
     let code
 
     try {
+
         const password = event.password // user input
         const corrPass = process.env.adminPass // correct password from .env
 
