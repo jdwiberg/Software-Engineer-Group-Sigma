@@ -34,7 +34,7 @@ export const handler = async (event) =>{
         }
         // Parse Receipt Items and Add to DB one by one
         const placeholder = event.receiptItems.map(() => '(?, ?, ?, ?)').join(', ')
-        params = receiptItems.flatMap(item => [item.i_name, item.i_category, item.i_price, event.r_id])
+        const params = event.receiptItems.flatMap(item => [item.i_name, item.i_category, item.i_price, event.r_id])
         const sql = `INSERT INTO item (i_name, i_category, i_price, r_id) VALUES ${placeholder}`
 
         await addReceiptItems(sql, params)

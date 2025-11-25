@@ -11,14 +11,14 @@ let createReceipt = (s_id, username) => {
        JOIN shopper AS sh ON sh.username = ?
        WHERE s.s_id = ?`,
       [username, s_id],
-      (error, result) => {
+      (error) => {
         if (error) return reject(error);
 
         pool.query(
           `SELECT r_id, r_date, s_id FROM receipt WHERE r_id = LAST_INSERT_ID()`,
           (error, rows) => {
             if (error) return reject(error);
-            resolve(rows[0]);
+            resolve(rows[0].r_id);
           }
         )
       }
@@ -47,7 +47,7 @@ export const handler = async (event) =>{
             throw new Error("Username is required")
         }
 
-        const r_id = await createReceipt(event.c_name, event.c_url)
+        const r_id = await createReceipt(event.s_id, event.username)
         result = { r_id: r_id }
         code = 200
 
