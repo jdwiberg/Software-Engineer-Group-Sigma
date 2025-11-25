@@ -125,9 +125,10 @@ export class BackendStack extends cdk.Stack {
     const addStoreChainsResource = api_endpoint.root.addResource('addStoreChain')
     const getStoreChainsResource = api_endpoint.root.addResource('getStoreChains')
     const addShoppingListResource = api_endpoint.root.addResource('addShoppingList')
-    const createReceiptResource = api_endpoint.root.addResource('creatReceipt')
+    const createReceiptResource = api_endpoint.root.addResource('createReceipt')
     const addReceiptItemsResource = api_endpoint.root.addResource('addReceiptItems')
     const remShoppingListResource = api_endpoint.root.addResource('remShoppingList')
+    const addListItemResource = api_endpoint.root.addResource('addListItem')
     const removeStoreChainResource = api_endpoint.root.addResource('removeStoreChain')
     const removeStoreResource = api_endpoint.root.addResource('removeStore')
     
@@ -264,11 +265,22 @@ export class BackendStack extends cdk.Stack {
       timeout: Duration.seconds(3)
     })
     remShoppingListResource.addMethod('POST', new apigw.LambdaIntegration(remShoppingList_fn, integration_parameters), response_parameters)
+  
+    const addListItem_fn = new lambdaNodejs.NodejsFunction(this, 'addListItem', {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'addListItem.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, 'addListItem')),
+      vpc: vpc,
+      securityGroups: [securityGroup],
+      environment: environment,
+      timeout: Duration.seconds(3)
+    })
+    addListItemResource.addMethod('POST', new apigw.LambdaIntegration(addListItem_fn, integration_parameters), response_parameters)
 
     const removeStoreChain_fn = new lambdaNodejs.NodejsFunction(this, 'removeStoreChain', {
       runtime: lambda.Runtime.NODEJS_22_X,
       handler: 'removeStoreChain.handler',
-      code: lambda.Code.fromAsset(path.join(__dirname, 'removeStoreChain')), 
+      code: lambda.Code.fromAsset(path.join(__dirname, 'removeStoreChain')),
       vpc: vpc,
       securityGroups: [securityGroup],
       environment: environment,
@@ -282,7 +294,7 @@ export class BackendStack extends cdk.Stack {
       code: lambda.Code.fromAsset(path.join(__dirname, 'removeStore')),
       vpc: vpc,
       securityGroups: [securityGroup],
-      environment: environment, 
+      environment: environment,
       timeout: Duration.seconds(3)
     })
     removeStoreResource.addMethod('POST', new apigw.LambdaIntegration(removeStore_fn, integration_parameters), response_parameters)

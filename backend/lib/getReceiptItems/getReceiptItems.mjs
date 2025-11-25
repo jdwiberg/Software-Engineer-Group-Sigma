@@ -55,7 +55,7 @@ export const handler = async (event) =>{
         }
 
         const items = await getReceiptItems(event.username)
-        result = { message: "retrieved receipt items", shoppingLists}
+        result = { message: "retrieved receipt items", items}
         code = 200
 
     } catch (err) {
