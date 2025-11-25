@@ -128,6 +128,7 @@ export class BackendStack extends cdk.Stack {
     const createReceiptResource = api_endpoint.root.addResource('creatReceipt')
     const addReceiptItemsResource = api_endpoint.root.addResource('addReceiptItems')
     const remShoppingListResource = api_endpoint.root.addResource('remShoppingList')
+    const addListItemResource = api_endpoint.root.addResource('addListItem')
     
     // All lambda functions will get a config here that references the handler function in its folder
     // Add methods below each configuration
@@ -262,6 +263,17 @@ export class BackendStack extends cdk.Stack {
       timeout: Duration.seconds(3)
     })
     remShoppingListResource.addMethod('POST', new apigw.LambdaIntegration(remShoppingList_fn, integration_parameters), response_parameters)
+  
+    const addListItem_fn = new lambdaNodejs.NodejsFunction(this, 'addListItem', {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'addListItem.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, 'addListItem')),
+      vpc: vpc,
+      securityGroups: [securityGroup],
+      environment: environment,
+      timeout: Duration.seconds(3)
+    })
+    addListItemResource.addMethod('POST', new apigw.LambdaIntegration(addListItem_fn, integration_parameters), response_parameters)
   
     
   }
