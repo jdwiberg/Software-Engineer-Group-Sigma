@@ -1,0 +1,8 @@
+{
+  "name": "add-list-item",
+  "version": "1.0.0",
+  "main": "addListItem.mjs",
+  "dependencies": {
+    "mysql2": "^3.15.3"
+  }
+}
