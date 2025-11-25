@@ -125,7 +125,7 @@ export class BackendStack extends cdk.Stack {
     const addStoreChainsResource = api_endpoint.root.addResource('addStoreChain')
     const getStoreChainsResource = api_endpoint.root.addResource('getStoreChains')
     const addShoppingListResource = api_endpoint.root.addResource('addShoppingList')
-    const createReceiptResource = api_endpoint.root.addResource('creatReceipt')
+    const createReceiptResource = api_endpoint.root.addResource('createReceipt')
     const addReceiptItemsResource = api_endpoint.root.addResource('addReceiptItems')
     const remShoppingListResource = api_endpoint.root.addResource('remShoppingList')
     const addListItemResource = api_endpoint.root.addResource('addListItem')

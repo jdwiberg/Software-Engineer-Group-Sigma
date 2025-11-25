@@ -53,11 +53,11 @@ export default function Receipts() {
 
     useEffect(() => {
     if (username) {
-        showLists()
+        showReceipts()
     }
     }, [username])
     
-    async function showLists() {  
+    async function showReceipts() {  
       try {
           const res = await fetch(
               "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/getReceiptItems",
@@ -82,7 +82,7 @@ export default function Receipts() {
               setError(data.error)
           } else {
               setMessage(body.message)
-              setReceipts(body.groupByReceipt(items))
+              setReceipts(groupByReceipt(body.items))
           }
       } catch (err) {
           console.error("something went wrong: ", err);
