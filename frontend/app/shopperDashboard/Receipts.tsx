@@ -10,13 +10,15 @@ function groupByReceipt(rows: any[]) {
       map.set(row.r_id, {
         r_id: row.r_id,
         r_date: row.r_date,
-        s_name: row.s_name,
+        c_name: row.c_name,
+        s_address: row.s_address,
         items: []
       });
     }
 
     // Push item into that receipt's item list
     map.get(row.r_id).items.push({
+      i_id: row.i_id,
       i_name: row.i_name,
       i_category: row.i_category,
       i_price: row.i_price
@@ -29,6 +31,7 @@ function groupByReceipt(rows: any[]) {
 
 export default function Receipts() {
     type receiptItem = {
+        i_id: number,
         i_name : string,
         i_category: string,
         i_price: number,
@@ -36,7 +39,8 @@ export default function Receipts() {
     type receipt = {
         r_id: number,
         r_date: string,
-        s_name: string,
+        c_name: string,
+        s_address: string,
         items: receiptItem[]
     }
 
@@ -112,4 +116,3 @@ export default function Receipts() {
     </div>
     )
 }
-
