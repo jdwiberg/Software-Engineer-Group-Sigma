@@ -1,40 +1,22 @@
 import * as mysql2 from 'mysql2'
 
-var pool
-
-let loginAdmin = (username, password) => {
-    return new Promise((resolve, reject) => {
-        pool.query("SELECT * FROM shopper WHERE username = ? AND password = ?", [username, password], (error, rows) => {
-            if (error){
-                return reject(error)
-            }
-            if(rows.length === 0){
-                return {statusCode : 400, body : "invalid username or password" }
-            }
-            resolve({ username })
-        })
-    })
-}
-
-
 export const handler = async (event) =>{
     let result
     let code
 
-    pool = mysql2.createPool({
-        host: process.env.rdsHost,
-        user: process.env.rdsUser,
-        password: process.env.rdsPassword,
-        database: process.env.rdsDatabase
-    });
-
     try {
-        if ( !event.username || !event.password ) {
-            throw new Error("Both 'username' and 'password' required")
+        const password = event.password // user input
+        const corrPass = process.env.adminPass // correct password from .env
+
+        if ( !password ) {
+            throw new Error("A 'password' required")
         }
 
-        const username = await loginAdmin(event.username, event.password)
-        result = { message: "logged in successfully", username: username}
+        
+        if ( password != corrPass ) {
+            throw new Error("Incorrect password")
+        }
+        result = { message: "logged in successfully!"}
         code = 200
 
     } catch (err) {
@@ -47,6 +29,5 @@ export const handler = async (event) =>{
         body: JSON.stringify(result)
     }
 
-  pool.end()
   return response
 };
