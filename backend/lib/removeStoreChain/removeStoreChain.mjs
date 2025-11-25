@@ -4,7 +4,7 @@ var pool
 
 let RemoveStoreChain = (c_id) => {
     return new Promise((resolve, reject) => {
-        pool.query("DELETE FROM store_chain WHERE c_id = ?;", [c_id], (error) => {
+        pool.query("DELETE FROM storeChain WHERE c_id = ?;", [c_id], (error) => {
             if (error) {
                 return reject(error)
             }  
@@ -22,7 +22,6 @@ export const handler = async (event) => {
         user: process.env.rdsUser,
         password: process.env.rdsPassword,
         database: process.env.rdsDatabase,
-
     });
 
     try {
