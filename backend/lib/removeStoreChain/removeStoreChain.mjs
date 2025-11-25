@@ -1,6 +1,6 @@
 import * as mysql2 from 'mysql2'
 
-var pool
+var pool // added comment
 
 let RemoveStoreChain = (c_id) => {
     return new Promise((resolve, reject) => {
