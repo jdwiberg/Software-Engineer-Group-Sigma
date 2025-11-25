@@ -1,7 +1,5 @@
 import * as mysql2 from 'mysql2'
 
-var pool
-
 export const handler = async (event) =>{
     let result
     let code
@@ -31,6 +29,5 @@ export const handler = async (event) =>{
         body: JSON.stringify(result)
     }
 
-  pool.end()
   return response
 };
