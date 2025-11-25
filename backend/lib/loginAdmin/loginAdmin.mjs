@@ -6,20 +6,15 @@ export const handler = async (event) =>{
     let result
     let code
 
-    pool = mysql2.createPool({
-        host: process.env.rdsHost,
-        user: process.env.rdsUser,
-        password: process.env.rdsPassword,
-        database: process.env.rdsDatabase
-    });
-
     try {
-        if ( !event.password ) {
+        const password = event.password // user input
+        const corrPass = process.env.adminPass // correct password from .env
+
+        if ( !password ) {
             throw new Error("A 'password' required")
         }
 
-        const password =  event.password
-        const corrPass = process.env.adminPass
+        
         if ( password !== corrPass ) {
             throw new Error("Incorrect password")
         }
