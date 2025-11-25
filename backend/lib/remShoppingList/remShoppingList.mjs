@@ -2,18 +2,9 @@ import * as mysql2 from 'mysql2'
 
 var pool
 
-let getShopperLists = (username) => {
+let remShoppingList = (sl_id) => {
     return new Promise((resolve, reject) => {
-        pool.query(`SELECT 
-                        sl.sl_id,
-                        sl.sl_name,
-                        sl.sl_date
-                    FROM 
-                        shoppingList sl
-                    JOIN
-                        shopper sh ON sl.sh_id = sh.sh_id
-                    WHERE 
-                        sh.username = ?`, [username], (error, results) => {
+        pool.query(`DELETE FROM shoppingList WHERE sl_id = ?;`, [sl_id], (error, results) => {
             if (error){
                 return reject(error)
             }
@@ -21,8 +12,6 @@ let getShopperLists = (username) => {
         })
     })
 }
-
-//need to add a quantity column to shoppingListItem
 
 export const handler = async (event) =>{
     let result
@@ -36,12 +25,8 @@ export const handler = async (event) =>{
     });
 
     try {
-        if ( !event.username ) {
-            throw new Error("User is not logged in")
-        }
-
-        const shoppingLists = await getShopperLists(event.username)
-        result = { message: "retrieved shopping lists", shoppingLists}
+        const listItems = await remShoppingList(event.sl_id)
+        result = { message: "removed shopping list"}
         code = 200
 
         } catch (err) {

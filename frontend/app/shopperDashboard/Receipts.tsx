@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 function groupByReceipt(rows: any[]) {
   const map = new Map();
@@ -43,6 +44,7 @@ export default function Receipts() {
     const [username, setUsername] = useState("")
     const [message, setMessage] = useState("")
     const [error, setError] = useState("")
+    const router = useRouter()
 
     useEffect(() => {
     const u = localStorage.getItem("username")
@@ -88,6 +90,7 @@ export default function Receipts() {
     }
     return (
     <div>
+        <button onClick={() => router.push("/shopperDashboard/createReceipt")}>Create Receipt</button>
         {receipts.length > 0? (
             receipts.map((r: any) => (
             <div key={r.r_id}>

@@ -2,9 +2,9 @@
 import { useState } from "react";
 import Lists from "./Lists";
 import Receipts from "./Receipts";
-import History from "./History";
+import Stores from "./Stores";
 
-type Tab = "lists" | "receipts" | "history";
+type Tab = "lists" | "receipts" | "stores";
 
 export default function ShopperDashboard() {
   const [tab, setTab] = useState<Tab>("lists");
@@ -15,12 +15,12 @@ export default function ShopperDashboard() {
       <div style={{ display: "flex", gap: 8 }}>
         <button onClick={() => setTab("lists")}>Shopping Lists</button>
         <button onClick={() => setTab("receipts")}>Receipts</button>
-        <button onClick={() => setTab("history")}>History</button>
+        <button onClick={() => setTab("stores")}>Stores</button>
       </div>
       <hr />
       {tab === "lists" && <Lists />}
       {tab === "receipts" && <Receipts />}
-      {tab === "history" && <History />}
+      {tab === "stores" && <Stores />}
     </div>
   );
 }

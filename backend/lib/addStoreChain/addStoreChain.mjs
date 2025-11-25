@@ -2,22 +2,16 @@ import * as mysql2 from 'mysql2'
 
 var pool
 
-let getShopperLists = (username) => {
+let addStoreChain = (c_name, c_url) => {
     return new Promise((resolve, reject) => {
-        pool.query(`SELECT 
-                        sl.sl_id,
-                        sl.sl_name,
-                        sl.sl_date
-                    FROM 
-                        shoppingList sl
-                    JOIN
-                        shopper sh ON sl.sh_id = sh.sh_id
-                    WHERE 
-                        sh.username = ?`, [username], (error, results) => {
+        pool.query(`INSERT INTO storeChain (c_name, c_url) VALUES (?, ?);`, [c_name, c_url], (error) => {
             if (error){
+                if (error.code === 'ER_DUP_ENTRY') {
+                    return reject(new Error("This chain already exists"))
+                }
                 return reject(error)
             }
-            resolve(results)
+            resolve()
         })
     })
 }
@@ -36,18 +30,21 @@ export const handler = async (event) =>{
     });
 
     try {
-        if ( !event.username ) {
-            throw new Error("User is not logged in")
+        if ( !event.c_name) {
+            throw new Error("Store Chain name is required")
+        }
+        if ( !event.c_url ) {
+            throw new Error("Store Chain url is required")
         }
 
-        const shoppingLists = await getShopperLists(event.username)
-        result = { message: "retrieved shopping lists", shoppingLists}
+        await addStoreChain(event.c_name, event.c_url)
+        result = { message: `${event.c_name} added` }
         code = 200
 
-        } catch (err) {
+    } catch (err) {
         result = { error: err.message }
         code = 400
-        }
+    }
 
     const response = {
         statusCode: code,
