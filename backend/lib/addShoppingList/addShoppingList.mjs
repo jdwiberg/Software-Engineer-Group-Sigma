@@ -9,7 +9,7 @@ let addShoppingList = (username, sl_name) => {
                     SELECT 
                         sh_id, ? FROM shopper
                     WHERE 
-                        username = ?;`, [username, sl_name], (error, results) => {
+                        username = ?;`, [sl_name, username], (error, results) => {
             if (error){
                 return reject(error)
             }
