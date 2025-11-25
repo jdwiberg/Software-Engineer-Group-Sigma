@@ -22,7 +22,7 @@
 **Finshed: 5**
 1. ~~Register Shopper (Jake)~~
 2. ~~Login Shopper (Jake)~~
-3. Login Admin (Tyler & Andreas)
+3. Login Admin (Tyler & Andreas) // done, needs testing
 4. Show Admin Dash (Tyler & Andreas)
 5. ~~Show shopper dash (Tim & Jake)~~
 6. Show Shopping Lists (Tim)
@@ -31,4 +31,5 @@
 9. Create Reciept (Jake)
 10. List Store Chains
 11. ~~Add Store Chain (Jake)~~
-12. Remove Store Chain (Tyler & Andreas)
+12. Remove Store Chain (Tyler & Andreas) // done, needs testing
+13. Remove Store (Tyler & Andreas) // currently working on it -tyler
