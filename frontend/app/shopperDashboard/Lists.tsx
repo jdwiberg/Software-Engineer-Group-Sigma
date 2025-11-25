@@ -13,13 +13,15 @@ export default function Lists() {
     }
 
     const [username, setUsername] = useState("")
+    const [listName, setListName] = useState("") //for adding a new list
     const [error, setError] = useState("")
     const [message, setMessage] = useState("")
     const [shoppingLists, setShoppingLists] = useState<shoppingList[]>([])
     const [shoppingListItems, setShoppingListItems] = useState<listItems[]>([])
     const [open, setOpen] = useState(false)
-    const [selectedList, setSelectedList] = useState<string | null>(null)
-
+    const [selectedList, setSelectedList] = useState<string | null>(null) // for selecting a list to display items
+    const [isSubmitting, setIsSubmitting] = useState(false)
+    
     useEffect(() => {
         const u = localStorage.getItem("username")
         if (u) setUsername(u)
@@ -92,9 +94,73 @@ export default function Lists() {
     }
 
 
+    async function submitList(e: React.FormEvent) {
+        e.preventDefault();
+        setMessage("")
+        setError("")
+        setIsSubmitting(true)
+    
+        try {
+            const res = await fetch(
+                "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/addShoppingList",
+                {
+                    method: "POST",
+                    body: JSON.stringify({ username, sl_name : listName })
+                }
+            )
+            
+            const data = await res.json()
+    
+            let body
+            try {
+              body = JSON.parse(data.body);
+            } catch (err) {
+              console.error("Failed to parse body", err);
+            }
+    
+            if (data.statusCode != 200) {
+                setError(data.error)
+                setMessage("Invalid list name, please try again.")
+            } else {
+                setMessage(body.message)
+                setListName("")
+            }
+        } catch (err) {
+            console.error("something went wrong: ", err);
+        } finally {
+            setIsSubmitting(false)
+        }
+      }
+
 
     return (
     <div>
+        <h1>Create List</h1>
+        <form onSubmit={submitList}>
+
+          <input 
+            name='listName'
+            type="text"
+            placeholder='List Name'
+            value={listName}
+            onChange={(e) => setListName(e.target.value)}
+            required
+          />
+
+          <button 
+          type='submit'
+          disabled={isSubmitting}
+          >
+          {isSubmitting ? "Making list... " : "Create List" }
+          </button>
+        </form>
+
+        {message && (
+          <p>{message}</p>
+        )}
+        {error && (
+          <p>{error}</p>
+        )}
         {shoppingLists.length > 0 ? (
         <>
             <ul>
