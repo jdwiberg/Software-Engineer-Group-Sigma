@@ -31,7 +31,8 @@ export class BackendStack extends cdk.Stack {
       rdsUser: process.env.rdsUser!,
       rdsPassword: process.env.rdsPassword!,
       rdsDatabase: process.env.rdsDatabase!,
-      rdsHost: process.env.rdsHost!
+      rdsHost: process.env.rdsHost!,
+      adminPass: process.env.adminPass!
     }
 
     // generic default handler for any API function that doesn't get its own Lambda method
