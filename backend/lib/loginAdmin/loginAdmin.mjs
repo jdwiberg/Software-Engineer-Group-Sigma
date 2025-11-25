@@ -2,21 +2,6 @@ import * as mysql2 from 'mysql2'
 
 var pool
 
-let loginAdmin = (username, password) => {
-    return new Promise((resolve, reject) => {
-        pool.query("SELECT * FROM shopper WHERE username = ? AND password = ?", [username, password], (error, rows) => {
-            if (error){
-                return reject(error)
-            }
-            if(rows.length === 0){
-                return {statusCode : 400, body : "invalid username or password" }
-            }
-            resolve({ username })
-        })
-    })
-}
-
-
 export const handler = async (event) =>{
     let result
     let code
@@ -33,7 +18,8 @@ export const handler = async (event) =>{
             throw new Error("Both 'username' and 'password' required")
         }
 
-        const username = await loginAdmin(event.username, event.password)
+        const password =  event.password
+        const corrPass = process.env.adminPass
         result = { message: "logged in successfully", username: username}
         code = 200
 
