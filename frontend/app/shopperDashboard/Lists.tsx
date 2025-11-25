@@ -8,23 +8,24 @@ export default function Lists() {
         sl_name: string,
         sl_date: string
     }
-    type listItems = {
+    type listItem = {
         sli_name : string,
         sli_category : string
     }
-
-    const [username, setUsername] = useState("")
-    const [listName, setListName] = useState("") //for adding a new list
-    const [listID, setListID] = useState<number | null>(null) //for removing list
-    const [isDeleting, setIsDeleting] = useState(false)
+    const [refresh, setRefresh] = useState(false)
     const [error, setError] = useState("")
     const [message, setMessage] = useState("")
+    const [username, setUsername] = useState("")
+    const [listName, setListName] = useState("") //for adding a new list
+    const [isDeleting, setIsDeleting] = useState(false)
     const [shoppingLists, setShoppingLists] = useState<shoppingList[]>([])
-    const [shoppingListItems, setShoppingListItems] = useState<listItems[]>([])
+    const [shoppingListItems, setShoppingListItems] = useState<listItem[]>([])
     const [open, setOpen] = useState(false)
-    const [selectedList, setSelectedList] = useState<string | null>(null) // for selecting a list to display items
+    const [selectedList, setSelectedList] = useState<shoppingList | null>(null) // for selecting a list to display items
     const [isSubmitting, setIsSubmitting] = useState(false)
-
+    const [isAdding, setIsAdding] = useState(false)// for adding a new item to a list
+    const [itemName, setItemName] = useState("")
+    const [itemCat, setItemCat] = useState("")
     
     useEffect(() => {
         const u = localStorage.getItem("username")
@@ -35,7 +36,7 @@ export default function Lists() {
         if (username) {
             showLists()
         }
-    }, [username, shoppingLists])
+    }, [username, shoppingLists, refresh])
 
    async function showLists() {  
       try {
@@ -61,6 +62,7 @@ export default function Lists() {
           } else {
               setMessage(body.message)
               setShoppingLists(body.shoppingLists || [])
+              setRefresh(prev => !prev)
           }
       } catch (err) {
           console.error("something went wrong: ", err);
@@ -88,7 +90,7 @@ export default function Lists() {
 
           if (data.statusCode != 200) {
               setError(data.error)
-          } else {
+          } else {   
               setMessage(body.message)
               setShoppingListItems(body.listItems || [])
           }
@@ -137,7 +139,6 @@ export default function Lists() {
       }
 
     async function removeList(sl_id : number) {
-        setListID(sl_id)
         setMessage("")
         setError("")
         setIsDeleting(true)
@@ -165,11 +166,56 @@ export default function Lists() {
                 setMessage("Some error")
             } else {
                 setMessage(body.message)
+                setIsDeleting(false)
+            }
+        } catch (err) {
+            console.error("something went wrong: ", err);
+        }
+      }
+
+    async function addListItem(e: React.FormEvent) {
+        e.preventDefault();
+        setMessage("")
+        setError("")
+        setIsAdding(true)
+        try {
+            const res = await fetch(
+                "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/addListItem",
+                {
+                    method: "POST",
+                    body: JSON.stringify({ 
+                        sl_id : selectedList?.sl_id, 
+                        sli_name : itemName, 
+                        sli_category : itemCat 
+                    })
+                }
+            )
+            
+            const data = await res.json()
+    
+            let body
+            try {
+              body = JSON.parse(data.body);
+            } catch (err) {
+              console.error("Failed to parse body", err);
+            }
+    
+            if (data.statusCode != 200) {
+                setError(data.error)
+                setMessage("Some error")
+            } else {
+                if (selectedList) {
+                    await showItems(selectedList.sl_name)
+                }
+                setMessage(body.message)
             }
         } catch (err) {
             console.error("something went wrong: ", err);
         } finally {
-            setListID(null)
+            setItemName("")
+            setItemCat("")
+            setIsAdding(false)
+            setRefresh(prev => !prev)
         }
       }
 
@@ -205,7 +251,7 @@ export default function Lists() {
                 <strong>Date Created:</strong> {shoppingList.sl_date} <br />
                 <button
                     onClick={() => {
-                        setSelectedList(shoppingList.sl_name);
+                        setSelectedList(shoppingList);
                         showItems(shoppingList.sl_name);
                         setOpen(true);
                     }}
@@ -214,13 +260,15 @@ export default function Lists() {
                     View {shoppingList.sl_name}
                 </button>
                 <button
-                    type='submit'
-                    disabled={listID === shoppingList.sl_id}
+                    type='button'
+                    disabled={isDeleting && selectedList?.sl_id === shoppingList.sl_id}
                     onClick={() => {
+                        // ensure the UI knows which list is being deleted
+                        setSelectedList(shoppingList);
                         removeList(shoppingList.sl_id);
                     }}
                 >
-                    {listID === shoppingList.sl_id ? "Deleting... " : "Delete list"}
+                    {isDeleting && selectedList?.sl_id === shoppingList.sl_id ? "Deleting... " : "Delete list"}
                 </button>
                 </li>
             ))}
@@ -229,7 +277,7 @@ export default function Lists() {
             <div className="fixed inset-0 bg-black/50 flex justify-center items-center">
                 <div className="bg-white p-6 rounded-xl shadow-xl">
                 
-                <h2 className="text-xl font-bold">{selectedList}</h2>
+                <h2 className="text-xl font-bold">{selectedList.sl_name}</h2>
 
                 <ul className="mt-4">
                     {shoppingListItems.map((item, i) => (
@@ -246,6 +294,32 @@ export default function Lists() {
                 >
                     Close
                 </button>
+
+                <h3>Add Item</h3>
+                <form onSubmit={addListItem}>
+                <input 
+                    name='itemName'
+                    type="text"
+                    placeholder='Item Name'
+                    value={itemName}
+                    onChange={(e) => setItemName(e.target.value)}
+                    required
+                />
+                <input 
+                    name='itemCat'
+                    type="text"
+                    placeholder='Item Category'
+                    value={itemCat}
+                    onChange={(e) => setItemCat(e.target.value)}
+                    required
+                />
+                <button 
+                type='submit'
+                disabled={isAdding}
+                >
+                {isAdding ? "Adding... " : "Add Item" }
+                </button>
+                </form>
                 </div>
             </div>
             )}
