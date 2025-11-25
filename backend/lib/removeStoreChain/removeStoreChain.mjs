@@ -7,7 +7,10 @@ let RemoveStoreChain = (c_id) => {
         pool.query("DELETE FROM storeChain WHERE c_id = ?;", [c_id], (error) => {
             if (error) {
                 return reject(error)
-            }  
+            }
+            if (results.affectedRows === 0) {
+                return reject(new Error(`Store Chain with c_id=${c_id} not found`));
+            }
             resolve()
         })
     })

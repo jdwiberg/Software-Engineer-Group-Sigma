@@ -42,7 +42,7 @@ export default function RegisterShopperPage() {
             setMessage(body.message)
             setUsername("")
             setPassword("")
-            router.push("/shopperDashboard")
+            router.push("/")
         }
     } catch (err) {
         console.error("something went wrong: ", err);
