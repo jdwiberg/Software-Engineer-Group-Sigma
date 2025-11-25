@@ -14,13 +14,16 @@ export const handler = async (event) =>{
     });
 
     try {
-        if ( !event.username || !event.password ) {
-            throw new Error("Both 'username' and 'password' required")
+        if ( !event.password ) {
+            throw new Error("A 'password' required")
         }
 
         const password =  event.password
         const corrPass = process.env.adminPass
-        result = { message: "logged in successfully", username: username}
+        if ( password !== corrPass ) {
+            throw new Error("Incorrect password")
+        }
+        result = { message: "logged in successfully!"}
         code = 200
 
     } catch (err) {
