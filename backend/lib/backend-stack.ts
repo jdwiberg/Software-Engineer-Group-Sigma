@@ -122,10 +122,37 @@ export class BackendStack extends cdk.Stack {
     const getShopperListsResource = api_endpoint.root.addResource('showShopperDash')
     const getReceiptItems = api_endpoint.root.addResource('getReceiptItems')
     const getListResource = api_endpoint.root.addResource('getList')
-
+    const addStoreChainsResource = api_endpoint.root.addResource('addStoreChain')
+    const getStoreChainsResource = api_endpoint.root.addResource('getStoreChains')
+    const addShoppingListResource = api_endpoint.root.addResource('addShoppingList')
+    const createReceiptResource = api_endpoint.root.addResource('creatReceipt')
+    const addReceiptItemsResource = api_endpoint.root.addResource('addReceiptItems')
+    const remShoppingListResource = api_endpoint.root.addResource('remShoppingList')
     
     // All lambda functions will get a config here that references the handler function in its folder
     // Add methods below each configuration
+    const createReceipt_fn = new lambdaNodejs.NodejsFunction(this, 'createReceipt', {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'createReceipt.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, 'createReceipt')),
+      vpc: vpc,
+      securityGroups: [securityGroup],
+      environment: environment,
+      timeout: Duration.seconds(3)
+    })
+    createReceiptResource.addMethod('POST', new apigw.LambdaIntegration(createReceipt_fn, integration_parameters), response_parameters)
+    
+    const addReceiptItems_fn = new lambdaNodejs.NodejsFunction(this, 'addReceiptItems', {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'addReceiptItems.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, 'addReceiptItems')),
+      vpc: vpc,
+      securityGroups: [securityGroup],
+      environment: environment,
+      timeout: Duration.seconds(3)
+    })
+    addReceiptItemsResource.addMethod('POST', new apigw.LambdaIntegration(addReceiptItems_fn, integration_parameters), response_parameters)
+    
     const registerShopper_fn = new lambdaNodejs.NodejsFunction(this, 'registerShopper', {
       runtime: lambda.Runtime.NODEJS_22_X,
       handler: 'registerShopper.handler',
@@ -191,8 +218,51 @@ export class BackendStack extends cdk.Stack {
       timeout: Duration.seconds(3)
     })
     getListResource.addMethod('POST', new apigw.LambdaIntegration(getList_fn, integration_parameters), response_parameters)
+    
+    const addStoreChain_fn = new lambdaNodejs.NodejsFunction(this, 'addStoreChain', {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'addStoreChain.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, 'addStoreChain')),
+      vpc: vpc,
+      securityGroups: [securityGroup],
+      environment: environment,
+      timeout: Duration.seconds(3)
+    })
+    addStoreChainsResource.addMethod('POST', new apigw.LambdaIntegration(addStoreChain_fn, integration_parameters), response_parameters)
 
+    const getStoreChains_fn = new lambdaNodejs.NodejsFunction(this, 'getStoreChains', {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'getStoreChains.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, 'getStoreChains')),
+      vpc: vpc,
+      securityGroups: [securityGroup],
+      environment: environment,
+      timeout: Duration.seconds(3)
+    })
+    getStoreChainsResource.addMethod('GET', new apigw.LambdaIntegration(getStoreChains_fn, integration_parameters), response_parameters)
+
+    const addShoppingList_fn = new lambdaNodejs.NodejsFunction(this, 'addShoppingList', {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'addShoppingList.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, 'addShoppingList')),
+      vpc: vpc,
+      securityGroups: [securityGroup],
+      environment: environment,
+      timeout: Duration.seconds(3)
+    })
+    addShoppingListResource.addMethod('POST', new apigw.LambdaIntegration(addShoppingList_fn, integration_parameters), response_parameters)
+ 
+    const remShoppingList_fn = new lambdaNodejs.NodejsFunction(this, 'remShoppingList', {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'remShoppingList.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, 'remShoppingList')),
+      vpc: vpc,
+      securityGroups: [securityGroup],
+      environment: environment,
+      timeout: Duration.seconds(3)
+    })
+    remShoppingListResource.addMethod('POST', new apigw.LambdaIntegration(remShoppingList_fn, integration_parameters), response_parameters)
+  
+    
   }
-
-
 }
