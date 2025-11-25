@@ -13,7 +13,7 @@ export const handler = async (event) =>{
         }
 
         
-        if ( password !== corrPass ) {
+        if ( password != corrPass ) {
             throw new Error("Incorrect password")
         }
         result = { message: "logged in successfully!"}
