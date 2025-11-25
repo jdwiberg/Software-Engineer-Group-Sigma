@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, FormEvent, useState } from 'react'
 import StoreDropdown from './StoreDropdown'
+import { useRouter } from 'next/navigation'
 
 type ReceiptFormProps = {
     onSubmit?: () => void
@@ -29,6 +30,8 @@ export default function ReceiptForm({ onSubmit }: ReceiptFormProps) {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [isAdding, setIsAdding] = useState(false)
     const categories = ["Produce", "Deli", "Dairy", "Bakery", "Meat", "Pantry", "Frozen", "Household"]
+
+    const router = useRouter()
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -149,6 +152,7 @@ export default function ReceiptForm({ onSubmit }: ReceiptFormProps) {
             setMessage("Receipt submitted")
             setItems([])
             onSubmit?.()
+            router.push('/shopperDashboard')
         } catch (err) {
             console.error(err)
             setError("Failed to submit receipt")
