@@ -129,6 +129,8 @@ export class BackendStack extends cdk.Stack {
     const addReceiptItemsResource = api_endpoint.root.addResource('addReceiptItems')
     const remShoppingListResource = api_endpoint.root.addResource('remShoppingList')
     const addListItemResource = api_endpoint.root.addResource('addListItem')
+    const removeStoreChainResource = api_endpoint.root.addResource('removeStoreChain')
+    const removeStoreResource = api_endpoint.root.addResource('removeStore')
     
     // All lambda functions will get a config here that references the handler function in its folder
     // Add methods below each configuration
@@ -274,7 +276,28 @@ export class BackendStack extends cdk.Stack {
       timeout: Duration.seconds(3)
     })
     addListItemResource.addMethod('POST', new apigw.LambdaIntegration(addListItem_fn, integration_parameters), response_parameters)
-  
+
+    const removeStoreChain_fn = new lambdaNodejs.NodejsFunction(this, 'removeStoreChain', {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'removeStoreChain.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, 'removeStoreChain')),
+      vpc: vpc,
+      securityGroups: [securityGroup],
+      environment: environment,
+      timeout: Duration.seconds(3)
+    })
+    removeStoreChainResource.addMethod('POST', new apigw.LambdaIntegration(removeStoreChain_fn, integration_parameters), response_parameters)
+
+    const removeStore_fn = new lambdaNodejs.NodejsFunction(this, 'removeStore', {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'removeStore.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, 'removeStore')),
+      vpc: vpc,
+      securityGroups: [securityGroup],
+      environment: environment,
+      timeout: Duration.seconds(3)
+    })
+    removeStoreResource.addMethod('POST', new apigw.LambdaIntegration(removeStore_fn, integration_parameters), response_parameters)
     
   }
 }
