@@ -5,17 +5,20 @@ var pool
 let getStoreChains = () => {
     return new Promise((resolve, reject) => {
         pool.query(`SELECT
+                    sc.c_id   AS c_id,
                     sc.c_name AS c_name,
                     sc.c_url  AS c_url,
                     COALESCE(
-                        JSON_ARRAYAGG(
-                        CASE
-                            WHEN s.s_id IS NOT NULL THEN JSON_OBJECT('s_address', s.s_address)
-                            ELSE NULL
-                        END
+                        NULLIF(
+                            JSON_ARRAYAGG(
+                                CASE
+                                    WHEN s.s_id IS NOT NULL THEN JSON_OBJECT('s_id', s.s_id, 's_address', s.s_address)
+                                END
+                            ),
+                            JSON_ARRAY(NULL)
                         ),
                         JSON_ARRAY()
-                    )              AS store
+                    ) AS store
                     FROM storeChain AS sc
                     LEFT JOIN store AS s
                     ON s.c_id = sc.c_id
