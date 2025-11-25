@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 function groupByReceipt(rows: any[]) {
   const map = new Map();
@@ -9,13 +10,15 @@ function groupByReceipt(rows: any[]) {
       map.set(row.r_id, {
         r_id: row.r_id,
         r_date: row.r_date,
-        s_name: row.s_name,
+        c_name: row.c_name,
+        s_address: row.s_address,
         items: []
       });
     }
 
     // Push item into that receipt's item list
     map.get(row.r_id).items.push({
+      i_id: row.i_id,
       i_name: row.i_name,
       i_category: row.i_category,
       i_price: row.i_price
@@ -28,6 +31,7 @@ function groupByReceipt(rows: any[]) {
 
 export default function Receipts() {
     type receiptItem = {
+        i_id: number,
         i_name : string,
         i_category: string,
         i_price: number,
@@ -35,7 +39,8 @@ export default function Receipts() {
     type receipt = {
         r_id: number,
         r_date: string,
-        s_name: string,
+        c_name: string,
+        s_address: string,
         items: receiptItem[]
     }
 
@@ -43,6 +48,7 @@ export default function Receipts() {
     const [username, setUsername] = useState("")
     const [message, setMessage] = useState("")
     const [error, setError] = useState("")
+    const router = useRouter()
 
     useEffect(() => {
     const u = localStorage.getItem("username")
@@ -51,11 +57,11 @@ export default function Receipts() {
 
     useEffect(() => {
     if (username) {
-        showLists()
+        showReceipts()
     }
     }, [username])
     
-    async function showLists() {  
+    async function showReceipts() {  
       try {
           const res = await fetch(
               "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/getReceiptItems",
@@ -80,7 +86,7 @@ export default function Receipts() {
               setError(data.error)
           } else {
               setMessage(body.message)
-              setReceipts(body.groupByReceipt(items))
+              setReceipts(groupByReceipt(body.items))
           }
       } catch (err) {
           console.error("something went wrong: ", err);
@@ -88,6 +94,7 @@ export default function Receipts() {
     }
     return (
     <div>
+        <button onClick={() => router.push("/shopperDashboard/createReceipt")}>Create Receipt</button>
         {receipts.length > 0? (
             receipts.map((r: any) => (
             <div key={r.r_id}>
@@ -109,4 +116,3 @@ export default function Receipts() {
     </div>
     )
 }
-

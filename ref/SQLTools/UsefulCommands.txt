@@ -1,0 +1,20 @@
+SHOW TABLES
+
+SELECT * FROM shopper
+
+SELECT * FROM shoppingList
+
+SELECT * FROM shoppingListItem
+
+SELECT sli_name FROM shoppingListItem
+
+SELECT * FROM shoppingList WHERE sh_id = 16
+
+INSERT INTO shopper (username, password)
+VALUES ("wleij", "swefj")
+
+INSERT INTO shoppingList (sl_name, sh_id)
+VALUES ("supplies", 16)
+
+INSERT INTO shoppingListItem (sli_name, sli_category, sl_id)
+VALUES ("milk", "dairy", 1)

@@ -1,17 +1,19 @@
 import * as mysql2 from 'mysql2'
+import bcrypt from 'bcryptjs'
 
 var pool
 
-let loginShopper = (username, password) => {
+let loginShopper = (username) => {
     return new Promise((resolve, reject) => {
-        pool.query("SELECT * FROM shopper WHERE username = ? AND password = ?", [username, password], (error, rows) => {
+        pool.query("SELECT password FROM shopper WHERE username = ?", [username], (error, rows) => {
             if (error){
                 return reject(error)
             }
             if(rows.length === 0){
                 return reject(new Error("invalid username or password"))
             }
-            resolve(username)
+            const hashed = rows[0].password
+            resolve(hashed)
         })
     })
 }
@@ -33,7 +35,12 @@ export const handler = async (event) =>{
             throw new Error("Both 'username' and 'password' required")
         }
 
-        const username = await loginShopper(event.username, event.password)
+        const hashed = await loginShopper(event.username)
+        const ok = await bcrypt.compare(event.password, hashed)
+        if (!ok){
+            throw new Error("invalid username or password")
+        }
+        const username = event.username
         result = { message: "logged in successfully", username}
         code = 200
 
