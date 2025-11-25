@@ -214,7 +214,7 @@ export class BackendStack extends cdk.Stack {
       environment: environment,
       timeout: Duration.seconds(3)
     })
-    getStoreChainsResource.addMethod('POST', new apigw.LambdaIntegration(getStoreChains_fn, integration_parameters), response_parameters)
+    getStoreChainsResource.addMethod('GET', new apigw.LambdaIntegration(getStoreChains_fn, integration_parameters), response_parameters)
   }
 
 }
