@@ -12,7 +12,6 @@ export default function Login() {
   const [error, setError] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const router = useRouter()
-  localStorage.setItem("username", username)
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
