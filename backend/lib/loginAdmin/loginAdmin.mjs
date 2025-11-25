@@ -8,9 +8,8 @@ export const handler = async (event) =>{
         const password = event.password // user input
         const corrPass = process.env.adminPass // correct password from .env
 
-        if ( !password ) {
-            throw new Error("A 'password' required")
-        }
+        if (!corrPass) throw new Error("Server misconfigured: adminPass not set")
+        if (!password) throw new Error("A 'password' required")
 
         
         if ( password != corrPass ) {
