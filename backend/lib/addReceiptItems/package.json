@@ -1,0 +1,8 @@
+{
+  "name": "add-receipt-items",
+  "version": "1.0.0",
+  "main": "addReceiptItems.mjs",
+  "dependencies": {
+    "mysql2": "^3.15.3"
+  }
+}
