@@ -32,4 +32,4 @@
 10. List Store Chains
 11. ~~Add Store Chain (Jake)~~
 12. Remove Store Chain (Tyler & Andreas) // done, needs testing
-13. Remove Store (Tyler & Andreas) // cuurently working on it -tyler
+13. Remove Store (Tyler & Andreas) // currently working on it -tyler
