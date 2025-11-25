@@ -16,5 +16,5 @@ VALUES ("wleij", "swefj")
 INSERT INTO shoppingList (sl_name, sh_id)
 VALUES ("supplies", 16)
 
-INSERT INTO shoppingListItem (sli_id, sli_name, sli_category, sl_id)
-VALUES (0, "milk", "dairy", 1)
+INSERT INTO shoppingListItem (sli_name, sli_category, sl_id)
+VALUES ("milk", "dairy", 1)
