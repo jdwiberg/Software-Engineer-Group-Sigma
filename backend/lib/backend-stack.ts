@@ -124,6 +124,7 @@ export class BackendStack extends cdk.Stack {
     const getListResource = api_endpoint.root.addResource('getList')
     const addStoreChainsResource = api_endpoint.root.addResource('addStoreChain')
     const getStoreChainsResource = api_endpoint.root.addResource('getStoreChains')
+    const addShoppingListResource = api_endpoint.root.addResource('addShoppingList')
     const createReceiptResource = api_endpoint.root.addResource('creatReceipt')
     const addReceiptItemsResource = api_endpoint.root.addResource('addReceiptItems')
 
@@ -239,6 +240,17 @@ export class BackendStack extends cdk.Stack {
       timeout: Duration.seconds(3)
     })
     getStoreChainsResource.addMethod('GET', new apigw.LambdaIntegration(getStoreChains_fn, integration_parameters), response_parameters)
+
+    const addShoppingList_fn = new lambdaNodejs.NodejsFunction(this, 'addShoppingList', {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'addShoppingList.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, 'addShoppingList')),
+      vpc: vpc,
+      securityGroups: [securityGroup],
+      environment: environment,
+      timeout: Duration.seconds(3)
+    })
+    addShoppingListResource.addMethod('POST', new apigw.LambdaIntegration(addShoppingList_fn, integration_parameters), response_parameters)
   }
 
 }
