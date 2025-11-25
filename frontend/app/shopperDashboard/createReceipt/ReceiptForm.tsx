@@ -1,8 +1,12 @@
 'use client'
-import { FormEvent, useState } from 'react'
+import { useEffect, FormEvent, useState } from 'react'
 import StoreDropdown from './StoreDropdown'
 
-export default function ReceiptForm() {
+type ReceiptFormProps = {
+    onSubmit?: () => void
+}
+
+export default function ReceiptForm({ onSubmit }: ReceiptFormProps) {
     type receiptItem = {
         i_name : string,
         i_category: string,
@@ -11,9 +15,8 @@ export default function ReceiptForm() {
     }
 
     const [s_id, setSId] = useState<number | null>(null)
-    const [username, setUsername] = useState(() => {return localStorage.getItem("username") || ""})
+    const [username, setUsername] = useState("")
     const [r_id, setRId] = useState<number | null>(null)
-    
 
     const [i_name, setIName] = useState("")
     const [category, setCategory] = useState("")
@@ -26,19 +29,73 @@ export default function ReceiptForm() {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const categories = ["Produce", "Deli", "Dairy", "Bakery", "Meat", "Pantry", "Frozen", "Household"]
 
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setUsername(localStorage.getItem("username") || "")
+        }
+    }, [])
+
     async function createReceipt(s_id: number, username: string) {
-        // TODO: replace with API call to create receipt and return its id
-        const r_id = { s_id, username }
-        return 1 // placeholder
+        try {
+            const res = await fetch(
+                "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/createReceipt",
+                {
+                    method: "POST",
+                    body: JSON.stringify({ s_id, username })
+                }
+            )
+
+            const resp = await res.json()
+
+            let body
+            try {
+                body = JSON.parse(resp.body);
+            } catch (err) {
+                console.error("Failed to parse body", err);
+            }
+
+            if (resp.statusCode != 200) {
+                setError(resp.error)
+            } else {
+                return body.r_id
+            }
+        } catch (err) {
+            console.error("something went wrong: ", err);
+        }
     }
 
     async function addItems(r_id: number, receiptItems: receiptItem[]) {
-        // TODO: replace with API call to add items linked to receiptId
         const itemsWithUnitPrice = receiptItems.map(item => ({
             ...item,
             unitPrice: item.i_price / item.quantity
         }))
         const payload =  { r_id: r_id, items: itemsWithUnitPrice }
+        try {
+            const res = await fetch(
+                "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/addReceiptItems",
+                {
+                    method: "POST",
+                    body: JSON.stringify({ r_id, receiptItems: itemsWithUnitPrice })
+                }
+            )
+
+            const resp = await res.json()
+
+            let body
+            try {
+                body = JSON.parse(resp.body);
+            } catch (err) {
+                console.error("Failed to parse body", err);
+            }
+
+            if (resp.statusCode != 200) {
+                setError(resp.error)
+            } else {
+                setMessage(body.message)
+            }
+        } catch (err) {
+            console.error("something went wrong: ", err);
+        }
     }
 
     function handleAddItem() {
@@ -85,6 +142,7 @@ export default function ReceiptForm() {
             await addItems(r_id as number, items)
             setMessage("Receipt submitted")
             setItems([])
+            onSubmit?.()
         } catch (err) {
             console.error(err)
             setError("Failed to submit receipt")

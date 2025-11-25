@@ -13,7 +13,7 @@ export default function CreateReceiptPage() {
     <div>
       <h1>Create Receipt</h1>
       {!submitted ? (
-        <ReceiptForm onSubmit={handleSubmit} />
+      <ReceiptForm onSubmit={handleSubmit} />
       ) : (
         <p>Receipt submitted successfully!</p>
       )}
