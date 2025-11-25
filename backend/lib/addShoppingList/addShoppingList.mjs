@@ -30,7 +30,7 @@ export const handler = async (event) =>{
     });
 
     try {
-        if ( !event.username || !event.sl_name ) {
+        if ( !event.username || !event.sl_name || event.sl_name.replace(/\s+/g, "") === "") {
             throw new Error("Shopping list invalid")
         }
 
