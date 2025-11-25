@@ -8,6 +8,9 @@ let RemoveStore = (s_id) => {
             if (error) {
                 return reject(error)
             }
+            if (results.affectedRows === 0) {
+                return reject(new Error(`Store with s_id=${s_id} not found`));
+            }
             resolve()
         })
     })
