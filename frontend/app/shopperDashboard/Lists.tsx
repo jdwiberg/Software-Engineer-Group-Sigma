@@ -29,9 +29,9 @@ export default function Lists() {
     
     useEffect(() => {
         if (username) {
-        showLists()
+            showLists()
         }
-    }, [username])
+    }, [username, shoppingLists])
 
    async function showLists() {  
       try {
