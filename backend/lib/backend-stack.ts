@@ -125,9 +125,34 @@ export class BackendStack extends cdk.Stack {
     const addStoreChainsResource = api_endpoint.root.addResource('addStoreChain')
     const getStoreChainsResource = api_endpoint.root.addResource('getStoreChains')
     const addShoppingListResource = api_endpoint.root.addResource('addShoppingList')
+    const createReceiptResource = api_endpoint.root.addResource('creatReceipt')
+    const addReceiptItemsResource = api_endpoint.root.addResource('addReceiptItems')
+
     
     // All lambda functions will get a config here that references the handler function in its folder
     // Add methods below each configuration
+    const createReceipt_fn = new lambdaNodejs.NodejsFunction(this, 'createReceipt', {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'createReceipt.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, 'createReceipt')),
+      vpc: vpc,
+      securityGroups: [securityGroup],
+      environment: environment,
+      timeout: Duration.seconds(3)
+    })
+    createReceiptResource.addMethod('POST', new apigw.LambdaIntegration(createReceipt_fn, integration_parameters), response_parameters)
+    
+    const addReceiptItems_fn = new lambdaNodejs.NodejsFunction(this, 'addReceiptItems', {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'addReceiptItems.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, 'addReceiptItems')),
+      vpc: vpc,
+      securityGroups: [securityGroup],
+      environment: environment,
+      timeout: Duration.seconds(3)
+    })
+    addReceiptItemsResource.addMethod('POST', new apigw.LambdaIntegration(addReceiptItems_fn, integration_parameters), response_parameters)
+    
     const registerShopper_fn = new lambdaNodejs.NodejsFunction(this, 'registerShopper', {
       runtime: lambda.Runtime.NODEJS_22_X,
       handler: 'registerShopper.handler',

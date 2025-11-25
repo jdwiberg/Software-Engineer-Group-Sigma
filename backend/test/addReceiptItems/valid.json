@@ -1,0 +1,15 @@
+{
+    "r_id": 1,
+    "receiptItems": [
+        {
+            "i_name": "Milk",
+            "i_category": "Dairy",
+            "i_price": 2.5
+        },
+        {
+            "i_name": "Bread",
+            "i_category": "Bakery",
+            "i_price": 1.5 
+        }
+    ]
+}

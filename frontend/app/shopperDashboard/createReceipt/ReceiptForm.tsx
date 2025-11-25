@@ -1,0 +1,176 @@
+'use client'
+import { FormEvent, useState } from 'react'
+import StoreDropdown from './StoreDropdown'
+
+export default function ReceiptForm() {
+    type receiptItem = {
+        i_name : string,
+        i_category: string,
+        i_price: number,
+        quantity: number,
+    }
+
+    const [s_id, setSId] = useState<number | null>(null)
+    const [username, setUsername] = useState(() => {return localStorage.getItem("username") || ""})
+    const [r_id, setRId] = useState<number | null>(null)
+    
+
+    const [i_name, setIName] = useState("")
+    const [category, setCategory] = useState("")
+    const [price, setPrice] = useState("")
+    const [quantity, setQuantity] = useState("")
+    const [items, setItems] = useState<receiptItem[]>([])
+
+    const [message, setMessage] = useState("")
+    const [error, setError] = useState("")
+    const [isSubmitting, setIsSubmitting] = useState(false)
+    const categories = ["Produce", "Deli", "Dairy", "Bakery", "Meat", "Pantry", "Frozen", "Household"]
+
+    async function createReceipt(s_id: number, username: string) {
+        // TODO: replace with API call to create receipt and return its id
+        const r_id = { s_id, username }
+        return 1 // placeholder
+    }
+
+    async function addItems(r_id: number, receiptItems: receiptItem[]) {
+        // TODO: replace with API call to add items linked to receiptId
+        const itemsWithUnitPrice = receiptItems.map(item => ({
+            ...item,
+            unitPrice: item.i_price / item.quantity
+        }))
+        const payload =  { r_id: r_id, items: itemsWithUnitPrice }
+    }
+
+    function handleAddItem() {
+        setError("")
+        setMessage("")
+
+        const parsedPrice = parseFloat(price)
+        const parsedQuantity = parseFloat(quantity)
+        if (Number.isNaN(parsedPrice)) {
+            setError("Price must be a number")
+            return
+        }
+        if (Number.isNaN(parsedQuantity) || parsedQuantity <= 0) {
+            setError("Quantity must be greater than zero")
+            return
+        }
+
+        if (!i_name.trim() || !category.trim()) {
+            setError("Name and category are required")
+            return
+        }
+
+        setItems([...items, { i_name, i_category: category, i_price: parsedPrice, quantity: parsedQuantity }])
+        setIName("")
+        setCategory("")
+        setPrice("")
+        setQuantity("")
+    }
+
+    async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+        e.preventDefault()
+        setError("")
+        setMessage("")
+
+        if (items.length === 0) {
+            setError("Add at least one item before submitting")
+            return
+        }
+
+        try {
+            setIsSubmitting(true)
+            const receiptId = await createReceipt(s_id as number, username)
+            setRId(receiptId)
+            await addItems(r_id as number, items)
+            setMessage("Receipt submitted")
+            setItems([])
+        } catch (err) {
+            console.error(err)
+            setError("Failed to submit receipt")
+        } finally {
+            setIsSubmitting(false)
+        }
+    }
+
+    return (
+
+        <form onSubmit={handleSubmit}>
+            <StoreDropdown
+                onSelectStore={(id) => {
+                    if (id === null) {
+                        setSId(null)
+                        return
+                    }
+                    const parsed = typeof id === "number" ? id : Number(id)
+                    setSId(Number.isNaN(parsed) ? null : parsed)
+                }}
+            />
+            <div>
+                <label htmlFor="itemName">Item Name</label>
+                <input
+                    id="itemName"
+                    type="text"
+                    value={i_name}
+                    onChange={(e) => setIName(e.target.value)}
+                    required
+                />
+            </div>
+            <div>
+                <label htmlFor="itemCategory">Category</label>
+                <select
+                    id="itemCategory"
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    required
+                >
+                    <option value="">Select a category</option>
+                    {categories.map((cat) => (
+                        <option key={cat} value={cat}>
+                            {cat}
+                        </option>
+                    ))}
+                </select>
+            </div>
+            <div>
+                <label htmlFor="itemPrice">Total Price</label>
+                <input
+                    id="itemPrice"
+                    type="number"
+                    step="0.5"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    required
+                />
+            </div>
+            <div>
+                <label htmlFor="itemQuantity">Quantity</label>
+                <input
+                    id="itemQuantity"
+                    type="number"
+                    min={(category == "Deli") ? "0.01" : "1"}
+                    step={(category == "Deli") ? "0.01" : "1"}
+                    value={quantity}
+                    onChange={(e) => setQuantity(e.target.value)}
+                    required
+                />
+            </div>
+            <button type="button" onClick={handleAddItem}>Add Item</button>
+
+            {items.length > 0 && (
+                <ul>
+                    {items.map((item, idx) => (
+                        <li key={`${item.i_name}-${idx}`}>
+                            {item.i_name} | {item.i_category} | Qty: {item.quantity} | Total: ${item.i_price.toFixed(2)} | Unit: ${(item.i_price / item.quantity).toFixed(2)}
+                        </li>
+                    ))}
+                </ul>
+            )}
+
+            <button type="submit" disabled={isSubmitting}>Submit Receipt</button>
+
+            {message && <p>{message}</p>}
+            {error && <p>{error}</p>}
+        </form>
+    )
+}
