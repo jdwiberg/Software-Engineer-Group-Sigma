@@ -27,6 +27,7 @@ export default function ReceiptForm({ onSubmit }: ReceiptFormProps) {
     const [message, setMessage] = useState("")
     const [error, setError] = useState("")
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const [isAdding, setIsAdding] = useState(false)
     const categories = ["Produce", "Deli", "Dairy", "Bakery", "Meat", "Pantry", "Frozen", "Household"]
 
     useEffect(() => {
@@ -57,6 +58,7 @@ export default function ReceiptForm({ onSubmit }: ReceiptFormProps) {
             if (resp.statusCode != 200) {
                 setError(resp.error)
             } else {
+                setRId(body.r_id)
                 return body.r_id
             }
         } catch (err) {
@@ -99,6 +101,10 @@ export default function ReceiptForm({ onSubmit }: ReceiptFormProps) {
     }
 
     function handleAddItem() {
+        if (!isAdding) {
+            setIsAdding(true)
+            return
+        }
         setError("")
         setMessage("")
 
@@ -123,6 +129,7 @@ export default function ReceiptForm({ onSubmit }: ReceiptFormProps) {
         setCategory("")
         setPrice("")
         setQuantity("")
+        setIsAdding(false)
     }
 
     async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -138,8 +145,7 @@ export default function ReceiptForm({ onSubmit }: ReceiptFormProps) {
         try {
             setIsSubmitting(true)
             const receiptId = await createReceipt(s_id as number, username)
-            setRId(receiptId)
-            await addItems(r_id as number, items)
+            await addItems(receiptId as number, items)
             setMessage("Receipt submitted")
             setItems([])
             onSubmit?.()
@@ -164,55 +170,60 @@ export default function ReceiptForm({ onSubmit }: ReceiptFormProps) {
                     setSId(Number.isNaN(parsed) ? null : parsed)
                 }}
             />
-            <div>
-                <label htmlFor="itemName">Item Name</label>
-                <input
-                    id="itemName"
-                    type="text"
-                    value={i_name}
-                    onChange={(e) => setIName(e.target.value)}
-                    required
-                />
-            </div>
-            <div>
-                <label htmlFor="itemCategory">Category</label>
-                <select
-                    id="itemCategory"
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    required
-                >
-                    <option value="">Select a category</option>
-                    {categories.map((cat) => (
-                        <option key={cat} value={cat}>
-                            {cat}
-                        </option>
-                    ))}
-                </select>
-            </div>
-            <div>
-                <label htmlFor="itemPrice">Total Price</label>
-                <input
-                    id="itemPrice"
-                    type="number"
-                    step="0.5"
-                    value={price}
-                    onChange={(e) => setPrice(e.target.value)}
-                    required
-                />
-            </div>
-            <div>
-                <label htmlFor="itemQuantity">Quantity</label>
-                <input
-                    id="itemQuantity"
-                    type="number"
-                    min={(category == "Deli") ? "0.01" : "1"}
-                    step={(category == "Deli") ? "0.01" : "1"}
-                    value={quantity}
-                    onChange={(e) => setQuantity(e.target.value)}
-                    required
-                />
-            </div>
+            
+            {isAdding && (
+            <>
+                <div>
+                    <label htmlFor="itemName">Item Name</label>
+                    <input
+                        id="itemName"
+                        type="text"
+                        value={i_name}
+                        onChange={(e) => setIName(e.target.value)}
+                        required
+                    />
+                </div>
+                <div>
+                    <label htmlFor="itemCategory">Category</label>
+                    <select
+                        id="itemCategory"
+                        value={category}
+                        onChange={(e) => setCategory(e.target.value)}
+                        required
+                    >
+                        <option value="">Select a category</option>
+                        {categories.map((cat) => (
+                            <option key={cat} value={cat}>
+                                {cat}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div>
+                    <label htmlFor="itemPrice">Total Price</label>
+                    <input
+                        id="itemPrice"
+                        type="number"
+                        step="0.5"
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
+                        required
+                    />
+                </div>
+                <div>
+                    <label htmlFor="itemQuantity">Quantity</label>
+                    <input
+                        id="itemQuantity"
+                        type="number"
+                        min={(category == "Deli") ? "0.01" : "1"}
+                        step={(category == "Deli") ? "0.01" : "1"}
+                        value={quantity}
+                        onChange={(e) => setQuantity(e.target.value)}
+                        required
+                    />
+                </div>
+                </>
+            )}
             <button type="button" onClick={handleAddItem}>Add Item</button>
 
             {items.length > 0 && (
