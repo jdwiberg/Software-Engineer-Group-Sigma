@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "cdk-rds-sql": "^7.3.2"
+  }
+}
