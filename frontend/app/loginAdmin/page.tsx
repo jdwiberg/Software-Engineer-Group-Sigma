@@ -6,7 +6,6 @@ import { setMaxListeners } from 'events'
 import { useRouter } from 'next/navigation'
 
 export default function Login() {
-  const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [message, setMessage] = useState("")
   const [error, setError] = useState("")
@@ -21,10 +20,10 @@ export default function Login() {
 
     try {
         const res = await fetch(
-            "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/loginShopper",
+            "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/loginAdmin",
             {
                 method: "POST",
-                body: JSON.stringify({ username, password })
+                body: JSON.stringify({ password })
             }
         )
         
@@ -39,13 +38,9 @@ export default function Login() {
 
         if (data.statusCode != 200) {
             setError(data.error)
-            setMessage("Incorrect username or password, please try again.")
+            setMessage("Incorrect password, please try again.")
         } else {
-            localStorage.setItem("username", body.username)
-            setMessage(body.message)
-            setUsername("")
-            setPassword("")
-            router.push('/shopperDashboard')
+            router.push('/adminDashboard')
         }
     } catch (err) {
         console.error("something went wrong: ", err);
@@ -55,17 +50,8 @@ export default function Login() {
   }
   return (
       <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-        <h1>Login Shopper</h1>
+        <h1>Login Admin</h1>
         <form onSubmit={handleSubmit}>
-
-          <input 
-            name='username'
-            type="text"
-            placeholder='Username'
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
 
           <input 
             name='password'
@@ -89,11 +75,9 @@ export default function Login() {
         )}
         {error && (
           <p>{error}</p>
-        )}
+        )}        
+        <Link href="/adminDashboard">Admin Dashboard</Link>
 
-        <Link href="/registerShopper">Register Shopper</Link>
-        <p> </p>
-        <Link href="/loginAdmin">Login Admin</Link>
       </div>
   );
 }
