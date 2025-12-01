@@ -12,7 +12,6 @@ export default function Lists() {
         sli_name : string,
         sli_category : string
     }
-    const [refresh, setRefresh] = useState(false)
     const [error, setError] = useState("")
     const [message, setMessage] = useState("")
     const [username, setUsername] = useState("")
@@ -26,6 +25,29 @@ export default function Lists() {
     const [isAdding, setIsAdding] = useState(false)// for adding a new item to a list
     const [itemName, setItemName] = useState("")
     const [itemCat, setItemCat] = useState("")
+    const categories = [
+        "Alocohol & Spirits",
+        "Baking Supplies",
+        "Beverages",
+        "Bread & Bakery",
+        "Breakfast & Cereal",
+        "Canned Goods & Soups",
+        "Condiments & Sauces",
+        "Dairy & Eggs",
+        "Deli",
+        "Frozen Foods",
+        "Fruits & Vegetables",
+        "Grains & Pasta",
+        "Household Essentials",
+        "International Foods",
+        "Meat & Seafood",
+        "Pantry Staples",
+        "Pet Supplies",
+        "Snacks & Candy",
+        "Spices & Seasonings",
+        "Toiletries & Personal Care",
+        "Other"
+    ];
     
     useEffect(() => {
         const u = localStorage.getItem("username")
@@ -36,7 +58,7 @@ export default function Lists() {
         if (username) {
             showLists()
         }
-    }, [username, shoppingLists, refresh])
+    }, [username])
 
    async function showLists() {  
       try {
@@ -62,7 +84,6 @@ export default function Lists() {
           } else {
               setMessage(body.message)
               setShoppingLists(body.shoppingLists || [])
-              setRefresh(prev => !prev)
           }
       } catch (err) {
           console.error("something went wrong: ", err);
@@ -130,6 +151,7 @@ export default function Lists() {
             } else {
                 setMessage(body.message)
                 setListName("")
+                await showLists()
             }
         } catch (err) {
             console.error("something went wrong: ", err);
@@ -166,10 +188,16 @@ export default function Lists() {
                 setMessage("Some error")
             } else {
                 setMessage(body.message)
-                setIsDeleting(false)
+                await showLists()
+                // clear any selection that might reference the deleted list
+                setSelectedList(null)
+                setShoppingListItems([])
+                setOpen(false)
             }
         } catch (err) {
             console.error("something went wrong: ", err);
+        } finally {
+            setIsDeleting(false)
         }
       }
 
@@ -215,7 +243,6 @@ export default function Lists() {
             setItemName("")
             setItemCat("")
             setIsAdding(false)
-            setRefresh(prev => !prev)
         }
       }
 
@@ -245,8 +272,8 @@ export default function Lists() {
         {shoppingLists.length > 0 ? (
         <>
             <ul>
-            {shoppingLists.map((shoppingList, idx) => (
-                <li key={idx}>
+            {shoppingLists.map((shoppingList) => (
+                <li key={shoppingList.sl_id}>
                 <strong>List:</strong> {shoppingList.sl_name} <br />
                 <strong>Date Created:</strong> {shoppingList.sl_date} <br />
                 <button
@@ -305,14 +332,19 @@ export default function Lists() {
                     onChange={(e) => setItemName(e.target.value)}
                     required
                 />
-                <input 
+                <select
                     name='itemCat'
-                    type="text"
-                    placeholder='Item Category'
                     value={itemCat}
                     onChange={(e) => setItemCat(e.target.value)}
                     required
-                />
+                >
+                    <option value="">Select a category</option>
+                    {categories.map((cat) => (
+                        <option key={cat} value={cat}>
+                            {cat}
+                        </option>
+                    ))}
+                </select>
                 <button 
                 type='submit'
                 disabled={isAdding}
