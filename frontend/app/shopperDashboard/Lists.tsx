@@ -25,6 +25,29 @@ export default function Lists() {
     const [isAdding, setIsAdding] = useState(false)// for adding a new item to a list
     const [itemName, setItemName] = useState("")
     const [itemCat, setItemCat] = useState("")
+    const categories = [
+        "Alocohol & Spirits",
+        "Baking Supplies",
+        "Beverages",
+        "Bread & Bakery",
+        "Breakfast & Cereal",
+        "Canned Goods & Soups",
+        "Condiments & Sauces",
+        "Dairy & Eggs",
+        "Deli",
+        "Frozen Foods",
+        "Fruits & Vegetables",
+        "Grains & Pasta",
+        "Household Essentials",
+        "International Foods",
+        "Meat & Seafood",
+        "Pantry Staples",
+        "Pet Supplies",
+        "Snacks & Candy",
+        "Spices & Seasonings",
+        "Toiletries & Personal Care",
+        "Other"
+    ];
     
     useEffect(() => {
         const u = localStorage.getItem("username")
@@ -309,14 +332,19 @@ export default function Lists() {
                     onChange={(e) => setItemName(e.target.value)}
                     required
                 />
-                <input 
+                <select
                     name='itemCat'
-                    type="text"
-                    placeholder='Item Category'
                     value={itemCat}
                     onChange={(e) => setItemCat(e.target.value)}
                     required
-                />
+                >
+                    <option value="">Select a category</option>
+                    {categories.map((cat) => (
+                        <option key={cat} value={cat}>
+                            {cat}
+                        </option>
+                    ))}
+                </select>
                 <button 
                 type='submit'
                 disabled={isAdding}
