@@ -29,7 +29,29 @@ export default function ReceiptForm({ onSubmit }: ReceiptFormProps) {
     const [error, setError] = useState("")
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [isAdding, setIsAdding] = useState(false)
-    const categories = ["Produce", "Deli", "Dairy", "Bakery", "Meat", "Pantry", "Frozen", "Household"]
+    const categories = [
+        "Alocohol & Spirits",
+        "Baking Supplies",
+        "Beverages",
+        "Bread & Bakery",
+        "Breakfast & Cereal",
+        "Canned Goods & Soups",
+        "Condiments & Sauces",
+        "Dairy & Eggs",
+        "Deli",
+        "Frozen Foods",
+        "Fruits & Vegetables",
+        "Grains & Pasta",
+        "Household Essentials",
+        "International Foods",
+        "Meat & Seafood",
+        "Pantry Staples",
+        "Pet Supplies",
+        "Snacks & Candy",
+        "Spices & Seasonings",
+        "Toiletries & Personal Care",
+        "Other"
+    ];
 
     const router = useRouter()
 
@@ -152,7 +174,7 @@ export default function ReceiptForm({ onSubmit }: ReceiptFormProps) {
             setMessage("Receipt submitted")
             setItems([])
             onSubmit?.()
-            router.push('/shopperDashboard')
+            router.push('/shopperDashboard?tab=receipts')
         } catch (err) {
             console.error(err)
             setError("Failed to submit receipt")
