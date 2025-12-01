@@ -165,11 +165,16 @@ export default function Lists() {
                 setMessage("Some error")
             } else {
                 setMessage(body.message)
-                setIsDeleting(false)
                 await showLists()
+                // clear any selection that might reference the deleted list
+                setSelectedList(null)
+                setShoppingListItems([])
+                setOpen(false)
             }
         } catch (err) {
             console.error("something went wrong: ", err);
+        } finally {
+            setIsDeleting(false)
         }
       }
 
@@ -244,8 +249,8 @@ export default function Lists() {
         {shoppingLists.length > 0 ? (
         <>
             <ul>
-            {shoppingLists.map((shoppingList, idx) => (
-                <li key={idx}>
+            {shoppingLists.map((shoppingList) => (
+                <li key={shoppingList.sl_id}>
                 <strong>List:</strong> {shoppingList.sl_name} <br />
                 <strong>Date Created:</strong> {shoppingList.sl_date} <br />
                 <button
