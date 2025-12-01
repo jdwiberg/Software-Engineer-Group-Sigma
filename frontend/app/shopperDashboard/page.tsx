@@ -1,5 +1,6 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Lists from "./Lists";
 import Receipts from "./Receipts";
 import Stores from "./Stores";
@@ -7,7 +8,20 @@ import Stores from "./Stores";
 type Tab = "lists" | "receipts" | "stores";
 
 export default function ShopperDashboard() {
-  const [tab, setTab] = useState<Tab>("lists");
+  const searchParams = useSearchParams();
+  const tabParam = searchParams.get("tab");
+  const initialTab: Tab =
+    tabParam === "lists" || tabParam === "receipts" || tabParam === "stores"
+      ? tabParam
+      : "lists";
+
+  const [tab, setTab] = useState<Tab>(initialTab);
+
+  useEffect(() => {
+    if (tabParam === "lists" || tabParam === "receipts" || tabParam === "stores") {
+      setTab(tabParam);
+    }
+  }, [tabParam]);
 
   return (
     <div>
