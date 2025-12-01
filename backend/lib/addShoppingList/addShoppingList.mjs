@@ -2,19 +2,14 @@ import * as mysql2 from 'mysql2'
 
 var pool
 
-let getListItems = (username, sl_name) => {
+let addShoppingList = (username, sl_name) => {
     return new Promise((resolve, reject) => {
-        pool.query(`SELECT  
-                        sli.sli_name, 
-                        sli.sli_category
-                    FROM 
-                        shoppingListItem sli
-                    JOIN 
-                        shoppingList sl ON sli.sl_id = sl.sl_id
-                    JOIN 
-                        shopper s ON sl.sh_id = s.sh_id
+        pool.query(`INSERT INTO 
+                        shoppingList (sh_id, sl_name)
+                    SELECT 
+                        sh_id, ? FROM shopper
                     WHERE 
-                        s.username = ? AND sl.sl_name = ?;`, [username, sl_name], (error, results) => {
+                        username = ?;`, [sl_name, username], (error, results) => {
             if (error){
                 return reject(error)
             }
@@ -35,12 +30,12 @@ export const handler = async (event) =>{
     });
 
     try {
-        if ( !event.username || !event.sl_name ) {
+        if ( !event.username || !event.sl_name || event.sl_name.replace(/\s+/g, "") === "") {
             throw new Error("Shopping list invalid")
         }
 
-        const listItems = await getListItems(event.username, event.sl_name)
-        result = { message: "retrieved shopping list items", listItems}
+        const listItems = await addShoppingList(event.username, event.sl_name)
+        result = { message: "added shopping list", listItems}
         code = 200
 
         } catch (err) {
