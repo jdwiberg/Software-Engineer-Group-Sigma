@@ -12,7 +12,6 @@ export default function Lists() {
         sli_name : string,
         sli_category : string
     }
-    const [refresh, setRefresh] = useState(false)
     const [error, setError] = useState("")
     const [message, setMessage] = useState("")
     const [username, setUsername] = useState("")
@@ -36,7 +35,7 @@ export default function Lists() {
         if (username) {
             showLists()
         }
-    }, [username, shoppingLists, refresh])
+    }, [username])
 
    async function showLists() {  
       try {
@@ -62,7 +61,6 @@ export default function Lists() {
           } else {
               setMessage(body.message)
               setShoppingLists(body.shoppingLists || [])
-              setRefresh(prev => !prev)
           }
       } catch (err) {
           console.error("something went wrong: ", err);
@@ -130,6 +128,7 @@ export default function Lists() {
             } else {
                 setMessage(body.message)
                 setListName("")
+                await showLists()
             }
         } catch (err) {
             console.error("something went wrong: ", err);
@@ -167,6 +166,7 @@ export default function Lists() {
             } else {
                 setMessage(body.message)
                 setIsDeleting(false)
+                await showLists()
             }
         } catch (err) {
             console.error("something went wrong: ", err);
@@ -215,7 +215,6 @@ export default function Lists() {
             setItemName("")
             setItemCat("")
             setIsAdding(false)
-            setRefresh(prev => !prev)
         }
       }
 
