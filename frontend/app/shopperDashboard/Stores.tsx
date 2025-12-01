@@ -4,11 +4,13 @@ import { FormEvent, useEffect, useState } from 'react'
 
 export default function Stores() {
     type storeChain = {
+        c_id: number,
         c_name: string,
         c_url: string,
         stores: store[]
     }
     type store = {
+        s_id: number,
         s_address: string
     }
 
@@ -18,6 +20,9 @@ export default function Stores() {
     const [adding, setAdding] = useState(false)
     const [chainName, setChainName] = useState("")
     const [chainUrl, setChainUrl] = useState("")
+    const [addingStoreChainId, setAddingStoreChainId] = useState<number | null>(null)
+    const [storeAddress, setStoreAddress] = useState("")
+    const [isSavingStore, setIsSavingStore] = useState(false)
 
     async function addStoreChain(c_name: string, c_url: string) {
         try {
@@ -57,6 +62,44 @@ export default function Stores() {
       setAdding(false)
       setChainName("")
       setChainUrl("")
+    }
+
+    async function addStoreToChain(c_id: number, s_address: string) {
+      setError("")
+      setMessage("")
+      setIsSavingStore(true)
+      try {
+        const res = await fetch(
+          "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/addStore",
+          {
+            method: "POST",
+            body: JSON.stringify({ c_id, s_address })
+          }
+        )
+
+        const data = await res.json()
+
+        let body
+        try {
+          body = JSON.parse(data.body);
+        } catch (err) {
+          console.error("Failed to parse body", err);
+        }
+
+        if (data.statusCode != 200) {
+          setError(data.error)
+          setMessage("Unable to add store. Please try again.")
+        } else {
+          setMessage(body.message)
+          await showStoreChains()
+        }
+      } catch (err) {
+        console.error("something went wrong: ", err);
+      } finally {
+        setIsSavingStore(false)
+        setStoreAddress("")
+        setAddingStoreChainId(null)
+      }
     }
 
     useEffect(() => {
@@ -136,6 +179,43 @@ export default function Stores() {
             <div key={chain.c_id}>
                 <h2>{chain.c_name}</h2>
                 <a href={chain.c_url}>{chain.c_url}</a>
+                {addingStoreChainId === chain.c_id ? (
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault()
+                      if (!storeAddress.trim()) {
+                        setError("Store address is required")
+                        return
+                      }
+                      addStoreToChain(chain.c_id, storeAddress.trim())
+                    }}
+                  >
+                    <input
+                      type="text"
+                      placeholder="Store address"
+                      value={storeAddress}
+                      onChange={(e) => setStoreAddress(e.target.value)}
+                      required
+                    />
+                    <button type="submit" disabled={isSavingStore}>
+                      {isSavingStore ? "Saving..." : "Save"}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setAddingStoreChainId(null)
+                        setStoreAddress("")
+                      }}
+                      disabled={isSavingStore}
+                    >
+                      Cancel
+                    </button>
+                  </form>
+                ) : (
+                  <button onClick={() => setAddingStoreChainId(chain.c_id)}>
+                    Add Store
+                  </button>
+                )}
                 <ul>
                 {chain.stores.length > 0 ? (
                     chain.stores.map((store: any) => (
