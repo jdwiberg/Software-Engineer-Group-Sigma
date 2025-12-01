@@ -174,7 +174,7 @@ export default function ReceiptForm({ onSubmit }: ReceiptFormProps) {
             setMessage("Receipt submitted")
             setItems([])
             onSubmit?.()
-            router.push('/shopperDashboard')
+            router.push('/shopperDashboard?tab=receipts')
         } catch (err) {
             console.error(err)
             setError("Failed to submit receipt")
