@@ -46,6 +46,7 @@ export default function Receipts() {
 
     const [receipts, setReceipts] = useState<receipt[]>([])
     const [username, setUsername] = useState("")
+    const [deleting, setDeleting] = useState(false)
     const [message, setMessage] = useState("")
     const [error, setError] = useState("")
     const router = useRouter()
@@ -92,6 +93,31 @@ export default function Receipts() {
           console.error("something went wrong: ", err);
       }
     }
+
+    async function deleteReceipt(r_id: number) {
+      setDeleting(true)
+      try {
+          const res = await fetch(
+              "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/removeReceipt",
+              {
+                  method: "POST",
+                  body: JSON.stringify({ r_id })
+              }
+          )
+          const data = await res.json()
+  
+          if (data.statusCode != 200) {
+              setError(data.error)
+          } else {
+              setMessage(data.message)
+              setDeleting(false)
+              showReceipts()
+          }
+      } catch (err) {
+        console.error("something went wrong: ", err);
+      }
+    }
+
     return (
     <div>
         <button onClick={() => router.push("/shopperDashboard/createReceipt")}>Create Receipt</button>
@@ -99,6 +125,7 @@ export default function Receipts() {
             receipts.map((r: any) => (
             <div key={r.r_id}>
                 <h2>{r.c_name}</h2>
+                <button onClick={() => deleteReceipt(r.r_id)}>{(deleting ? "Deleting..." : "Delete Receipt")}</button>
                 <p>{r.s_address}</p>
                 <p>{r.r_date}</p>
                 <ul>
