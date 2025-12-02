@@ -5,6 +5,7 @@ var pool
 let getListItems = (username, sl_name) => {
     return new Promise((resolve, reject) => {
         pool.query(`SELECT  
+                        sli.sli_id,
                         sli.sli_name, 
                         sli.sli_category
                     FROM 
