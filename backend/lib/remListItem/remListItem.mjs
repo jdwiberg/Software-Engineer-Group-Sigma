@@ -26,7 +26,7 @@ export const handler = async (event) =>{
 
     try {
         await remShoppingList(event.sli_id)
-        result = { message: "removed shopping list item"}
+        result = { message: "removed shopping list item with ID", sli_id}
         code = 200
 
         } catch (err) {
