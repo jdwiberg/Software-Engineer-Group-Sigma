@@ -2,12 +2,12 @@ import * as mysql2 from 'mysql2'
 
 var pool
 
-let addStoreChain = (c_name, c_url) => {
+let addStore = (s_address, c_id) => {
     return new Promise((resolve, reject) => {
-        pool.query(`INSERT INTO storeChain (c_name, c_url) VALUES (?, ?);`, [c_name, c_url], (error) => {
+        pool.query(`INSERT INTO store (s_address, c_id) VALUES (?, ?);`, [s_address, c_id], (error) => {
             if (error){
                 if (error.code === 'ER_DUP_ENTRY') {
-                    return reject(new Error("This chain already exists"))
+                    return reject(new Error("This store already exists"))
                 }
                 return reject(error)
             }
@@ -29,15 +29,15 @@ export const handler = async (event) =>{
     });
 
     try {
-        if ( !event.c_name) {
-            throw new Error("Store Chain name is required")
+        if ( !event.s_address ) {
+            throw new Error("Store Chain address is required")
         }
-        if ( !event.c_url ) {
-            throw new Error("Store Chain url is required")
+        if ( !event.c_id ) {
+            throw new Error("Store Chain id is required")
         }
 
-        await addStoreChain(event.c_name, event.c_url)
-        result = { message: `${event.c_name} added` }
+        await addStore(event.s_address, event.c_id)
+        result = { message: `${event.s_address} added` }
         code = 200
 
     } catch (err) {

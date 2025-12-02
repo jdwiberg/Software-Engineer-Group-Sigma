@@ -2,20 +2,16 @@ import * as mysql2 from 'mysql2'
 
 var pool
 
-let addStoreChain = (c_name, c_url) => {
+let removeReceipt = (r_id) => {
     return new Promise((resolve, reject) => {
-        pool.query(`INSERT INTO storeChain (c_name, c_url) VALUES (?, ?);`, [c_name, c_url], (error) => {
+        pool.query(`DELETE FROM receipt WHERE r_id = ?;`, [r_id], (error) => {
             if (error){
-                if (error.code === 'ER_DUP_ENTRY') {
-                    return reject(new Error("This chain already exists"))
-                }
                 return reject(error)
             }
             resolve()
         })
     })
 }
-
 
 export const handler = async (event) =>{
     let result
@@ -29,21 +25,14 @@ export const handler = async (event) =>{
     });
 
     try {
-        if ( !event.c_name) {
-            throw new Error("Store Chain name is required")
-        }
-        if ( !event.c_url ) {
-            throw new Error("Store Chain url is required")
-        }
-
-        await addStoreChain(event.c_name, event.c_url)
-        result = { message: `${event.c_name} added` }
+        await removeReceipt(event.r_id)
+        result = { message: "removed receipt" }
         code = 200
 
-    } catch (err) {
+        } catch (err) {
         result = { error: err.message }
         code = 400
-    }
+        }
 
     const response = {
         statusCode: code,
