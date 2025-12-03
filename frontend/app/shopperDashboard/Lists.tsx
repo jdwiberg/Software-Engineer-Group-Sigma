@@ -275,7 +275,6 @@ export default function Lists() {
             if (data.statusCode != 200) {
                 setError(data.error)
                 setMessage("Some error")
-                await showItems(selectedList!.sl_id)
             } else {
                 setMessage(body.message)
                 await showItems(selectedList!.sl_id)
