@@ -275,6 +275,7 @@ export default function Lists() {
             if (data.statusCode != 200) {
                 setError(data.error)
                 setMessage("Some error")
+                await showItems(selectedList!.sl_id)
             } else {
                 setMessage(body.message)
                 await showItems(selectedList!.sl_id)
@@ -348,8 +349,8 @@ export default function Lists() {
                 <h2 className="text-xl font-bold">{selectedList.sl_name}</h2>
 
                 <ul className="mt-4">
-                    {shoppingListItems.map((item, i) => (
-                    <li key={i} className="border-b py-2">
+                    {shoppingListItems.map((item) => (
+                    <li key={item.sli_id} className="border-b py-2">
                         <strong>Item:</strong> {item.sli_name} <br />
                         <strong>Category:</strong> {item.sli_category}
                     <button
@@ -361,7 +362,7 @@ export default function Lists() {
                             showItems(selectedList.sl_id)
                         }}
                     >
-                        {isRemoving  && selectedItem?.sli_id === item.sli_id ? "Removing... " : "Remove item"}
+                        {isRemoving  && selectedItem!.sli_id === item.sli_id ? "Removing... " : "Remove item"}
                     </button>
                     </li>
 
