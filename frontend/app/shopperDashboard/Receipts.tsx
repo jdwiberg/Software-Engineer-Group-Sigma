@@ -47,6 +47,7 @@ export default function Receipts() {
     const [receipts, setReceipts] = useState<receipt[]>([])
     const [username, setUsername] = useState("")
     const [deleting, setDeleting] = useState(false)
+    const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState("")
     const [error, setError] = useState("")
     const router = useRouter()
@@ -63,6 +64,7 @@ export default function Receipts() {
     }, [username])
     
     async function showReceipts() {  
+      setLoading(true)
       try {
           const res = await fetch(
               "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/getReceiptItems",
@@ -88,6 +90,7 @@ export default function Receipts() {
           } else {
               setMessage(body.message)
               setReceipts(groupByReceipt(body.items))
+              setLoading(false)
           }
       } catch (err) {
           console.error("something went wrong: ", err);
@@ -129,16 +132,16 @@ export default function Receipts() {
                 <p>{r.s_address}</p>
                 <p>{r.r_date}</p>
                 <ul>
-                {r.items.map((item: any) => (
-                    <li key={item.i_id}>
-                    {item.i_name} — {item.i_category} — ${item.i_price.toFixed(2)}
-                    </li>
-                ))}
+                  {r.items.map((item: any) => (
+                      <li key={item.i_id}>
+                      {item.i_name} — {item.i_category} — ${item.i_price.toFixed(2)}
+                      </li>
+                  ))}
                 </ul>
             </div>
             ))
         ) : (
-            <p>No Receipts Yet!</p>
+            <p>{(loading)? "Loading..." : "No Receipts Yet!"}</p>
         )}
     </div>
     )
