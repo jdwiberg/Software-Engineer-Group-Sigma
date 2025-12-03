@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
+import formatDate from '../aa-utils/formatDate'
 
 export default function Lists() {
 
@@ -316,7 +317,7 @@ export default function Lists() {
             {shoppingLists.map((shoppingList) => (
                 <li key={shoppingList.sl_id}>
                 <strong>List:</strong> {shoppingList.sl_name} <br />
-                <strong>Date Created:</strong> {shoppingList.sl_date} <br />
+                <strong>Date Created:</strong> {formatDate(shoppingList.sl_date)} <br />
                 <button
                     onClick={() => {
                         setSelectedList(shoppingList);

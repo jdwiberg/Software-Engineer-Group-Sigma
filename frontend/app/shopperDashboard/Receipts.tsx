@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import formatDate from '../aa-utils/formatDate'
 
 function groupByReceipt(rows: any[]) {
   const map = new Map();
@@ -130,7 +131,7 @@ export default function Receipts() {
                 <h2>{r.c_name}</h2>
                 <button onClick={() => deleteReceipt(r.r_id)}>{(deleting ? "Deleting..." : "Delete Receipt")}</button>
                 <p>{r.s_address}</p>
-                <p>{r.r_date}</p>
+                <p>{formatDate(r.r_date)}</p>
                 <ul>
                   {r.items.map((item: any) => (
                       <li key={item.i_id}>
