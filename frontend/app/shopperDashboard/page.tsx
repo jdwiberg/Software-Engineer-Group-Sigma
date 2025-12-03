@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import Lists from "./Lists";
 import Receipts from "./Receipts";
 import Stores from "./Stores";
+import { useRouter } from "next/navigation";
 
 type Tab = "lists" | "receipts" | "stores";
 
@@ -16,6 +17,8 @@ export default function ShopperDashboard() {
       : "lists";
 
   const [tab, setTab] = useState<Tab>(initialTab);
+  const [username, setUsername] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     if (tabParam === "lists" || tabParam === "receipts" || tabParam === "stores") {
@@ -23,9 +26,15 @@ export default function ShopperDashboard() {
     }
   }, [tabParam]);
 
+  async function logout() {
+    localStorage.setItem("username", "");
+    router.push("/");
+  }
+
   return (
     <div>
-      <h1>Shopper Dashboard</h1>
+      <h1>{localStorage.getItem("username")}'s Shopper Dashboard</h1>
+      <button onClick={() => logout()}>Logout</button>
       <div style={{ display: "flex", gap: 8 }}>
         <button onClick={() => setTab("lists")}>Shopping Lists</button>
         <button onClick={() => setTab("receipts")}>Receipts</button>
