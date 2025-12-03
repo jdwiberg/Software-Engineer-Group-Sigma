@@ -162,6 +162,17 @@ export default function ReceiptForm({ onSubmit }: ReceiptFormProps) {
         setItems(updatedItems)
     }
 
+    async function editItem(i_id: number) {
+        const itemToEdit = items[i_id]
+        setIName(itemToEdit.i_name)
+        setCategory(itemToEdit.i_category)
+        setPrice(itemToEdit.i_price.toString())
+        setQuantity(itemToEdit.quantity.toString())
+        const updatedItems = items.filter((_, index) => index !== i_id)
+        setItems(updatedItems)
+        setIsAdding(true)
+    }
+
     async function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
         setError("")
@@ -262,7 +273,7 @@ export default function ReceiptForm({ onSubmit }: ReceiptFormProps) {
                     {items.map((item, i_id) => (
                         <li key={`${item.i_name}-${i_id}`}>
                             {item.i_name} | {item.i_category} | Qty: {item.quantity} | Total: ${item.i_price.toFixed(2)} | Unit: ${(item.i_price / item.quantity).toFixed(2)}
-                            <button>Edit</button>
+                            <button type="button" onClick={() => editItem(i_id)}>Edit</button>
                             <button type="button" onClick={() => removeItem(i_id)}>Remove</button>
                         </li>
                     ))}
