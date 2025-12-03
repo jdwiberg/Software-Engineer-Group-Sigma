@@ -2,7 +2,7 @@ import * as mysql2 from 'mysql2'
 
 var pool
 
-let getListItems = (username, sl_name) => {
+let getListItems = (sl_id) => {
     return new Promise((resolve, reject) => {
         pool.query(`SELECT  
                         sli.sli_id,
@@ -10,12 +10,8 @@ let getListItems = (username, sl_name) => {
                         sli.sli_category
                     FROM 
                         shoppingListItem sli
-                    JOIN 
-                        shoppingList sl ON sli.sl_id = sl.sl_id
-                    JOIN 
-                        shopper s ON sl.sh_id = s.sh_id
                     WHERE 
-                        s.username = ? AND sl.sl_name = ?;`, [username, sl_name], (error, results) => {
+                        sl.sl_id = ?;`, [sl_id], (error, results) => {
             if (error){
                 return reject(error)
             }
@@ -36,11 +32,11 @@ export const handler = async (event) =>{
     });
 
     try {
-        if ( !event.username || !event.sl_name ) {
-            throw new Error("Shopping list invalid")
+        if ( !event.sl_id ) {
+            throw new Error("Shopping list does not exist")
         }
 
-        const listItems = await getListItems(event.username, event.sl_name)
+        const listItems = await getListItems(event.sl_id)
         result = { message: "retrieved shopping list items", listItems}
         code = 200
 
