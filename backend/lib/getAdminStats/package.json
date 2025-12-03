@@ -1,0 +1,8 @@
+{
+  "name": "get-admin-stats",
+  "version": "1.0.0",
+  "main": "getAdminStats.mjs",
+  "dependencies": {
+    "mysql2": "^3.15.3"
+  }
+}
