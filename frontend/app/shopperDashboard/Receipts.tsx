@@ -132,11 +132,11 @@ export default function Receipts() {
                 <p>{r.s_address}</p>
                 <p>{r.r_date}</p>
                 <ul>
-                {r.items.map((item: any) => (
-                    <li key={item.i_id}>
-                    {item.i_name} — {item.i_category} — ${item.i_price.toFixed(2)}
-                    </li>
-                ))}
+                  {r.items.map((item: any) => (
+                      <li key={item.i_id}>
+                      {item.i_name} — {item.i_category} — ${item.i_price.toFixed(2)}
+                      </li>
+                  ))}
                 </ul>
             </div>
             ))
