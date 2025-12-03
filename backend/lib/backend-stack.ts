@@ -347,6 +347,5 @@ export class BackendStack extends cdk.Stack {
       timeout: Duration.seconds(3)
     })
     getAdminStatsResource.addMethod('POST', new apigw.LambdaIntegration(getAdminStats_fn, integration_parameters), response_parameters)
-    
   }
 }
