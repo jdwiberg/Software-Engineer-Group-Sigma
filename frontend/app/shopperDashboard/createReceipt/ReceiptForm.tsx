@@ -158,32 +158,8 @@ export default function ReceiptForm({ onSubmit }: ReceiptFormProps) {
     }
 
     async function removeItem(i_id: number) {
-        try {
-            const res = await fetch(
-                "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/removeReceiptItem",
-                {
-                    method: "POST",
-                    body: JSON.stringify({ i_id })
-                }
-            )
-
-            const resp = await res.json()
-
-            let body
-            try {
-                body = JSON.parse(resp.body);
-            } catch (err) {
-                console.error("Failed to parse body", err);
-            }
-
-            if (resp.statusCode != 200) {
-                setError(resp.error)
-            } else {
-                setMessage(body.message)
-            }
-        } catch (err) {
-            console.error("something went wrong: ", err);
-        }
+        const updatedItems = items.filter((_, index) => index !== i_id)
+        setItems(updatedItems)
     }
 
     async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -287,7 +263,7 @@ export default function ReceiptForm({ onSubmit }: ReceiptFormProps) {
                         <li key={`${item.i_name}-${i_id}`}>
                             {item.i_name} | {item.i_category} | Qty: {item.quantity} | Total: ${item.i_price.toFixed(2)} | Unit: ${(item.i_price / item.quantity).toFixed(2)}
                             <button>Edit</button>
-                            <button onClick={() => removeItem(i_id)}>Remove</button>
+                            <button type="button" onClick={() => removeItem(i_id)}>Remove</button>
                         </li>
                     ))}
                 </ul>
