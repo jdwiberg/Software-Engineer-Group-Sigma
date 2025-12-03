@@ -5,13 +5,13 @@ var pool
 let getListItems = (sl_id) => {
     return new Promise((resolve, reject) => {
         pool.query(`SELECT  
-                        sli.sli_id,
-                        sli.sli_name, 
-                        sli.sli_category
+                        sli_id,
+                        sli_name, 
+                        sli_category
                     FROM 
-                        shoppingListItem sli
+                        shoppingListItem
                     WHERE 
-                        sl.sl_id = ?;`, [sl_id], (error, results) => {
+                        sl_id = ?;`, [sl_id], (error, results) => {
             if (error){
                 return reject(error)
             }
