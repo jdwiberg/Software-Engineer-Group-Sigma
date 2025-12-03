@@ -346,7 +346,7 @@ export class BackendStack extends cdk.Stack {
       environment: environment,
       timeout: Duration.seconds(3)
     })
-    removeStoreResource.addMethod('POST', new apigw.LambdaIntegration(getAdminStats_fn, integration_parameters), response_parameters)
+    getAdminStatsResource.addMethod('POST', new apigw.LambdaIntegration(getAdminStats_fn, integration_parameters), response_parameters)
     
   }
 }
