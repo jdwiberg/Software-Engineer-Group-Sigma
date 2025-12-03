@@ -17,6 +17,7 @@ export default function Stores() {
     const [storeChains, setStoreChains] = useState<storeChain[]>([])
     const [message, setMessage] = useState("")
     const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
     const [adding, setAdding] = useState(false)
     const [chainName, setChainName] = useState("")
     const [chainUrl, setChainUrl] = useState("")
@@ -108,6 +109,7 @@ export default function Stores() {
 
     async function showStoreChains() {
         try {
+          setLoading(true)
           const res = await fetch(
               "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/getStoreChains",
               {
@@ -122,6 +124,7 @@ export default function Stores() {
           try {
             body = JSON.parse(data.body);
             result = body.storeChains
+            setLoading(false)
           } catch (err) {
             console.error("Failed to parse body", err);
           }
@@ -227,7 +230,7 @@ export default function Stores() {
             </div>
             ))
         ) : (
-            <p>No Stores Yet!</p>
+            <p>{(loading) ? "Loading..." : "No Stores Yet!"}</p>
         )}
     </div>
     )
