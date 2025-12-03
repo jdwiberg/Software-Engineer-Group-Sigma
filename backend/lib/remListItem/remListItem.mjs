@@ -2,7 +2,7 @@ import * as mysql2 from 'mysql2'
 
 var pool
 
-let remShoppingList = (sli_id) => {
+let remListItem = (sli_id) => {
     return new Promise((resolve, reject) => {
         pool.query(`DELETE FROM shoppingListItem WHERE sli_id = ?;`, [sli_id], (error) => {
             if (error){
@@ -25,7 +25,7 @@ export const handler = async (event) =>{
     });
 
     try {
-        await remShoppingList(event.sli_id)
+        await remListItem(event.sli_id)
         result = { message: "removed shopping list item"}
         code = 200
 
