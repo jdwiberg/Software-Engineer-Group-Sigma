@@ -19,8 +19,22 @@ export default function CreateReceiptPage() {
     setSubmitted(true)
   }
 
-  const aiHandleFile = (file: File) => {
+  const aiHandleFile = async (file: File) => {
     console.log("File selected: ", file)
+    const encoded = await Base64Encode(file)
+    setFile(encoded)
+  }
+
+  const Base64Encode = (file: File): Promise<string> => {
+    return new Promise ((resolve, reject) => {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => {
+        const base64string = reader.result as string
+        resolve(base64string.split(',')[1])
+      }
+      reader.onerror = (error) => reject(error)
+    })
   }
 
   return (
