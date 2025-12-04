@@ -137,6 +137,7 @@ export class BackendStack extends cdk.Stack {
     const removeReceiptResource = api_endpoint.root.addResource('removeReceipt')
     const removeReceiptItemResource = api_endpoint.root.addResource('removeReceiptItem')
     const getAdminStatsResource = api_endpoint.root.addResource('getAdminStats')
+    const searchRecentPurchases = api_endpoint.root.addResource('searchRecentPurchases')
     
     // All lambda functions will get a config here that references the handler function in its folder
     // Add methods below each configuration
@@ -359,5 +360,17 @@ export class BackendStack extends cdk.Stack {
       timeout: Duration.seconds(3)
     })
     getAdminStatsResource.addMethod('POST', new apigw.LambdaIntegration(getAdminStats_fn, integration_parameters), response_parameters)
+  
+    const searchRecentPurchases_fn = new lambdaNodejs.NodejsFunction(this, 'searchRecentPurchases', {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'searchRecentPurchases.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, 'searchRecentPurchases')),
+      vpc: vpc,
+      securityGroups: [securityGroup],
+      environment: environment,
+      timeout: Duration.seconds(3)
+    })
+    searchRecentPurchases.addMethod('POST', new apigw.LambdaIntegration(searchRecentPurchases_fn, integration_parameters), response_parameters)
+  
   }
 }

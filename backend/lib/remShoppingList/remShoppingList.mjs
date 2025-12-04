@@ -4,11 +4,11 @@ var pool
 
 let remShoppingList = (sl_id) => {
     return new Promise((resolve, reject) => {
-        pool.query(`DELETE FROM shoppingList WHERE sl_id = ?;`, [sl_id], (error, results) => {
+        pool.query(`DELETE FROM shoppingList WHERE sl_id = ?;`, [sl_id], (error) => {
             if (error){
                 return reject(error)
             }
-            resolve(results)
+            resolve()
         })
     })
 }
@@ -25,8 +25,8 @@ export const handler = async (event) =>{
     });
 
     try {
-        const listItems = await remShoppingList(event.sl_id)
-        result = { message: "removed shopping list"}
+        const list = await remShoppingList(event.sl_id)
+        result = { message: "removed shopping list: ", list}
         code = 200
 
         } catch (err) {
