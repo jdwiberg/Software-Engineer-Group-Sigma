@@ -6,6 +6,9 @@ import { useRouter } from 'next/navigation';
 
 
 export default function CreateReceiptPage() {
+  const [error, setError] = useState("")
+  const [message, setMessage] = useState("")
+  const [AIisParsing, setAIisParsing] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [aiEnabled, setAiEnabled] = useState(false)
   const [file, setFile] = useState<string | null>(null)
@@ -22,7 +25,36 @@ export default function CreateReceiptPage() {
   const aiHandleFile = async (file: File) => {
     console.log("File selected: ", file)
     const encoded = await Base64Encode(file)
-    setFile(encoded)
+
+    try {
+      const res = await fetch(
+          "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/createReceiptAI",
+          {
+              method: "POST",
+              body: JSON.stringify({ imageData: encoded })
+          }
+      )
+      
+      const data = await res.json()
+
+      let body
+      try {
+        body = JSON.parse(data.body);
+      } catch (err) {
+        console.error("Failed to parse body", err);
+      }
+
+      if (data.statusCode != 200) {
+          setError(data.error)
+      } else {
+          localStorage.setItem("username", body.username)
+          setMessage(body.message)
+      }
+    } catch (err) {
+        console.error("something went wrong: ", err);
+    } finally {
+        setAIisParsing(false)
+    }
   }
 
   const Base64Encode = (file: File): Promise<string> => {
