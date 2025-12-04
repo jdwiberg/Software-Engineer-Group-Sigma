@@ -5,6 +5,7 @@ var pool
 let getShopperLists = (username, i_category, r_date) => {
     return new Promise((resolve, reject) => {
         pool.query(`SELECT 
+                        i.i_id,
                         i.i_name,
                         i.i_category,
                         r.r_date,
