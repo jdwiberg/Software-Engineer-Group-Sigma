@@ -130,6 +130,7 @@ export class BackendStack extends cdk.Stack {
     const addListItemResource = api_endpoint.root.addResource('addListItem')
     const remListItemResource = api_endpoint.root.addResource('remListItem')
     const createReceiptResource = api_endpoint.root.addResource('createReceipt')
+    const createReceiptAIResource = api_endpoint.root.addResource('createReceiptAI')
     const addReceiptItemsResource = api_endpoint.root.addResource('addReceiptItems')
     const removeStoreChainResource = api_endpoint.root.addResource('removeStoreChain')
     const removeStoreResource = api_endpoint.root.addResource('removeStore')
@@ -151,6 +152,17 @@ export class BackendStack extends cdk.Stack {
       timeout: Duration.seconds(3)
     })
     createReceiptResource.addMethod('POST', new apigw.LambdaIntegration(createReceipt_fn, integration_parameters), response_parameters)
+
+    const createReceiptAI_fn = new lambdaNodejs.NodejsFunction(this, 'createReceiptAI', {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'createReceiptAI.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, 'createReceiptAI')),
+      vpc: vpc,
+      securityGroups: [securityGroup],
+      environment: environment,
+      timeout: Duration.seconds(3)
+    })
+    createReceiptAIResource.addMethod('POST', new apigw.LambdaIntegration(createReceiptAI_fn, integration_parameters), response_parameters)
     
     const addReceiptItems_fn = new lambdaNodejs.NodejsFunction(this, 'addReceiptItems', {
       runtime: lambda.Runtime.NODEJS_22_X,

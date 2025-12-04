@@ -41,7 +41,7 @@ export const handler = async (event) =>{
 
     try {
         if ( !event.s_id) {
-            throw new Error("Username is required")
+            throw new Error("Store is required")
         }
         if ( !event.username ) {
             throw new Error("Username is required")
