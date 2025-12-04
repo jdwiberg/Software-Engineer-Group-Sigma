@@ -2,49 +2,17 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { get } from 'http'
-
-/*
-function searchRecent(rows: any[]) {
-  const map = new Map();
-
-  for (const row of rows) {
-    if (!map.has(row.r_id)) {
-      map.set(row.r_id, {
-        r_id: row.r_id,
-        r_date: row.r_date,
-        c_name: row.c_name,
-        s_address: row.s_address,
-        items: []
-      });
-    }
-
-    // Push item into that receipt's item list
-    map.get(row.r_id).items.push({
-      i_id: row.i_id,
-      i_name: row.i_name,
-      i_category: row.i_category,
-      i_price: row.i_price
-    });
-  }
-
-  // Return as an array
-  return Array.from(map.values());
-}
-*/
-
+import formatDate from '../aa-utils/formatDate'
 
 export default function Review() {
     type purchasedItem = {
-        i_name: number,
+        i_id : number,
+        i_name: string,
         i_category : string,
-        i_price: number,
-        s_address : string,
-        c_name : string
+        r_date : string,
+        c_name : string,
+        s_address : string
     }
-
-
-
-    
     
     const [message, setMessage] = useState("")
     const [error, setError] = useState("")
@@ -53,7 +21,7 @@ export default function Review() {
     const [searchCat, setSearchCat] = useState("")
     const [searchType, setSearchType] = useState("")
     const [searchDate, setSearchDate] = useState<Date | null>(null)
-    const [recentItems, setRecentItems] = useState<purchasedItem[] | null>([])
+    const [recentPurchases, setRecentPurchases] = useState<purchasedItem[] | null>([])
     const categories = [
         "Alocohol & Spirits",
         "Baking Supplies",
@@ -83,7 +51,6 @@ export default function Review() {
         "Past Month",
         "All time"
     ];
-
 
     function findSearchDate(type : string) {
         let dateFactor = 0
@@ -124,25 +91,24 @@ export default function Review() {
               "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/searchRecentPurchases",
               {
                   method: "POST",
-                  body: JSON.stringify({ username, category, date })
+                  body: JSON.stringify({ username, i_category : category, r_date : date })
               }
           )
           
           const data = await res.json()
   
           let body
-          let items
           try {
             body = JSON.parse(data.body);
-            items = body.results
           } catch (err) {
             console.error("Failed to parse body", err);
           }
-  
+
           if (data.statusCode != 200) {
               setError(data.error)
           } else {
               setMessage(body.message)
+              setRecentPurchases(body.recentPurchases)
               setLoading(false)
           }
       } catch (err) {
@@ -179,6 +145,19 @@ export default function Review() {
             ))}
         </select>
         <button onClick={() => getRecents(searchDate!, searchCat!)}>Search Recent Purchases</button>
+        {recentPurchases && recentPurchases.length > 0? (
+            recentPurchases.map((item: purchasedItem) => (
+            <div key={item.i_id}>
+                <h2>{item.i_name}</h2>
+                <p>{item.i_category}</p>
+                <p>{item.c_name}</p>
+                <p>{item.s_address}</p>
+                <p>{formatDate(item.r_date)}</p>
+            </div>
+            ))
+        ) : (
+            <p>{(loading)? "Loading..." : "No Recent Purchases!"}</p>
+        )}
     </div>
     )
 }
