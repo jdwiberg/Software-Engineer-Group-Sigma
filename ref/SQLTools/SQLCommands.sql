@@ -1,1 +1,1 @@
-SELECT * FROM shoppingList
+SELECT * FROM shopper
