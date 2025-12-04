@@ -2,20 +2,13 @@ import * as mysql2 from 'mysql2'
 
 var pool
 
-let getListItems = (sl_id) => {
+let removeReceipt = (i_id) => {
     return new Promise((resolve, reject) => {
-        pool.query(`SELECT  
-                        sli_id,
-                        sli_name, 
-                        sli_category
-                    FROM 
-                        shoppingListItem
-                    WHERE 
-                        sl_id = ?;`, [sl_id], (error, results) => {
+        pool.query(`DELETE FROM item WHERE i_id = ?;`, [i_id], (error) => {
             if (error){
                 return reject(error)
             }
-            resolve(results)
+            resolve()
         })
     })
 }
@@ -32,12 +25,8 @@ export const handler = async (event) =>{
     });
 
     try {
-        if ( !event.sl_id ) {
-            throw new Error("Shopping list does not exist")
-        }
-
-        const listItems = await getListItems(event.sl_id)
-        result = { message: "retrieved shopping list items", listItems}
+        await removeReceipt(event.i_id)
+        result = { message: "removed receipt item" }
         code = 200
 
         } catch (err) {

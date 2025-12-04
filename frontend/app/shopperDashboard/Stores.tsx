@@ -1,5 +1,6 @@
 'use client'
 import { FormEvent, useEffect, useState } from 'react'
+import checkURL from '../aa-utils/checkURL'
 
 
 export default function Stores() {
@@ -17,12 +18,23 @@ export default function Stores() {
     const [storeChains, setStoreChains] = useState<storeChain[]>([])
     const [message, setMessage] = useState("")
     const [error, setError] = useState("")
+    const [storeCity, setStoreCity] = useState("")
+    const [storeState, setStoreState] = useState("")
+    const [loading, setLoading] = useState(false)
     const [adding, setAdding] = useState(false)
     const [chainName, setChainName] = useState("")
     const [chainUrl, setChainUrl] = useState("")
     const [addingStoreChainId, setAddingStoreChainId] = useState<number | null>(null)
     const [storeAddress, setStoreAddress] = useState("")
     const [isSavingStore, setIsSavingStore] = useState(false)
+    const usStates = [
+      "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",
+      "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
+      "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+      "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
+      "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY",
+      "PR"
+    ]
 
     async function addStoreChain(c_name: string, c_url: string) {
         try {
@@ -58,13 +70,18 @@ export default function Stores() {
       e.preventDefault()
       setError("")
       setMessage("")
+      if (!checkURL(chainUrl)) {
+        setError("Please enter a valid URL.")
+        return
+      }
       await addStoreChain(chainName, chainUrl)
       setAdding(false)
       setChainName("")
       setChainUrl("")
     }
 
-    async function addStoreToChain(c_id: number, s_address: string) {
+    async function addStoreToChain(c_id: number, s_address: string, city: string, state: string) {
+      s_address = `${s_address} ${city}, ${state}`
       setError("")
       setMessage("")
       setIsSavingStore(true)
@@ -98,6 +115,8 @@ export default function Stores() {
       } finally {
         setIsSavingStore(false)
         setStoreAddress("")
+        setStoreCity("")
+        setStoreState("")
         setAddingStoreChainId(null)
       }
     }
@@ -108,6 +127,7 @@ export default function Stores() {
 
     async function showStoreChains() {
         try {
+          setLoading(true)
           const res = await fetch(
               "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/getStoreChains",
               {
@@ -122,6 +142,7 @@ export default function Stores() {
           try {
             body = JSON.parse(data.body);
             result = body.storeChains
+            setLoading(false)
           } catch (err) {
             console.error("Failed to parse body", err);
           }
@@ -147,6 +168,8 @@ export default function Stores() {
 
     return (
     <div>
+        {error && <p>{error}</p>}
+        {message && <p>{message}</p>}
         <button disabled={adding} onClick={() => setAdding(true)}>Add Store Chain</button>
         {adding && (
             <form onSubmit={handleSubmit}>
@@ -187,16 +210,33 @@ export default function Stores() {
                         setError("Store address is required")
                         return
                       }
-                      addStoreToChain(chain.c_id, storeAddress.trim())
+                      addStoreToChain(chain.c_id, storeAddress.trim(), storeCity.trim(), storeState.trim())
                     }}
                   >
                     <input
                       type="text"
-                      placeholder="Store address"
+                      placeholder="Street Address"
                       value={storeAddress}
                       onChange={(e) => setStoreAddress(e.target.value)}
                       required
                     />
+                    <input 
+                    type="text"
+                    placeholder="City"
+                    value={storeCity}
+                    onChange={(e) => setStoreCity(e.target.value)}
+                    required
+                    />
+                    <select
+                      value={storeState}
+                      onChange={(e) => setStoreState(e.target.value)}
+                      required
+                    >
+                      <option value="" disabled>Select State</option>
+                      {usStates.map((state) => (
+                        <option key={state} value={state}>{state}</option>
+                      ))}
+                    </select>
                     <button type="submit" disabled={isSavingStore}>
                       {isSavingStore ? "Saving..." : "Save"}
                     </button>
@@ -227,7 +267,7 @@ export default function Stores() {
             </div>
             ))
         ) : (
-            <p>No Stores Yet!</p>
+            <p>{(loading) ? "Loading..." : "No Stores Yet!"}</p>
         )}
     </div>
     )

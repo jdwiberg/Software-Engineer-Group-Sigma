@@ -10,8 +10,6 @@ login admin (A&T)
  - show number of sales / dollar 
 */
 
-const AdminURL = "https://TEMP-URL" //"http://localhost:5000/admin/dashboard/stats"
-
 export default function AdminDashboard() {
   const [username, setUsername] = useState("")
   const [stats, setStats] = useState({
@@ -26,12 +24,12 @@ export default function AdminDashboard() {
 
     const fetchStats = async () => {
       try {
-        const res = await fetch(AdminURL, {
+        const res = await fetch("https://https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/getAdminStats", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({}), // your Lambda doesn’t use this yet
+          body: JSON.stringify({}),
         })
 
         if (!res.ok) {
@@ -40,7 +38,6 @@ export default function AdminDashboard() {
         }
 
         const data = await res.json()
-        // backend returns: { message, shoppers, revenue, sales }
         setStats({
           shoppers: data.shoppers ?? 0,
           revenue: data.revenue ?? 0,
