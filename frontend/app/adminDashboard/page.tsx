@@ -26,7 +26,7 @@ export default function AdminDashboard() {
 
     const fetchStats = async () => {
       try {
-        const res = await fetch("https://https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/getAdminStats", {
+        const res = await fetch("https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/getAdminStats", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
