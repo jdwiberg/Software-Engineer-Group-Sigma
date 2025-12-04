@@ -29,4 +29,4 @@ Administrator Use Cases
 - ~~Login Administrator (Tyler)~~
 - Show Admin Dashboard (Andreas)
 - Remove Store Chain (Tyler)
-- Remove Store (Tyler)
+- ~~Remove Store (Tyler)~~
