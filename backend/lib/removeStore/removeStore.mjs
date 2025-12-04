@@ -4,17 +4,20 @@ var pool
 
 let RemoveStore = (s_id) => {
     return new Promise((resolve, reject) => {
-        pool.query("DELETE FROM store WHERE s_id = ?;", [s_id], (error) => {
-            if (error) {
-                return reject(error)
+        pool.query(
+            "DELETE FROM store WHERE s_id = ?;",
+            [s_id],
+            (error, results) => {
+                if (error) return reject(error);
+                if (results.affectedRows === 0) {
+                    return reject(new Error(`Store with s_id=${s_id} not found`));
+                }
+                resolve();
             }
-            if (results.affectedRows === 0) {
-                return reject(new Error(`Store with s_id=${s_id} not found`));
-            }
-            resolve()
-        })
-    })
-}            
+        );
+    });
+}
+        
 
 export const handler = async (event) => {
     let result
