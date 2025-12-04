@@ -1,7 +1,7 @@
 {
-  "name": "rem-shopping-list",
+  "name": "search-recent-purchases",
   "version": "1.0.0",
-  "main": "remShoppingList.mjs",
+  "main": "searchRecentPurchases.mjs",
   "dependencies": {
     "mysql2": "^3.15.3"
   }
