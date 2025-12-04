@@ -93,6 +93,39 @@ export default function Stores() {
     }
   };
 
+  const deleteStoreChain = async (c_id: number) => {
+    setError('');
+    setMessage('');
+    try {
+      const res = await fetch(
+        'https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/removeStoreChain',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ c_id })
+        }
+      );
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+
+      const data = await res.json();
+      let body;
+      try {
+        body = data.body ? JSON.parse(data.body) : {};
+      } catch (err) {
+        console.error('Failed to parse delete chain response body', err);
+      }
+      if (data.statusCode !== 200) {
+        setError(body?.error || 'Failed to delete store chain');
+      } else {
+        setMessage(body?.message || 'Store chain deleted');
+        await showStoreChains(); // Refresh list after delete
+      } 
+    } catch (err) {
+      console.error('Delete store chain error: ', err);
+      setError('Network error or invalid request');
+    }
+  };
+
   useEffect(() => {
     showStoreChains();
   }, []);
@@ -108,7 +141,14 @@ export default function Stores() {
         storeChains.map((chain) => (
           <div key={chain.c_id} className="border-b mb-4 pb-2">
             {/* Chain heading */}
-            <h2 className="font-semibold">{chain.c_name}</h2>
+            <h2 className="font-semibold">{chain.c_name}
+              <button
+                className="text-red-600 ml-4"
+                onClick={() => deleteStoreChain(chain.c_id)}
+              >
+                Delete
+              </button>
+            </h2>
             {chain.c_url && (
               <a href={chain.c_url} className="text-blue-600 underline">
                 {chain.c_url}
