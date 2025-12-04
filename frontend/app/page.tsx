@@ -91,9 +91,8 @@ export default function Login() {
           <p>{error}</p>
         )}
 
-        <Link href="/registerShopper">Register Shopper</Link>
-        <p> </p>
-        <Link href="/loginAdmin">Login Admin</Link>
+        <p><button onClick={() => router.push("/registerShopper")}>Register</button></p>
+        <p><button onClick={() => router.push("/loginAdmin")}>Login as Administrator</button></p>
       </div>
   );
 }
