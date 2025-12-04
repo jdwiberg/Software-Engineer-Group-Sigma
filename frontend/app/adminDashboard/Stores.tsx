@@ -71,8 +71,6 @@ export default function Stores() {
         }
       );
 
-      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-
       const data = await res.json();
       let body;
       try {
@@ -105,7 +103,6 @@ export default function Stores() {
           body: JSON.stringify({ c_id })
         }
       );
-      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 
       const data = await res.json();
       let body;
