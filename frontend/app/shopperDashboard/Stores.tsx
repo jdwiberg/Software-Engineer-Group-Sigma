@@ -1,5 +1,6 @@
 'use client'
 import { FormEvent, useEffect, useState } from 'react'
+import checkURL from '../aa-utils/checkURL'
 
 
 export default function Stores() {
@@ -69,6 +70,10 @@ export default function Stores() {
       e.preventDefault()
       setError("")
       setMessage("")
+      if (!checkURL(chainUrl)) {
+        setError("Please enter a valid URL.")
+        return
+      }
       await addStoreChain(chainName, chainUrl)
       setAdding(false)
       setChainName("")
@@ -163,6 +168,8 @@ export default function Stores() {
 
     return (
     <div>
+        {error && <p>{error}</p>}
+        {message && <p>{message}</p>}
         <button disabled={adding} onClick={() => setAdding(true)}>Add Store Chain</button>
         {adding && (
             <form onSubmit={handleSubmit}>
