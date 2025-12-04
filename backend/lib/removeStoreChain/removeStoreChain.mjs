@@ -4,7 +4,7 @@ var pool
 
 let RemoveStoreChain = (c_id) => {
     return new Promise((resolve, reject) => {
-        pool.query("DELETE FROM storeChain WHERE c_id = ?;", [c_id], (error) => {
+        pool.query("DELETE FROM storeChain WHERE c_id = ?;", [c_id], (error, results) => {
             if (error) {
                 return reject(error)
             }
