@@ -18,7 +18,7 @@ export default function AdminDashboard() {
     revenue: 0.0,
     sales: 0
   })
-  const [activeTab, setActiveTab] = useState<'other' | 'stores' | 'chains'>('other')
+  const [activeTab, setActiveTab] = useState<'HOME' | 'STORES'>('HOME')
 
   useEffect(() => {
     const u = localStorage.getItem("username")
@@ -57,38 +57,29 @@ export default function AdminDashboard() {
   return (
     <div className="p-6">
       <h1 className="text-3xl font-bold mb-4">Admin Dashboard</h1>
-      <h2 className="text-2xl mb-4">Welcome, {username || 'Admin'}!</h2>
 
       {/* Tabs */}
       <div className="flex space-x-4 mb-6">
         <button
           className={`px-4 py-2 rounded ${
-            activeTab === 'other' ? 'bg-blue-500 text-white' : 'bg-gray-200'
+            activeTab === 'HOME' ? 'bg-blue-500 text-white' : 'bg-gray-200'
           }`}
-          onClick={() => setActiveTab('other')}
+          onClick={() => setActiveTab('HOME')}
         >
-          Other
+          Home
         </button>
         <button
           className={`px-4 py-2 rounded ${
-            activeTab === 'stores' ? 'bg-blue-500 text-white' : 'bg-gray-200'
+            activeTab === 'STORES' ? 'bg-blue-500 text-white' : 'bg-gray-200'
           }`}
-          onClick={() => setActiveTab('stores')}
+          onClick={() => setActiveTab('STORES')}
         >
           Stores
-        </button>
-        <button
-          className={`px-4 py-2 rounded ${
-            activeTab === 'chains' ? 'bg-blue-500 text-white' : 'bg-gray-200'
-          }`}
-          onClick={() => setActiveTab('chains')}
-        >
-          Chains
         </button>
       </div>
 
       {/* Tab Content */}
-      {activeTab === 'other' && (
+      {activeTab === 'HOME' && (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="bg-white shadow rounded-xl p-4">
             <h2 className="text-lg font-semibold">Total Shoppers</h2>
@@ -105,8 +96,7 @@ export default function AdminDashboard() {
         </div>
       )}
 
-      {activeTab === 'stores' && <Stores />}
-      {/* {activeTab === 'chains' && <Chains />} */}
+      {activeTab === 'STORES' && <Stores />}
     </div>
   )
 }
