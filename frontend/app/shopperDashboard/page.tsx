@@ -4,15 +4,17 @@ import { useSearchParams } from "next/navigation";
 import Lists from "./Lists";
 import Receipts from "./Receipts";
 import Stores from "./Stores";
+import Review from "./Review"
 import { useRouter } from "next/navigation";
+import { SearchParamsContext } from "next/dist/shared/lib/hooks-client-context.shared-runtime";
 
-type Tab = "lists" | "receipts" | "stores";
+type Tab = "lists" | "receipts" | "stores" | "review";
 
 export default function ShopperDashboard() {
   const searchParams = useSearchParams();
   const tabParam = searchParams.get("tab");
   const initialTab: Tab =
-    tabParam === "lists" || tabParam === "receipts" || tabParam === "stores"
+    tabParam === "lists" || tabParam === "receipts" || tabParam === "stores" || tabParam === "review"
       ? tabParam
       : "lists";
 
@@ -21,7 +23,7 @@ export default function ShopperDashboard() {
   const router = useRouter();
 
   useEffect(() => {
-    if (tabParam === "lists" || tabParam === "receipts" || tabParam === "stores") {
+    if (tabParam === "lists" || tabParam === "receipts" || tabParam === "stores" || tabParam === "review") {
       setTab(tabParam);
     }
   }, [tabParam]);
@@ -39,11 +41,13 @@ export default function ShopperDashboard() {
         <button onClick={() => setTab("lists")}>Shopping Lists</button>
         <button onClick={() => setTab("receipts")}>Receipts</button>
         <button onClick={() => setTab("stores")}>Stores</button>
+        <button onClick={() => setTab("review")}>Review</button>
       </div>
       <hr />
       {tab === "lists" && <Lists />}
       {tab === "receipts" && <Receipts />}
       {tab === "stores" && <Stores />}
+      {tab === "review" && <Review />}
     </div>
   );
 }
