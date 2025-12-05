@@ -161,7 +161,7 @@ export class BackendStack extends cdk.Stack {
       vpc: vpc,
       securityGroups: [securityGroup],
       environment: environment,
-      timeout: Duration.seconds(3)
+      timeout: Duration.seconds(30)
     })
     createReceiptAIResource.addMethod('POST', new apigw.LambdaIntegration(createReceiptAI_fn, integration_parameters), response_parameters)
     
