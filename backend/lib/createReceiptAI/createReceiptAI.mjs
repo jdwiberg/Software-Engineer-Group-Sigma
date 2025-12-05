@@ -2,6 +2,8 @@ import * as mysql2 from 'mysql2'
 import fs from 'fs/promises'
 import path from "path"
 import OpenAI from 'openai'
+import * as dotenv from "dotenv"
+dotenv.config()
 
 var pool
 const client = new OpenAI({
