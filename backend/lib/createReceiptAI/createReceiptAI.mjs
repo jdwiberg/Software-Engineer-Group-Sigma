@@ -2,6 +2,7 @@ import * as mysql2 from 'mysql2'
 import fs from 'fs/promises'
 import path from "path"
 import OpenAI from 'openai'
+import { fileURLToPath } from 'url'
 
 
 var pool
@@ -11,7 +12,7 @@ const client = new OpenAI({
 
 export const getItems = async (file_string) => {
     try {
-        const __dirname = path.dirname(fileURLToPath(import.meta.url)) // issue here
+        const __dirname = path.dirname(fileURLToPath(import.meta.url))
         const sys_prompt = await fs.readFile(path.join(__dirname, "sys_prompt.txt"), "utf8");
         const task_prompt = file_string
 
@@ -24,14 +25,14 @@ export const getItems = async (file_string) => {
             response_format: { type: "json_object" }
         })
 
-        const json = completion.choices[0].message.parsed
+        const json = JSON.parse(completion.choices[0].message)
         if (!json || Object.keys(json).length === 0) {
             throw new Error("Image is not of a receipt")
         }
         return {
             success: true,
             data: {
-                c_name: json.s_name,
+                c_name: json.c_name,
                 s_address: json.s_address,
                 items: json.items
             },
