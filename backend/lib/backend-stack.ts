@@ -33,7 +33,7 @@ export class BackendStack extends cdk.Stack {
       rdsDatabase: process.env.rdsDatabase!,
       rdsHost: process.env.rdsHost!,
       adminPass: process.env.adminPass!,
-      apiKey: process.env.OPENAI_API_KEY!
+      OPENAI_API_KEY: process.env.OPENAI_API_KEY!
     }
 
     // generic default handler for any API function that doesn't get its own Lambda method
@@ -153,17 +153,6 @@ export class BackendStack extends cdk.Stack {
       timeout: Duration.seconds(3)
     })
     createReceiptResource.addMethod('POST', new apigw.LambdaIntegration(createReceipt_fn, integration_parameters), response_parameters)
-
-    const createReceiptAI_fn = new lambdaNodejs.NodejsFunction(this, 'createReceiptAI', {
-      runtime: lambda.Runtime.NODEJS_22_X,
-      handler: 'createReceiptAI.handler',
-      code: lambda.Code.fromAsset(path.join(__dirname, 'createReceiptAI')),
-      vpc: vpc,
-      securityGroups: [securityGroup],
-      environment: environment,
-      timeout: Duration.seconds(3)
-    })
-    createReceiptAIResource.addMethod('POST', new apigw.LambdaIntegration(createReceiptAI_fn, integration_parameters), response_parameters)
     
     const addReceiptItems_fn = new lambdaNodejs.NodejsFunction(this, 'addReceiptItems', {
       runtime: lambda.Runtime.NODEJS_22_X,
