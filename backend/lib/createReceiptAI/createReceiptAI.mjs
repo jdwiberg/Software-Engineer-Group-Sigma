@@ -2,8 +2,7 @@ import * as mysql2 from 'mysql2'
 import fs from 'fs/promises'
 import path from "path"
 import OpenAI from 'openai'
-import * as dotenv from "dotenv"
-dotenv.config()
+
 
 var pool
 const client = new OpenAI({
@@ -12,7 +11,7 @@ const client = new OpenAI({
 
 export const getItems = async (file_string) => {
     try {
-        const __dirname = path.dirname(fileURLToPath(import.meta.url))
+        const __dirname = path.dirname(fileURLToPath(import.meta.url)) // issue here
         const sys_prompt = await fs.readFile(path.join(__dirname, "sys_prompt.txt"), "utf8");
         const task_prompt = file_string
 
