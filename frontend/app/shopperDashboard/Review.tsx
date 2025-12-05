@@ -110,6 +110,8 @@ export default function Review() {
               setMessage(body.message)
               setRecentPurchases(body.recentPurchases)
               setLoading(false)
+              setSearchCat("")
+              setSearchType("")
           }
       } catch (err) {
           console.error("something went wrong: ", err);
