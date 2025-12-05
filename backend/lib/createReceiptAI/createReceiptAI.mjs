@@ -24,6 +24,9 @@ export const getItems = async (file_string) => {
         })
 
         const json = completion.choices[0].message.parsed
+        if (!json || Object.keys(json).length === 0) {
+            throw new Error("Image is not of a receipt")
+        }
         return {
             success: true,
             data: {
