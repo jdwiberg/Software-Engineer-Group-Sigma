@@ -1,21 +1,49 @@
 import * as mysql2 from 'mysql2'
+import fs from 'fs/promises'
+import path from "path"
+import OpenAI from 'openai'
 
 var pool
+const client = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY
+})
 
-let getItems = (imageData) => {
-    const data = {
-        s_name: "Demo Store",
-        items: []
+export const getItems = async (file_string) => {
+    try {
+        const __dirname = path.dirname(fileURLToPath(import.meta.url))
+        const sys_prompt = await fs.readFile(path.join(__dirname, "sys_prompt.txt"), "utf8");
+        const task_prompt = file_string
+
+        const completion = await client.chat.completions.create({
+            model: "gpt-4.1-mini",
+            messages: [
+                { role: "system", content: sys_prompt },
+                { role: "user", content: task_prompt }
+            ],
+            response_format: { type: "json_object" }
+        })
+
+        const json = completion.choices[0].message.parsed
+        return {
+            success: true,
+            data: {
+                c_name: json.s_name,
+                s_address: json.s_address,
+                items: json.items
+            },
+            error: null
+        }
+
+    } catch (error) {
+        return {
+            success: false,
+            data: null,
+            error: error.message || "Unknown error occured while contacting AI"
+        }
     }
-    return data
+
 }
 
-let createReceipt = (s_id, username, items) => {
-  return new Promise((resolve, reject) => {
-    // pool.query()
-    resolve(1)
-  })
-}
 
 export const handler = async (event) => {
     let result
@@ -29,20 +57,19 @@ export const handler = async (event) => {
     });
 
     try {
-        if ( !event.username ) {
-            throw new Error("Username is required")
-        }
         if ( !event.imageData ) {
             throw new Error("Image is required")
         }
 
-        const data = await getItems(event.imageData)
-        const store = data.s_name
-        const items = data.items
+        const res = await getItems(event.imageData)
 
-        const r_id = await createReceipt(event.username, store, items)
-        result = { r_id: r_id }
-        code = 200
+        if ( !res.success ) {
+            result = { error: res.error }
+            code = 400
+        } else {
+            result = { response: res.data }
+            code = 200
+        }
 
     } catch (err) {
         result = { error: err.message }
