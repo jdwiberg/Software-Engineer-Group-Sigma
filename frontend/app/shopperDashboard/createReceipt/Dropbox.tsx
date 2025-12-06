@@ -116,7 +116,7 @@ export default function PhotoDropzone({
             required
         />
         <button type="button" onClick={checkPassword}>Save</button>
-        {!wrongSecretPassword && ("Saved!")}
+        {!wrongSecretPassword ? ("Saved!") : "Hint: the password is 'prettyPlease'"}
       </div>
     </div>
     <div>
