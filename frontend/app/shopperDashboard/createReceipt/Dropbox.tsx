@@ -1,7 +1,7 @@
 import React, { useState, useRef, useCallback } from "react";
 
 type PhotoDropzoneProps = {
-  onFileSubmitted?: (file: File) => void;
+  onFileSubmitted?: (file: File, apiKey: string) => void;
   maxSizeMB?: number;
 };
 
@@ -14,10 +14,7 @@ export default function PhotoDropzone({
   const [error, setError] = useState<string | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [secretPassword, setSecretPassword] = useState("")
-  const [wrongSecretPassword, setWrongSecretPassword] = useState(true)
-  const [isChecking, setIsChecking] = useState(false)
-
+  const [apiKey, setApiKey] = useState("")
   const inputRef = useRef<HTMLInputElement>(null);
 
   const ACCEPT = ["image/jpeg", "image/png"];
@@ -69,14 +66,14 @@ export default function PhotoDropzone({
       setError("Please select a file before submitting.");
       return;
     }
-    if (wrongSecretPassword) {
-      setError("Please submit the correct AI password before submitting")
+    if (!apiKey) {
+      setError("Please input an API Key before submitting")
       return
     }
 
     setIsSubmitting(true);
-    onFileSubmitted?.(selectedFile);
-    window.location.reload();
+    onFileSubmitted?.(selectedFile, apiKey);
+    // Let parent handle any navigation/refresh after submission.
   };
 
   const onDragOver = (e: React.DragEvent) => {
@@ -91,33 +88,18 @@ export default function PhotoDropzone({
     setIsDragging(false);
   };
 
-  const checkPassword = () => {
-    setIsChecking(true)
-    if (secretPassword !== "prettyPlease") {
-      setWrongSecretPassword(true)
-      setError("Incorrect AI Password")
-    } else {
-      setWrongSecretPassword(false)
-    }
-    setSecretPassword("")
-    setIsChecking(false)
-  }
 
   return (
     <>
     <div>
-      <div>
-        <input
-            id='secretPassword'
-            type="text"
-            placeholder="AI Password"
-            value={secretPassword}
-            onChange={(e) => setSecretPassword(e.target.value)}
-            required
-        />
-        <button type="button" onClick={checkPassword}>Save</button>
-        {!wrongSecretPassword ? ("Saved!") : "Hint: the password is 'prettyPlease'"}
-      </div>
+      <input
+          id='apiKey'
+          type="text"
+          placeholder="OpenAI API Key"
+          value={apiKey}
+          onChange={(e) => setApiKey(e.target.value)}
+          required
+      />
     </div>
     <div>
       <div
