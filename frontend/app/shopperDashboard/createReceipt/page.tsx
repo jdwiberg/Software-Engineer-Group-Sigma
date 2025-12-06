@@ -4,6 +4,7 @@ import ReceiptForm from "./ReceiptForm"
 import PhotoDropZone from  './Dropbox'
 import { useRouter } from 'next/navigation';
 import OpenAI from 'openai'
+import sys_prompt from "./sys_prompt"
 
 
 
@@ -15,6 +16,7 @@ export default function CreateReceiptPage() {
   const [submitted, setSubmitted] = useState(false)
   const [aiEnabled, setAiEnabled] = useState(false)
   const router = useRouter();
+
   
   const toggleAi = () => {
     setAiEnabled(!aiEnabled)
@@ -38,8 +40,8 @@ export default function CreateReceiptPage() {
       apiKey: key,
     })
 
-    const sys_prompt = getSysPrompt()
     const task_prompt = "Here is the file encoded as Base64: " + encoded
+
     const completion = await client.chat.completions.create({
       model: "gpt-4.1-mini",
       messages: [
@@ -50,7 +52,10 @@ export default function CreateReceiptPage() {
     });
 
     const msg = completion.choices[0].message
-    const result = (msg as any).parsed ?? "{}"
+    const json = (msg as any).parsed ?? "{}"
+    if (!json || Object.keys(json).length === 0) {
+      setError("Image is not of a receipt")
+    }
     
     setLoading(false)
     return 1
@@ -71,10 +76,6 @@ export default function CreateReceiptPage() {
   const getKey = (password: string) => {
     // do stuff with secretPassword
     return "no"
-  }
-
-  const getSysPrompt = () => {
-    return "Do some stuff"
   }
 
   return (
