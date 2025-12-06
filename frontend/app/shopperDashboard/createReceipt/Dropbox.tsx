@@ -9,11 +9,15 @@ export default function PhotoDropzone({
   onFileSubmitted,
   maxSizeMB = 10,
 }: PhotoDropzoneProps) {
-  const [isDragging, setIsDragging] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [isDragging, setIsDragging] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [secretPassword, setSecretPassword] = useState("")
+  const [wrongSecretPassword, setWrongSecretPassword] = useState(true)
+  const [isChecking, setIsChecking] = useState(false)
+
   const inputRef = useRef<HTMLInputElement>(null);
 
   const ACCEPT = ["image/jpeg", "image/png"];
@@ -65,6 +69,10 @@ export default function PhotoDropzone({
       setError("Please select a file before submitting.");
       return;
     }
+    if (wrongSecretPassword) {
+      setError("Please submit the correct AI password before submitting")
+      return
+    }
 
     setIsSubmitting(true);
     onFileSubmitted?.(selectedFile);
@@ -83,10 +91,36 @@ export default function PhotoDropzone({
     setIsDragging(false);
   };
 
+  const checkPassword = () => {
+    setIsChecking(true)
+    if (secretPassword !== "prettyPlease") {
+      setWrongSecretPassword(true)
+      setError("Incorrect AI Password")
+    } else {
+      setWrongSecretPassword(false)
+    }
+    setSecretPassword("")
+    setIsChecking(false)
+  }
+
   return (
+    <>
+    <div>
+      <div>
+        <input
+            id='secretPassword'
+            type="text"
+            placeholder="AI Password"
+            value={secretPassword}
+            onChange={(e) => setSecretPassword(e.target.value)}
+            required
+        />
+        <button type="button" onClick={checkPassword}>Save</button>
+        {!wrongSecretPassword && ("Saved!")}
+      </div>
+    </div>
     <div>
       <div
-        onClick={() => inputRef.current?.click()}
         onDrop={onDrop}
         onDragOver={onDragOver}
         onDragLeave={onDragLeave}
@@ -95,7 +129,6 @@ export default function PhotoDropzone({
           borderRadius: "8px",
           padding: "40px",
           textAlign: "center",
-          cursor: "pointer",
           backgroundColor: isDragging ? "#f0f0f0" : "transparent",
         }}
       >
@@ -106,26 +139,27 @@ export default function PhotoDropzone({
           onChange={(e) => handleFile(e.target.files?.[0] || null)}
           style={{ display: "none" }}
         />
-        <p>Drag & drop a JPEG or PNG here, or click to browse.</p>
+        <p>Drag & drop a JPEG or PNG here.</p>
         <p>Max {maxSizeMB} MB.</p>
+        <p><button type="button" onClick={() => inputRef.current?.click()}>Browse files</button></p>
         {isSubmitting && <p>Uploading...</p>}
         {previewUrl && (<div>
           <p>Image Uploaded</p>
-
           <img src={previewUrl} alt="Preview" style={{ maxWidth: "10%", marginTop: "20px" }} />
-          
           <p><button type="button" onClick={() => {
             URL.revokeObjectURL(previewUrl);
             setPreviewUrl(null);
             setSelectedFile(null);
             }
           }>Remove Image</button></p>
-
           <p><button type="button" onClick={handleSubmitClick}>Submit</button></p>
         </div>)}
       </div>
 
+      
+
       {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
+    </>
   );
 }

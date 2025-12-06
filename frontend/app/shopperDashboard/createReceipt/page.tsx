@@ -3,15 +3,17 @@ import { useState } from "react"
 import ReceiptForm from "./ReceiptForm"
 import PhotoDropZone from  './Dropbox'
 import { useRouter } from 'next/navigation';
+import OpenAI from 'openai'
+
 
 
 export default function CreateReceiptPage() {
-  const [error, setError] = useState("")
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState("")
   const [AIisParsing, setAIisParsing] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [aiEnabled, setAiEnabled] = useState(false)
-  const [file, setFile] = useState<string | null>(null)
   const router = useRouter();
   
   const toggleAi = () => {
@@ -23,8 +25,34 @@ export default function CreateReceiptPage() {
   }
 
   const aiHandleFile = async (file: File) => {
+    setLoading(true)
     console.log("File selected: ", file)
+
+    // Encode image file
     const encoded = await Base64Encode(file)
+
+    // Hash AI password into API Key
+    const key = getKey("prettyPlease")
+
+    const client = new OpenAI({
+      apiKey: key,
+    })
+
+    const sys_prompt = getSysPrompt()
+    const task_prompt = "Here is the file encoded as Base64: " + encoded
+    const completion = await client.chat.completions.create({
+      model: "gpt-4.1-mini",
+      messages: [
+        { role: "system", content: sys_prompt },
+        { role: "user", content: task_prompt },
+      ],
+      response_format: { type: "json_object" },
+    });
+
+    const msg = completion.choices[0].message
+    const result = (msg as any).parsed ?? "{}"
+    
+    setLoading(false)
     return 1
   }
 
@@ -40,11 +68,24 @@ export default function CreateReceiptPage() {
     })
   }
 
+  const getKey = (password: string) => {
+    // do stuff with secretPassword
+    return "no"
+  }
+
+  const getSysPrompt = () => {
+    return "Do some stuff"
+  }
+
   return (
     <div>
       <button type="button" onClick={() => router.push("./")}>Back</button>
       <h1>Create Receipt</h1>
-      <p>Fill out the form below to create a new receipt or <button type="button" onClick={() => toggleAi()}>USE AI</button></p>
+      {error && <div>error</div>}
+      <div>Fill out the form below to create a new receipt or
+        <button type="button" onClick={() => toggleAi()}>USE AI</button>
+      </div>
+      {loading && <div>Loading AI Receipt...</div>}
       {aiEnabled && <PhotoDropZone onFileSubmitted={aiHandleFile}/>}
       {!submitted ? (
       <ReceiptForm onSubmit={handleSubmit} />
