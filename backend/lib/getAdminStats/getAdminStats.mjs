@@ -66,11 +66,6 @@ let getStoreChainRevenues = () => {
     })
 }
 
-
-
-
-
-
 export const handler = async (event) => {
     let result
     let code
