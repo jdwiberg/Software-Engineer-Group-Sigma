@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import Stores from "./Stores";
-
+import { useRouter } from 'next/navigation'
 /*
 USE CASE:
 login admin (A&T)
@@ -27,10 +27,13 @@ export default function AdminDashboard() {
   })
   const [activeTab, setActiveTab] = useState<'HOME' | 'STORES'>('HOME')
   const [chains, setChains] = useState<StoreChain[]>([])
+  const router = useRouter()
 
   useEffect(() => {
-    const u = localStorage.getItem("username")
-    if (u) setUsername(u)
+    if (!localStorage.getItem("adminPassword")) {
+      router.push("/loginAdmin")
+    }
+    
 
     const fetchStats = async () => {
       try {
