@@ -42,6 +42,32 @@ let getTotalSales = () => {
     })
 }
 
+let getStoreChainRevenues = () => {
+    return new Promise((resolve, reject) => {
+        pool.query(
+        `
+        SELECT
+            sc.c_id,
+            sc.c_name,
+            sc.c_url,
+            COALESCE(SUM(i.i_price), 0) AS revenue
+        FROM storeChain sc
+        LEFT JOIN store s   ON s.c_id = sc.c_id
+        LEFT JOIN receipt r ON r.s_id = s.s_id
+        LEFT JOIN item i    ON i.r_id = r.r_id
+        GROUP BY sc.c_id, sc.c_name, sc.c_url
+        ORDER BY sc.c_name; `, 
+        (error, results) => {
+            if (error)
+                return reject(error)
+            resolve(results)
+        }
+        )
+    })
+}
+
+
+
 
 
 
@@ -57,17 +83,19 @@ export const handler = async (event) => {
     })
 
     try {
-        const [shoppers, sales, revenue] = await Promise.all([
+        const [shoppers, sales, totalRevenue, storeChainRevenues] = await Promise.all([
             getTotalShoppers(),
             getTotalSales(),
             getTotalRevenue(),
+            getStoreChainRevenues(),
         ])
 
         result = {
             message: "retrieved admin stats",
                 shoppers: shoppers,
-                revenue: revenue,
+                totalRevenue: totalRevenue,
                 sales: sales,
+                storeChainRevenues: storeChainRevenues,
         }
         code = 200
     } catch (err) {

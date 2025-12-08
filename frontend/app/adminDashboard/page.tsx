@@ -11,6 +11,13 @@ login admin (A&T)
  - show number of sales / dollar 
 */
 
+type StoreChain = {
+  c_id: number,
+  c_name: string,
+  c_url: string,
+  revenue: number
+}
+
 export default function AdminDashboard() {
   const [username, setUsername] = useState("")
   const [stats, setStats] = useState({
@@ -19,6 +26,7 @@ export default function AdminDashboard() {
     sales: 0
   })
   const [activeTab, setActiveTab] = useState<'HOME' | 'STORES'>('HOME')
+  const [chains, setChains] = useState<StoreChain[]>([])
 
   useEffect(() => {
     const u = localStorage.getItem("username")
@@ -42,9 +50,10 @@ export default function AdminDashboard() {
         const data = await res.json()
         setStats({
           shoppers: data.shoppers ?? 0,
-          revenue: data.revenue ?? 0,
+          revenue: data.totalRevenue?? 0,
           sales: data.sales ?? 0,
         })
+        setChains(data.storeChainRevenues ?? [])
       } catch (err) {
         console.error("Failed to fetch admin stats", err)
       }
@@ -56,26 +65,21 @@ export default function AdminDashboard() {
 
   return (
     <div className="p-6">
+      
       <h1 className="text-3xl font-bold mb-4">Admin Dashboard</h1>
 
       {/* Tabs */}
       <div className="flex space-x-4 mb-6">
+
+        <button className={`px-4 py-2 rounded ${
+            activeTab === 'HOME' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+          onClick={() => setActiveTab('HOME')}> Home </button>
+
         <button
           className={`px-4 py-2 rounded ${
-            activeTab === 'HOME' ? 'bg-blue-500 text-white' : 'bg-gray-200'
-          }`}
-          onClick={() => setActiveTab('HOME')}
-        >
-          Home
-        </button>
-        <button
-          className={`px-4 py-2 rounded ${
-            activeTab === 'STORES' ? 'bg-blue-500 text-white' : 'bg-gray-200'
-          }`}
-          onClick={() => setActiveTab('STORES')}
-        >
-          Stores
-        </button>
+            activeTab === 'STORES' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+          onClick={() => setActiveTab('STORES')}> Stores </button>
+
       </div>
 
       {/* Tab Content */}

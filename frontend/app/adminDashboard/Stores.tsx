@@ -137,14 +137,15 @@ export default function Stores() {
       ) : (
         storeChains.map((chain) => (
           <div key={chain.c_id} className="border-b mb-4 pb-2">
+
             {/* Chain heading */}
             <h2 className="font-semibold">{chain.c_name}
+
               <button
                 className="text-red-600 ml-4"
                 onClick={() => deleteStoreChain(chain.c_id)}
-              >
-                Delete
-              </button>
+              >Delete</button>
+              
             </h2>
             {chain.c_url && (
               <a href={chain.c_url} className="text-blue-600 underline">
@@ -158,12 +159,12 @@ export default function Stores() {
                 {chain.stores.map((store) => (
                   <li key={store.s_id} className="flex justify-between items-center">
                     <span>{store.s_address}</span>
+
                     <button
                       className="text-red-600 ml-4"
                       onClick={() => deleteStore(store.s_id)}
-                    >
-                      Delete
-                    </button>
+                    >Delete</button>
+                    
                   </li>
                 ))}
               </ul>
