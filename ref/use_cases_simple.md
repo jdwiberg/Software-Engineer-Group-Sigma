@@ -27,6 +27,6 @@ Store Use Cases for Shopper
 
 Administrator Use Cases
 - ~~Login Administrator (Tyler)~~
-- Show Admin Dashboard (Andreas)
+- ~~Show Admin Dashboard (Andreas)~~
 - ~~Remove Store Chain (Tyler)~~
 - ~~Remove Store (Tyler)~~
