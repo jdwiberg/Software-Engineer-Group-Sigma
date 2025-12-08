@@ -39,7 +39,6 @@ export default function CreateReceiptPage() {
   }
 
   const aiHandleFile = async (file: File, apiKey: string) => {
-    setError("")
     setAiEnabled(false)
     setLoading(true)
     console.log("File selected: ", file)
@@ -58,20 +57,22 @@ export default function CreateReceiptPage() {
         dangerouslyAllowBrowser: true
       })
 
-      const task_prompt = "Here is the file encoded as Base64: " + encoded
 
       const completion = await client.chat.completions.create({
-        model: "gpt-4.1-mini",
+        model: "gpt-4o-mini",
         messages: [
           { role: "system", content: sys_prompt },
-          { role: "user", content: task_prompt },
+          { role: "user", content: [
+            { type: "text", text: "Here is the file encoded as base 64" },
+            { type: "image_url", image_url: { url: `data:image/png;base64;${encoded}` } }
+          ]}
         ],
         response_format: { type: "json_object" },
       });
 
       const msg = completion.choices[0].message.content
-      const json = (msg as any).parsed ?? "{}"
-      if (!json || Object.keys(json).length === 0 || !Array.isArray(json.items)) {
+      const json = parse(msg)
+      if (!json || Object.keys(json).length === 0 || !Array.isArray(json.items) || json.items.length === 0) {
         setError("Image is not of a receipt")
         setLoading(false)
         return
@@ -96,12 +97,29 @@ export default function CreateReceiptPage() {
       if (error instanceof Error) {
         setError(error.message)
       } else {
-        setError(String(error))
+        setError("There was an error here")
       }
       setAiReceipt(null)
       setLoading(false)
     }
     
+  }
+
+  const parse = (msg: any) => {
+      let json: any = {}
+      try {
+        if (typeof msg === "string") {
+          json = JSON.parse(msg)
+        } else if (Array.isArray(msg)) {
+          const combined = (msg as any[]).map((part: any) => part?.text ?? "").join("")
+          json = combined ? JSON.parse(combined) : {}
+        } else if (msg && typeof (msg as any).parsed !== "undefined") {
+          json = (msg as any).parsed
+        }
+      } catch {
+        json = {}
+      }
+      return json
   }
 
   const Base64Encode = (file: File): Promise<string> => {
@@ -120,7 +138,7 @@ export default function CreateReceiptPage() {
     <div>
       <button type="button" onClick={() => router.push("./")}>Back</button>
       <h1>Create Receipt</h1>
-      {error && <div>error</div>}
+      {error && <div>{error}</div>}
       <div>Fill out the form below to create a new receipt or
         <button type="button" onClick={() => toggleAi()}>USE AI</button>
       </div>
