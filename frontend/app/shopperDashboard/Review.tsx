@@ -16,6 +16,7 @@ export default function Review() {
     
     const [message, setMessage] = useState("")
     const [error, setError] = useState("")
+    const [searched, setSearched] = useState(false)
     const [username, setUsername] = useState("")
     const [loading, setLoading] = useState(false)
     const [searchCat, setSearchCat] = useState("")
@@ -86,6 +87,7 @@ export default function Review() {
     
     async function getRecents(date : Date, category : string) {  
     setLoading(true)
+    setSearched(true)
       try {
           const res = await fetch(
               "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/searchRecentPurchases",
@@ -158,7 +160,7 @@ export default function Review() {
             </div>
             ))
         ) : (
-            <p>{(loading)? "Loading..." : "No Recent Purchases!"}</p>
+            <p>{(loading)? "Loading..." : (searched) ? "No Recent Purchases!" : "" }</p>
         )}
     </div>
     )

@@ -4,7 +4,7 @@ Shopper Use Cases
 - ~~Show Account Dashboard (Jake and Tim)~~
 - ~~Review History (Jake)~~
 - Review Activity (Tim)
-- Search Recent Purchases (Tim)
+- ~~Search Recent Purchases (Tim)~~
 
 Receipt Use Cases for Shopper
 - ~~Create Receipt (Jake)~~
