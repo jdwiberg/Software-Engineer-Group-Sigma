@@ -4,16 +4,41 @@ import StoreDropdown from './StoreDropdown'
 import { useRouter } from 'next/navigation'
 
 type ReceiptFormProps = {
+    aiReceipt: fromAI | null
     onSubmit?: () => void
 }
 
-export default function ReceiptForm({ onSubmit }: ReceiptFormProps) {
-    type receiptItem = {
-        i_name : string,
-        i_category: string,
-        i_price: number,
-        quantity: number,
-    }
+type receiptItem = {
+    i_name : string,
+    i_category: string,
+    quantity: number,
+    i_price: number
+}
+
+type fromAI = {
+    c_name : string,
+    s_address : string,
+    items : receiptItem[]
+}
+
+type store = {
+    s_id: string
+    s_address: string
+}
+
+type storeChain = {
+    c_id: string
+    c_name: string
+    c_url: string
+    stores: store[]
+}
+
+export default function ReceiptForm({ aiReceipt, onSubmit }: ReceiptFormProps) {
+
+    const [storeChains, setStoreChains] = useState<storeChain[]>([])
+
+    const[c_id, setCId] = useState<string | null>(null)
+    const[ai_s_id, setAiSId] = useState<string | null>(null)
 
     const [s_id, setSId] = useState<number | null>(null)
     const [username, setUsername] = useState("")
@@ -59,7 +84,9 @@ export default function ReceiptForm({ onSubmit }: ReceiptFormProps) {
         if (typeof window !== "undefined") {
             setUsername(localStorage.getItem("username") || "")
         }
-    }, [])
+        handleFromAi()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [aiReceipt, storeChains])
 
     async function createReceipt(s_id: number, username: string) {
         try {
@@ -173,6 +200,26 @@ export default function ReceiptForm({ onSubmit }: ReceiptFormProps) {
         setIsAdding(true)
     }
 
+    function handleFromAi() {
+        if (!aiReceipt || storeChains.length === 0) return
+
+        if (aiReceipt.items && aiReceipt.items.length > 0) {
+            setItems(aiReceipt.items)
+            setIsAdding(false)
+        }
+
+        const chain_match = storeChains.find(chain => chain.c_name.toLowerCase() === aiReceipt.c_name.toLowerCase())
+        if (chain_match) {
+            setCId(chain_match.c_id)
+            const store_match = chain_match.stores.find(store => store.s_address.toLowerCase() === aiReceipt.s_address.toLowerCase())
+            if (store_match) {
+                setAiSId(store_match.s_id)
+                const parsed = Number(store_match.s_id)
+                setSId(Number.isNaN(parsed) ? null : parsed)
+            }
+        }
+    }
+
     async function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
         setError("")
@@ -203,6 +250,9 @@ export default function ReceiptForm({ onSubmit }: ReceiptFormProps) {
 
         <form onSubmit={handleSubmit}>
             <StoreDropdown
+                c_id={c_id}
+                s_id={ai_s_id}
+                onLoadStoreChains={setStoreChains}
                 onSelectStore={(id) => {
                     if (id === null) {
                         setSId(null)
