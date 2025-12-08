@@ -12,7 +12,7 @@ Receipt Use Cases for Shopper
 - ~~Remove Item from Receipt (Jake)~~
 - ~~Edit Item on Receipt (Jake)~~
 - ~~Submit Receipt (Jake)~~
-- AI Analyze Receipt Image (Jake and Andreas)
+- AI Analyze Receipt Image (Jake)
 
 Shopping List Use Cases for Shopper
 - ~~Create Shopping List (Tim)~~
