@@ -76,7 +76,6 @@ export default function Login() {
         {error && (
           <p>{error}</p>
         )}        
-        <Link href="/adminDashboard">Admin Dashboard</Link>
 
       </div>
   );
