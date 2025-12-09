@@ -57,20 +57,37 @@ export default function CreateReceiptPage() {
         dangerouslyAllowBrowser: true
       })
 
+      const response = await client.responses.create(
+        ({
+          model: 'gpt-4o-mini',
+          input: [
+            {
+              role: 'system', content: [
+                {
+                  type: 'input_text',
+                  text: sys_prompt,
+                },
+              ],
+            },
+            {
+              role: "user", content: [
+                {
+                  type: 'input_text',
+                  text: "Here is the image of a receipt Base64 Encoded"
+                },
+                {
+                  type: "input_image",
+                  image_url : `data:image/png;base64,${encoded}`,
+                },
+              ],
+            },
+          ],
+          max_output_tokens: 500,
+        } as any)
+      )
 
-      const completion = await client.chat.completions.create({
-        model: "gpt-4o-mini",
-        messages: [
-          { role: "system", content: sys_prompt },
-          { role: "user", content: [
-            { type: "text", text: "Here is the file encoded as base 64" },
-            { type: "image_url", image_url: { url: `data:image/png;base64;${encoded}` } }
-          ]}
-        ],
-        response_format: { type: "json_object" },
-      });
 
-      const msg = completion.choices[0].message.content
+      const msg = response.output_text
       const json = parse(msg)
       if (!json || Object.keys(json).length === 0 || !Array.isArray(json.items) || json.items.length === 0) {
         setError("Image is not of a receipt")
