@@ -1,0 +1,8 @@
+{
+  "name": "review-activity",
+  "version": "1.0.0",
+  "main": "reviewActivity.mjs",
+  "dependencies": {
+    "mysql2": "^3.15.3"
+  }
+}
