@@ -52,6 +52,7 @@ export default function Login() {
 
   return (
       <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+        <button type="button" onClick={() => router.push("./")}>Back</button>
         <h1>Login Admin</h1>
         <form onSubmit={handleSubmit}>
 
