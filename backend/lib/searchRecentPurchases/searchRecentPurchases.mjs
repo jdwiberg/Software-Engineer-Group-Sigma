@@ -4,10 +4,17 @@ var pool
 
 let getShopperLists = (username, i_category, r_date) => {
     return new Promise((resolve, reject) => {
+        if (!i_category) {
+            return reject(new Error("Please select a category"));
+        }
+        else if (!r_date) {
+            return reject(new Error("Please select a date"));
+        }
         pool.query(`SELECT 
                         i.i_id,
                         i.i_name,
                         i.i_category,
+                        i.i_price,
                         r.r_date,
                         sc.c_name,
                         st.s_address
