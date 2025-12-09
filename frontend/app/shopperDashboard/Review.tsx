@@ -5,24 +5,41 @@ import { get } from 'http'
 import formatDate from '../aa-utils/formatDate'
 
 export default function Review() {
-    type purchasedItem = {
+    type PurchasedItem = {
         i_id : number,
         i_name: string,
         i_category : string,
+        i_price : number,
         r_date : string,
         c_name : string,
         s_address : string
     }
-    
-    const [message, setMessage] = useState("")
-    const [error, setError] = useState("")
-    const [searched, setSearched] = useState(false)
+
+    type ActivityReport = {
+        type : string, 
+        storesShopped : string[],
+        totalSpent : number,
+        numReceipts : number
+    }
+
+    const [messageRP, setMessageRP] = useState("")
+    const [messageRA, setMessageRA] = useState("")
     const [username, setUsername] = useState("")
-    const [loading, setLoading] = useState(false)
-    const [searchCat, setSearchCat] = useState("")
-    const [searchType, setSearchType] = useState("")
-    const [searchDate, setSearchDate] = useState<Date | null>(null)
-    const [recentPurchases, setRecentPurchases] = useState<purchasedItem[] | null>([])
+    //for searching recent purchases
+    const [searchCat, setSearchCat] = useState("")  
+    const [searchTypeRP, setSearchTypeRP] = useState("")
+    const [searchDateRP, setSearchDateRP] = useState<Date | null>(null)
+    const [recentPurchases, setRecentPurchases] = useState<PurchasedItem[] | null>([])
+    const [searchingRP, setSearchingRP] = useState(false)
+    const [foundRP, setFoundRP] = useState(false)
+    //for generating activity report
+    const [activity, setActivity] = useState("")  
+    const [shopReport, setShopReport] = useState<ActivityReport | null>(null)
+    const [searchTypeRA, setSearchTypeRA] = useState("")
+    const [searchDateRA, setSearchDateRA] = useState<Date | null>(null)
+    const [searchingRA, setSearchingRA] = useState(false)
+    const [foundRA, setFoundRA] = useState(false)
+
     const categories = [
         "Alocohol & Spirits",
         "Baking Supplies",
@@ -52,28 +69,50 @@ export default function Review() {
         "Past Month",
         "All time"
     ];
+    const router = useRouter()
 
-    function findSearchDate(type : string) {
-        let dateFactor = 0
+    function findSearchDate(type : string): Date {
+        let todaysDate = new Date()
+        let prevDate = new Date(todaysDate)
         if (type === "Past Day"){
-            dateFactor = 1
+            prevDate.setDate(todaysDate.getDate() - 1)
         }
         else if (type === "Past Week"){
-            dateFactor = 7
+            prevDate.setDate(todaysDate.getDate() - 7)
         }
         else if (type === "Past Month"){
-            dateFactor = 30
+            prevDate.setMonth(todaysDate.getMonth() - 1)
         }
-        let todaysDate = new Date()
-        let prevDate = new Date()
-        prevDate.setDate(todaysDate.getDate() - dateFactor)
-        setSearchDate(prevDate)
-        if (type === "All time"){
-            setSearchDate(new Date(0))
+        else if (type === "All time"){
+            prevDate.setDate(0)
         }
+        return prevDate
     }
 
-    const router = useRouter()
+    function generateReport(rows: any) {
+        const storeSet = new Set<string>()       // To keep unique stores
+        const receiptSet = new Set<number>()    // To keep unique receipt IDs
+        let totalSpent = 0
+
+        for (const row of rows) {
+            // Add store to the set (unique automatically)
+            storeSet.add(`${row.c_name} ${row.s_address}`);
+
+            // Add receipt ID
+            receiptSet.add(row.r_id)
+
+            // Add price
+            totalSpent += row.i_price
+        }
+
+        const newReport: ActivityReport = {
+                type: searchTypeRA, 
+                storesShopped: Array.from(storeSet),
+                totalSpent: totalSpent,
+                numReceipts: receiptSet.size,
+        }
+        setShopReport(newReport);
+    }
 
     useEffect(() => {
     const u = localStorage.getItem("username")
@@ -86,8 +125,8 @@ export default function Review() {
     }, [username])
     
     async function getRecents(date : Date, category : string) {  
-    setLoading(true)
-    setSearched(true)
+    setSearchingRP(true)
+    setFoundRP(true)
       try {
           const res = await fetch(
               "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/searchRecentPurchases",
@@ -107,13 +146,51 @@ export default function Review() {
           }
 
           if (data.statusCode != 200) {
-              setError(data.error)
+              setMessageRP(body.error)
           } else {
-              setMessage(body.message)
+              setMessageRP("")
               setRecentPurchases(body.recentPurchases)
-              setLoading(false)
+              setSearchingRP(false)
               setSearchCat("")
-              setSearchType("")
+              setSearchTypeRP("")
+          }
+      } catch (err) {
+          console.error("something went wrong: ", err);
+      }
+    }
+
+    async function getActivity(date : Date) {  
+    setSearchingRA(true)
+    setFoundRA(true)
+      try {
+          const res = await fetch(
+              "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/reviewActivity",
+              {
+                  method: "POST",
+                  body: JSON.stringify({ username, r_date : date })
+              }
+          )
+          
+          const data = await res.json()
+  
+          let body
+          try {
+            body = JSON.parse(data.body);
+          } catch (err) {
+            console.error("Failed to parse body", err);
+          }
+
+
+          if (data.statusCode != 200) {
+              setMessageRA(body.error)
+          }
+          else {
+              setMessageRA("")
+              setSearchTypeRA("")
+              setSearchDateRA(null)
+              setActivity(body.recentActivity)
+              generateReport(body.recentActivity)
+              setSearchingRA(false)
           }
       } catch (err) {
           console.error("something went wrong: ", err);
@@ -121,7 +198,9 @@ export default function Review() {
     }
 
     return (
-    <div>
+    <div style={{ display: 'flex', gap: '20px' }}>
+        <div style={{ flex: 1 }}>
+        <h2>Search Recent Purchases</h2>
         <select
             name='item category'
             value={searchCat}
@@ -137,8 +216,12 @@ export default function Review() {
         </select>
         <select
             name='search by'
-            value={searchType}
-            onChange={(e) => {setSearchType(e.target.value), findSearchDate(e.target.value), console.log(searchDate)}}
+            value={searchTypeRP}
+            onChange={(e) => {
+                setSearchTypeRP(e.target.value), 
+                setSearchDateRP(findSearchDate(e.target.value)), 
+                console.log(searchDateRP)
+            }}
             required
         >
             <option value="">Search by </option>
@@ -148,20 +231,60 @@ export default function Review() {
                 </option>
             ))}
         </select>
-        <button onClick={() => getRecents(searchDate!, searchCat!)}>Search Recent Purchases</button>
-        {recentPurchases && recentPurchases.length > 0? (
-            recentPurchases.map((item: purchasedItem) => (
-            <div key={item.i_id}>
-                <h2>{item.i_name}</h2>
-                <p>{item.i_category}</p>
-                <p>{item.c_name}</p>
-                <p>{item.s_address}</p>
-                <p>{formatDate(item.r_date)}</p>
+        <button onClick={() => getRecents(searchDateRP!, searchCat!)}>Search Recent Purchases</button>
+        {messageRP ? (
+            <p>{messageRP}</p>
+        ) : recentPurchases && recentPurchases.length > 0? (
+            <div>
+                <h3>Purchases Of {recentPurchases[0]?.i_category} :</h3>
+                {recentPurchases.map((item: PurchasedItem) => (
+                <div key={item.i_id}>
+                    <h4>{item.i_name} ${item.i_price.toFixed(2)}</h4>
+                    <p>{item.c_name}, {item.s_address}</p>
+                    <p>{formatDate(item.r_date)}</p>
+                </div>
+                ))}
             </div>
-            ))
         ) : (
-            <p>{(loading)? "Loading..." : (searched) ? "No Recent Purchases!" : "" }</p>
+            <p>{(searchingRP)? "Loading..." : (foundRP) ? "No recent purchases!" : " " }</p>
         )}
+        </div>
+
+        <div style={{ flex: 1 }}>
+        <h2>Generate Shopping Activity Report</h2>
+        <select
+            name='report type'
+            value={searchTypeRA}
+            onChange={(e) => {
+                setSearchTypeRA(e.target.value), 
+                setSearchDateRA(findSearchDate(e.target.value))
+            }}
+            required
+        >
+            <option value="">Search by </option>
+            {dateTypes.map((type) => (
+                <option key={type} value={type}>
+                    {type}
+                </option>
+            ))}
+        </select>
+        <button onClick={() => getActivity(searchDateRA!)}>Generate Report</button>
+        {messageRA ? (
+            <p>{messageRA}</p>
+        ) : activity && activity.length > 0 ? (
+            <div>
+                <h3>Your Shopping Summary ({shopReport?.type}):</h3>
+                <h4>Your stores:</h4>
+                {shopReport?.storesShopped.map((store, idx) => (
+                    <p key={idx}>{store}</p>
+                ))}
+                <h4>Shopping trips: <span>{shopReport?.numReceipts}</span></h4>
+                <h4>Total spent: <span>{shopReport?.totalSpent}</span></h4>
+            </div>
+        ) : (
+            <p>{(searchingRA)? "Loading..." : (foundRA) ? "No recent activity!" : " " }</p>
+        )}
+        </div>
     </div>
     )
 }
