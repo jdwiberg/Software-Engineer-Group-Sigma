@@ -2,11 +2,15 @@ import * as mysql2 from 'mysql2'
 
 var pool
 
-let getShopperLists = (username, r_date) => {
+let reviewActivity = (username, r_date) => {
     return new Promise((resolve, reject) => {
+        if (!r_date) {
+            return reject(new Error("Please select search type"));
+        }
         pool.query(`SELECT 
                         i.i_id,
                         i.i_price,
+                        i.r_id,
                         r.r_id,
                         r.r_date,
                         sc.c_name,
@@ -47,7 +51,7 @@ export const handler = async (event) =>{
 
     try {
 
-        const recentActivity = await getShopperLists(event.username, event.r_date)
+        const recentActivity = await reviewActivity(event.username, event.r_date)
         result = { message: "recent activity: ", recentActivity}
         code = 200
 
