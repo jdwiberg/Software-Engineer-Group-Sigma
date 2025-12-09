@@ -132,7 +132,6 @@ export default function Receipts() {
     return (
     <div>
         <button onClick={() => router.push("/shopperDashboard/createReceipt")}>Create Receipt</button>
-        <button onClick={() => router.replace("shopperDashboard/searchRecent")}>Search Purchase History</button>
         {receipts.length > 0? (
             receipts.map((r: any) => (
             <div key={r.r_id}>
