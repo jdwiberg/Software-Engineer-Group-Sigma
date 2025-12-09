@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 type StoreDropdownProps = {
     onSelectStore?: (storeId: number | string | null, chainId?: number | string | null) => void
@@ -32,6 +33,7 @@ export default function StoreDropdown({ c_id, s_id, onSelectStore, onSelectChain
     const [error, setError] = useState("")
     const [selectedChainId, setSelectedChainId] = useState<string>("")
     const [selectedStoreId, setSelectedStoreId] = useState<string>("")
+    const router = useRouter()
 
     useEffect(() => {
         showStoreChains()
@@ -107,8 +109,7 @@ export default function StoreDropdown({ c_id, s_id, onSelectStore, onSelectChain
                         const parsedChainId = newChainId ? parseMaybeNumber(newChainId) : null
                         onSelectChain?.(parsedChainId)
                         onSelectStore?.(null, parsedChainId)
-                    }}
-                >
+                    }}>
                     <option value="">Select a chain</option>
                     {storeChains.map((chain) => (
                         <option key={chain.c_id ?? chain.c_name} value={String(chain.c_id ?? chain.c_name)}>
@@ -116,6 +117,7 @@ export default function StoreDropdown({ c_id, s_id, onSelectStore, onSelectChain
                         </option>
                     ))}
                 </select>
+                <button type="button" onClick={() => router.push("/shopperDashboard?tab=stores")}>Add Store</button>
             </div>
 
             <div>
