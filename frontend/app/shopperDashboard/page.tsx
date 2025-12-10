@@ -43,7 +43,7 @@ export default function ShopperDashboard() {
 
   return (
     <div>
-      <h1>{username}'s Shopper Dashboard</h1>
+      <h1>Welcome, {username}</h1>
       <button onClick={() => logout()}>Logout</button>
       <div style={{ display: "flex", gap: 8 }}>
         <button onClick={() => setTab("lists")}>Shopping Lists</button>

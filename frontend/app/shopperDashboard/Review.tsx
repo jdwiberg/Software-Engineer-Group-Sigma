@@ -279,7 +279,7 @@ export default function Review() {
                     <p key={idx}>{store}</p>
                 ))}
                 <h4>Shopping trips: <span>{shopReport?.numReceipts}</span></h4>
-                <h4>Total spent: <span>{shopReport?.totalSpent}</span></h4>
+                <h4>Total spent: $<span>{shopReport?.totalSpent.toFixed(2)}</span></h4>
             </div>
         ) : (
             <p>{(searchingRA)? "Loading..." : (foundRA) ? "No recent activity!" : " " }</p>
