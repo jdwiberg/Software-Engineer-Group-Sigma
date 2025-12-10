@@ -7,8 +7,9 @@ let reportOptions = (sl_id) => {
         // Get shopping list categories in order
         pool.query(
             `SELECT 
-                sli_id, 
-                sli_category
+                sli_id,
+                sli_category,
+                sli_name
              FROM 
                 shoppingListItem
              WHERE 
@@ -31,7 +32,7 @@ let reportOptions = (sl_id) => {
                         receipt ON item.r_id = receipt.r_id
                      JOIN 
                         store ON receipt.s_id = store.s_id
-                     JOIN storeChain ON store.c_ID = storeChain.c_id`, [], (error2, itemRows) => {
+                     JOIN storeChain ON store.c_id = storeChain.c_id`, [], (error2, itemRows) => {
                         if (error2) {
                             return reject(error2)
                         }
@@ -42,19 +43,19 @@ let reportOptions = (sl_id) => {
                             const options = itemRows
                                 .filter(row => row.category === sli.sli_category)
                                 .map(row => ({
-                                    name: row.i_name,
+                                    i_name: row.i_name,
+                                    i_id: row.i_id,
                                     price: row.i_price,
-                                    address: row.s_address,
-                                    chain_name: row.c_name
+                                    s_address: row.s_address,
+                                    c_name: row.c_name
                                 }))
 
                             result.push({
-                                sli_category: sli.sli_category,
-                                options: options
+                                sli_name: sli.sli_name,
+                                options
                             })
                         }
-
-                        resolve({ items: result })
+                        resolve({ result })
                     }
                 )
             }
@@ -66,7 +67,7 @@ let reportOptions = (sl_id) => {
 {
     "items" : [
         {
-            "sli_category" : "bread and bakery",
+            "sli_name" : "bagels",
             "options" : [
                 {           
                     "name" : "bagels",
@@ -84,7 +85,7 @@ let reportOptions = (sl_id) => {
             ]
         },
         {
-            "sli_category" : "produce",
+            "sli_name" : "apples",
             "options" : [
                 {           
                     "name" : "apples",
@@ -118,8 +119,8 @@ export const handler = async (event) =>{
 
     try {
 
-        const options = await reportOptions(event.sl_id)
-        result = { message: options}
+        const items = await reportOptions(event.sl_id)
+        result = { items }
         code = 200
 
         } catch (err) {
