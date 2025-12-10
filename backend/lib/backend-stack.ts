@@ -141,6 +141,7 @@ export class BackendStack extends cdk.Stack {
     const getAdminStatsResource = api_endpoint.root.addResource('getAdminStats')
     const searchRecentPurchases = api_endpoint.root.addResource('searchRecentPurchases')
     const reviewActivity = api_endpoint.root.addResource('reviewActivity')
+    const reportOptions = api_endpoint.root.addResource('reportOptions')
     
     // All lambda functions will get a config here that references the handler function in its folder
     // Add methods below each configuration
@@ -386,7 +387,17 @@ export class BackendStack extends cdk.Stack {
     })
     reviewActivity.addMethod('POST', new apigw.LambdaIntegration(reviewActivity_fn, integration_parameters), response_parameters)
   
-
+    const reportOptions_fn = new lambdaNodejs.NodejsFunction(this, 'reportOptions', {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'reportOptions.handler',
+      code: lambda.Code.fromAsset(path.join(__dirname, 'reportOptions')),
+      vpc: vpc,
+      securityGroups: [securityGroup],
+      environment: environment,
+      timeout: Duration.seconds(3)
+    })
+    reportOptions.addMethod('POST', new apigw.LambdaIntegration(reportOptions_fn, integration_parameters), response_parameters)
+  
 
   }
 }
