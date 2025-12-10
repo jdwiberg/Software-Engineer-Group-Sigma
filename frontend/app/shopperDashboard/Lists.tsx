@@ -376,7 +376,7 @@ export default function Lists() {
                     Close
                 </button>
 
-                <h3>Add Item</h3>
+                <h2>Add Item</h2>
                 <form onSubmit={addListItem}>
                 <input 
                     name='itemName'
