@@ -1,34 +1,47 @@
 'use client'
 import { useEffect, useState } from 'react'
 import formatDate from '../aa-utils/formatDate'
+import stringSimilarity from "string-similarity";
 
 export default function Lists() {
 
-    type shoppingList = {
+    type ShoppingList = {
         sl_id: number,
         sl_name: string,
         sl_date: string
     }
-    type listItem = {
+    type ListItem = {
         sli_id : number,
         sli_name : string,
         sli_category : string
     }
+    type ReceiptItem = {
+        i_name: string,
+        i_price: number,
+        s_address: string,
+        c_name: string
+    }
+    type ItemOptions = {
+        sli_name: string,
+        sli_options: ReceiptItem[]
+    }
+    
     const [error, setError] = useState("")
     const [message, setMessage] = useState("")
     const [username, setUsername] = useState("")
-    const [shoppingLists, setShoppingLists] = useState<shoppingList[]>([])      // for veiwing shopping lists
-    const [shoppingListItems, setShoppingListItems] = useState<listItem[]>([])  // for veiwing an individual shopping list
+    const [shoppingLists, setShoppingLists] = useState<ShoppingList[]>([])      // for veiwing shopping lists
+    const [shoppingListItems, setShoppingListItems] = useState<ListItem[]>([])  // for veiwing an individual shopping list
     const [open, setOpen] = useState(false)
     const [listName, setListName] = useState("")                                //for adding a new list
     const [isDeleting, setIsDeleting] = useState(false)                         // for deleting a shopping list
-    const [selectedList, setSelectedList] = useState<shoppingList | null>(null) // for selecting a list to display items
+    const [selectedList, setSelectedList] = useState<ShoppingList | null>(null) // for selecting a list to display items
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [isAdding, setIsAdding] = useState(false)                             // for adding a new item to a list
     const [itemName, setItemName] = useState("")
     const [itemCat, setItemCat] = useState("")
-    const [selectedItem, setSelectedItem] = useState<listItem | null>(null)     // for removing a list item
-    const [isRemoving, setIsRemoving] = useState(false)                         
+    const [selectedItem, setSelectedItem] = useState<ListItem | null>(null)     // for removing a list item
+    const [isRemoving, setIsRemoving] = useState(false)     
+    const [options, setOptions] = useState<{ [key: string]: ReceiptItem[] }>({})                    
     const categories = [
         "Alocohol & Spirits",
         "Baking Supplies",
@@ -288,6 +301,59 @@ export default function Lists() {
         }
       }
 
+    async function reportOptions(shoppingListItems : ListItem[]) {
+        setMessage("")
+        setError("")
+        setIsRemoving(true)
+    
+        try {
+            const res = await fetch(
+                "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/reportOptions",
+                {
+                    method: "POST",
+                    body: JSON.stringify({ shoppingListItems })
+                }
+            )
+            
+            const data = await res.json()
+    
+            let body
+            try {
+              body = JSON.parse(data.body);
+            } catch (err) {
+              console.error("Failed to parse body", err);
+            }
+    
+            if (data.statusCode != 200) {
+                setError(data.error)
+                setMessage("Some error")
+            } else {
+                setMessage(body.message)
+                const options: { [key: string]: ReceiptItem[] } = {}
+                for (const item of body.items) {
+                    options[item.sli_name] = findSimilarItems(item.sli_name, item.sli_options)
+                }
+                setOptions(options)
+            }
+        } catch (err) {
+            console.error("something went wrong: ", err);
+        } finally {
+            setIsRemoving(false)
+            setSelectedItem(null)
+        }
+      }
+
+    const findSimilarItems = ( target: string, comps: ReceiptItem[] ) => {
+        let sims = []
+        for (let i = 0; i < comps.length; i++) {
+            const score = stringSimilarity.compareTwoStrings(target, comps[i].i_name)
+            if (score > 0.75) {
+                sims.push(comps[i])
+            }
+        }
+        return sims
+    }
+
 
 
     return (
@@ -416,5 +482,5 @@ export default function Lists() {
         )}
     </div>
     );
-
+}
 }
