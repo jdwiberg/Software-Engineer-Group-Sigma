@@ -12,12 +12,12 @@ login admin (A&T)
  - show number of sales / dollar 
 */
 
-/*type StoreChain = {
+type StoreChain = {
   c_id: number,
   c_name: string,
   c_url: string,
   revenue: number,
-} */
+}
 
 export default function AdminDashboard() {
   const [username, setUsername] = useState("")
@@ -51,11 +51,19 @@ export default function AdminDashboard() {
           return
         }
 
-        const data = await res.json()
+        let data
+        const resp = await res.json()
+        try {
+          data = JSON.parse(resp.body)
+        } catch (err) {
+          console.error("Failed to parse body", err);
+        }
+
+
         setStats({
-          shoppers: data.shoppers ?? 0,
-          revenue: data.totalRevenue?? 0,
-          sales: data.sales ?? 0,
+          shoppers: data.shoppers,
+          revenue: data.totalRevenue,
+          sales: data.sales,
         })
         //setChains(data.storeChainRevenues ?? [])
       } catch (err) {
