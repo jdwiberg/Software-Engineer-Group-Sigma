@@ -23,6 +23,14 @@ export default function ShopperDashboard() {
   const router = useRouter();
 
   useEffect(() => {
+    if (!localStorage.getItem("username")) {
+      router.push("/")
+      return
+    }
+    setUsername(localStorage.getItem("username"))
+  })
+
+  useEffect(() => {
     if (tabParam === "lists" || tabParam === "receipts" || tabParam === "stores" || tabParam === "review") {
       setTab(tabParam);
     }
@@ -35,8 +43,10 @@ export default function ShopperDashboard() {
 
   return (
     <div>
-      <h1>{localStorage.getItem("username")}'s Shopper Dashboard</h1>
+      <div>
       <button onClick={() => logout()}>Logout</button>
+      </div>
+      <h1>Welcome, {username}</h1>
       <div style={{ display: "flex", gap: 8 }}>
         <button onClick={() => setTab("lists")}>Shopping Lists</button>
         <button onClick={() => setTab("receipts")}>Receipts</button>

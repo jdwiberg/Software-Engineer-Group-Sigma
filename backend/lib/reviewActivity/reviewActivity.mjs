@@ -2,19 +2,16 @@ import * as mysql2 from 'mysql2'
 
 var pool
 
-let getShopperLists = (username, i_category, r_date) => {
+let reviewActivity = (username, r_date) => {
     return new Promise((resolve, reject) => {
-        if (!i_category) {
-            return reject(new Error("Please select a category"));
-        }
-        else if (!r_date) {
-            return reject(new Error("Please select a date"));
+        if (!r_date) {
+            return reject(new Error("Please select search type"));
         }
         pool.query(`SELECT 
                         i.i_id,
-                        i.i_name,
-                        i.i_category,
                         i.i_price,
+                        i.r_id,
+                        r.r_id,
                         r.r_date,
                         sc.c_name,
                         st.s_address
@@ -31,10 +28,8 @@ let getShopperLists = (username, i_category, r_date) => {
                     WHERE 
                         s.username = ?
                     AND 
-                        i.i_category = ?
-                    AND 
                         r.r_date >= ?
-                    ORDER BY r.r_date ASC;`, [username, i_category, r_date], (error, results) => {
+                    ORDER BY r.r_date ASC;`, [username, r_date], (error, results) => {
             if (error){
                 return reject(error)
             }
@@ -56,8 +51,8 @@ export const handler = async (event) =>{
 
     try {
 
-        const recentPurchases = await getShopperLists(event.username, event.i_category, event.r_date)
-        result = { message: "recent purchases: ", recentPurchases}
+        const recentActivity = await reviewActivity(event.username, event.r_date)
+        result = { message: "recent activity: ", recentActivity}
         code = 200
 
         } catch (err) {

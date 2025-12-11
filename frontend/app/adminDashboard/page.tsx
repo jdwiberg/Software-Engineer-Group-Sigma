@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import Stores from "./Stores";
 import StoreChain from "./Stores";
+import { useRouter } from 'next/navigation'
 /*
 USE CASE:
 login admin (A&T)
@@ -26,11 +27,14 @@ export default function AdminDashboard() {
     sales: 0
   })
   const [activeTab, setActiveTab] = useState<'HOME' | 'STORES'>('HOME')
-  //const [chains, setChains] = useState<StoreChain[]>([])
+  const [chains, setChains] = useState<StoreChain[]>([])
+  const router = useRouter()
 
   useEffect(() => {
-    const u = localStorage.getItem("username")
-    if (u) setUsername(u)
+    if (!localStorage.getItem("adminPassword")) {
+      router.push("/loginAdmin")
+    }
+    
 
     const fetchStats = async () => {
       try {
@@ -65,8 +69,11 @@ export default function AdminDashboard() {
 
   return (
     <div className="p-6">
-
+      <div>
+      <button type="button" onClick={() => router.push("./")}>Logout</button>
+      </div>
       <h1 className="text-3xl font-bold mb-4">Admin Dashboard</h1>
+      
 
       {/* Tabs */}
       <div className="flex space-x-4 mb-6">
