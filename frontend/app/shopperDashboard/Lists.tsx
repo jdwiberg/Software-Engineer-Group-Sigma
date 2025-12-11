@@ -308,7 +308,6 @@ export default function Lists() {
     async function reportOptions(sl_id : number) {
         setMessage("")
         setError("")
-        setIsRemoving(true)
     
         try {
             const res = await fetch(
@@ -490,6 +489,7 @@ export default function Lists() {
         <div style={{ flex: 1 }}>
             {showOptions && <div>
                 <h1>Purchasing Options</h1>
+                <button type="button" onClick={() => setShowOptions(false)}>Hide</button>
                 {Object.entries(options).map(([sli_name, items]) => (
                     <div key={sli_name} style={{ marginBottom: "1rem" }}>
                         <h3>{sli_name}</h3>
