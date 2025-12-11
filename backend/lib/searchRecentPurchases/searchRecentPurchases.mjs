@@ -31,10 +31,10 @@ let getShopperLists = (username, i_category, r_date) => {
                     WHERE 
                         s.username = ?
                     AND 
-                        i.i_category = ?
+                        (i.i_category = ? OR ? = 'All')
                     AND 
                         r.r_date >= ?
-                    ORDER BY r.r_date ASC;`, [username, i_category, r_date], (error, results) => {
+                    ORDER BY r.r_date ASC;`, [username, i_category, i_category, r_date], (error, results) => {
             if (error){
                 return reject(error)
             }
