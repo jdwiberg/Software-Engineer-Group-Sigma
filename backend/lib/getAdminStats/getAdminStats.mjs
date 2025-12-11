@@ -10,7 +10,7 @@ let getTotalShoppers = () => {
         (error, results) => {
             if (error) 
                 return reject(error)
-            resolve(results[0].shoppers)
+            resolve(results && results[0] ? results[0].shoppers : 0)
         }
         )
     })
@@ -23,7 +23,7 @@ let getTotalRevenue = () => {
         (error, results) => {
             if (error)
                 return reject(error)
-            resolve(results[0].revenue || 0)
+            resolve(results && results[0] ? (results[0].revenue || 0) : 0)
         }
         )
     })
@@ -36,7 +36,7 @@ let getTotalSales = () => {
         (error, results) => {
             if (error)
                 return reject(error)
-            resolve(results[0].sales)
+            resolve(results && results[0] ? results[0].sales : 0)
         }
         )
     })

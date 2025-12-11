@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import Stores from "./Stores";
+import StoreChain from "./Stores";
 import { useRouter } from 'next/navigation'
 /*
 USE CASE:
@@ -15,7 +16,7 @@ type StoreChain = {
   c_id: number,
   c_name: string,
   c_url: string,
-  revenue: number
+  revenue: number,
 }
 
 export default function AdminDashboard() {
@@ -50,13 +51,20 @@ export default function AdminDashboard() {
           return
         }
 
-        const data = await res.json()
+        let data
+        const resp = await res.json()
+        try {
+          data = JSON.parse(resp.body)
+        } catch (err) {
+          console.error("Failed to parse body", err);
+        }
+
+
         setStats({
-          shoppers: data.shoppers ?? 0,
-          revenue: data.totalRevenue?? 0,
-          sales: data.sales ?? 0,
+          shoppers: data.shoppers,
+          revenue: data.totalRevenue,
+          sales: data.sales,
         })
-        setChains(data.storeChainRevenues ?? [])
       } catch (err) {
         console.error("Failed to fetch admin stats", err)
       }
@@ -68,9 +76,11 @@ export default function AdminDashboard() {
 
   return (
     <div className="p-6">
-      
-      <h1 className="text-3xl font-bold mb-4">Admin Dashboard</h1>
+      <div>
       <button type="button" onClick={() => router.push("./")}>Logout</button>
+      </div>
+      <h1 className="text-3xl font-bold mb-4">Admin Dashboard</h1>
+      
 
       {/* Tabs */}
       <div className="flex space-x-4 mb-6">
