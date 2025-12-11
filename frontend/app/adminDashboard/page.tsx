@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import Stores from "./Stores";
+import StoreChain from "./Stores";
 import { useRouter } from 'next/navigation'
 /*
 USE CASE:
@@ -11,12 +12,12 @@ login admin (A&T)
  - show number of sales / dollar 
 */
 
-type StoreChain = {
+/*type StoreChain = {
   c_id: number,
   c_name: string,
   c_url: string,
-  revenue: number
-}
+  revenue: number,
+} */
 
 export default function AdminDashboard() {
   const [username, setUsername] = useState("")
@@ -56,7 +57,7 @@ export default function AdminDashboard() {
           revenue: data.totalRevenue?? 0,
           sales: data.sales ?? 0,
         })
-        setChains(data.storeChainRevenues ?? [])
+        //setChains(data.storeChainRevenues ?? [])
       } catch (err) {
         console.error("Failed to fetch admin stats", err)
       }
