@@ -54,10 +54,10 @@ export default function Login() {
     }
   }
   return (
-      <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+      <div className="center-page">
         <h1>Login Shopper</h1>
-        <form onSubmit={handleSubmit}>
-
+        <form className="login-form" onSubmit={handleSubmit}>
+          <br />
           <input 
             name='username'
             type="text"
@@ -67,6 +67,7 @@ export default function Login() {
             required
           />
 
+          <br />
           <input 
             name='password'
             type="password" 
@@ -76,6 +77,7 @@ export default function Login() {
             required
           />
 
+          <br />
           <button 
           type='submit'
           disabled={isSubmitting}
