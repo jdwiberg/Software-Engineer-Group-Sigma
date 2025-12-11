@@ -2,10 +2,13 @@ import * as mysql2 from 'mysql2'
 
 var pool
 
-let reviewActivity = (username, r_date) => {
+let reviewActivity = (username, startDate, endDate) => {
     return new Promise((resolve, reject) => {
-        if (!r_date) {
-            return reject(new Error("Please select search type"));
+        if (!startDate || !endDate) {
+            return reject(new Error("Please select dates"))
+        }
+        if (startDate > endDate) {
+            return reject(new Error("Please select valid start and end dates"))
         }
         pool.query(`SELECT 
                         i.i_id,
@@ -29,7 +32,9 @@ let reviewActivity = (username, r_date) => {
                         s.username = ?
                     AND 
                         r.r_date >= ?
-                    ORDER BY r.r_date ASC;`, [username, r_date], (error, results) => {
+                    AND 
+                        r.r_date <= ?
+                    ORDER BY r.r_date ASC;`, [username, startDate, endDate], (error, results) => {
             if (error){
                 return reject(error)
             }
@@ -51,7 +56,7 @@ export const handler = async (event) =>{
 
     try {
 
-        const recentActivity = await reviewActivity(event.username, event.r_date)
+        const recentActivity = await reviewActivity(event.username, event.startDate, event.endDate)
         result = { message: "recent activity: ", recentActivity}
         code = 200
 

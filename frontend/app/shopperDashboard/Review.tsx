@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { get } from 'http'
 import formatDate from '../aa-utils/formatDate'
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
 
 export default function Review() {
     type PurchasedItem = {
@@ -36,7 +38,8 @@ export default function Review() {
     const [activity, setActivity] = useState("")  
     const [shopReport, setShopReport] = useState<ActivityReport | null>(null)
     const [searchTypeRA, setSearchTypeRA] = useState("")
-    const [searchDateRA, setSearchDateRA] = useState<Date | null>(null)
+    const [startSearchDateRA, setStartSearchDateRA] = useState<Date | null>(null)
+    const [endSearchDateRA, setEndSearchDateRA] = useState<Date | null>(null)
     const [searchingRA, setSearchingRA] = useState(false)
     const [foundRA, setFoundRA] = useState(false)
 
@@ -159,15 +162,23 @@ export default function Review() {
       }
     }
 
-    async function getActivity(date : Date) {  
+    async function getActivity(startDate : Date, endDate : Date) {  
     setSearchingRA(true)
     setFoundRA(true)
+    if (
+            startDate.getFullYear() === endDate.getFullYear() &&
+            startDate.getMonth() === endDate.getMonth() &&
+            startDate.getDate() === endDate.getDate()
+        ) {
+            startDate.setHours(0, 0, 0, 0)                 
+            endDate.setHours(23, 59, 59, 999)
+        }
       try {
           const res = await fetch(
               "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/reviewActivity",
               {
                   method: "POST",
-                  body: JSON.stringify({ username, r_date : date })
+                  body: JSON.stringify({ username, startDate, endDate })
               }
           )
           
@@ -187,7 +198,8 @@ export default function Review() {
           else {
               setMessageRA("")
               setSearchTypeRA("")
-              setSearchDateRA(null)
+              setStartSearchDateRA(null)
+              setEndSearchDateRA(null)
               setActivity(body.recentActivity)
               generateReport(body.recentActivity)
               setSearchingRA(false)
@@ -252,28 +264,24 @@ export default function Review() {
 
         <div style={{ flex: 1 }}>
         <h2>Generate Shopping Activity Report</h2>
-        <select
-            name='report type'
-            value={searchTypeRA}
-            onChange={(e) => {
-                setSearchTypeRA(e.target.value), 
-                setSearchDateRA(findSearchDate(e.target.value))
-            }}
-            required
-        >
-            <option value="">Search by </option>
-            {dateTypes.map((type) => (
-                <option key={type} value={type}>
-                    {type}
-                </option>
-            ))}
-        </select>
-        <button onClick={() => getActivity(searchDateRA!)}>Generate Report</button>
+        <DatePicker
+            selected={startSearchDateRA}
+            onChange={(date) => setStartSearchDateRA(date)}
+            placeholderText="Select a start date"
+            dateFormat="yyyy-MM-dd"
+        />
+        <DatePicker
+            selected={endSearchDateRA}
+            onChange={(date) => setEndSearchDateRA(date)}
+            placeholderText="Select an end date"
+            dateFormat="yyyy-MM-dd"
+        />
+        <button onClick={() => getActivity(startSearchDateRA!, endSearchDateRA!)}>Generate Report</button>
         {messageRA ? (
             <p>{messageRA}</p>
         ) : activity && activity.length > 0 ? (
             <div>
-                <h3>Your Shopping Summary ({shopReport?.type}):</h3>
+                <h3>Your Shopping Summary:</h3>
                 <h4>Your stores:</h4>
                 {shopReport?.storesShopped.map((store, idx) => (
                     <p key={idx}>{store}</p>
