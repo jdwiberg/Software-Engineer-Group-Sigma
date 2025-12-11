@@ -60,10 +60,10 @@ export const handler = async (event) =>{
         result = { message: "recent purchases: ", recentPurchases}
         code = 200
 
-        } catch (err) {
+    } catch (err) {
         result = { error: err.message }
         code = 400
-        }
+    }
 
     const response = {
         statusCode: code,

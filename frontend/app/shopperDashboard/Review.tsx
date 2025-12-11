@@ -32,6 +32,7 @@ export default function Review() {
     const [searchTypeRP, setSearchTypeRP] = useState("")
     const [searchDateRP, setSearchDateRP] = useState<Date | null>(null)
     const [recentPurchases, setRecentPurchases] = useState<PurchasedItem[] | null>([])
+    const [recentCategory, setRecentCategory] = useState("")
     const [searchingRP, setSearchingRP] = useState(false)
     const [foundRP, setFoundRP] = useState(false)
     //for generating activity report
@@ -128,10 +129,7 @@ export default function Review() {
     }
     }, [username])
     
-    async function getRecents(date : Date, category : string) {  
-        if (category === "All") {
-            category = '*'
-        }
+    async function getRecents(date : Date, category : string) { 
         setSearchingRP(true)
         setFoundRP(true)
         try {
@@ -157,6 +155,7 @@ export default function Review() {
             } else {
                 setMessageRP("")
                 setRecentPurchases(body.recentPurchases)
+                setRecentCategory(category) 
                 setSearchingRP(false)
                 setSearchCat("")
                 setSearchTypeRP("")
@@ -252,7 +251,7 @@ export default function Review() {
             <p>{messageRP}</p>
         ) : recentPurchases && recentPurchases.length > 0? (
             <div>
-                <h3>Purchases Of {recentPurchases[0]?.i_category} :</h3>
+                <h3>{(recentCategory === 'All') ? "All Purchases" : "Purchases of " + recentCategory}:</h3>
                 {recentPurchases.map((item: PurchasedItem) => (
                 <div key={item.i_id}>
                     <h4>{item.i_name} ${item.i_price.toFixed(2)}</h4>
