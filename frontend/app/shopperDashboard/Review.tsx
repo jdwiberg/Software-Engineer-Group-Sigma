@@ -44,6 +44,7 @@ export default function Review() {
     const [foundRA, setFoundRA] = useState(false)
 
     const categories = [
+        "All",
         "Alocohol & Spirits",
         "Baking Supplies",
         "Beverages",
@@ -128,39 +129,42 @@ export default function Review() {
     }, [username])
     
     async function getRecents(date : Date, category : string) {  
-    setSearchingRP(true)
-    setFoundRP(true)
-      try {
-          const res = await fetch(
-              "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/searchRecentPurchases",
-              {
-                  method: "POST",
-                  body: JSON.stringify({ username, i_category : category, r_date : date })
-              }
-          )
-          
-          const data = await res.json()
-  
-          let body
-          try {
-            body = JSON.parse(data.body);
-          } catch (err) {
-            console.error("Failed to parse body", err);
-          }
+        if (category === "All") {
+            category = '*'
+        }
+        setSearchingRP(true)
+        setFoundRP(true)
+        try {
+            const res = await fetch(
+                "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/searchRecentPurchases",
+                {
+                    method: "POST",
+                    body: JSON.stringify({ username, i_category : category, r_date : date })
+                }
+            )
+            
+            const data = await res.json()
+    
+            let body
+            try {
+                body = JSON.parse(data.body);
+            } catch (err) {
+                console.error("Failed to parse body", err);
+            }
 
-          if (data.statusCode != 200) {
-              setMessageRP(body.error)
-          } else {
-              setMessageRP("")
-              setRecentPurchases(body.recentPurchases)
-              setSearchingRP(false)
-              setSearchCat("")
-              setSearchTypeRP("")
-          }
-      } catch (err) {
-          console.error("something went wrong: ", err);
-      }
-    }
+            if (data.statusCode != 200) {
+                setMessageRP(body.error)
+            } else {
+                setMessageRP("")
+                setRecentPurchases(body.recentPurchases)
+                setSearchingRP(false)
+                setSearchCat("")
+                setSearchTypeRP("")
+            }
+        } catch (err) {
+            console.error("something went wrong: ", err);
+        }
+        }
 
     async function getActivity(startDate : Date, endDate : Date) {  
     setSearchingRA(true)
