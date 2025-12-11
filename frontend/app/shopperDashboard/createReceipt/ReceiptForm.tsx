@@ -42,6 +42,7 @@ export default function ReceiptForm({ aiReceipt, onSubmit }: ReceiptFormProps) {
 
     const [s_id, setSId] = useState<number | null>(null)
     const [username, setUsername] = useState("")
+    const [date, setDate] = useState(() => new Date().toISOString().slice(0, 10))
     const [r_id, setRId] = useState<number | null>(null)
 
     const [i_name, setIName] = useState("")
@@ -88,13 +89,13 @@ export default function ReceiptForm({ aiReceipt, onSubmit }: ReceiptFormProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [aiReceipt, storeChains])
 
-    async function createReceipt(s_id: number, username: string) {
+    async function createReceipt(s_id: number, username: string, r_date: string) {
         try {
             const res = await fetch(
                 "https://nsnnfm38da.execute-api.us-east-1.amazonaws.com/prod/createReceipt",
                 {
                     method: "POST",
-                    body: JSON.stringify({ s_id, username })
+                    body: JSON.stringify({ s_id, username, r_date })
                 }
             )
 
@@ -229,10 +230,14 @@ export default function ReceiptForm({ aiReceipt, onSubmit }: ReceiptFormProps) {
             setError("Add at least one item before submitting")
             return
         }
+        if (!date) {
+            setError("Select a date")
+            return
+        }
 
         try {
             setIsSubmitting(true)
-            const receiptId = await createReceipt(s_id as number, username)
+            const receiptId = await createReceipt(s_id as number, username, date)
             await addItems(receiptId as number, items)
             setMessage("Receipt submitted")
             setItems([])
@@ -262,6 +267,18 @@ export default function ReceiptForm({ aiReceipt, onSubmit }: ReceiptFormProps) {
                     setSId(Number.isNaN(parsed) ? null : parsed)
                 }}
             />
+
+            <br />
+            <div>
+                <label htmlFor="receiptDate">Date</label>
+                <input
+                    id="receiptDate"
+                    type="date"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                    required
+                />
+            </div>
             
             {isAdding && (
             <>
