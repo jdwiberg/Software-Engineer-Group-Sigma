@@ -1,9 +1,12 @@
 'use client';
 import { useEffect, useState } from 'react';
 
+
+
 type Store = {
   s_id: number;
   s_address: string;
+  revenue: number;
 };
 
 type StoreChain = {
@@ -12,6 +15,7 @@ type StoreChain = {
   c_url: string;
   stores: Store[];
 };
+
 
 export default function Stores() {
   const [storeChains, setStoreChains] = useState<StoreChain[]>([]);
@@ -29,31 +33,41 @@ export default function Stores() {
           )
           
           const data = await res.json()
+          console.log("Raw API response:", data)
   
-          let body
-          let result
+          let body: any = {};
           try {
             body = JSON.parse(data.body);
-            result = body.storeChains
+            console.log("Parsed body:", body)
           } catch (err) {
             console.error("Failed to parse body", err);
+            body = {};
           }
   
           if (data.statusCode != 200) {
-              setError(data.error)
+              setError(body?.error || data.error || "Failed to fetch store chains")
           } else {
-              setMessage(body.message)
-              setStoreChains(
-                body.storeChains.map((sc: any) => ({
+              setMessage(body?.message || "")
+              const chains = (body?.storeChains || []).map((sc: any) => ({
                     c_id: sc.c_id,
                     c_name: sc.c_name,
                     c_url: sc.c_url,
-                    stores: sc.store
+                    stores: (sc.store || []).map((store: any) => {
+                      console.log("Store object:", store)
+                      return {
+                        s_id: store.s_id,
+                        s_address: store.s_address,
+                        revenue: store.revenue ?? 0,
+                      }
+                    }),
                 }))
-              )
+              console.log("Mapped chains:", chains)
+              console.log("Full chain details:", JSON.stringify(chains, null, 2))
+              setStoreChains(chains)
           }
       } catch (err) {
           console.error("something went wrong: ", err);
+          setError("Network error fetching store chains");
       }
     
     }
@@ -138,15 +152,26 @@ export default function Stores() {
         storeChains.map((chain) => (
           <div key={chain.c_id} className="border-b mb-4 pb-2">
 
-            {/* Chain heading */}
-            <h2 className="font-semibold">{chain.c_name}
 
-              <button
-                className="text-red-600 ml-4"
-                onClick={() => deleteStoreChain(chain.c_id)}
-              >Delete</button>
-              
+            {/* Chain heading */}
+            <h2 className="font-semibold">{chain.c_name + "  "}
+            <button 
+                    className="text-red-600 ml-4"
+                    onClick={() => deleteStoreChain(chain.c_id)}
+                  >Delete</button>
             </h2>
+            <h3>
+              {(() => {
+              const totalRevenue = chain.stores.reduce((sum, store) => sum + (store.revenue ?? 0), 0);
+              return (
+                <div>
+                  Total Revenue: ${totalRevenue.toFixed(2)}
+                </div>
+              );
+            })()}
+          </h3>
+              
+            
             {chain.c_url && (
               <a href={chain.c_url} className="text-blue-600 underline">
                 {chain.c_url}
@@ -158,13 +183,14 @@ export default function Stores() {
               <ul className="pl-6 mt-2 list-disc">
                 {chain.stores.map((store) => (
                   <li key={store.s_id} className="flex justify-between items-center">
-                    <span>{store.s_address}</span>
 
+                    <span>{store.s_address}</span>
+                    
                     <button
                       className="text-red-600 ml-4"
                       onClick={() => deleteStore(store.s_id)}
                     >Delete</button>
-                    
+
                   </li>
                 ))}
               </ul>

@@ -18,7 +18,7 @@ Shopping List Use Cases for Shopper
 - ~~Create Shopping List (Tim)~~
 - ~~Add Item To Shopping List (Tim)~~
 - ~~Remove Item From Shopping List (Tim)~~
-- Report Options For Shopping List (Tim)
+- ~~Report Options For Shopping List (Tim, Jake)~~
 
 Store Use Cases for Shopper
 - ~~List Store Chains (Jake)~~

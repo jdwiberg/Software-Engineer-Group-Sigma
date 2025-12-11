@@ -51,43 +51,48 @@ export default function RegisterShopperPage() {
     }
   }
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <h1>Register Shopper</h1>
-      <form onSubmit={handleSubmit}>
+    <div>
+      <div>        
+        <button type="button" onClick={() => router.push("./")}>Back</button>
+      </div>
+      <div className="center-page">
+        <h1>Register Shopper</h1>
+        <form className="login-form" onSubmit={handleSubmit}>
 
-        <input 
-          name='username'
-          type="text"
-          placeholder='Username'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
+          <input 
+            name='username'
+            type="text"
+            placeholder='Username'
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
 
-        <input 
-          name='password'
-          type="text" 
-          placeholder='Password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+          <input 
+            name='password'
+            type="text" 
+            placeholder='Password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
-        <button 
-        type='submit'
-        disabled={isSubmitting}
-        >
-        {isSubmitting ? "Registering... " : "Submit" }
-        </button>
-      </form>
+          <button 
+          type='submit'
+          disabled={isSubmitting}
+          >
+          {isSubmitting ? "Registering... " : "Submit" }
+          </button>
+        </form>
 
-      {message && (
-        <p>{message}</p>
-      )}
-      {error && (
-        <p>{error}</p>
-      )}
+        {message && (
+          <p>{message}</p>
+        )}
+        {error && (
+          <p>{error}</p>
+        )}
 
+      </div>
     </div>
   );
 }
