@@ -349,10 +349,15 @@ export default function Lists() {
       }
 
     const findSimilarItems = ( target: string, comps: ReceiptItem[] ) => {
+        const t = target.toLowerCase()
+        let comp
         let sims = []
         for (let i = 0; i < comps.length; i++) {
-            const score = stringSimilarity.compareTwoStrings(target.toLowerCase(), comps[i].i_name)
-            if (score > 0.69) {
+            comp = comps[i].i_name.toLowerCase()
+            const score = stringSimilarity.compareTwoStrings(t, comp)
+            if (score > 0.7) {
+                sims.push(comps[i])
+            } else if (comp.includes(t) || t.includes(comp)) {
                 sims.push(comps[i])
             }
         }
@@ -362,56 +367,56 @@ export default function Lists() {
 
 
     return (
-    <div style={{ display: 'flex', gap: '20px' }}>
-        <div style={{ flex: 1 }}>
+    <div className="shopping-lists">
+        <div className="shopping-panel">
             <h1>Create List</h1>
-            <form onSubmit={submitList}>
+            <form onSubmit={submitList} className="form-stack">
+                <input 
+                    name='listName'
+                    type="text"
+                    placeholder='List Name'
+                    value={listName}
+                    onChange={(e) => setListName(e.target.value)}
+                    required
+                />
 
-            <input 
-                name='listName'
-                type="text"
-                placeholder='List Name'
-                value={listName}
-                onChange={(e) => setListName(e.target.value)}
-                required
-            />
-
-            <button 
-            type='submit'
-            disabled={isSubmitting}
-            >
-            {isSubmitting ? "Making list... " : "Create List" }
-            </button>
+                <button 
+                type='submit'
+                disabled={isSubmitting}
+                >
+                {isSubmitting ? "Making list... " : "Create List" }
+                </button>
             </form>
             {shoppingLists.length > 0 ? (
             <>
-                <ul>
+                <ul className="list-grid">
                 {shoppingLists.map((shoppingList) => (
-                    <li key={shoppingList.sl_id}>
-                    <strong>List:</strong> {shoppingList.sl_name} 
-                        <button onClick={() => {reportOptions(shoppingList.sl_id), setListForOptions(shoppingList.sl_name)}}>Show Options</button> <br />
-                    <strong>Date Created:</strong> {formatDate(shoppingList.sl_date)} <br />
-                    <button
-                        onClick={() => {
-                            setSelectedList(shoppingList);
-                            showItems(shoppingList.sl_id);
-                            setOpen(true);
-                        }}
-                        className="px-4 py-2 bg-blue-500 text-white rounded"
-                    >
-                        View {shoppingList.sl_name}
-                    </button>
-                    <button
-                        type='button'
-                        disabled={isDeleting && selectedList?.sl_id === shoppingList.sl_id}
-                        onClick={() => {
-                            // ensure the UI knows which list is being deleted
-                            setSelectedList(shoppingList);
-                            removeList(shoppingList.sl_id);
-                        }}
-                    >
-                        {isDeleting && selectedList?.sl_id === shoppingList.sl_id ? "Deleting... " : "Delete list"}
-                    </button>
+                    <li key={shoppingList.sl_id} className="list-card">
+                        <div><strong>List:</strong> {shoppingList.sl_name}</div>
+                        <div><strong>Date Created:</strong> {formatDate(shoppingList.sl_date)}</div>
+                        <div className="card-actions">
+                            <button onClick={() => {reportOptions(shoppingList.sl_id), setListForOptions(shoppingList.sl_name)}}>Show Options</button>
+                            <button
+                                onClick={() => {
+                                    setSelectedList(shoppingList);
+                                    showItems(shoppingList.sl_id);
+                                    setOpen(true);
+                                }}
+                            >
+                                View {shoppingList.sl_name}
+                            </button>
+                            <button
+                                type='button'
+                                disabled={isDeleting && selectedList?.sl_id === shoppingList.sl_id}
+                                onClick={() => {
+                                    // ensure the UI knows which list is being deleted
+                                    setSelectedList(shoppingList);
+                                    removeList(shoppingList.sl_id);
+                                }}
+                            >
+                                {isDeleting && selectedList?.sl_id === shoppingList.sl_id ? "Deleting... " : "Delete list"}
+                            </button>
+                        </div>
                     </li>
                 ))}
                 </ul>
@@ -450,7 +455,7 @@ export default function Lists() {
                     </button>
 
                     <h2>Add Item</h2>
-                    <form onSubmit={addListItem}>
+                    <form onSubmit={addListItem} className="form-stack">
                     <input 
                         name='itemName'
                         type="text"
@@ -488,10 +493,12 @@ export default function Lists() {
             <p>No items found</p>
             )}
         </div>
-        <div style={{ flex: 1 }}>
+        <div className="options-panel">
             {showOptions && <div>
-                <h1>Purchasing Options for {listForOptions}</h1>
-                <button type="button" onClick={() => setShowOptions(false)}>Hide</button>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <h1>Purchasing Options for: {listForOptions}</h1>
+                    <button type="button" onClick={() => setShowOptions(false)}>Hide</button>
+                </div>
                 {Object.entries(options).map(([sli_name, items]) => (
                     <div key={sli_name} style={{ marginBottom: "1rem" }}>
                         <h3>{sli_name}</h3>

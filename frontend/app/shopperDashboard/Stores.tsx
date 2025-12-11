@@ -168,6 +168,7 @@ export default function Stores() {
 
     return (
     <div>
+    <div>
         {error && <p>{error}</p>}
         {message && <p>{message}</p>}
         <button disabled={adding} onClick={() => setAdding(true)}>Add Store Chain</button>
@@ -197,9 +198,11 @@ export default function Stores() {
                 <button type="button" onClick={() => setAdding(false)}>Cancel</button>
             </form>
         )}
+        </div>
+        <div>
         {storeChains.length > 0? (
             storeChains.map((chain: any) => (
-            <div key={chain.c_id}>
+            <div className="store" key={chain.c_id}>
                 <h2>{chain.c_name}</h2>
                 <a href={chain.c_url}>{chain.c_url}</a>
                 {addingStoreChainId === chain.c_id ? (
@@ -269,6 +272,7 @@ export default function Stores() {
         ) : (
             <p>{(loading) ? "Loading..." : "No Stores Yet!"}</p>
         )}
+    </div>
     </div>
     )
 }

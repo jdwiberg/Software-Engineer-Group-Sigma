@@ -47,4 +47,136 @@ body {
   align-items: center;     /* center horizontally */
 }
 
+.receipt {
+  border: 1px solid #0a0a0a;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 12px auto;
+  max-width: 720px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  background: #fff;
+}
 
+.store {
+  border: 1px solid #0a0a0a;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 12px auto;
+  max-width: 720px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  background: #fff;
+  position: relative;
+}
+
+.store button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.header button {
+  position: static;
+  padding: 8px 12px;
+  margin: 0 6px;
+}
+
+.review-page {
+  margin-left: 250px;
+  margin-right: 250px;
+  display: flex;
+  gap: 100px;
+}
+
+.shopping-lists {
+  margin: 24px auto;
+  padding: 0 24px;
+  max-width: 960px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.shopping-panel {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  padding: 16px 18px;
+}
+
+.list-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0 0;
+}
+
+.list-card {
+  border: 1px solid #d8d8d8;
+  border-radius: 8px;
+  padding: 12px;
+  background: #fafafa;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.list-card .card-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.list-card strong {
+  display: inline-block;
+  min-width: 105px;
+}
+
+.form-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 8px 0 16px 0;
+}
+
+.form-stack input,
+.form-stack select,
+.form-stack button {
+  padding: 8px 10px;
+  border: 1px solid #cfcfcf;
+  border-radius: 6px;
+}
+
+.form-stack button {
+  background: #0a74da;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.form-stack button:disabled {
+  background: #8fb6e6;
+  cursor: not-allowed;
+}
+
+.options-panel {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  padding: 16px 18px;
+}
+
+.options-panel h3 {
+  margin: 8px 0 6px 0;
+}
