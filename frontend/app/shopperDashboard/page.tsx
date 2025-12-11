@@ -1,16 +1,15 @@
 'use client'
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Lists from "./Lists";
 import Receipts from "./Receipts";
 import Stores from "./Stores";
 import Review from "./Review"
 import { useRouter } from "next/navigation";
-import { SearchParamsContext } from "next/dist/shared/lib/hooks-client-context.shared-runtime";
 
 type Tab = "lists" | "receipts" | "stores" | "review";
 
-export default function ShopperDashboard() {
+function ShopperDashboardInner() {
   const searchParams = useSearchParams();
   const tabParam = searchParams.get("tab");
   const initialTab: Tab =
@@ -61,5 +60,13 @@ export default function ShopperDashboard() {
       {tab === "stores" && <Stores />}
       {tab === "review" && <Review />}
     </div>
+  );
+}
+
+export default function ShopperDashboard() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ShopperDashboardInner />
+    </Suspense>
   );
 }
