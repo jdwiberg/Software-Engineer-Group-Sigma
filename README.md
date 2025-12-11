@@ -1,19 +1,4 @@
-## Before Doing Any Work
-- git checkout main
-- git pull origin main
+## Site url
 
-## When you are going to do work
-Make a branch and do the work there:
-- git checkout -b branch_name
-
-## After doing your work
-- git add .
-- git commit -m 'message'
-- git push origin branch_name
-
-## After pushing
-- go into github
-- create merge request with main
-- resolve conflicts if they exist
-- merge
-- THEN DELETE YOUR BRACH - YOU WILL MAKE A NEW BRANCH FOR NEXT TIME YOU DO WORK
+- Admin Password: groupsigma69!
+- url: 
