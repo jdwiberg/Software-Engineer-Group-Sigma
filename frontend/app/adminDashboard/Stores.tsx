@@ -152,15 +152,26 @@ export default function Stores() {
         storeChains.map((chain) => (
           <div key={chain.c_id} className="border-b mb-4 pb-2">
 
-            {/* Chain heading */}
-            <h2 className="font-semibold">{chain.c_name}
 
-              <button 
-                className="text-red-600 ml-4"
-                onClick={() => deleteStoreChain(chain.c_id)}
-              >Delete</button>
-              
+            {/* Chain heading */}
+            <h2 className="font-semibold">{chain.c_name + "  "}
+            <button 
+                    className="text-red-600 ml-4"
+                    onClick={() => deleteStoreChain(chain.c_id)}
+                  >Delete</button>
             </h2>
+            <h3>
+              {(() => {
+              const totalRevenue = chain.stores.reduce((sum, store) => sum + (store.revenue ?? 0), 0);
+              return (
+                <div>
+                  Total Revenue: ${totalRevenue.toFixed(2)}
+                </div>
+              );
+            })()}
+          </h3>
+              
+            
             {chain.c_url && (
               <a href={chain.c_url} className="text-blue-600 underline">
                 {chain.c_url}
@@ -179,10 +190,6 @@ export default function Stores() {
                       className="text-red-600 ml-4"
                       onClick={() => deleteStore(store.s_id)}
                     >Delete</button>
-                    
-                    <ul>
-                    <li> Revenue: ${store.revenue.toFixed(2)} </li>
-                    </ul>
 
                   </li>
                 ))}
