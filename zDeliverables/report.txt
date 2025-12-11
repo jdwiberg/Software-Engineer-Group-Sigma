@@ -1,0 +1,3598 @@
+commit 25ec166ef2a80bb6bf0f82d9d6e16cd874fd025a
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 11 17:38:08 2025 -0500
+
+    gitignore change
+
+ .gitignore         | 13 ++++++++++++-
+ backend/.gitignore |  2 +-
+ 2 files changed, 13 insertions(+), 2 deletions(-)
+
+commit 958d3cbc1a55e2e4e6c137971d3107703df51f16
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 11 17:31:44 2025 -0500
+
+    readme changes
+
+ README.md | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+commit 98010f4c4a0112a3e56d4f2d85b6c69b65e20372
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 11 17:04:27 2025 -0500
+
+    bucket stuff
+
+ README.md               | 21 +++------------------
+ frontend/next.config.ts |  3 +--
+ 2 files changed, 4 insertions(+), 20 deletions(-)
+
+commit fd651f4699526427ea1721ad0ec73c1b64d21c8f
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 11 16:33:30 2025 -0500
+
+    fix
+
+ frontend/app/shopperDashboard/page.tsx | 13 ++++++++++---
+ frontend/next.config.ts                |  3 ++-
+ 2 files changed, 12 insertions(+), 4 deletions(-)
+
+commit 02b074431b3ab267e240c9270acd61b53c7bcf7e
+Merge: 95dba70 1cb5cc6
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Thu Dec 11 16:12:51 2025 -0500
+
+    Merge pull request #152 from jdwiberg/dev
+    
+    merging main
+
+commit 1cb5cc6a5f6bb76946cccdcc429dc299f971473b
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 11 16:11:54 2025 -0500
+
+    packages
+
+ backend/package-lock.json | 9 +--------
+ 1 file changed, 1 insertion(+), 8 deletions(-)
+
+commit 356cdf2d9c4739ceebfc6e93ab9d8bc0b427d3d5
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 11 16:03:44 2025 -0500
+
+    total revenue fix
+
+ frontend/app/adminDashboard/Stores.tsx | 29 ++++++++++++++++++-----------
+ 1 file changed, 18 insertions(+), 11 deletions(-)
+
+commit 744dba03799488dfba1a520f9ff755ce65d5eac3
+Merge: a2c0f12 76e481e
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Thu Dec 11 15:56:47 2025 -0500
+
+    Merge pull request #151 from jdwiberg/jake/fixes
+    
+    Jake/fixes
+
+commit 76e481eda70e79c2a0ea5c1117154d8630bd8cd1
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 11 15:56:07 2025 -0500
+
+    fixed purchasing options
+
+ frontend/app/shopperDashboard/Lists.tsx | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+commit 0afa598f544342e23f38f932ff87f906e5ae4498
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 11 15:46:22 2025 -0500
+
+    css fixes
+
+ frontend/app/globals.css                   | 132 +++++++++++++++++++++++++++++
+ frontend/app/shopperDashboard/Lists.tsx    |  98 ++++++++++-----------
+ frontend/app/shopperDashboard/Receipts.tsx |   6 +-
+ frontend/app/shopperDashboard/Review.tsx   |   2 +-
+ frontend/app/shopperDashboard/Stores.tsx   |   6 +-
+ frontend/app/shopperDashboard/page.tsx     |  14 +--
+ 6 files changed, 200 insertions(+), 58 deletions(-)
+
+commit a2c0f127c4cd84797755637435ba11f63bc868a7
+Merge: b531e03 e9eeb7c
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Thu Dec 11 15:08:37 2025 -0500
+
+    Merge pull request #150 from jdwiberg/jake/manual-dates
+    
+    manual date creation
+
+commit e9eeb7c77e5f1f023da938e8de20147f98c3a008
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 11 15:08:05 2025 -0500
+
+    manual date creation
+
+ backend/lib/createReceipt/createReceipt.mjs        | 13 +++++++-----
+ frontend/app/aa-utils/formatDate.ts                |  6 ++----
+ .../shopperDashboard/createReceipt/ReceiptForm.tsx | 23 +++++++++++++++++++---
+ 3 files changed, 30 insertions(+), 12 deletions(-)
+
+commit b531e0318f7a394177a0ae3f1b2260724a1e0de6
+Merge: d67683d ceade41
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Thu Dec 11 14:48:58 2025 -0500
+
+    Merge pull request #149 from jdwiberg/jake/recents
+    
+    recent purchase all category
+
+commit ceade4103e3e3b88a1b7fe28b3e013206f9783d7
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 11 14:48:18 2025 -0500
+
+    recent purchase all category
+
+ backend/lib/searchRecentPurchases/searchRecentPurchases.mjs | 4 ++--
+ frontend/app/shopperDashboard/Review.tsx                    | 9 ++++-----
+ 2 files changed, 6 insertions(+), 7 deletions(-)
+
+commit d67683dd51b6ad2376d35bf6b2ebd3d5cff328c7
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 11 14:36:22 2025 -0500
+
+    backend fix
+
+ backend/lib/searchRecentPurchases/searchRecentPurchases.mjs | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 428ce79fba5d526787583f0f06a6f8fed2b33c8c
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 11 14:31:52 2025 -0500
+
+    recent purchases fix
+
+ frontend/app/shopperDashboard/Review.tsx | 68 +++++++++++++++++---------------
+ frontend/package-lock.json               | 12 ------
+ 2 files changed, 36 insertions(+), 44 deletions(-)
+
+commit 0e33509d18d7b43b51d8fc06e64a66bfb8f31089
+Merge: 576e94b b8f1eac
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Thu Dec 11 14:26:24 2025 -0500
+
+    Merge pull request #148 from jdwiberg/Tim
+    
+    fixed dates for reviewActivity
+
+commit b8f1eaca725f1bcbf617441c365b59862a084978
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Thu Dec 11 14:25:58 2025 -0500
+
+    fixed dates for reviewActivity
+
+ backend/lib/reviewActivity/reviewActivity.mjs |  15 ++--
+ frontend/app/shopperDashboard/Review.tsx      |  52 +++++++-----
+ frontend/package-lock.json                    | 113 ++++++++++++++++++++++++++
+ frontend/package.json                         |   2 +
+ 4 files changed, 155 insertions(+), 27 deletions(-)
+
+commit 576e94b9514c82147fb24dc5d3e64112e03759e0
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 11 13:30:35 2025 -0500
+
+    small change
+
+ frontend/app/adminDashboard/page.tsx | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 5935757374fd19d7980dc5fb13eebe3123e2d5fc
+Merge: d5ee8bb 1a032ca
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Thu Dec 11 13:30:07 2025 -0500
+
+    Merge pull request #143 from jdwiberg/jake/admin
+    
+    admin dash fix
+
+commit d5ee8bbd0a633e9b7c3983d2fd0b6086708af28e
+Merge: bda1da4 61023fc
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Thu Dec 11 13:29:51 2025 -0500
+
+    Merge pull request #142 from jdwiberg/Tim
+    
+    adding show options for {listName} for frontend
+
+commit 1a032ca7ba037b33dabcf493bcc19de5a117c3f7
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 11 13:27:47 2025 -0500
+
+    admin dash fix
+
+ frontend/app/adminDashboard/page.tsx | 20 ++++++++++++++------
+ 1 file changed, 14 insertions(+), 6 deletions(-)
+
+commit 61023fc36316eae877caef002598e9e92cdc4b3f
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Thu Dec 11 13:14:14 2025 -0500
+
+    adding show options for {listName} for frontend
+
+ frontend/app/shopperDashboard/Lists.tsx | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+commit bda1da4e3911af361ff15cd0b9e4a43a91898a1a
+Merge: 346de2a d8533d0
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Thu Dec 11 13:11:20 2025 -0500
+
+    Merge pull request #141 from jdwiberg/andreas2
+    
+    Fixed return store revenue from the getStoreChains query
+
+commit d8533d091981125567eb30e78a276771cdd19570
+Merge: fd144c2 346de2a
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Thu Dec 11 13:11:09 2025 -0500
+
+    Merge branch 'dev' into andreas2
+
+commit fd144c2907b433546108f92991cd2cebe0d263f3
+Author: Andreas Keating <aplandolit@wpi.edu>
+Date:   Thu Dec 11 12:37:57 2025 -0500
+
+    Fixed return store revenue from the getStoreChains query
+
+ backend/lib/getAdminStats/getAdminStats.mjs   |  6 +--
+ backend/lib/getStoreChains/getStoreChains.mjs | 58 +++++++++++++++++----------
+ frontend/app/adminDashboard/Stores.tsx        | 41 ++++++++++++++-----
+ frontend/app/adminDashboard/page.tsx          | 14 +++----
+ 4 files changed, 77 insertions(+), 42 deletions(-)
+
+commit 346de2a72ea0895d5bd64724dcbcc62aa509e8d4
+Merge: 2195162 d3915cd
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Thu Dec 11 12:11:41 2025 -0500
+
+    Merge pull request #140 from jdwiberg/jake/css
+    
+    login centering
+
+commit 219516246223d6f7791335c92931e7c3f95b2b42
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 11 12:05:43 2025 -0500
+
+    show options bug fix
+
+ frontend/app/shopperDashboard/Lists.tsx | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit d3915cd995c1ad2948022bd9cd93eb6e4f6c7fd8
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Dec 10 19:20:35 2025 -0500
+
+    login centering
+
+ frontend/app/adminDashboard/page.tsx   |  6 ++-
+ frontend/app/globals.css               | 17 +++++++++
+ frontend/app/loginAdmin/page.tsx       |  9 ++++-
+ frontend/app/page.tsx                  |  8 ++--
+ frontend/app/registerShopper/page.tsx  | 69 ++++++++++++++++++----------------
+ frontend/app/shopperDashboard/page.tsx |  4 +-
+ 6 files changed, 73 insertions(+), 40 deletions(-)
+
+commit 45b9f2f74716981be24c31babb9c354814c8fd02
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Dec 10 18:46:49 2025 -0500
+
+    ref change
+
+ ref/use_cases_simple.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 4026f0ce95da9710274ed7543ef857b3ba9886da
+Merge: 66e8ac6 0aaa170
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Wed Dec 10 18:43:30 2025 -0500
+
+    Merge pull request #139 from jdwiberg/jake/report-options
+    
+    report options works
+
+commit 0aaa170f53dbb21ab60dc1a29f4f0dce29d4238c
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Dec 10 18:42:46 2025 -0500
+
+    report options works
+
+ backend/lib/reportOptions/reportOptions.mjs |  29 +--
+ frontend/app/shopperDashboard/Lists.tsx     | 273 ++++++++++++++++------------
+ frontend/package-lock.json                  |  20 +-
+ frontend/package.json                       |   1 +
+ 4 files changed, 176 insertions(+), 147 deletions(-)
+
+commit 66e8ac6c89f92b4c176bdfe76149702be1a663b4
+Merge: 1d36839 4795dfe
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Wed Dec 10 17:12:09 2025 -0500
+
+    Merge pull request #138 from jdwiberg/jake/report-options
+    
+    api function
+
+commit 1d368392ae0b6071cd4586e14af08929d6893846
+Merge: 95dba70 8c11dd9
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Dec 10 16:29:03 2025 -0500
+
+    Merge pull request #137 from jdwiberg/Tim
+
+commit 8c11dd92b0a02da9e4a7cee4ddebed5bc04cdf90
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Dec 10 16:28:34 2025 -0500
+
+    working backend for report options
+
+ backend/lib/reportOptions/reportOptions.mjs | 134 +++++++++++++++++++++-------
+ 1 file changed, 102 insertions(+), 32 deletions(-)
+
+commit 4795dfea755c6305ce649cb75925480b538ec8a4
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Dec 10 14:40:33 2025 -0500
+
+    api function
+
+ frontend/app/shopperDashboard/Lists.tsx | 82 +++++++++++++++++++++++++++++----
+ frontend/app/shopperDashboard/text.json | 15 ++++++
+ frontend/package-lock.json              | 10 +++-
+ frontend/package.json                   |  3 +-
+ 4 files changed, 100 insertions(+), 10 deletions(-)
+
+commit 050bc4677a6f2da5b0754ad2d00cd9512d4f62a0
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Dec 10 13:34:58 2025 -0500
+
+    added reportOptions backend
+
+ backend/lib/backend-stack.ts                |  13 ++-
+ backend/lib/reportOptions/package-lock.json | 137 ++++++++++++++++++++++++++++
+ backend/lib/reportOptions/package.json      |   8 ++
+ backend/lib/reportOptions/reportOptions.mjs |  67 ++++++++++++++
+ backend/package-lock.json                   |   9 +-
+ frontend/app/shopperDashboard/Lists.tsx     |   2 +-
+ frontend/package-lock.json                  |  12 +++
+ 7 files changed, 245 insertions(+), 3 deletions(-)
+
+commit 95dba7080dcc2fecf5d6fd7c4415e998f81ae170
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Dec 9 22:00:21 2025 -0500
+
+    aesthetics
+
+ frontend/app/shopperDashboard/Review.tsx |  2 +-
+ frontend/app/shopperDashboard/page.tsx   |  2 +-
+ ref/use_cases_sched.md                   | 36 --------------------------------
+ ref/use_cases_simple.md                  | 12 +++++------
+ 4 files changed, 8 insertions(+), 44 deletions(-)
+
+commit a52616f04b53d69c0fc7cb4921fe7a5d92e8b342
+Merge: 419f9ea a51d9e9
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Dec 9 17:05:47 2025 -0500
+
+    Merge pull request #136 from jdwiberg/Tim
+    
+    updating review tab
+
+commit a51d9e91b3d1b97e056d8ee3c279b19e72546488
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Dec 9 17:05:23 2025 -0500
+
+    updating review tab
+
+ backend/lib/reviewActivity/reviewActivity.mjs      |   8 +-
+ .../searchRecentPurchases.mjs                      |   7 +
+ frontend/app/shopperDashboard/Receipts.tsx         |   1 -
+ frontend/app/shopperDashboard/Review.tsx           | 207 ++++++++++++++++-----
+ 4 files changed, 178 insertions(+), 45 deletions(-)
+
+commit 419f9eafcd46a0ed4d72727fd41c72705f1c3ab4
+Merge: 1ea7d2d 30e65b6
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Tue Dec 9 15:58:21 2025 -0500
+
+    Merge pull request #135 from jdwiberg/jake/ai
+    
+    ai working!
+
+commit 30e65b6988911a7ddcbe414e7d01d253fadab49a
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Dec 9 15:57:28 2025 -0500
+
+    ai working!
+
+ .../createReceipt/StoreDropdown.tsx                |  6 ++--
+ .../app/shopperDashboard/createReceipt/page.tsx    | 41 +++++++++++++++-------
+ 2 files changed, 33 insertions(+), 14 deletions(-)
+
+commit 1ea7d2d928f9231b6bfa2bc0ab9c1ad2a9aa3bae
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Dec 9 14:15:11 2025 -0500
+
+    total + back buttons
+
+ backend/package-lock.json                  | 9 +--------
+ frontend/app/adminDashboard/page.tsx       | 1 +
+ frontend/app/loginAdmin/page.tsx           | 1 +
+ frontend/app/shopperDashboard/Receipts.tsx | 8 ++++++++
+ ref/use_cases_simple.md                    | 2 +-
+ 5 files changed, 12 insertions(+), 9 deletions(-)
+
+commit 2c3b4c9ab3aa05f8d0a44bc1007b94838c2fb1dc
+Merge: d90d767 2f9e60d
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Dec 8 21:25:14 2025 -0500
+
+    Merge pull request #134 from jdwiberg/Tim
+    
+    added review activity backend
+
+commit 2f9e60d181d85943561e27aac1783c15a79acf5d
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Dec 8 21:24:58 2025 -0500
+
+    added review activity backend
+
+ backend/lib/backend-stack.ts                  |  14 +++
+ backend/lib/reviewActivity/package-lock.json  | 146 ++++++++++++++++++++++++++
+ backend/lib/reviewActivity/package.json       |   8 ++
+ backend/lib/reviewActivity/reviewActivity.mjs |  66 ++++++++++++
+ backend/package-lock.json                     |   9 +-
+ 5 files changed, 242 insertions(+), 1 deletion(-)
+
+commit d90d767e066af40516354bfb3c20544d016b57fd
+Merge: dcaa714 1aaff7d
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Mon Dec 8 16:27:00 2025 -0500
+
+    Merge pull request #133 from jdwiberg/jake/auth
+    
+    Jake/auth
+
+commit 1aaff7db18eb1c2c6037f23700f34e059176f89b
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Mon Dec 8 16:26:37 2025 -0500
+
+    ref change
+
+ ref/use_cases_simple.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit f77e9822923b841101813b9091f53189126f3d6f
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Mon Dec 8 16:24:24 2025 -0500
+
+    recent purchases quick fix
+
+ frontend/app/shopperDashboard/Review.tsx | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit dcaa714131f1ca719dbefbe07b5d044c18b2c4e1
+Merge: 2f457de 02338f3
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Mon Dec 8 13:49:24 2025 -0500
+
+    Merge pull request #132 from jdwiberg/jake/auth
+    
+    Jake/auth
+
+commit 02338f3a71ec5ad6dedf7fc5b9e13f6466125c08
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Mon Dec 8 13:47:13 2025 -0500
+
+    quick auth fix
+
+ frontend/app/adminDashboard/page.tsx   |  9 ++++++---
+ frontend/app/loginAdmin/page.tsx       |  2 ++
+ frontend/app/shopperDashboard/page.tsx | 10 +++++++++-
+ 3 files changed, 17 insertions(+), 4 deletions(-)
+
+commit dec0868a9d14414775e80856db9114a52072e17e
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Mon Dec 8 13:33:03 2025 -0500
+
+    button removed
+
+ frontend/app/loginAdmin/page.tsx | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 2f457ded90fd240c091d4817cc99c225d31390fc
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Mon Dec 8 13:17:28 2025 -0500
+
+    file names
+
+ backend/package-lock.json              | 323 +--------------------------------
+ install-mods.js => install-all-mods.js |  19 +-
+ install-missing-mods.js                |  19 +-
+ 3 files changed, 22 insertions(+), 339 deletions(-)
+
+commit b8daa754f2801960b1b088dd3aa8c247a795effd
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Mon Dec 8 13:14:48 2025 -0500
+
+    small changes
+
+ backend/lib/getAdminStats/getAdminStats.mjs | 5 -----
+ ref/use_cases_simple.md                     | 2 +-
+ 2 files changed, 1 insertion(+), 6 deletions(-)
+
+commit 498fada4bee2a968dbf8615726c9191168a07448
+Merge: 012c3f4 f702dd2
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Mon Dec 8 13:10:48 2025 -0500
+
+    Merge pull request #131 from jdwiberg/Tim
+    
+    frontend additions on review
+
+commit 012c3f436ebc544152a3a96294256bf49568bebd
+Merge: 54c29dd 34f3506
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Mon Dec 8 13:10:10 2025 -0500
+
+    Merge pull request #130 from jdwiberg/andreas2
+    
+    Andreas2
+
+commit 54c29dd3c1eafb9c1edbc46d5f423412b14baa48
+Merge: 4a3a7fd 0de72e0
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Mon Dec 8 13:09:38 2025 -0500
+
+    Merge pull request #129 from jdwiberg/jake/ai
+    
+    Jake/ai
+
+commit 0de72e0b65703bdee95ae11a3164743a0b54a304
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Mon Dec 8 13:08:35 2025 -0500
+
+    ai logic works, cors error
+
+ .../app/shopperDashboard/createReceipt/page.tsx    | 34 +++++++++++++++++-----
+ 1 file changed, 26 insertions(+), 8 deletions(-)
+
+commit 34f35063dff6eaa781a44b5688940a7ee31d9f93
+Author: Andreas Keating <aplandolit@wpi.edu>
+Date:   Mon Dec 8 12:27:20 2025 -0500
+
+    Moddified use_case_simple.md accordingly, and made small code clean ups in adminDashboard frontend
+
+ frontend/app/adminDashboard/Stores.tsx | 13 +++++++------
+ frontend/app/adminDashboard/page.tsx   | 23 +++++++++--------------
+ ref/use_cases_simple.md                |  2 +-
+ 3 files changed, 17 insertions(+), 21 deletions(-)
+
+commit 2c94134cc3f2ca546f558cab7b3737083c21f773
+Author: Andreas Keating <aplandolit@wpi.edu>
+Date:   Sun Dec 7 20:28:57 2025 -0500
+
+    Added individual store-chain revenues to Admin Dashboard
+
+ backend/lib/getAdminStats/getAdminStats.mjs | 32 +++++++++++++++++++++++++++--
+ frontend/app/adminDashboard/page.tsx        | 11 +++++++++-
+ 2 files changed, 40 insertions(+), 3 deletions(-)
+
+commit 944a74d1fbee5784c1eb565f4575c7b9bd8358f5
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Sat Dec 6 18:03:51 2025 -0500
+
+    ai update 5
+
+ .../app/shopperDashboard/createReceipt/Dropbox.tsx |  46 +++-------
+ .../shopperDashboard/createReceipt/ReceiptForm.tsx |  66 ++++++++++++--
+ .../createReceipt/StoreDropdown.tsx                |  46 +++++++---
+ .../app/shopperDashboard/createReceipt/page.tsx    | 100 ++++++++++++++-------
+ 4 files changed, 175 insertions(+), 83 deletions(-)
+
+commit b0ade9c9979683e5b0889a6453be438cb20e9378
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Sat Dec 6 15:36:13 2025 -0500
+
+    sys prompt import
+
+ frontend/app/shopperDashboard/createReceipt/Dropbox.tsx     |  2 +-
+ frontend/app/shopperDashboard/createReceipt/page.tsx        | 13 +++++++------
+ .../createReceipt/{sys_prompt.txt => sys_prompt.ts}         |  7 ++++---
+ 3 files changed, 12 insertions(+), 10 deletions(-)
+
+commit 80aa2534e9a6c387423ee4b41e41ffc3214aba9a
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Sat Dec 6 15:19:44 2025 -0500
+
+    frontend ai logic
+
+ .../app/shopperDashboard/createReceipt/Dropbox.tsx |  52 +++++++++--
+ .../app/shopperDashboard/createReceipt/page.tsx    |  47 +++++++++-
+ .../shopperDashboard/createReceipt/sys_prompt.txt  |  57 +++++++++++
+ frontend/package-lock.json                         | 104 +++++++++++++--------
+ frontend/package.json                              |   3 +-
+ 5 files changed, 209 insertions(+), 54 deletions(-)
+
+commit 4a3a7fd8d696822ed4f54cab4df7fb395fadcece
+Merge: 07be2b9 2dfb223
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Fri Dec 5 13:45:15 2025 -0500
+
+    Merge pull request #127 from jdwiberg/jake/ai
+    
+    Jake/ai
+
+commit 2dfb2231c1b2d3e26078251c72d0580d7d2ff6b4
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Fri Dec 5 13:43:02 2025 -0500
+
+    ai removing
+
+ backend/lib/backend-stack.ts                       |  11 -
+ backend/lib/createReceiptAI/createReceiptAI.mjs    |  91 ----
+ backend/lib/createReceiptAI/package-lock.json      | 506 ---------------------
+ backend/lib/createReceiptAI/package.json           |  13 -
+ backend/lib/createReceiptAI/sys_prompt.txt         |  57 ---
+ backend/package.json                               |   5 +-
+ .../app/shopperDashboard/createReceipt/page.tsx    |  31 +-
+ 7 files changed, 2 insertions(+), 712 deletions(-)
+
+commit e36b4f7290903630b1b68b831a8b85f430ad9de5
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Fri Dec 5 12:16:37 2025 -0500
+
+    ai fixes + module loading
+
+ backend/lib/backend-stack.ts                    |   2 +-
+ backend/lib/createReceiptAI/createReceiptAI.mjs |   7 +-
+ backend/lib/createReceiptAI/package-lock.json   | 285 +++++++++++++++++++++++-
+ backend/lib/createReceiptAI/package.json        |   3 +-
+ backend/package-lock.json                       | 266 +++++++++++++++++++++-
+ backend/package.json                            |   3 +-
+ install-missing-mods.js                         |  37 +++
+ 7 files changed, 593 insertions(+), 10 deletions(-)
+
+commit f702dd2c25d5d2ad93dfe369677c7f9b34074589
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Thu Dec 4 22:33:40 2025 -0500
+
+    frontend additions on review
+
+ frontend/app/shopperDashboard/Review.tsx | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit b7dcfac0eda060c7a4b8c4fb57dc30c3bd35d29e
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 4 19:58:16 2025 -0500
+
+    .env fix
+
+ backend/lib/backend-stack.ts                    | 4 ++--
+ backend/lib/createReceiptAI/createReceiptAI.mjs | 5 ++---
+ 2 files changed, 4 insertions(+), 5 deletions(-)
+
+commit 3a4d4945f524e75b16da61bc433ae59b161c428c
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 4 19:49:10 2025 -0500
+
+    dotenv fix
+
+ .gitignore                                      |  3 ++-
+ backend/lib/createReceiptAI/createReceiptAI.mjs |  2 ++
+ backend/lib/createReceiptAI/package-lock.json   | 13 +++++++++++++
+ backend/lib/createReceiptAI/package.json        |  1 +
+ 4 files changed, 18 insertions(+), 1 deletion(-)
+
+commit 002bf3f8b77efa1e03c545c363ab68139a696a51
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 4 19:32:32 2025 -0500
+
+    ai backend fix
+
+ backend/lib/createReceiptAI/createReceiptAI.mjs | 3 +++
+ backend/lib/createReceiptAI/sys_prompt.txt      | 3 +++
+ 2 files changed, 6 insertions(+)
+
+commit 07be2b9178376909ad99ec6e8407bab2a2ff4551
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 4 19:24:37 2025 -0500
+
+    package lock
+
+ backend/lib/createReceiptAI/package-lock.json | 210 ++++++++++++++++++++++++++
+ 1 file changed, 210 insertions(+)
+
+commit 97a21f31ee58d64a7b6c60f374dcf6f18964b3e9
+Merge: 97a5106 62595d9
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Thu Dec 4 19:23:03 2025 -0500
+
+    Merge pull request #125 from jdwiberg/jake/ai
+    
+    ai backend
+
+commit 62595d9c33066433b2ab11f9e10d6c55bb8c5690
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 4 19:22:24 2025 -0500
+
+    ai backend
+
+ backend/lib/backend-stack.ts                    |  3 +-
+ backend/lib/createReceiptAI/createReceiptAI.mjs | 67 +++++++++++++++-------
+ backend/lib/createReceiptAI/package.json        |  5 +-
+ backend/lib/createReceiptAI/sys_prompt.txt      | 54 ++++++++++++++++++
+ backend/package-lock.json                       | 75 ++++++++++++++++++++++---
+ backend/package.json                            |  5 +-
+ 6 files changed, 177 insertions(+), 32 deletions(-)
+
+commit 97a5106514a59785e6e6cd6d9abfd3a75ae91d9b
+Merge: 3e22b8e a8240ba
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Thu Dec 4 17:54:29 2025 -0500
+
+    Merge pull request #124 from jdwiberg/jake/ai
+    
+    first ai handler
+
+commit a8240ba838b99a0a831bc3c896769f4fda92dc08
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 4 17:54:02 2025 -0500
+
+    first ai handler
+
+ backend/lib/backend-stack.ts                       | 12 +++++
+ backend/lib/createReceipt/createReceipt.mjs        |  2 +-
+ backend/lib/createReceiptAI/createReceiptAI.mjs    | 59 ++++++++++++++++++++++
+ backend/lib/createReceiptAI/package.json           |  8 +++
+ .../app/shopperDashboard/createReceipt/page.tsx    | 34 ++++++++++++-
+ 5 files changed, 113 insertions(+), 2 deletions(-)
+
+commit 3e22b8edf78eee4573070e338e296949c3ab8bf1
+Merge: b6b6cdf 111a7c8
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Thu Dec 4 16:43:53 2025 -0500
+
+    Merge pull request #123 from jdwiberg/Tim
+    
+    continued work on search recent purchases
+
+commit 111a7c8ae186e14b567bef93fd77a8608fcb8e93
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Thu Dec 4 16:43:33 2025 -0500
+
+    continued work on search recent purchases
+
+ .../searchRecentPurchases.mjs                      |  1 +
+ frontend/app/shopperDashboard/Review.tsx           | 67 ++++++++--------------
+ 2 files changed, 24 insertions(+), 44 deletions(-)
+
+commit b6b6cdf4befaf5257051de48e27506ab0d249524
+Merge: cb7b541 513226e
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Thu Dec 4 15:18:46 2025 -0500
+
+    Merge pull request #122 from jdwiberg/Tim
+    
+    updating searchRecentPurchases
+
+commit 513226e37c92a1bf2db37da6e820b289837a95b5
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Thu Dec 4 15:18:23 2025 -0500
+
+    updating searchRecentPurchases
+
+ .../lib/searchRecentPurchases/package-lock.json    |   4 +-
+ backend/lib/searchRecentPurchases/package.json     |   4 +-
+ frontend/app/shopperDashboard/Receipts.tsx         |   1 +
+ frontend/app/shopperDashboard/Review.tsx           | 184 +++++++++++++++++++++
+ frontend/app/shopperDashboard/page.tsx             |  10 +-
+ ref/SQLTools/SQLCommands.sql                       |   2 +-
+ 6 files changed, 197 insertions(+), 8 deletions(-)
+
+commit cb7b541abb6d1fbd7bf651d6aa8cf6cdcad0110d
+Merge: 7b2abfc 580c3a7
+Author: TylerGillman <tmgillman@wpi.edu>
+Date:   Thu Dec 4 14:42:12 2025 -0500
+
+    Merge pull request #121 from jdwiberg/Tyler
+    
+    Working version of remove store and store chain
+
+commit 580c3a7057634f2a63a82b7a25df64c34ae96c74
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Thu Dec 4 14:40:56 2025 -0500
+
+    Working version of remove store and store chain
+
+ frontend/app/adminDashboard/Chains.tsx | 134 ---------------------------------
+ frontend/app/adminDashboard/page.tsx   |  26 ++-----
+ 2 files changed, 8 insertions(+), 152 deletions(-)
+
+commit 7b2abfc16c1f27e05dc7363de910d8dbaadfab43
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 4 14:38:46 2025 -0500
+
+    ref change
+
+ ref/use_cases_simple.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 2c19b4be064f33d0a3107e8307e663f12e0b3878
+Merge: d80095c 77f616e
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Thu Dec 4 14:34:29 2025 -0500
+
+    Merge pull request #120 from jdwiberg/jake/base64
+    
+    base64 encoding
+
+commit d80095c76525300b3494e794a880e957cbbb9015
+Merge: d852aa0 eb39b08
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Thu Dec 4 14:34:10 2025 -0500
+
+    Merge pull request #119 from jdwiberg/jake/fix
+    
+    fix
+
+commit eb39b08bfec5a3ad5a9784e7480414c5fb668555
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 4 14:33:46 2025 -0500
+
+    fix
+
+ backend/lib/removeStoreChain/removeStoreChain.mjs | 2 +-
+ frontend/app/adminDashboard/Stores.tsx            | 3 ---
+ ref/use_cases_simple.md                           | 2 +-
+ 3 files changed, 2 insertions(+), 5 deletions(-)
+
+commit d852aa0b9716b37a691030e136c018d164ed905e
+Merge: e74f10d ad532b9
+Author: TylerGillman <tmgillman@wpi.edu>
+Date:   Thu Dec 4 14:31:04 2025 -0500
+
+    Merge pull request #118 from jdwiberg/Tyler
+    
+    Bug fixes for remove store chains
+
+commit ad532b986ef8f98b75ca0bceaed6c8c4cc224bc2
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Thu Dec 4 14:30:36 2025 -0500
+
+    Bug fixes for remove store chains
+
+ frontend/app/adminDashboard/Stores.tsx | 3 ---
+ 1 file changed, 3 deletions(-)
+
+commit e74f10ddb06b5489747df701720f918497c35939
+Merge: 97f7f3b 86aa328
+Author: TylerGillman <tmgillman@wpi.edu>
+Date:   Thu Dec 4 14:25:32 2025 -0500
+
+    Merge pull request #117 from jdwiberg/Tyler
+    
+    added remove button from store chains
+
+commit 86aa328d4158b0af8f46ce350a05b5bb14dc5195
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Thu Dec 4 14:24:39 2025 -0500
+
+    added remove button fro stroe chains
+
+ frontend/app/adminDashboard/Stores.tsx | 42 +++++++++++++++++++++++++++++++++-
+ 1 file changed, 41 insertions(+), 1 deletion(-)
+
+commit 97f7f3b2fdf6ebe8591e76437d9cf2e75944ceef
+Merge: 1bd8550 d7d9280
+Author: TylerGillman <tmgillman@wpi.edu>
+Date:   Thu Dec 4 14:12:28 2025 -0500
+
+    Merge pull request #116 from jdwiberg/Tyler
+    
+    Working front and for remove Store
+
+commit d7d9280bbfb91e85ef4d7e3725106fddc1a11c2b
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Thu Dec 4 14:11:47 2025 -0500
+
+    Working front and for remove Store
+
+ frontend/app/adminDashboard/page.tsx | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 1bd85503de137dc296cc3a2b1e8da351aa8e5e77
+Merge: 226f988 64d1da1
+Author: TylerGillman <tmgillman@wpi.edu>
+Date:   Thu Dec 4 13:49:32 2025 -0500
+
+    Merge pull request #115 from jdwiberg/Tyler
+    
+    Fixed issue with removeStore and working on front end
+
+commit 64d1da18e3ccb4382cf6e0fb8c8a71a55b7aa863
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Thu Dec 4 13:46:59 2025 -0500
+
+    Fixed issue with removeStore and working on front end
+
+ backend/lib/removeStore/removeStore.mjs |  23 +++---
+ frontend/app/adminDashboard/Chains.tsx  | 134 ++++++++++++++++++++++++++++++
+ frontend/app/adminDashboard/Stores.tsx  | 141 ++++++++++++++++++++++++++++++++
+ frontend/app/adminDashboard/page.tsx    |  71 +++++++++++-----
+ 4 files changed, 338 insertions(+), 31 deletions(-)
+
+commit 77f616ea5e80a5f14f46cdcab7c5bc8e45001de8
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 4 13:42:57 2025 -0500
+
+    base64 encoding
+
+ frontend/app/shopperDashboard/createReceipt/page.tsx | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
+
+commit 226f9882987fc59c18c03c2d158cfa59690ee1b4
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 4 13:04:33 2025 -0500
+
+    back button on receipt
+
+ frontend/app/shopperDashboard/createReceipt/page.tsx | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit c398df02dda2a0634bedce71f3aed6ced64cecdb
+Merge: 041222d cd1e753
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Thu Dec 4 12:26:03 2025 -0500
+
+    Merge pull request #114 from jdwiberg/jake/dropper
+    
+    image dropper
+
+commit cd1e753b96ce85329e5a462353dbf954ad4038ff
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Dec 4 12:25:24 2025 -0500
+
+    image dropper
+
+ .../app/shopperDashboard/createReceipt/Dropbox.tsx | 131 +++++++++++++++++++++
+ .../app/shopperDashboard/createReceipt/page.tsx    |  13 ++
+ 2 files changed, 144 insertions(+)
+
+commit 041222d6529014efeb8bf96b2eedfa90016bf289
+Merge: 5c92730 773d593
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Thu Dec 4 01:28:56 2025 -0500
+
+    Merge pull request #113 from jdwiberg/Tim
+    
+    working backend for searchRecentPurchases
+
+commit 773d593b20dfe67476e1526d24b62fbb2a28abb3
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Thu Dec 4 01:28:36 2025 -0500
+
+    working backend for searchRecentPurchases
+
+ backend/lib/backend-stack.ts                       |  13 ++
+ backend/lib/remShoppingList/remShoppingList.mjs    |   8 +-
+ .../lib/searchRecentPurchases/package-lock.json    | 146 +++++++++++++++++++++
+ backend/lib/searchRecentPurchases/package.json     |   8 ++
+ .../searchRecentPurchases.mjs                      |  67 ++++++++++
+ backend/package-lock.json                          |   9 +-
+ ref/SQLTools/SQLCommands.sql                       |   2 +-
+ 7 files changed, 247 insertions(+), 6 deletions(-)
+
+commit 5c92730027eda68a02b3f2bf861747b389f07f81
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Dec 3 19:49:27 2025 -0500
+
+    name change
+
+ install-missing-node-modules.js => install-mods.js | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 91068c2097901b35245456250dc9a0db2cefa6fb
+Merge: f0b78b2 f803857
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Wed Dec 3 19:42:47 2025 -0500
+
+    Merge pull request #112 from jdwiberg/dev
+    
+    Dev
+
+commit f8038573617a9daf1563062ef3caccfb8c997342
+Merge: 2ba7b10 de6e578
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Wed Dec 3 19:40:12 2025 -0500
+
+    Merge pull request #111 from jdwiberg/jake/urls
+    
+    ensure proper url usage
+
+commit de6e57888da8e4d37e050cbeab26dc9395fe206d
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Dec 3 19:39:38 2025 -0500
+
+    ensure proper url usage
+
+ frontend/app/aa-utils/checkURL.ts        | 9 +++++++++
+ frontend/app/shopperDashboard/Stores.tsx | 7 +++++++
+ 2 files changed, 16 insertions(+)
+
+commit 2ba7b10ce652e75e4488b91a9ded29c80a589724
+Merge: b78f1e9 85bf441
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Wed Dec 3 19:25:53 2025 -0500
+
+    Merge pull request #110 from jdwiberg/jake/address_checking
+    
+    fixed store addresses
+
+commit 85bf441b74280c8c1b782f929adab3341cf67b2c
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Dec 3 19:25:07 2025 -0500
+
+    fixed store addresses
+
+ frontend/app/page.tsx                    |  5 ++---
+ frontend/app/shopperDashboard/Stores.tsx | 36 +++++++++++++++++++++++++++++---
+ 2 files changed, 35 insertions(+), 6 deletions(-)
+
+commit b78f1e9a4c89e58ca3257ad98e245be8b0e1815a
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Dec 3 17:26:45 2025 -0500
+
+    ref update
+
+ ref/use_cases_simple.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit f23f12db7a60cc1544214edbc7aebe17e65c4ad0
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Dec 3 17:26:23 2025 -0500
+
+    formatting of dates fix
+
+ frontend/app/aa-utils/formatDate.ts        | 11 +++++++++++
+ frontend/app/shopperDashboard/Lists.tsx    |  3 ++-
+ frontend/app/shopperDashboard/Receipts.tsx |  3 ++-
+ 3 files changed, 15 insertions(+), 2 deletions(-)
+
+commit 95aa548da9a5058448835c27c81adb5c3e4d2dd8
+Merge: dde44f4 0520f77
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Wed Dec 3 17:06:56 2025 -0500
+
+    Merge pull request #109 from jdwiberg/jake/editReceiptItem
+    
+    edit item done
+
+commit 0520f772452d277163dd5014f5654a7f83fab61f
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Dec 3 17:06:08 2025 -0500
+
+    edit item done
+
+ frontend/app/shopperDashboard/createReceipt/ReceiptForm.tsx | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
+
+commit dde44f41b96c241c42300b0b0edc59642c9a5ed8
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Dec 3 16:53:38 2025 -0500
+
+    remove receipt item final
+
+ .../shopperDashboard/createReceipt/ReceiptForm.tsx | 30 +++-------------------
+ 1 file changed, 3 insertions(+), 27 deletions(-)
+
+commit 3de89da902385ecea3b5fa24bc82abc8dfe73677
+Merge: 366ecf2 51f0ea2
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Wed Dec 3 16:31:28 2025 -0500
+
+    Merge pull request #108 from jdwiberg/jake/logout
+    
+    Jake/logout
+
+commit 51f0ea2116513dd4fea5497ff01ebff10e77c159
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Dec 3 16:30:56 2025 -0500
+
+    remove receipt item
+
+ backend/lib/backend-stack.ts                       |  12 ++
+ backend/lib/removeReceiptItem/package-lock.json    | 146 +++++++++++++++++++++
+ backend/lib/removeReceiptItem/package.json         |   8 ++
+ .../lib/removeReceiptItem/removeReceiptItem.mjs    |  44 +++++++
+ frontend/app/shopperDashboard/Receipts.tsx         |  10 +-
+ .../shopperDashboard/createReceipt/ReceiptForm.tsx |  35 ++++-
+ 6 files changed, 248 insertions(+), 7 deletions(-)
+
+commit 2cf2570f3e8a2cec9d01df82d45001871654644d
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Dec 3 16:15:07 2025 -0500
+
+    loading asthetic
+
+ frontend/app/shopperDashboard/Receipts.tsx |  5 +-
+ frontend/app/shopperDashboard/Stores.tsx   |  5 +-
+ frontend/app/shopperLists/page.tsx         | 73 ------------------------------
+ 3 files changed, 8 insertions(+), 75 deletions(-)
+
+commit f13a84d9fc9982b8d3096e7b62f47e99ea93fb03
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Dec 3 16:07:56 2025 -0500
+
+    logging out functionality
+
+ frontend/app/shopperDashboard/page.tsx | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+commit 366ecf22ac3ef13d651857eec8c14265ce7d0d86
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Dec 3 14:28:23 2025 -0500
+
+    use cases update
+
+ ref/use_cases_simple.md | 46 +++++++++++++++++++++++-----------------------
+ 1 file changed, 23 insertions(+), 23 deletions(-)
+
+commit 8caff7462870df593540578111ca04314506f7e3
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Dec 3 14:03:50 2025 -0500
+
+    use cases
+
+ ref/use_cases_simple.md | 33 +++++++++++++++++----------------
+ 1 file changed, 17 insertions(+), 16 deletions(-)
+
+commit f46e6adc4d7a5d983ed476a3acd04d49512561e9
+Merge: 9bfded8 84dc955
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Wed Dec 3 13:59:18 2025 -0500
+
+    Merge pull request #101 from jdwiberg/jake/frontend
+    
+    url changes
+
+commit 84dc9552e59af8d0bc6b7c615c58754b94d0250d
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Dec 3 13:58:50 2025 -0500
+
+    url changes
+
+ frontend/app/adminDashboard/page.tsx | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+commit 9bfded8222ed502b1f532bc9b820566823b40e6e
+Merge: 32636d5 33159b9
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Dec 3 13:55:00 2025 -0500
+
+    Merge pull request #100 from jdwiberg/Tim
+    
+    shopping list dash finished!
+
+commit 33159b9277c8002817ed884b8b1b3402a6c4d4c1
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Dec 3 13:54:33 2025 -0500
+
+    shopping list dash finished!
+
+ frontend/app/shopperDashboard/Lists.tsx | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 32636d5008fbad95b530e4b7aac7864620ed72a4
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Dec 3 13:45:14 2025 -0500
+
+    temp
+
+ backend/lib/backend-stack.ts |  1 -
+ ref/use_cases_simple.md      | 31 +++++++++++++++++++++++++++++++
+ 2 files changed, 31 insertions(+), 1 deletion(-)
+
+commit 670e6ad14054eae7bde9c56d09004c5d8c769284
+Merge: 3bcb2de 78d0787
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Dec 3 13:40:04 2025 -0500
+
+    Merge pull request #99 from jdwiberg/Tim
+    
+    fixing rem list item
+
+commit 78d0787433a600c25e76474b3c97f105d0fd8280
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Dec 3 13:39:09 2025 -0500
+
+    fixing rem list item
+
+ backend/lib/remListItem/remListItem.mjs | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 3bcb2de5193a221a5500c4d611ae824af52e28bd
+Merge: d599071 324ff3d
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Dec 3 13:36:11 2025 -0500
+
+    Merge pull request #98 from jdwiberg/Tim
+    
+    fixing rem list item
+
+commit 324ff3d8c797e601fcb5bc0fb454b38f440fb609
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Dec 3 13:35:40 2025 -0500
+
+    fixing rem list item
+
+ backend/lib/remListItem/remListItem.mjs                 | 6 +++---
+ backend/lib/remShoppingListItem/remShoppingListItem.mjs | 0
+ frontend/app/shopperDashboard/Lists.tsx                 | 7 ++++---
+ 3 files changed, 7 insertions(+), 6 deletions(-)
+
+commit d599071caedf4cd1a05437d664bbe63cbc1dbe88
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Dec 3 13:30:39 2025 -0500
+
+    backend fix
+
+ backend/lib/backend-stack.ts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 4b067d284405f0a76aa90bffab434e20ab3eb23d
+Merge: e9656fa 4f521cf
+Author: Andreas Keating <68699455+AndreasKeating@users.noreply.github.com>
+Date:   Wed Dec 3 19:22:17 2025 +0100
+
+    Merge pull request #97 from jdwiberg/andreas2
+    
+    getAdminStats lambda added to backend-stack
+
+commit 4f521cf2a3402c562bc793ff1cf4c806e1b556ad
+Author: Andreas Keating <aplandolit@wpi.edu>
+Date:   Wed Dec 3 13:20:05 2025 -0500
+
+    getAdminStats lambda added to backend-stack
+
+ backend/lib/backend-stack.ts                |  13 +++
+ backend/lib/getAdminStats/package-lock.json | 146 ++++++++++++++++++++++++++++
+ backend/lib/getAdminStats/package.json      |   8 ++
+ frontend/app/adminDashboard/page.tsx        |   5 +-
+ 4 files changed, 169 insertions(+), 3 deletions(-)
+
+commit e9656faf87d91ef9c082b601a049d887d47221c5
+Merge: e67fe9b 8ce84e3
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Dec 3 13:16:50 2025 -0500
+
+    Merge pull request #96 from jdwiberg/Tim
+    
+    backend fixed for get list
+
+commit 8ce84e3e98b2824dc854d2776938ccc7695b2acf
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Dec 3 13:16:11 2025 -0500
+
+    backend fixed for get list
+
+ backend/lib/getList/getList.mjs | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit e67fe9b60b753a04013089ff5e2d61ccf6dd226f
+Merge: f0b78b2 7f8ff73
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Dec 3 13:09:32 2025 -0500
+
+    Merge pull request #95 from jdwiberg/Tim
+    
+    fixed get list function
+
+commit 7f8ff73e375c95f1e78a3f0413ce28e43b6ca15f
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Dec 3 13:09:08 2025 -0500
+
+    fixed get list function
+
+ backend/lib/getList/getList.mjs         | 14 +++----
+ frontend/app/shopperDashboard/Lists.tsx | 71 ++++++++++++++++++++++++++++-----
+ 2 files changed, 67 insertions(+), 18 deletions(-)
+
+commit f0b78b21f504fff42916df896f5af7f33c2deac4
+Merge: 91bf1a2 c0819a3
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Tue Dec 2 14:02:53 2025 -0500
+
+    Merge pull request #88 from jdwiberg/dev
+    
+    Dev
+
+commit c0819a3a63636d92b20738fde035345394a4c3af
+Merge: 57803ac 6b47d63
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Tue Dec 2 14:02:27 2025 -0500
+
+    Merge pull request #87 from jdwiberg/jake/deleter
+    
+    Jake/deleter
+
+commit 6b47d63f3be1dc8ce1bb586d2123fd91cc5d2838
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Dec 2 14:01:40 2025 -0500
+
+    backend deleting
+
+ frontend/app/shopperDashboard/Receipts.tsx | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+
+commit ca0f65acd1469fb6266ed665800e3d9c18e0ef40
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Dec 2 14:01:17 2025 -0500
+
+    delete receipt
+
+ backend/lib/backend-stack.ts                |  15 ++-
+ backend/lib/removeReceipt/package-lock.json | 146 ++++++++++++++++++++++++++++
+ backend/lib/removeReceipt/package.json      |   8 ++
+ backend/lib/removeReceipt/removeReceipt.mjs |  44 +++++++++
+ 4 files changed, 211 insertions(+), 2 deletions(-)
+
+commit 57803ac08b1d8192b12141a1cc2bfbfe44b03001
+Merge: 807aab5 0f3a07f
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Dec 2 13:54:03 2025 -0500
+
+    Merge pull request #86 from jdwiberg/Tim
+    
+    getList update
+
+commit 0f3a07f62b0ea39fed35b47810b8100210ef4c97
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Dec 2 13:53:46 2025 -0500
+
+    getList update
+
+ backend/lib/getList/getList.mjs | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 807aab56f0a4c520d24ea39a8dac5d8e7f1a7501
+Merge: a326801 ceb72d7
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Dec 2 13:52:24 2025 -0500
+
+    Merge pull request #85 from jdwiberg/Tim
+    
+    backend finished for remlistitem
+
+commit ceb72d77ee055637d6e6d6bb252ce382032f3703
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Dec 2 13:51:57 2025 -0500
+
+    backend finished for remlistitem
+
+ backend/lib/remListItem/remListItem.mjs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit a326801861f0621befdf8750a0562299397c0b56
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Dec 2 13:26:40 2025 -0500
+
+    dependencies helper
+
+ install-missing-node-modules.js | 42 +++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
+
+commit 91bf1a2fdeb5ccd1566f107136fe141deca43d29
+Merge: 61f4956 d075740
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Mon Dec 1 13:58:27 2025 -0500
+
+    Merge pull request #84 from jdwiberg/jake/receipts
+    
+    Jake/receipts
+
+commit 944b06efdf3edcb9fd10be69250244a82a14be4a
+Merge: 2ef040d 95b5216
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Mon Dec 1 13:58:03 2025 -0500
+
+    Merge pull request #83 from jdwiberg/jake/addstore
+    
+    Jake/addstore
+
+commit 95b521605f92bb2a013c8d2b44eda958bce6d15e
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Mon Dec 1 13:57:28 2025 -0500
+
+    implemented adding store
+
+ backend/lib/addStore/addStore.mjs           |  55 +++++++++++
+ backend/lib/addStore/package-lock.json      | 146 ++++++++++++++++++++++++++++
+ backend/lib/addStore/package.json           |   8 ++
+ backend/lib/addStoreChain/addStoreChain.mjs |   1 -
+ backend/lib/backend-stack.ts                |  12 +++
+ frontend/app/shopperDashboard/Stores.tsx    |  80 +++++++++++++++
+ 6 files changed, 301 insertions(+), 1 deletion(-)
+
+commit 2ef040d245fafa16c9d003e68654c30f4f7b5167
+Merge: e6fa4f1 ec21f5e
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Dec 1 13:43:56 2025 -0500
+
+    Merge pull request #82 from jdwiberg/Tim
+    
+    added remListItem lambda func
+
+commit ec21f5ef7823cd48e2c3710ded566ad577756299
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Dec 1 13:43:12 2025 -0500
+
+    added remListItem lambda func
+
+ backend/lib/backend-stack.ts                       |  16 ++-
+ backend/lib/remListItem/package-lock.json          | 146 +++++++++++++++++++++
+ backend/lib/remListItem/package.json               |   8 ++
+ backend/lib/remListItem/remListItem.mjs            |  44 +++++++
+ .../remShoppingListItem/remShoppingListItem.mjs    |   0
+ 5 files changed, 212 insertions(+), 2 deletions(-)
+
+commit d075740c0c2ac0c888ebad3d5db5ac2a48e59306
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Mon Dec 1 13:41:34 2025 -0500
+
+    fixed nav after creating receipt
+
+ .../shopperDashboard/createReceipt/ReceiptForm.tsx   |  2 +-
+ frontend/app/shopperDashboard/page.tsx               | 20 +++++++++++++++++---
+ 2 files changed, 18 insertions(+), 4 deletions(-)
+
+commit e6fa4f116663e1cf9119c38c881a1d9502f97c51
+Merge: 4aeab4c 3ee7cd0
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Mon Dec 1 13:36:18 2025 -0500
+
+    Merge pull request #81 from jdwiberg/jake/sl
+    
+    shopping list issue closed
+
+commit 3ee7cd0066a128b02c7a2ee2dc34954b026cdf8a
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Mon Dec 1 13:35:10 2025 -0500
+
+    shopping list issue closed
+
+ frontend/app/shopperDashboard/Lists.tsx            | 36 +++++++++++++++++++---
+ .../shopperDashboard/createReceipt/ReceiptForm.tsx | 24 ++++++++++++++-
+ 2 files changed, 55 insertions(+), 5 deletions(-)
+
+commit 4aeab4c7a1b2315514b872e167f2a82062a2cb80
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Mon Dec 1 13:21:35 2025 -0500
+
+    fixed list bug
+
+ frontend/app/shopperDashboard/Lists.tsx | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+commit fa0acc0ec77c41494a92889d9a9be28f9be3b6c9
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Mon Dec 1 13:13:45 2025 -0500
+
+    fixed refreshes
+
+ frontend/app/shopperDashboard/Lists.tsx | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
+
+commit 862f598560f37132677c223a5c49b21efd62509e
+Merge: 61f4956 41a77db
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Mon Dec 1 12:12:55 2025 -0500
+
+    Merge pull request #74 from jdwiberg/andreas2
+    
+    Andreas2
+
+commit 41a77dbae3144d4bef5ffa925064713989e5ed4e
+Merge: ad26e57 61f4956
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Mon Dec 1 12:12:33 2025 -0500
+
+    Merge branch 'dev' into andreas2
+
+commit ad26e5701768f04817cb720f1a68612d69483b06
+Author: Andreas Keating <aplandolit@wpi.edu>
+Date:   Wed Nov 26 13:00:37 2025 +0100
+
+    hooked up admin stats fetch
+
+ .../app/adminDashboard/{pages.tsx => page.tsx}     | 39 ++++++++++++++++++----
+ 1 file changed, 32 insertions(+), 7 deletions(-)
+
+commit 72cc3b6936b3a38803e193078e8a94cdb5a7ce15
+Author: Andreas Keating <aplandolit@wpi.edu>
+Date:   Wed Nov 26 12:31:26 2025 +0100
+
+    added getAdminStats lambda for adminDashboard
+
+ backend/lib/getAdminStats/getAdminStats.mjs | 85 +++++++++++++++++++++++++++++
+ 1 file changed, 85 insertions(+)
+
+commit 10e22e0385c9727191b81cf183b3035759461a31
+Author: Andreas Keating <aplandolit@wpi.edu>
+Date:   Wed Nov 26 09:55:50 2025 +0100
+
+    adminDashboard with mok data for now
+
+ backend/lib/getReceiptItems/getReceiptItems.mjs |  2 +-
+ frontend/app/adminDashboard/pages.tsx           | 61 +++++++++++++++++++++++++
+ package-lock.json                               |  6 +++
+ 3 files changed, 68 insertions(+), 1 deletion(-)
+
+commit 61f49569f0621e04631f29a02b2cc7de8dc38aed
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Nov 25 16:33:16 2025 -0500
+
+    fix config for local use
+
+ frontend/next.config.ts | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit 97f3eb454d149e8285a680d2aa0a977d75165f92
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Nov 25 16:30:19 2025 -0500
+
+    remvoe local storage
+
+ frontend/app/page.tsx | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 93f2f8b8888916078bcea6736c2a03139e945c90
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Nov 25 16:28:15 2025 -0500
+
+    final fixings
+
+ frontend/app/adminDashboard/page.tsx                        | 8 +-------
+ frontend/app/page.tsx                                       | 1 +
+ frontend/app/shopperDashboard/createReceipt/ReceiptForm.tsx | 4 ++++
+ frontend/next.config.ts                                     | 2 ++
+ 4 files changed, 8 insertions(+), 7 deletions(-)
+
+commit fd1330a299d7785732270178998c25165ad3655c
+Merge: 89f2802 8bd3fed
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Tue Nov 25 14:53:13 2025 -0500
+
+    Merge pull request #73 from jdwiberg/dev
+    
+    Dev
+
+commit 8bd3fed3326bb41c37864b36ba058232bb2bb7fe
+Merge: c133a57 a371ee1
+Author: TylerGillman <tmgillman@wpi.edu>
+Date:   Tue Nov 25 14:52:50 2025 -0500
+
+    Merge pull request #72 from jdwiberg/Tyler
+    
+    Added loginAdmin front end
+
+commit a371ee121bf7c783f8c6f716e42091be532af23f
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Tue Nov 25 14:52:16 2025 -0500
+
+    Added loginAdmin front end
+
+ frontend/app/loginAdmin/page.tsx | 83 ++++++++++++++++++++++++++++++++++++++++
+ frontend/app/page.tsx            |  2 +
+ 2 files changed, 85 insertions(+)
+
+commit c133a57d5401f7cc2f6b80ba7a2d518ed0494ed9
+Merge: 9a45272 1829977
+Author: TylerGillman <tmgillman@wpi.edu>
+Date:   Tue Nov 25 14:39:48 2025 -0500
+
+    Merge pull request #71 from jdwiberg/Tyler
+    
+    Changes to remove use cases, admin login, and use cases sched
+
+commit 1829977b9f84fd4fb9d0bc1e817488da65a4d7ea
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Tue Nov 25 14:37:55 2025 -0500
+
+    Added eror catches to remove store use cases, updted login admin, updated use cases sched
+
+ backend/lib/loginAdmin/loginAdmin.mjs             |  1 +
+ backend/lib/removeStore/removeStore.mjs           |  3 +++
+ backend/lib/removeStoreChain/removeStoreChain.mjs |  5 ++++-
+ backend/package-lock.json                         |  9 +--------
+ frontend/package-lock.json                        | 12 ------------
+ ref/use_cases_sched.md                            |  9 +++++----
+ 6 files changed, 14 insertions(+), 25 deletions(-)
+
+commit 89f2802f5b6a3e8f5fa15d82b358184e867664bc
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Nov 25 14:27:54 2025 -0500
+
+    fixed env
+
+ backend/lib/backend-stack.ts | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 96cfca145ab86ef2e903082ef85009231207d4c7
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Nov 25 14:16:01 2025 -0500
+
+    fix pipeline
+
+ frontend/app/registerShopper/page.tsx | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit a1ff17032f51113926b7d8f8981dcf3c32ba5a8d
+Merge: b4964fb 9a45272
+Author: TylerGillman <tmgillman@wpi.edu>
+Date:   Tue Nov 25 14:11:21 2025 -0500
+
+    Merge pull request #70 from jdwiberg/dev
+    
+    Merging dev changes into main
+
+commit 9a45272c0636be41b534ede1d38b2bdf1cca1471
+Merge: df30093 785ab82
+Author: TylerGillman <tmgillman@wpi.edu>
+Date:   Tue Nov 25 14:08:04 2025 -0500
+
+    Merge pull request #69 from jdwiberg/Tyler
+    
+    Added error catch
+
+commit 785ab82ea34fb80720517037d4e200cb07f6cc2e
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Tue Nov 25 14:07:37 2025 -0500
+
+    Added error catch
+
+ backend/lib/loginAdmin/loginAdmin.mjs | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+commit df30093d4eb8f3095aa3124029e173e6608193f4
+Merge: 39cbfa7 4026f9a
+Author: TylerGillman <tmgillman@wpi.edu>
+Date:   Tue Nov 25 14:07:03 2025 -0500
+
+    Merge pull request #68 from jdwiberg/Tyler
+    
+    Bug fix in remove store chain and added a test case for login admin
+
+commit b4964fbf95a2388a1c545756da5329eb1e0149d1
+Merge: 71398ec 39cbfa7
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Tue Nov 25 14:05:44 2025 -0500
+
+    Merge pull request #67 from jdwiberg/dev
+    
+    Dev
+
+commit 39cbfa70840f3860938305a715c40d8e1baaafdf
+Merge: 9955947 bbbc77e
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 25 14:04:10 2025 -0500
+
+    Merge pull request #66 from jdwiberg/Tim
+    
+    working list dash
+
+commit bbbc77e73057c44fc9495dabe0df5aedda31ba26
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 25 14:03:41 2025 -0500
+
+    working list dash
+
+ frontend/app/shopperDashboard/Lists.tsx | 108 +++++++++++++++++++++++++++-----
+ 1 file changed, 91 insertions(+), 17 deletions(-)
+
+commit 4026f9a7cd53c619740a423f73d41870164d9dd9
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Tue Nov 25 14:01:01 2025 -0500
+
+    Bug fix in remove store chain and added a test case for login admin
+
+ backend/lib/removeStoreChain/removeStoreChain.mjs | 3 +--
+ backend/test/loginAdmin/invalid.json              | 3 +++
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
+commit 9955947f812b87f37d8264925a7abd082a0b111d
+Merge: 07e3481 9f4243d
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Tue Nov 25 13:54:11 2025 -0500
+
+    Merge pull request #65 from jdwiberg/jake/receipt
+    
+    fixing receipt frontend
+
+commit 9f4243d3c00cc2a97d62503962ab2065a77189e0
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Nov 25 13:53:35 2025 -0500
+
+    fixing receipt frontend
+
+ frontend/app/shopperDashboard/Receipts.tsx | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+commit 07e348134d5111b1f547542a61fcd40b34faef75
+Merge: 5123da2 2bae40b
+Author: TylerGillman <tmgillman@wpi.edu>
+Date:   Tue Nov 25 13:53:03 2025 -0500
+
+    Merge pull request #64 from jdwiberg/Tyler
+    
+    Added functions to the backend stack
+
+commit 2bae40baa7ec29f00cdda8f91bf6986338691456
+Merge: b351303 5123da2
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Tue Nov 25 13:52:33 2025 -0500
+
+    Added functions to the backend stack
+
+commit b351303034d8428bb53edca937ce820de9b436a8
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Tue Nov 25 13:48:39 2025 -0500
+
+    Added functions to the backend stack
+
+ backend/lib/backend-stack.ts | 25 ++++++++++++++++++++++++-
+ 1 file changed, 24 insertions(+), 1 deletion(-)
+
+commit 5123da2c1257a179be99044deb801c77db898b13
+Merge: 53c3c5c c8a0b6d
+Author: TylerGillman <tmgillman@wpi.edu>
+Date:   Tue Nov 25 13:44:28 2025 -0500
+
+    Merge pull request #63 from jdwiberg/Tyler
+    
+    Bugfix for loginAdmin by removing type check
+
+commit c8a0b6d16d69acb4d7bc3938317248cdd48cc858
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Tue Nov 25 13:43:53 2025 -0500
+
+    Bugfix for loginAdmin by removing type check
+
+ backend/lib/loginAdmin/loginAdmin.mjs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 53c3c5c6dd164ef6f0fdd606c770d325e0249782
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Nov 25 13:40:49 2025 -0500
+
+    receipt fix
+
+ backend/lib/getReceiptItems/getReceiptItems.mjs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit c084984631a7109d66ae66e5947abf3ef69d4e4a
+Merge: 95ef882 ef89a33
+Author: TylerGillman <tmgillman@wpi.edu>
+Date:   Tue Nov 25 13:34:34 2025 -0500
+
+    Merge pull request #62 from jdwiberg/Tyler
+    
+    Bugfix for loginAdmin
+
+commit ef89a3372dd6988cbaf9cb0c4f60e4df33314c18
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Tue Nov 25 13:32:27 2025 -0500
+
+    Bugfix for loginAdmin
+
+ backend/lib/loginAdmin/loginAdmin.mjs | 3 ---
+ 1 file changed, 3 deletions(-)
+
+commit 95ef882e46662780f6c15af076a2075f93f933ad
+Merge: 732bfe9 b74e3f8
+Author: TylerGillman <tmgillman@wpi.edu>
+Date:   Tue Nov 25 13:27:20 2025 -0500
+
+    Merge pull request #61 from jdwiberg/Tyler
+    
+    Bugfix for loginAdmin
+
+commit b74e3f877d93de1d5b6960a9c7bfe010354b6473
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Tue Nov 25 13:26:37 2025 -0500
+
+    Bugfix for loginAdmin
+
+ backend/lib/loginAdmin/loginAdmin.mjs | 15 +++++----------
+ 1 file changed, 5 insertions(+), 10 deletions(-)
+
+commit 732bfe9063e41869a6d23411d5e182c1dcfb2a19
+Merge: c82a69a 1248eea
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Tue Nov 25 13:18:35 2025 -0500
+
+    Merge pull request #60 from jdwiberg/jake/receipts
+    
+    receipt update
+
+commit 1248eea252732c1e34dd2700efc70642bc0f59ac
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Nov 25 13:17:40 2025 -0500
+
+    receipt update
+
+ backend/lib/backend-stack.ts               | 2 +-
+ frontend/app/shopperDashboard/Receipts.tsx | 6 +++---
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+commit c82a69a2b79e05c79e2ffa1e011b445548bb6da3
+Merge: 187ebac d8681d9
+Author: TylerGillman <tmgillman@wpi.edu>
+Date:   Tue Nov 25 13:08:47 2025 -0500
+
+    Merge pull request #59 from jdwiberg/Tyler
+    
+    Fixed bug with checking admin username
+
+commit d8681d975515f78ba8e50d1cc218be2bbd41c988
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Tue Nov 25 13:08:07 2025 -0500
+
+    Fixed bug with checking admin username
+
+ backend/lib/loginAdmin/loginAdmin.mjs | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+commit 187ebaccad81711b074dfc9dc7f8eccd534a12a4
+Merge: 671dad3 267c00a
+Author: TylerGillman <tmgillman@wpi.edu>
+Date:   Tue Nov 25 13:05:56 2025 -0500
+
+    Merge pull request #58 from jdwiberg/Tyler
+    
+    Updated to use hard coded Admin Pass
+
+commit 267c00ab361265143f17c91196ca6dca1ff3c012
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Tue Nov 25 13:04:26 2025 -0500
+
+    Updated to use hard coded Admin Pass
+
+ backend/lib/loginAdmin/loginAdmin.mjs | 18 ++----------------
+ 1 file changed, 2 insertions(+), 16 deletions(-)
+
+commit 671dad3b0dbfe2e759cf7191be52e998ca286a87
+Merge: 939837d 3840510
+Author: TylerGillman <tmgillman@wpi.edu>
+Date:   Tue Nov 25 12:26:43 2025 -0500
+
+    Merge pull request #57 from jdwiberg/Tyler
+    
+    Added removeStore use case and package lock files
+
+commit 38405101fe2638c9d2830feed5d7d8be000d8d69
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Tue Nov 25 12:24:49 2025 -0500
+
+    updated use cases sched
+
+ ref/use_cases_sched.md | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 1cc739339a6e3ab4417fcd4e74ff91820abd55c4
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Tue Nov 25 12:22:52 2025 -0500
+
+    Added the remove store use case and added package locks to remove store and remove store chain
+
+ backend/lib/removeStore/package-lock.json | 146 ++++++++++++++++++++++++++++++
+ backend/lib/removeStore/package.json      |   8 ++
+ backend/lib/removeStore/removeStore.mjs   |  47 ++++++++++
+ 3 files changed, 201 insertions(+)
+
+commit 9597d5bcb3231ad8ba9de1b7ffd5eef08f4343e7
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Tue Nov 25 12:21:54 2025 -0500
+
+    Added the remove store use case and added package locks to remove store and remove store chain
+
+ backend/lib/removeStoreChain/package-lock.json | 146 +++++++++++++++++++++++++
+ 1 file changed, 146 insertions(+)
+
+commit 939837df5af3d367afc3de1d3a0948626e545d05
+Merge: 3c0f8c9 1cd85c8
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 25 12:14:34 2025 -0500
+
+    Merge pull request #56 from jdwiberg/Tim
+    
+    added backend for adding list item
+
+commit 1cd85c8fb7b5516b13f91b5c4fa31d60c80e20fd
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 25 12:13:53 2025 -0500
+
+    added backend for adding list item
+
+ backend/lib/addListItem/addListItem.mjs   |  51 +++++++++++
+ backend/lib/addListItem/package-lock.json | 146 ++++++++++++++++++++++++++++++
+ backend/lib/addListItem/package.json      |   8 ++
+ backend/lib/backend-stack.ts              |  12 +++
+ backend/package-lock.json                 |   9 +-
+ 5 files changed, 225 insertions(+), 1 deletion(-)
+
+commit 3c0f8c930e2ec7c0a9190445855bb27927c7b959
+Merge: 64ca52b 48ff46b
+Author: TylerGillman <tmgillman@wpi.edu>
+Date:   Tue Nov 25 12:12:00 2025 -0500
+
+    Merge pull request #55 from jdwiberg/Tyler
+    
+    Updated the use cases tracking file
+
+commit 48ff46b6e248e0d23206b04f84ca5b5ed3b0466c
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Tue Nov 25 12:10:29 2025 -0500
+
+    Updated use cases status, fixed spelling mistake
+
+ ref/use_cases_sched.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 10416765a97cf30595242bdd0aafa93bdfc41840
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Tue Nov 25 12:08:15 2025 -0500
+
+    Updated use cases status
+
+ ref/use_cases_sched.md | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+commit 64ca52b1801f7855ce617a348f6a43c894d5957b
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Nov 25 11:59:40 2025 -0500
+
+    cleaned up node modules
+(jake deleted all the node modules)
+ 7484 files changed, 1 insertion(+), 975539 deletions(-)
+
+commit da6db53eb151466f9ab7cce46376efa0b6d63c64
+Merge: e6c1024 6f43586
+Author: TylerGillman <tmgillman@wpi.edu>
+Date:   Tue Nov 25 11:52:02 2025 -0500
+
+    Merge pull request #54 from jdwiberg/Tyler
+    
+    Added RemoveStoreChain
+
+commit 6f43586e128782dfc8a53d814a6c5f17342acf1d
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Tue Nov 25 11:48:17 2025 -0500
+
+    Added remove sttore chain
+
+ backend/lib/removeStoreChain/removeStoreChain.mjs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit c30d8cb4f023b7e6fdee7c5f3fe48a9bbd04721a
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Tue Nov 25 11:44:15 2025 -0500
+
+    Added remove sttore chain
+
+ backend/lib/removeStoreChain/removeStoreChain.mjs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit b318e6ddccadba1cd6c837b77c18596139cc6ac3
+Merge: a70cf36 e6c1024
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Tue Nov 25 11:39:05 2025 -0500
+
+    Merge branch 'dev' of https://github.com/jdwiberg/Software-Engineer-Group-Sigma into Tyler
+
+commit e6c102454f2bde1000b9a49190666b0e6b714afd
+Merge: 8748d27 fb82e2c
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 25 11:24:17 2025 -0500
+
+    Merge pull request #53 from jdwiberg/Tim
+    
+    delete shopping list fully working
+
+commit fb82e2c5defddfbb37372e453942da7247ecc65a
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 25 11:23:32 2025 -0500
+
+    delete shopping list fully working
+
+ backend/lib/addShoppingList/addShoppingList.mjs |  2 +-
+ backend/lib/getShopperLists/getShopperLists.mjs |  1 +
+ frontend/app/shopperDashboard/Lists.tsx         | 58 ++++++++++++++++++++++---
+ 3 files changed, 53 insertions(+), 8 deletions(-)
+
+commit 8748d27de006f2814a451cec374b9002bee5e1a6
+Merge: 18c17ee e4a9f2b
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 25 10:33:57 2025 -0500
+
+    Merge pull request #52 from jdwiberg/Tim
+    
+    added remove shopping list
+
+commit e4a9f2b32a7480aa79b1cae52346d49f896fddbf
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 25 10:33:27 2025 -0500
+
+    added remove shopping list
+
+ backend/lib/backend-stack.ts                    |  16 ++-
+ backend/lib/remShoppingList/package-lock.json   | 146 ++++++++++++++++++++++++
+ backend/lib/remShoppingList/package.json        |   8 ++
+ backend/lib/remShoppingList/remShoppingList.mjs |  44 +++++++
+ 4 files changed, 212 insertions(+), 2 deletions(-)
+
+commit 18c17ee1e5f58e480a9cd95b32d6341ce17fb5de
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Nov 25 01:49:17 2025 -0500
+
+    frontend fix
+
+ .../shopperDashboard/createReceipt/ReceiptForm.tsx | 113 +++++++++++----------
+ 1 file changed, 62 insertions(+), 51 deletions(-)
+
+commit 64d57aa41019437d7f81e90a871950b5ce8776c3
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Nov 25 01:34:25 2025 -0500
+
+    receipt stuff
+
+ backend/lib/addReceiptItems/addReceiptItems.mjs    |  2 +-
+ backend/lib/createReceipt/createReceipt.mjs        |  6 +-
+ .../shopperDashboard/createReceipt/ReceiptForm.tsx | 74 +++++++++++++++++++---
+ .../app/shopperDashboard/createReceipt/page.tsx    |  2 +-
+ 4 files changed, 71 insertions(+), 13 deletions(-)
+
+commit d9c630215a54902157db46213d79deb84bb99278
+Merge: 2e3d9d4 e03040e
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 25 01:30:27 2025 -0500
+
+    Merge pull request #51 from jdwiberg/Tim
+    
+    addShoppingList fully working
+
+commit e03040e48fa6dd1fabcd7f5ff202bc3249052df3
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 25 01:29:45 2025 -0500
+
+    addShoppingList fully working
+
+ frontend/app/shopperDashboard/Lists.tsx | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 2e3d9d4010e301cc2da15ef284a9de3e0c9afe37
+Merge: bf05dd0 1591a50
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 25 01:18:21 2025 -0500
+
+    Merge pull request #50 from jdwiberg/Tim
+    
+    fixing addShoppingList
+
+commit 1591a506775492846d0befce4d7e4ef49224f924
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 25 01:17:36 2025 -0500
+
+    fixing addShoppingList
+
+ backend/lib/addShoppingList/addShoppingList.mjs |  2 +-
+ frontend/app/shopperDashboard/Lists.tsx         | 70 ++++++++++++++++++++++++-
+ ref/SQLTools/SQLCommands.sql                    |  2 +-
+ 3 files changed, 70 insertions(+), 4 deletions(-)
+
+commit bf05dd01c8cbd18b93f3b2d52bae09d8cd192495
+Merge: 11f456f f6a473c
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 25 00:37:34 2025 -0500
+
+    Merge pull request #49 from jdwiberg/Tim
+    
+    updating backend stack
+
+commit f6a473c78cd775bc67d6b857c6a11f67cb23ba89
+Merge: e6946d7 11f456f
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 25 00:37:27 2025 -0500
+
+    Merge branch 'dev' into Tim
+
+commit e6946d7af8bb4037c0e5e8ed9e0172172f6dc9e5
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 25 00:34:11 2025 -0500
+
+    updating backend stack
+
+ backend/lib/backend-stack.ts | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
+
+commit 11f456fe1546770a97df157e86a932ad61d37f3e
+Merge: b3bf199 b2d43e4
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Tue Nov 25 00:33:13 2025 -0500
+
+    Merge pull request #48 from jdwiberg/jake/receipts
+    
+    creating receipts
+
+commit b3bf199cad55f64246fa4fd44c7ab56451e41711
+Merge: 30af3df badc68e
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 25 00:32:47 2025 -0500
+
+    Merge pull request #47 from jdwiberg/Tim
+    
+    created add shopping list lambda
+
+commit badc68ecc8fe36d9386a1cf362d67736abda7861
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 25 00:32:13 2025 -0500
+
+    created add shopping list lambda
+
+ backend/lib/addShoppingList/addShoppingList.mjs |  53 +++++++++
+ backend/lib/addShoppingList/package-lock.json   | 146 ++++++++++++++++++++++++
+ backend/lib/addShoppingList/package.json        |   8 ++
+ 3 files changed, 207 insertions(+)
+
+commit b2d43e49a93c00140860780c5046295b490a6220
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Nov 25 00:31:44 2025 -0500
+
+    creating receipts
+
+ backend/lib/addReceiptItems/addReceiptItems.mjs    |  56 +++++++
+ backend/lib/addReceiptItems/package-lock.json      | 146 +++++++++++++++++
+ backend/lib/addReceiptItems/package.json           |   8 +
+ backend/lib/backend-stack.ts                       |  24 +++
+ backend/lib/createReceipt/createReceipt.mjs        |  66 ++++++++
+ backend/lib/createReceipt/package-lock.json        | 146 +++++++++++++++++
+ backend/lib/createReceipt/package.json             |   8 +
+ backend/test/addReceiptItems/valid.json            |  15 ++
+ backend/test/createReceipt/valid.json              |   4 +
+ frontend/app/shopperDashboard/Receipts.tsx         |   3 +
+ .../shopperDashboard/createReceipt/ReceiptForm.tsx | 176 +++++++++++++++++++++
+ .../createReceipt/StoreDropdown.tsx                | 127 +++++++++++++++
+ .../app/shopperDashboard/createReceipt/page.tsx    |  22 +++
+ 13 files changed, 801 insertions(+)
+
+commit 30af3dfb57df3fe1e50ff41e26d3d5e3b6ec2a7f
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Mon Nov 24 22:24:56 2025 -0500
+
+    updated use case sched
+
+ ref/use_cases_sched.md | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
+
+commit b4c1b8bc232b8602c6ac585b17e8be9c8232f88e
+Merge: a01e4cf ae3af16
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Mon Nov 24 21:56:07 2025 -0500
+
+    Merge pull request #46 from jdwiberg/jake/addChain
+    
+    add store chain functionality
+
+commit ae3af16879d86e12980ac3a3f47cc1081a1b4b54
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Mon Nov 24 21:55:08 2025 -0500
+
+    add store chain functionality
+
+ backend/lib/backend-stack.ts                  |   2 +-
+ backend/lib/getStoreChains/getStoreChains.mjs |  15 +--
+ frontend/app/shopperDashboard/Stores.tsx      | 148 +++++++++++++++++++++++++-
+ 3 files changed, 155 insertions(+), 10 deletions(-)
+
+commit a01e4cf4075894b27f32927fa11163de136e5917
+Merge: 5808db2 68ed011
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Nov 24 19:31:21 2025 -0500
+
+    Merge pull request #45 from jdwiberg/Tim
+    
+    updating useful commands
+
+commit 68ed0114ceae4c9124cf828502a8aaecdb77978c
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Nov 24 19:30:39 2025 -0500
+
+    updating useful commands
+
+ ref/SQLTools/UsefulCommands.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 5808db2bd198f8d3dc5df0477559e182b90500ed
+Merge: adae6c4 a34622b
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Nov 24 17:18:16 2025 -0500
+
+    Merge pull request #44 from jdwiberg/Tim
+    
+    added instructions for installing/using SQLTools
+
+commit a34622ba96e6482d8c794c266e84896749bb8a37
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Nov 24 17:15:56 2025 -0500
+
+    added instructions for installing/using SQLTools
+
+ ref/SQLTools/SQLCommands.sql      |  1 +
+ ref/SQLTools/SetupInstructions.md | 25 +++++++++++++++++++++++++
+ ref/SQLTools/UsefulCommands.txt   | 20 ++++++++++++++++++++
+ 3 files changed, 46 insertions(+)
+
+commit adae6c44260fbd369a8545bd9851d87aba749a15
+Merge: 612c9ea 0188359
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Nov 24 16:54:58 2025 -0500
+
+    Merge pull request #43 from jdwiberg/Tim
+    
+    show list frontend now working
+
+commit 0188359495b947b1e19b6846205954eae38442dd
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Nov 24 16:54:26 2025 -0500
+
+    show list frontend now working
+
+ frontend/app/shopperDashboard/Lists.tsx | 80 +++++++++++++++++----------------
+ 1 file changed, 42 insertions(+), 38 deletions(-)
+
+commit 612c9ea49034eef5628f74bb7a4f2641e8382538
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Mon Nov 24 16:22:10 2025 -0500
+
+    temp fix
+
+ backend/lib/addStoreChain/addStoreChain.mjs        |  56 ++++++++
+ backend/lib/addStoreChain/package-lock.json        | 146 +++++++++++++++++++++
+ backend/lib/addStoreChain/package.json             |   8 ++
+ backend/lib/backend-stack.ts                       |  24 +++-
+ backend/lib/getStoreChains/getStoreChains.mjs      |  64 +++++++++
+ backend/lib/getStoreChains/package-lock.json       | 146 +++++++++++++++++++++
+ backend/lib/getStoreChains/package.json            |   8 ++
+ .../shopperDashboard/{History.tsx => Stores.tsx}   |   4 +-
+ frontend/app/shopperDashboard/page.tsx             |   8 +-
+ 9 files changed, 457 insertions(+), 7 deletions(-)
+
+commit a70cf369111a089c808ab7aec775f67f04171c7b
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Mon Nov 24 13:53:24 2025 -0500
+
+    Added remove store chain use casse
+(tyler committed his node modules)
+ 7487 files changed, 975618 insertions(+), 8 deletions(-)
+
+commit 47d41bebaf36a67def78fab3d1b7983ccd7aeade
+Merge: b460fc8 fe9c8e3
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Nov 24 13:35:27 2025 -0500
+
+    Merge pull request #40 from jdwiberg/Tim
+    
+    updated front end Lists.tsx and added getList lambda
+
+commit fe9c8e3b6e5d009a7b54200e00e5db458d0c4cb5
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Nov 24 13:34:56 2025 -0500
+
+    updated front end Lists.tsx and added getList lambda
+
+ .vscode/settings.json                   |  19 +++++
+ backend/lib/getList/getList.mjs         |   4 +-
+ frontend/app/shopperDashboard/Lists.tsx | 144 +++++++++++++++++++++++++++++++-
+ 3 files changed, 161 insertions(+), 6 deletions(-)
+
+commit b460fc85b97b57bbd1d594d67d1136af5b315f1c
+Merge: 7accd32 1a264ef
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Mon Nov 24 12:13:41 2025 -0500
+
+    Merge pull request #39 from jdwiberg/jake/hashing
+    
+    password security
+
+commit 1a264ef2fb365e3c1c42bdea2f34e3d59296f121
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Mon Nov 24 12:12:47 2025 -0500
+
+    password security
+
+ backend/lib/backend-stack.ts                    |  2 +-
+ backend/lib/loginShopper/loginShopper.mjs       | 15 +++++++++++----
+ backend/lib/loginShopper/package-lock.json      |  7 +++++++
+ backend/lib/loginShopper/package.json           |  3 ++-
+ backend/lib/registerShopper/package-lock.json   |  7 +++++++
+ backend/lib/registerShopper/package.json        |  3 ++-
+ backend/lib/registerShopper/registerShopper.mjs |  7 ++++---
+ frontend/app/globals.css                        |  7 +++++++
+ frontend/app/page.tsx                           |  3 ++-
+ frontend/app/registerShopper/page.tsx           |  4 ++++
+ 10 files changed, 47 insertions(+), 11 deletions(-)
+
+commit 7accd3235b6b085eeadeaac5318d1d326b1776ea
+Merge: 71398ec 1674210
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Nov 24 02:20:47 2025 -0500
+
+    Merge pull request #38 from jdwiberg/Tim
+    
+    finished getList.mjs lambda func
+
+commit 1674210a63dea79f417910ad0f5cdbe47421ebe8
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Nov 24 02:20:18 2025 -0500
+
+    finished getList.mjs
+
+ backend/lib/backend-stack.ts          |  15 ++++
+ backend/lib/getList/getList.mjs       |  60 ++++++++++++++
+ backend/lib/getList/package-lock.json | 146 ++++++++++++++++++++++++++++++++++
+ backend/lib/getList/package.json      |   8 ++
+ 4 files changed, 229 insertions(+)
+
+commit 71398ec31fd31c5062bf629e39af18cf9c89049e
+Merge: 0f24c50 225a009
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Sun Nov 23 20:45:33 2025 -0500
+
+    Merge pull request #37 from jdwiberg/jake/backend
+    
+    Jake/backend
+
+commit 225a009ed1174149ed769347e186b1cb93afb692
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Sun Nov 23 20:44:58 2025 -0500
+
+    show receipts use case
+
+ backend/lib/backend-stack.ts                       |  12 ++
+ backend/lib/getReceiptItems/getReceiptItems.mjs    |  73 +++++++++++
+ backend/lib/getReceiptItems/package-lock.json      | 146 +++++++++++++++++++++
+ backend/lib/getReceiptItems/package.json           |   8 ++
+ .../lib/getShopperReciepts/getShopperReciepts.mjs  |   0
+ backend/lib/getShopperReciepts/package.json        |   0
+ frontend/app/page.tsx                              |   2 +-
+ frontend/app/shopperDashboard/History.tsx          |  12 ++
+ frontend/app/shopperDashboard/Lists.tsx            |   8 ++
+ frontend/app/shopperDashboard/Receipts.tsx         | 112 ++++++++++++++++
+ frontend/app/shopperDashboard/page.tsx             |  27 ++--
+ ref/db_outline.png                                 | Bin 76226 -> 0 bytes
+ ref/dboutline.png                                  | Bin 0 -> 72937 bytes
+ 13 files changed, 390 insertions(+), 10 deletions(-)
+
+commit 97821e58dbc9a22170a13306d74217000c7358e3
+Merge: 4992d96 779b743
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Sun Nov 23 17:58:45 2025 -0500
+
+    Merge pull request #36 from jdwiberg/jake/backend
+    
+    backend additions
+
+commit 4992d9626e621508bfe08546315d8c51166529b4
+Merge: d9a9adc 3e4d588
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Sun Nov 23 17:58:29 2025 -0500
+
+    Merge pull request #35 from jdwiberg/Tim
+    
+    now can see shoppingLists
+
+commit 779b743376e7ea1a274a87087794b245fb0036d4
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Sun Nov 23 17:57:06 2025 -0500
+
+    backend additions
+
+ backend/lib/getList/getList.mjs                       | 0
+ backend/lib/getShopperReciepts/getShopperReciepts.mjs | 0
+ backend/lib/getShopperReciepts/package.json           | 0
+ backend/lib/loginShopper/loginShopper.mjs             | 2 +-
+ 4 files changed, 1 insertion(+), 1 deletion(-)
+
+commit 3e4d58820a9cecb4c06e9fe3b3dcfd0fb7d73f61
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Sun Nov 23 17:56:38 2025 -0500
+
+    now can see shoppingLists
+
+ frontend/app/shopperDashboard/page.tsx |  1 -
+ frontend/app/shopperLists/page.tsx     | 12 +++++++-----
+ 2 files changed, 7 insertions(+), 6 deletions(-)
+
+commit d9a9adc5235d4b785f6ee3955cf8ec39c6531563
+Merge: 39d1ef3 5bd6a10
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Sun Nov 23 17:32:21 2025 -0500
+
+    Merge pull request #33 from jdwiberg/Tim
+    
+    updating getShopperLists
+
+commit 39d1ef3d0281b0f54449eacfd5699dd2a5998997
+Merge: 0e580fd 894fc52
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Sun Nov 23 17:31:31 2025 -0500
+
+    Merge pull request #32 from jdwiberg/jake/frontend
+    
+    shopperList frontend
+
+commit 5bd6a102732d357a5fb0f25d6d54dfe3156e8770
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Sun Nov 23 17:31:20 2025 -0500
+
+    updating getShopperLists
+
+ backend/lib/getShopperLists/getShopperLists.mjs | 7 ++-----
+ backend/lib/loginShopper/loginShopper.mjs       | 2 +-
+ 2 files changed, 3 insertions(+), 6 deletions(-)
+
+commit 894fc52919da21e83714be88cd2a3c663f07c01b
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Sun Nov 23 17:30:51 2025 -0500
+
+    shopperList frontend
+
+ backend/lib/loginShopper/loginShopper.mjs |  4 ++--
+ frontend/app/page.tsx                     |  2 +-
+ frontend/app/shopperDashboard/page.tsx    |  3 ++-
+ frontend/app/shopperLists/page.tsx        | 38 +++++++++++++++++--------------
+ 4 files changed, 26 insertions(+), 21 deletions(-)
+
+commit 0e580fdfb4946f5eaeb73cc4e2619e2fe3551912
+Merge: e42e98b b888c4b
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Fri Nov 21 14:14:50 2025 -0500
+
+    Merge pull request #31 from jdwiberg/jake/frontend
+    
+    aws looks fine
+
+commit b888c4b90c06e3ae118cadb40fdb8fa14b024d6d
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Fri Nov 21 14:14:07 2025 -0500
+
+    aws looks fine
+
+ backend/lib/backend-stack.ts | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+commit e42e98bdd129e072bb69f766cca6d9c0a461390c
+Merge: 0f24c50 781c102
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Fri Nov 21 13:50:40 2025 -0500
+
+    Merge pull request #30 from jdwiberg/Tyler
+    
+    Worked with Andreas to set up CLI and first use case
+
+commit 781c1024ee112b4c44adf2461b6639d1515b9146
+Merge: 7e60fa0 0f24c50
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Fri Nov 21 13:49:50 2025 -0500
+
+    Merge branch 'dev' into Tyler
+
+commit 7e60fa0e634dceb21234b873c9397dbca1412054
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Fri Nov 21 13:47:08 2025 -0500
+
+    Worked with Andreas to set up CLI and first use case
+
+ backend/lib/backend-stack.ts              |  13 +++
+ backend/lib/loginAdmin/loginAdmin.mjs     |  52 +++++++++++
+ backend/lib/loginAdmin/package-lock.json  | 146 ++++++++++++++++++++++++++++++
+ backend/lib/loginAdmin/package.json       |   8 ++
+ backend/lib/loginShopper/loginShopper.mjs |   4 +-
+ 5 files changed, 221 insertions(+), 2 deletions(-)
+
+commit 0f24c50198503ff4718c4b0383bd5a55d7d3b8da
+Merge: c6ba713 f4695ee
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Fri Nov 21 13:01:49 2025 -0500
+
+    Merge pull request #29 from jdwiberg/jake/frontend
+    
+    frontend
+
+commit f4695ee95cbabf61df903948a87eaa3db174a74b
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Fri Nov 21 13:00:56 2025 -0500
+
+    frontend
+
+ frontend/app/shopperLists/page.tsx | 67 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 67 insertions(+)
+
+commit c6ba713ba003f290fa8d4f54efd7559425c5e35f
+Merge: d3b00af 6f0fbaf
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Fri Nov 21 12:49:49 2025 -0500
+
+    Merge pull request #28 from jdwiberg/Tim
+    
+    updated lambda function
+
+commit 6f0fbafc2adb732ca88978e6adcae1d1370d5b77
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Fri Nov 21 12:47:54 2025 -0500
+
+    updated lambda function
+
+ backend/lib/backend-stack.ts                             | 10 +++++-----
+ .../getShopperLists.mjs}                                 | 16 ++++++++++------
+ .../package-lock.json                                    |  4 ++--
+ .../{showShopperDash => getShopperLists}/package.json    |  4 ++--
+ backend/package-lock.json                                |  9 ++++++++-
+ 5 files changed, 27 insertions(+), 16 deletions(-)
+
+commit d3b00af649d05fb26dbd98ecfa2a7df434821d14
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Fri Nov 21 12:13:17 2025 -0500
+
+    format
+
+ backend/lib/loginShopper/loginShopper.mjs       | 4 ++--
+ backend/lib/registerShopper/registerShopper.mjs | 4 ++--
+ backend/test/loginShopper/invalid.json          | 4 ++--
+ 3 files changed, 6 insertions(+), 6 deletions(-)
+
+commit e78e900e3d6043367c06c25fc529254ec1dcb0e8
+Merge: 139b69e e1025e6
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Thu Nov 20 16:34:15 2025 -0500
+
+    Merge pull request #27 from jdwiberg/Tim
+    
+    added showShopperDash
+
+commit e1025e6f3252fcc45a691f7a3b50657c0fc32a2a
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Thu Nov 20 16:33:41 2025 -0500
+
+    added showShopperDash
+
+ backend/lib/backend-stack.ts                    |  15 ++-
+ backend/lib/showShopperDash/package-lock.json   | 146 ++++++++++++++++++++++++
+ backend/lib/showShopperDash/package.json        |   8 ++
+ backend/lib/showShopperDash/showShopperDash.mjs |  57 +++++++++
+ 4 files changed, 225 insertions(+), 1 deletion(-)
+
+commit 139b69ec7a054030219b6a9786d0ab6f2d475d53
+Merge: 57fc2a2 1ff8be2
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Thu Nov 20 12:42:32 2025 -0500
+
+    Merge pull request #26 from jdwiberg/Tim
+    
+    apis finalized
+
+commit 1ff8be2ff68ed425af18b44efbb0448aa8b2d2b0
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Thu Nov 20 12:42:08 2025 -0500
+
+    apis finalized
+
+ ref/apis.txt | 47 ++++++++++++++++-------------------------------
+ 1 file changed, 16 insertions(+), 31 deletions(-)
+
+commit 57fc2a2f5d93ced356bafdb418b6fe176fedfc1a
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Nov 19 17:00:28 2025 -0500
+
+    fixed login
+
+ backend/lib/loginShopper/loginShopper.mjs |  8 +--
+ frontend/app/page.tsx                     | 96 +++++++++++++++++++++++++++++--
+ frontend/app/registerShopper/page.tsx     |  2 +-
+ frontend/app/shopperDashboard/page.tsx    | 17 ++++++
+ 4 files changed, 111 insertions(+), 12 deletions(-)
+
+commit 51c344003d2e957e6835678d40b262a470f4e038
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Nov 19 15:53:07 2025 -0500
+
+    fixed loginShopper
+
+ backend/cdk.json                                | 1 -
+ backend/lib/registerShopper/package.json        | 2 +-
+ backend/lib/registerShopper/registerShopper.mjs | 2 +-
+ backend/test/loginShopper/invalid.json          | 4 ++--
+ backend/test/loginShopper/valid.json            | 4 ++++
+ backend/test/registerShopper/taken.json         | 4 ++++
+ 6 files changed, 12 insertions(+), 5 deletions(-)
+
+commit 0d6c1da4f0d32eaa3190b8a38aff13d7c551c32a
+Merge: 85a5d3c 369dc0d
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Wed Nov 19 15:11:26 2025 -0500
+
+    Merge pull request #25 from jdwiberg/jake/login
+    
+    quick fix
+
+commit 369dc0d1b6c4322fe28f41b39a31070775569ab5
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Nov 19 15:10:28 2025 -0500
+
+    quick fix
+
+ backend/lib/backend-stack.ts | 10 ++++++----
+ backend/package-lock.json    |  9 +--------
+ 2 files changed, 7 insertions(+), 12 deletions(-)
+
+commit 85a5d3cdeed14b952a1be3738ce34115d753d790
+Merge: fbe7ef7 b4d02d8
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Nov 19 14:47:30 2025 -0500
+
+    Merge pull request #24 from jdwiberg/Tim
+    
+    adding test
+
+commit b4d02d8532c0aff31f38394de63f2725cf9f6dde
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Nov 19 14:46:56 2025 -0500
+
+    adding test
+
+ backend/lib/backend-stack.ts              | 12 ++++++++++++
+ backend/lib/loginShopper/loginShopper.mjs |  5 ++++-
+ backend/test/loginShopper/invalid.json    |  4 ++++
+ frontend/package-lock.json                | 12 ++++++++++++
+ 4 files changed, 32 insertions(+), 1 deletion(-)
+
+commit fbe7ef7a4f0186e3e651d2c7635b19c0a8e90c23
+Merge: 2a19224 7202d76
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Nov 19 14:14:10 2025 -0500
+
+    Merge pull request #23 from jdwiberg/Tim
+    
+    pushing loginShopper
+
+commit 7202d76757c9e2a93298e5bb6ddeb3e68fd2440e
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Nov 19 14:13:07 2025 -0500
+
+    pushing loginShopper
+
+ backend/lib/loginShopper/package-lock.json | 146 +++++++++++++++++++++++++++++
+ backend/package-lock.json                  |   9 +-
+ 2 files changed, 154 insertions(+), 1 deletion(-)
+
+commit 2a1922458f92d873830abe3d49262946627c160c
+Merge: ed54223 320538a
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Nov 19 14:09:34 2025 -0500
+
+    Merge pull request #22 from jdwiberg/Tim
+    
+    added login shopper
+
+commit 320538a4e399a6a97a716acd768d59d2133994f2
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Nov 19 14:08:55 2025 -0500
+
+    added login shopper
+
+ backend/lib/loginShopper/loginShopper.mjs | 51 +++++++++++++++++++++++++++++++
+ backend/lib/loginShopper/package.json     |  8 +++++
+ 2 files changed, 59 insertions(+)
+
+commit ed542237f433b91b22cf9ed17bac79159ff74ba5
+Merge: 46b6478 86f361a
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Wed Nov 19 13:40:30 2025 -0500
+
+    Merge pull request #21 from jdwiberg/jake/ref
+    
+    assignments 1
+
+commit 86f361a36d2b204afb307ce6eb9efad4a988d5e3
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Nov 19 13:39:15 2025 -0500
+
+    assignments 1
+
+ backend/lib/backend-stack.ts |  7 +++++--
+ ref/use_cases_sched.md       | 22 ++++++++++++++--------
+ 2 files changed, 19 insertions(+), 10 deletions(-)
+
+commit 46b6478d917b5b77f6748acaf2bbcbecbb89a75f
+Merge: 5e5a175 ce69bc5
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Nov 19 11:05:44 2025 -0500
+
+    Merge pull request #20 from jdwiberg/Tim
+    
+    apis finalized
+
+commit ce69bc50883813f53236bc3c00a8d84322ffc8ac
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Nov 19 11:05:21 2025 -0500
+
+    apis finalized
+
+ ref/apis.txt | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+commit 5e5a1754eba8761af6b53f49af5965dce0af0326
+Merge: c070797 113eea5
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Tue Nov 18 19:03:01 2025 -0500
+
+    Merge pull request #19 from jdwiberg/jake/apis
+    
+    Jake/apis
+
+commit 113eea524aac0bbbf77de6039ad868b42ecb976d
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Nov 18 19:01:59 2025 -0500
+
+    registerShopper works
+
+ backend/lib/backend-stack.ts                        |  8 ++++----
+ backend/lib/registerShopper/registerShopper.mjs     | 13 ++++++-------
+ backend/test/registerShopper/one.json               |  4 ++--
+ frontend/app/page.tsx                               |  2 +-
+ frontend/app/{register => registerShopper}/page.tsx |  2 +-
+ 5 files changed, 14 insertions(+), 15 deletions(-)
+
+commit 4cd5d962489ea71c165e5f622586c349307a495c
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Nov 18 17:37:58 2025 -0500
+
+    registerShopper update 3
+
+ backend/.gitignore                                 |   2 +
+ backend/lib/backend-stack.ts                       | 108 +++++++++++++--
+ backend/lib/default/default.mjs                    |  11 ++
+ backend/lib/default/package-lock.json              |  12 ++
+ backend/lib/default/package.json                   |   5 +
+ backend/lib/registerShopper/package-lock.json      | 146 +++++++++++++++++++++
+ backend/lib/registerShopper/package.json           |   8 ++
+ .../{register.mjs => registerShopper.mjs}          |   4 +-
+ backend/package-lock.json                          |  13 ++
+ backend/package.json                               |   1 +
+ backend/test/registerShopper/one.json              |   4 +
+ 11 files changed, 300 insertions(+), 14 deletions(-)
+
+commit c070797019c04d76259d500c8218f4a975d04951
+Merge: 47aa095 027c7ef
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Tue Nov 18 14:16:35 2025 -0500
+
+    Merge pull request #18 from jdwiberg/jake/apis
+    
+    use case schedule
+
+commit 027c7ef5826cae7aaf66ceb9e54cf95bad137992
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Nov 18 13:51:44 2025 -0500
+
+    use case schedule
+
+ ref/use_cases_sched.md | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+commit 47aa09536e162be9399ee8bc61807613d4cf1fc6
+Merge: b2f7592 015b4ee
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Tue Nov 18 13:40:22 2025 -0500
+
+    Merge pull request #17 from jdwiberg/jake/apis
+    
+    fixing apis
+
+commit 015b4ee5b36e7373c8ba9a86b22a5ef17eb440db
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Nov 18 13:39:44 2025 -0500
+
+    fixing apis
+
+ backend/lib/backend-stack.ts |  36 ++++-
+ ref/apis.txt                 | 374 ++++++++++++++++++++++++++-----------------
+ 2 files changed, 256 insertions(+), 154 deletions(-)
+
+commit b2f7592e2a8cdd28af8921320f0d9fe3a273ac0f
+Merge: 95e0fe3 0614e47
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 18 13:18:06 2025 -0500
+
+    Merge pull request #16 from jdwiberg/Tim
+    
+    updating APIS
+
+commit 0614e47b4bcb5b40538a51117382c46de4ad9ad9
+Merge: 6ebbe44 95e0fe3
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 18 13:18:00 2025 -0500
+
+    Merge branch 'main' into Tim
+
+commit 95e0fe38df73cd39b5f159b89fce76ed766baa86
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Tue Nov 18 13:15:46 2025 -0500
+
+    forgot too add one API, added now
+
+ ref/apis.txt | 31 +++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+
+commit 6ebbe44ad96c9b82eda0addfa62e64f1515d8590
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 18 13:15:12 2025 -0500
+
+    updating APIS
+
+ ref/apis.txt | 71 ++++++++----------------------------------------------------
+ 1 file changed, 9 insertions(+), 62 deletions(-)
+
+commit 9c07137a8e430945e075ab200c8ac051d215f2ea
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Tue Nov 18 13:14:51 2025 -0500
+
+    added shopping list APIs
+
+ ref/apis.txt | 59 -----------------------------------------------------------
+ 1 file changed, 59 deletions(-)
+
+commit 5e5ce08c04ba5e625fd156cd774a035804fc58f2
+Merge: e07364c 8292498
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Tue Nov 18 13:09:44 2025 -0500
+
+    New pull from main
+
+commit 829249805b8c6c1bc6ead31d0e6f894f6bc6c472
+Merge: 0343c9e ffec145
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 18 01:54:00 2025 -0500
+
+    Merge pull request #15 from jdwiberg/Tim
+    
+    finishing APIs
+
+commit ffec145461c34df529eb4735c6004e9d43d5b118
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 18 01:53:29 2025 -0500
+
+    finishing APIs
+
+ ref/apis.txt | 380 +++++++++++++++++++++++++++++++++++++++++++----------------
+ 1 file changed, 277 insertions(+), 103 deletions(-)
+
+commit e07364ce366638b68cb705c74a894488d5b3110c
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Mon Nov 17 17:50:09 2025 -0500
+
+    Added API for my section
+
+ ref/apis.txt | 202 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 200 insertions(+), 2 deletions(-)
+
+commit 0343c9e2b15178a2112aefbe0262b99b5e5eb9ac
+Merge: a53ad85 7688fc0
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Mon Nov 17 15:41:18 2025 -0500
+
+    Merge pull request #14 from jdwiberg/jake/design
+    
+    Jake/design
+
+commit 7688fc0b85a088f8c782fadecf4d9322012ab2ee
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Mon Nov 17 15:40:23 2025 -0500
+
+    new db outline
+
+ ref/db_outline.png | Bin 64174 -> 76226 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit a53ad859ff813ee6e527e4e1c8211dfd7856aeb9
+Merge: d3a529c a412b26
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Nov 17 15:24:31 2025 -0500
+
+    Merge pull request #13 from jdwiberg/Tim
+    
+    finished receipt API
+
+commit a412b263d84e5ca65406ecdeb8fe386364258124
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Nov 17 15:23:29 2025 -0500
+
+    finished receipt API
+
+ ref/apis.txt | 95 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 92 insertions(+), 3 deletions(-)
+
+commit d3a529c8289dffae24263a4df639f99f629c7c18
+Merge: 5d97a34 bb39357
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Nov 17 15:03:10 2025 -0500
+
+    Merge pull request #12 from jdwiberg/Tim
+    
+    updating apis
+
+commit bb393576c37dc66d1f756c175a21ce65bc85ae75
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Nov 17 15:02:41 2025 -0500
+
+    updating apis
+
+ ref/apis.txt     | 95 +++++++++++++++++++++++++++++++++++++++++++++++++++-----
+ ref/use_cases.md | 10 +++---
+ 2 files changed, 92 insertions(+), 13 deletions(-)
+
+commit 299adec5a1b3a685ea0ecd68b3a4a9cd46f5fff4
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Mon Nov 17 14:24:23 2025 -0500
+
+    db outline
+
+ ref/db_outline.png | Bin 0 -> 64174 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 5d97a34eb2f0d505179df8df35ca6f5c01598b6a
+Merge: 5132516 b8720e3
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Nov 17 14:01:21 2025 -0500
+
+    Merge pull request #11 from jdwiberg/Tim
+    
+    updating apis
+
+commit b8720e3c64f4b6ca87d469dfd27b94987ee61041
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Nov 17 13:57:50 2025 -0500
+
+    updating apis
+
+ ref/apis.txt | 69 ++++++++++++++++++++++++++++++++++++++++++++++++++----------
+ 1 file changed, 58 insertions(+), 11 deletions(-)
+
+commit 5132516fb106551de9800158545de77866a67c2f
+Merge: d998091 3da3e4d
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Nov 17 13:01:40 2025 -0500
+
+    Merge pull request #10 from jdwiberg/Tim
+    
+    added shopper APIs
+
+commit 3da3e4d729ae35ff6cfdf1bc2b42aa0284995144
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Nov 17 13:01:03 2025 -0500
+
+    added shopper APIs
+
+ ref/apis.txt | 135 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 134 insertions(+), 1 deletion(-)
+
+commit d9980912b321d9455680f7e72e3fa034357dd14a
+Merge: f585994 39dac1a
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Sun Nov 16 21:45:46 2025 -0500
+
+    Merge pull request #9 from jdwiberg/jake/design
+    
+    Jake/design
+
+commit 39dac1a01186295c2f108e2f141711e4c7eac0b1
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Sun Nov 16 21:45:00 2025 -0500
+
+    register shopper use case 2
+
+ backend/lib/registerShopper/register.mjs |  46 +++++++---
+ backend/package-lock.json                | 139 ++++++++++++++++++++++++++++++-
+ backend/package.json                     |   5 +-
+ frontend/app/register/page.tsx           |  14 +++-
+ 4 files changed, 188 insertions(+), 16 deletions(-)
+
+commit 9923c06acb61e46743bb1622da67e38ad020bcfe
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Sun Nov 16 16:51:01 2025 -0500
+
+    init backend
+
+ AWSCLIV2.pkg                             |  Bin 0 -> 48365981 bytes
+ backend/.gitignore                       |    8 +
+ backend/.npmignore                       |    6 +
+ backend/README.md                        |   14 +
+ backend/bin/backend.ts                   |   20 +
+ backend/cdk.json                         |  101 +
+ backend/jest.config.js                   |    8 +
+ backend/lib/backend-stack.ts             |   16 +
+ backend/lib/registerShopper/register.mjs |   31 +
+ backend/package-lock.json                | 4430 ++++++++++++++++++++
+ backend/package.json                     |   26 +
+ backend/test/backend.test.ts             |   17 +
+ backend/tsconfig.json                    |   32 +
+ frontend/.gitignore                      |   41 +
+ frontend/README.md                       |   36 +
+ frontend/app/favicon.ico                 |  Bin 0 -> 25931 bytes
+ frontend/app/globals.css                 |   26 +
+ frontend/app/layout.tsx                  |   34 +
+ frontend/app/page.tsx                    |   12 +
+ frontend/app/register/page.tsx           |   79 +
+ frontend/eslint.config.mjs               |   18 +
+ frontend/next.config.ts                  |    7 +
+ frontend/package-lock.json               | 6577 ++++++++++++++++++++++++++++++
+ frontend/package.json                    |   26 +
+ frontend/postcss.config.mjs              |    7 +
+ frontend/public/file.svg                 |    1 +
+ frontend/public/globe.svg                |    1 +
+ frontend/public/next.svg                 |    1 +
+ frontend/public/vercel.svg               |    1 +
+ frontend/public/window.svg               |    1 +
+ frontend/tsconfig.json                   |   34 +
+ 31 files changed, 11611 insertions(+)
+
+commit 246dd316063527f9e3918a8e546b382d87991fac
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Sun Nov 16 14:06:50 2025 -0500
+
+    first apis
+
+ ref/apis.txt | 77 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 76 insertions(+), 1 deletion(-)
+
+commit f585994d6fdf138a78de5b841fd4e5392ed01545
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Fri Nov 14 13:39:27 2025 -0500
+
+    first api commit
+
+ ref/apis.txt     |  1 +
+ ref/use_cases.md | 13 +++++++------
+ 2 files changed, 8 insertions(+), 6 deletions(-)
+
+commit 67d6ae75047c808907a44a3b444bb8bfccd3578d
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Nov 13 22:14:05 2025 -0500
+
+    more aws info
+
+ ref/AWSinfo.md | 42 ++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
+
+commit c60ca264cf34ddfc5eaea109257e935be6aee48a
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Nov 13 13:08:03 2025 -0500
+
+    guis
+
+ ref/GUIs/{ => admin}/AdminDashboard.png  | Bin
+ ref/GUIs/{ => admin}/AdminLogin.png      | Bin
+ ref/GUIs/shopper/ShopperAddReceipt.png   | Bin 0 -> 238357 bytes
+ ref/GUIs/shopper/ShopperAddStore.png     | Bin 0 -> 187832 bytes
+ ref/GUIs/shopper/ShopperCompPrices.png   | Bin 0 -> 217222 bytes
+ ref/GUIs/shopper/ShopperListPage.png     | Bin 0 -> 139834 bytes
+ ref/GUIs/{ => shopper}/ShopperLogin.png  | Bin
+ ref/GUIs/shopper/ShopperViewChains.png   | Bin 0 -> 150346 bytes
+ ref/GUIs/shopper/ShopperViewReceipts.png | Bin 0 -> 239798 bytes
+ 9 files changed, 0 insertions(+), 0 deletions(-)
+
+commit c7654f89c7b6d40ffa8e77476aea3df73ae50bbb
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Nov 13 11:22:48 2025 -0500
+
+    login GUIs
+
+ ref/{AdminDashboardGUI.png => GUIs/AdminDashboard.png} | Bin
+ ref/GUIs/AdminLogin.png                                | Bin 0 -> 18197 bytes
+ ref/GUIs/ShopperLogin.png                              | Bin 0 -> 26012 bytes
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 53720406cc557f704a232021fe9000b64440c574
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Thu Nov 13 11:12:16 2025 -0500
+
+    uml 4
+
+ ref/UMLclass.png | Bin 0 -> 43105 bytes
+ ref/uml.jpg      | Bin 145885 -> 0 bytes
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 7d3e9bd025a60f975e4f374a4464de3c1428ca7f
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Nov 12 23:22:48 2025 -0500
+
+    Moving to ref folder
+
+ AdminDashboardGUI.png => ref/AdminDashboardGUI.png | Bin
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 7798c8f1b4cc24a6eb523e881dc7c94ff67b51fb
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Nov 12 23:21:00 2025 -0500
+
+    Adding Administrator Dashboard GUI mockup
+
+ AdminDashboardGUI.png | Bin 0 -> 90494 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 8861f56c62dde771e222d731e7b06b08e9299374
+Author: Tyler Gillman <tmgillman@wpi.edu>
+Date:   Wed Nov 12 20:56:02 2025 -0500
+
+    Finished my section and fixed some minot heading issues.
+
+ ref/use_cases.md | 36 ++++++++++++++++++------------------
+ 1 file changed, 18 insertions(+), 18 deletions(-)
+
+commit 2fe679453fbbf5e97be44727f9da40461c63b97c
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Nov 12 15:25:12 2025 -0500
+
+    use cases 3
+
+ ref/uml.md        |  37 ----
+ ref/use_cases.md  | 564 ++++++++++++++++++++++++++++++++----------------------
+ ref/use_cases2.md | 377 ------------------------------------
+ 3 files changed, 330 insertions(+), 648 deletions(-)
+
+commit 31bfdd20b0886fc7a2572b4a9f83aea9cd22f1be
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Nov 12 14:56:28 2025 -0500
+
+    use_cases update
+
+ ref/use_cases.md  | 159 ++++++++++-------------
+ ref/use_cases2.md | 377 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 442 insertions(+), 94 deletions(-)
+
+commit b03f75bc063453fd542f7d6017777759eeaf4c51
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Nov 12 11:27:31 2025 -0500
+
+    uml v3
+
+ ref/uml.jpg        | Bin 0 -> 145885 bytes
+ ref/umldiagram.jpg | Bin 110137 -> 0 bytes
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 7db532a782d09792862ae652734f6cb498b120b7
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Wed Nov 12 11:25:55 2025 -0500
+
+    uml v2
+
+ ref/umldiagram.jpg | Bin 0 -> 110137 bytes
+ ref/umldiagram.png | Bin 231222 -> 0 bytes
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 18f472c8580714576731a66a00bf3539bd95a50b
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Nov 11 16:11:56 2025 -0500
+
+    organization
+
+ AWSinfo.md => ref/AWSinfo.md         |   0
+ AWSsample.html => ref/AWSsample.html |   0
+ uml.md => ref/uml.md                 |   0
+ ref/umldiagram.png                   | Bin 0 -> 231222 bytes
+ use_cases.md => ref/use_cases.md     |   0
+ 5 files changed, 0 insertions(+), 0 deletions(-)
+
+commit b36aa5854a5bb8b10def6cd80b2418058b5b4aaa
+Merge: 11b9dfe 7c3d9e7
+Author: Andreas Keating <68699455+AndreasKeating@users.noreply.github.com>
+Date:   Tue Nov 11 15:11:32 2025 -0500
+
+    Merge pull request #8 from jdwiberg/andreas
+    
+    Use Cases for Reciept completed
+
+commit 11b9dfe6534ca9f99124b683ec0b7ec72f0a1217
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 11 14:54:40 2025 -0500
+
+    adjustments
+
+ uml.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 7c3d9e7dfc1aee44cae18050884fbe61a0097b77
+Author: Andreas Keating <aplandolit@wpi.edu>
+Date:   Tue Nov 11 14:54:06 2025 -0500
+
+    Use Cases for Reciept completed
+
+ use_cases.md | 106 +++++++++++++++++++++++++++++++++++++++++++++++++++++++----
+ 1 file changed, 99 insertions(+), 7 deletions(-)
+
+commit 5895963ebe41e53bf57bca3121520d474cb7d72e
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 11 14:49:50 2025 -0500
+
+    formatting
+
+ uml.md | 28 ++++++++++++++--------------
+ 1 file changed, 14 insertions(+), 14 deletions(-)
+
+commit 4532150ae19abfc8c023d1ac8fa23755c6278b70
+Merge: 110ab82 9065395
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Tue Nov 11 14:42:09 2025 -0500
+
+    Merge pull request #7 from jdwiberg/jake/uml
+    
+    uml
+
+commit 90653955f08a40cd4d57f0d68467c365013f82c3
+Merge: 101668b 110ab82
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Tue Nov 11 14:42:01 2025 -0500
+
+    Merge branch 'main' into jake/uml
+
+commit 101668b19897096e1ad02f907d0e5c8d7b7c744e
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Nov 11 14:41:03 2025 -0500
+
+    uml
+
+ uml.md       | 37 +++++++++++++++++++++++++++++++++++++
+ use_cases.md | 34 +++++++++++++++-------------------
+ 2 files changed, 52 insertions(+), 19 deletions(-)
+
+commit 110ab82706aca70c927331f8130f9196fddb1f5c
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Tue Nov 11 14:12:12 2025 -0500
+
+    Completed my section (-1) with updated formatting.
+
+ use_cases.md | 60 ++++++++++++++++++++++++++++++++++++------------------------
+ 1 file changed, 36 insertions(+), 24 deletions(-)
+
+commit 452a60e062beb74ebfbb1bd798fc164c54725cb1
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Tue Nov 11 13:58:36 2025 -0500
+
+    Fixed some formatting
+
+ use_cases.md | 26 +++++++++++++-------------
+ 1 file changed, 13 insertions(+), 13 deletions(-)
+
+commit 72ddb521daf66f710ef20cc06e94b3f912e0d4c0
+Merge: 942da9d 65a4ce0
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Tue Nov 11 13:02:28 2025 -0500
+
+    Merge pull request #6 from jdwiberg/Tyler
+    
+    Added 3 Use Cases with formatting
+
+commit 65a4ce0b31a83e4abf109d7cb5e210fff68ed5ab
+Merge: ccd43aa 942da9d
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Tue Nov 11 13:02:17 2025 -0500
+
+    Merge branch 'main' into Tyler
+
+commit 942da9dc769fae5a2c1639162dab095d450888ff
+Merge: 9795197 dce5832
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Tue Nov 11 12:58:52 2025 -0500
+
+    Merge pull request #5 from jdwiberg/Tim
+    
+    Tim
+
+commit dce58327fac434b0ffbffef8c44119b8b5ea6b89
+Merge: 85cd3bc 9795197
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Tue Nov 11 12:58:44 2025 -0500
+
+    Merge branch 'main' into Tim
+
+commit 9795197c89f125e9ca025451f22eaa8542ee2e72
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Tue Nov 11 12:45:14 2025 -0500
+
+    Refactor use_cases.md for consistent heading levels
+    
+    Updated headings from '##' to '#' and corrected some formatting issues.
+
+ use_cases.md | 30 +++++++++++++++---------------
+ 1 file changed, 15 insertions(+), 15 deletions(-)
+
+commit 1f5cba9ae259f54ce48ec2df63484e19657a44b1
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Tue Nov 11 12:43:31 2025 -0500
+
+    Update README.md
+
+ README.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 70d173858de0f328b91b1b394a42ef9f180389db
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Tue Nov 11 12:42:53 2025 -0500
+
+    Update branch creation instructions in README
+
+ README.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit b02cb6bb45957bb848bb931f5e8df1b8e21f357b
+Merge: 9c07696 c582558
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Tue Nov 11 12:41:36 2025 -0500
+
+    Merge pull request #4 from jdwiberg/use_cases
+    
+    admin & store 4 shopper uc
+
+commit c5825580e4bae05d23c28266d76448b26a0deb34
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Tue Nov 11 12:41:03 2025 -0500
+
+    admin & store 4 shopper uc
+
+ use_cases.md | 115 ++++++++++++++++++++++++++++++++++++++++++++++++-----------
+ 1 file changed, 95 insertions(+), 20 deletions(-)
+
+commit 85cd3bc8ed78476e6f8bd371a2a8347f90ae4508
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Nov 10 22:01:15 2025 -0500
+
+    fixing format
+
+ use_cases.md | 72 +++++++++++++++++++++++++++++++++++-------------------------
+ 1 file changed, 42 insertions(+), 30 deletions(-)
+
+commit 06cf100342004ee85bd28ddfe48203988d393fa7
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Nov 10 21:50:17 2025 -0500
+
+    fixing format
+
+ use_cases.md | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit ad0895e49e473ff9402cb98da07ed3d33ae39441
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Mon Nov 10 21:46:21 2025 -0500
+
+    updated shopper use cases - unfinished
+
+ use_cases.md | 73 +++++++++++++++++++++++++++++++++++++++++++++++++++---------
+ 1 file changed, 63 insertions(+), 10 deletions(-)
+
+commit 9c076969ff1a523eb1e61bbc7a5ef72a8b2bfbf5
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Mon Nov 10 11:56:27 2025 -0500
+
+    AWS sample code
+
+ AWSsample.html | 33 +++++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+commit 6a75bb53c57571c75cb5b53e17b17a0db1af9698
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Mon Nov 10 11:07:41 2025 -0500
+
+    sign in link
+
+ AWSinfo.md | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit 0532c8dc9b33297123a699ce29468540263c0c45
+Merge: d778403 a327631
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Mon Nov 10 11:01:34 2025 -0500
+
+    Merge pull request #3 from jdwiberg/info/jake
+    
+    AWS login info
+
+commit a327631fa4863a54d292c5c9f4cd5ca19f5312e1
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-674.local>
+Date:   Mon Nov 10 11:00:25 2025 -0500
+
+    AWS login info
+
+ AWSinfo.md | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+commit ccd43aa72af1d2b48711f665bcf6e7a660654c3f
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Thu Nov 6 13:43:03 2025 -0500
+
+    Added 3 Use Cases with formatting
+
+ use_cases.md | 37 +++++++++++++++++++++++++++++++++++--
+ 1 file changed, 35 insertions(+), 2 deletions(-)
+
+commit d778403e9984391668266f8851e342957d5bfec1
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-620.local>
+Date:   Thu Nov 6 13:26:59 2025 -0500
+
+    grammar
+
+ README.md | 24 +++++++++++-------------
+ 1 file changed, 11 insertions(+), 13 deletions(-)
+
+commit ed923e5647ad5602878cd65faa2825f4ef7fcc88
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-620.local>
+Date:   Thu Nov 6 13:25:02 2025 -0500
+
+    how to edit
+
+ README.md   | 22 +++++++++++++++++++---
+ pipeline.md | 22 ----------------------
+ 2 files changed, 19 insertions(+), 25 deletions(-)
+
+commit a0b162bd3be010a24706ad83c9b6cc29b2792c00
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-620.local>
+Date:   Thu Nov 6 13:24:05 2025 -0500
+
+    edits pipeline
+
+ pipeline.md | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+
+commit 58a4a0dfbd2e392e29bd190c92ebcdf225811e9b
+Merge: f769da9 87ab60f
+Author: Jacob Wiberg <jacobwiberg1133@gmail.com>
+Date:   Thu Nov 6 13:06:47 2025 -0500
+
+    Merge pull request #2 from jdwiberg/Jake
+    
+    Jake
+
+commit 87ab60f538d900517c2d9404a559e646e476e58a
+Merge: ff56674 f769da9
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-620.local>
+Date:   Thu Nov 6 13:05:00 2025 -0500
+
+    fixes
+
+commit f769da9778697855ed03e8edf36b0d4f4fe72195
+Merge: 5387619 df0d2d0
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Thu Nov 6 12:52:40 2025 -0500
+
+    Merge pull request #1 from jdwiberg/Tim
+    
+    testing commit to Tim branch
+
+commit df0d2d02265e97adcfde7434cf968de36c16cd63
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Thu Nov 6 12:51:55 2025 -0500
+
+    testing commit to Tim branch
+
+ use_cases.md | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+commit ff5667492d894f78ab2ea848f6a63c9471fe91db
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-620.local>
+Date:   Thu Nov 6 12:51:31 2025 -0500
+
+    first
+
+ use_cases.md | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 538761996bea7bd79d0fac29988e904ad411bb95
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Thu Nov 6 12:42:33 2025 -0500
+
+    adding use cases structure
+
+ use_cases.md | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
+
+commit ef514e2832208edd184055eafa1c99218445cd9c
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-620.local>
+Date:   Thu Nov 6 12:36:01 2025 -0500
+
+    added use cases
+
+ use_cases.md | 35 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
+
+commit cd49efa0607b31902c6ddc21c8bf2cf0b482e185
+Merge: 9493da4 b7f26ec
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-620.local>
+Date:   Thu Nov 6 12:30:20 2025 -0500
+
+    fixing
+
+commit 9493da467a81f3f7e7277cf180021fae7a41ab96
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-620.local>
+Date:   Thu Nov 6 12:24:58 2025 -0500
+
+    use cases
+
+ usecases.md | 38 +++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 37 insertions(+), 1 deletion(-)
+
+commit b7f26eca0c062b85fa2d0d99e14ef7f4532e09f4
+Author: Tyler <tmgillman@wpi.edu>
+Date:   Thu Nov 6 12:17:57 2025 -0500
+
+    Testing again
+
+ README.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit c374b5f3ca2627307056de6ed3dfa2a9ce198ab2
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Thu Nov 6 12:11:52 2025 -0500
+
+    testing commit
+
+ usecases.md | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit 38e873ffe4685e753a08982f24f2174e5344d641
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Nov 5 00:40:20 2025 -0500
+
+    committing changes
+
+ README.md | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit b201c87ba8acb2bf97a04f27f2c062f368681298
+Merge: 5c43cc0 2243194
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Wed Nov 5 00:37:40 2025 -0500
+
+    adding use cases
+
+commit 5c43cc00dded19c863d558cbb0fbb01391b3cac0
+Author: Tgalica05 <timothygalica@gmail.com>
+Date:   Tue Nov 4 13:53:24 2025 -0500
+
+    adding use cases file
+
+ usecases.md | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 2243194c3a0f9cc13a7d66dee7ba5c117ee13aa2
+Author: TylerGillman <tmgillman@wpi.edu>
+Date:   Tue Nov 4 13:51:08 2025 -0500
+
+    Added Name to README.md
+    
+    Testing if I can commit to files.
+
+ README.md | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit 113bb990f37c0cbc20ea4e91f875dd98d1aab921
+Author: Jacob Wiberg <jacobwiberg@Jacobs-MacBook-Air-595.local>
+Date:   Tue Nov 4 13:31:09 2025 -0500
+
+    first
+
+ README.md | 1 +
+ 1 file changed, 1 insertion(+)
