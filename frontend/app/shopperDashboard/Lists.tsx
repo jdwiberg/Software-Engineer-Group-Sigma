@@ -45,7 +45,9 @@ export default function Lists() {
     const [selectedItem, setSelectedItem] = useState<ListItem | null>(null)     // for removing a list item
     const [isRemoving, setIsRemoving] = useState(false)     
     const [options, setOptions] = useState<{ [key: string]: ReceiptItem[] }>({})    
-    const [showOptions, setShowOptions] = useState(false)                
+    const [showOptions, setShowOptions] = useState(false)    
+    const [listForOptions, setListForOptions] = useState("") // for showing the name of the list that is showing options   
+
     const categories = [
         "Alocohol & Spirits",
         "Baking Supplies",
@@ -387,7 +389,7 @@ export default function Lists() {
                 {shoppingLists.map((shoppingList) => (
                     <li key={shoppingList.sl_id}>
                     <strong>List:</strong> {shoppingList.sl_name} 
-                        <button onClick={() => reportOptions(shoppingList.sl_id)}>Show Options</button> <br />
+                        <button onClick={() => {reportOptions(shoppingList.sl_id), setListForOptions(shoppingList.sl_name)}}>Show Options</button> <br />
                     <strong>Date Created:</strong> {formatDate(shoppingList.sl_date)} <br />
                     <button
                         onClick={() => {
@@ -488,7 +490,7 @@ export default function Lists() {
         </div>
         <div style={{ flex: 1 }}>
             {showOptions && <div>
-                <h1>Purchasing Options</h1>
+                <h1>Purchasing Options for {listForOptions}</h1>
                 <button type="button" onClick={() => setShowOptions(false)}>Hide</button>
                 {Object.entries(options).map(([sli_name, items]) => (
                     <div key={sli_name} style={{ marginBottom: "1rem" }}>
