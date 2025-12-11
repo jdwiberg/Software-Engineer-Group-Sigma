@@ -122,14 +122,21 @@ export default function Receipts() {
       }
     }
 
+    const calcTotoal = (r : receipt) => {
+      let total = 0
+      for (const item of r.items) {
+        total += item.i_price
+      }
+      return total
+    }
     return (
     <div>
         <button onClick={() => router.push("/shopperDashboard/createReceipt")}>Create Receipt</button>
-        <button onClick={() => router.replace("shopperDashboard/searchRecent")}>Search Purchase History</button>
         {receipts.length > 0? (
             receipts.map((r: any) => (
             <div key={r.r_id}>
                 <h2>{r.c_name}</h2>
+                <h3>Total: ${calcTotoal(r).toFixed(2)}</h3>
                 <button onClick={() => deleteReceipt(r.r_id)}>{(deleting ? "Deleting..." : "Delete Receipt")}</button>
                 <p>{r.s_address}</p>
                 <p>{formatDate(r.r_date)}</p>

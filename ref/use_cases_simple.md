@@ -1,10 +1,10 @@
 Shopper Use Cases
-- ~~Register Shopper (jake)~~
-- ~~Login Shopper (jake)~~
-- ~~Show Account Dashboard (Jake and Tim)~~
+- ~~Register Shopper (Jake)~~
+- ~~Login Shopper (Jake)~~
+- ~~Show Account Dashboard (Tim, Jake)~~
 - ~~Review History (Jake)~~
-- Review Activity (Tim)
-- Search Recent Purchases (Tim)
+- ~~Review Activity (Tim)~~
+- ~~Search Recent Purchases (Tim)~~
 
 Receipt Use Cases for Shopper
 - ~~Create Receipt (Jake)~~
@@ -12,13 +12,13 @@ Receipt Use Cases for Shopper
 - ~~Remove Item from Receipt (Jake)~~
 - ~~Edit Item on Receipt (Jake)~~
 - ~~Submit Receipt (Jake)~~
-- AI Analyze Receipt Image (Jake and Andreas)
+- ~~AI Analyze Receipt Image (Jake)~~
 
 Shopping List Use Cases for Shopper
 - ~~Create Shopping List (Tim)~~
 - ~~Add Item To Shopping List (Tim)~~
 - ~~Remove Item From Shopping List (Tim)~~
-- Report Options For Shopping List (Tim)
+- ~~Report Options For Shopping List (Tim, Jake)~~
 
 Store Use Cases for Shopper
 - ~~List Store Chains (Jake)~~
@@ -27,6 +27,6 @@ Store Use Cases for Shopper
 
 Administrator Use Cases
 - ~~Login Administrator (Tyler)~~
-- ~~Show Admin Dashboard (Andreas)~~
+- Show Admin Dashboard (Andreas)
 - ~~Remove Store Chain (Tyler)~~
 - ~~Remove Store (Tyler)~~

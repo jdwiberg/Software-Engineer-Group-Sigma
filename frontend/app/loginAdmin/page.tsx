@@ -40,6 +40,7 @@ export default function Login() {
             setError(data.error)
             setMessage("Incorrect password, please try again.")
         } else {
+            localStorage.setItem("adminPassword", password)
             router.push('/adminDashboard')
         }
     } catch (err) {
@@ -48,10 +49,16 @@ export default function Login() {
         setIsSubmitting(false)
     }
   }
+
   return (
-      <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+    <div>
+      <div>
+        <button type="button" onClick={() => router.push("./")}>Back</button>
+      </div>
+      <div className="center-page">
+        
         <h1>Login Admin</h1>
-        <form onSubmit={handleSubmit}>
+        <form className="login-form" onSubmit={handleSubmit}>
 
           <input 
             name='password'
@@ -76,8 +83,8 @@ export default function Login() {
         {error && (
           <p>{error}</p>
         )}        
-        <Link href="/adminDashboard">Admin Dashboard</Link>
 
       </div>
+    </div>
   );
 }

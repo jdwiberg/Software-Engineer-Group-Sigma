@@ -5,13 +5,18 @@ const { execSync } = require("child_process");
 
 const baseDir = path.join(__dirname, "backend", "lib");
 
-function runNpmInstall(dir) {
+function runNpmInstallIfNeeded(dir) {
   const nodeModulesPath = path.join(dir, "node_modules");
-  try {
-    execSync("npm install", { cwd: dir, stdio: "inherit" });
-    console.log(`✅ npm install completed for ${dir}`);
-  } catch (err) {
-    console.error(`❌ Error running npm install in ${dir}:`, err.message);
+  if (!fs.existsSync(nodeModulesPath)) {
+    console.log(`🛠️  node_modules not found in ${dir}`);
+    try {
+      execSync("npm install", { cwd: dir, stdio: "inherit" });
+      console.log(`✅ npm install completed for ${dir}`);
+    } catch (err) {
+      console.error(`❌ Error running npm install in ${dir}:`, err.message);
+    }
+  } else {
+    console.log(`✅ node_modules already exists in ${dir}`);
   }
 }
 
@@ -22,7 +27,7 @@ function traverseFolders(basePath) {
       const fullPath = path.join(basePath, entry.name);
       // If folder has a package.json, assume it's a Node project
       if (fs.existsSync(path.join(fullPath, "package.json"))) {
-        runNpmInstall(fullPath);
+        runNpmInstallIfNeeded(fullPath);
       } else {
         // Otherwise, continue searching deeper
         traverseFolders(fullPath);

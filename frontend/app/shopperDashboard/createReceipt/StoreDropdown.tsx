@@ -1,9 +1,13 @@
 'use client'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 
-type Props = {
+type StoreDropdownProps = {
     onSelectStore?: (storeId: number | string | null, chainId?: number | string | null) => void
     onSelectChain?: (chainId: number | string | null) => void
+    onLoadStoreChains?: (chains: storeChain[]) => void
+    c_id: string | null
+    s_id: string | null
 }
 
 function parseMaybeNumber(value: string): number | string {
@@ -11,26 +15,40 @@ function parseMaybeNumber(value: string): number | string {
     return Number.isNaN(num) ? value : num
 }
 
-export default function StoreDropdown({ onSelectStore, onSelectChain }: Props) {
-    type store = {
-        s_id?: string | number
-        s_address: string
-    }
-    type storeChain = {
-        c_id?: string | number
-        c_name: string
-        c_url: string
-        stores: store[]
-    }
+type store = {
+    s_id: string
+    s_address: string
+}
+
+type storeChain = {
+    c_id: string
+    c_name: string
+    c_url: string
+    stores: store[]
+}
+
+export default function StoreDropdown({ c_id, s_id, onSelectStore, onSelectChain, onLoadStoreChains }: StoreDropdownProps) {
 
     const [storeChains, setStoreChains] = useState<storeChain[]>([])
     const [error, setError] = useState("")
     const [selectedChainId, setSelectedChainId] = useState<string>("")
     const [selectedStoreId, setSelectedStoreId] = useState<string>("")
+    const router = useRouter()
 
     useEffect(() => {
         showStoreChains()
     }, [])
+
+    useEffect(() => {
+        if (c_id) {
+            setSelectedChainId(c_id)
+            onSelectChain?.(parseMaybeNumber(c_id))
+        }
+        if (s_id) {
+            setSelectedStoreId(s_id)
+            onSelectStore?.(parseMaybeNumber(s_id), c_id ? parseMaybeNumber(c_id) : null)
+        }
+    }, [c_id, s_id, onSelectChain, onSelectStore])
 
     async function showStoreChains() {
         try {
@@ -53,6 +71,12 @@ export default function StoreDropdown({ onSelectStore, onSelectChain }: Props) {
             if (data.statusCode != 200) {
                 setError(data.error || "Failed to load store chains")
             } else if (body) {
+                onLoadStoreChains?.(body.storeChains.map((sc: any) => ({
+                        c_id: sc.c_id,
+                        c_name: sc.c_name,
+                        c_url: sc.c_url,
+                        stores: sc.store || []
+                    })))
                 setStoreChains(
                     body.storeChains.map((sc: any) => ({
                         c_id: sc.c_id,
@@ -85,8 +109,7 @@ export default function StoreDropdown({ onSelectStore, onSelectChain }: Props) {
                         const parsedChainId = newChainId ? parseMaybeNumber(newChainId) : null
                         onSelectChain?.(parsedChainId)
                         onSelectStore?.(null, parsedChainId)
-                    }}
-                >
+                    }}>
                     <option value="">Select a chain</option>
                     {storeChains.map((chain) => (
                         <option key={chain.c_id ?? chain.c_name} value={String(chain.c_id ?? chain.c_name)}>
@@ -94,6 +117,7 @@ export default function StoreDropdown({ onSelectStore, onSelectChain }: Props) {
                         </option>
                     ))}
                 </select>
+                <button type="button" onClick={() => router.push("/shopperDashboard?tab=stores")}>Add Store</button>
             </div>
 
             <div>
