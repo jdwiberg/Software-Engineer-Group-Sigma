@@ -349,10 +349,15 @@ export default function Lists() {
       }
 
     const findSimilarItems = ( target: string, comps: ReceiptItem[] ) => {
+        const t = target.toLowerCase()
+        let comp
         let sims = []
         for (let i = 0; i < comps.length; i++) {
-            const score = stringSimilarity.compareTwoStrings(target.toLowerCase(), comps[i].i_name)
-            if (score > 0.69) {
+            comp = comps[i].i_name.toLowerCase()
+            const score = stringSimilarity.compareTwoStrings(t, comp)
+            if (score > 0.7) {
+                sims.push(comps[i])
+            } else if (comp.includes(t) || t.includes(comp)) {
                 sims.push(comps[i])
             }
         }
@@ -491,7 +496,7 @@ export default function Lists() {
         <div className="options-panel">
             {showOptions && <div>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <h1>Purchasing Options for {listForOptions}</h1>
+                    <h1>Purchasing Options for: {listForOptions}</h1>
                     <button type="button" onClick={() => setShowOptions(false)}>Hide</button>
                 </div>
                 {Object.entries(options).map(([sli_name, items]) => (
