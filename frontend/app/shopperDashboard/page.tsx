@@ -46,12 +46,14 @@ export default function ShopperDashboard() {
       <div>
       <button onClick={() => logout()}>Logout</button>
       </div>
-      <h1>Welcome, {username}</h1>
-      <div style={{ display: "flex", gap: 8 }}>
-        <button onClick={() => setTab("lists")}>Shopping Lists</button>
-        <button onClick={() => setTab("receipts")}>Receipts</button>
-        <button onClick={() => setTab("stores")}>Stores</button>
-        <button onClick={() => setTab("review")}>Review</button>
+      <div className="header">
+        <h1>Welcome, {username}</h1>
+        <div style={{ display: "flex", gap: 8 }}>
+          <button onClick={() => setTab("lists")}>Shopping Lists</button>
+          <button onClick={() => setTab("receipts")}>Receipts</button>
+          <button onClick={() => setTab("stores")}>Stores</button>
+          <button onClick={() => setTab("review")}>Review</button>
+        </div>
       </div>
       <hr />
       {tab === "lists" && <Lists />}
