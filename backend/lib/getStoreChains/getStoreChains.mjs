@@ -4,30 +4,46 @@ var pool
 
 let getStoreChains = () => {
     return new Promise((resolve, reject) => {
-        pool.query(`SELECT
-                    sc.c_id   AS c_id,
-                    sc.c_name AS c_name,
-                    sc.c_url  AS c_url,
-                    COALESCE(
-                        NULLIF(
-                            JSON_ARRAYAGG(
-                                CASE
-                                    WHEN s.s_id IS NOT NULL THEN JSON_OBJECT('s_id', s.s_id, 's_address', s.s_address)
-                                END
-                            ),
-                            JSON_ARRAY(NULL)
-                        ),
-                        JSON_ARRAY()
-                    ) AS store
-                    FROM storeChain AS sc
-                    LEFT JOIN store AS s
-                    ON s.c_id = sc.c_id
-                    GROUP BY sc.c_id, sc.c_name, sc.c_url
-                    ORDER BY sc.c_name;`, [], (error, rows) => {
+        pool.query(`
+            SELECT
+                sc.c_id,
+                sc.c_name,
+                sc.c_url,
+                s.s_id,
+                s.s_address,
+                COALESCE(SUM(i.i_price), 0) AS revenue
+            FROM storeChain sc
+            LEFT JOIN store s ON s.c_id = sc.c_id
+            LEFT JOIN receipt r ON r.s_id = s.s_id
+            LEFT JOIN item i ON i.r_id = r.r_id
+            GROUP BY sc.c_id, sc.c_name, sc.c_url, s.s_id, s.s_address
+            ORDER BY sc.c_name, s.s_id;
+        `, [], (error, rows) => {
             if (error){
                 return reject(error)
             }
-            resolve(rows)
+            
+            // Transform flat rows into nested structure
+            const chainMap = {};
+            rows.forEach(row => {
+                if (!chainMap[row.c_id]) {
+                    chainMap[row.c_id] = {
+                        c_id: row.c_id,
+                        c_name: row.c_name,
+                        c_url: row.c_url,
+                        store: []
+                    };
+                }
+                if (row.s_id) {
+                    chainMap[row.c_id].store.push({
+                        s_id: row.s_id,
+                        s_address: row.s_address,
+                        revenue: row.revenue
+                    });
+                }
+            });
+            
+            resolve(Object.values(chainMap))
         })
     })
 }
