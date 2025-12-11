@@ -2,15 +2,15 @@ import * as mysql2 from 'mysql2'
 
 var pool
 
-let createReceipt = (s_id, username) => {
+let createReceipt = (s_id, username, r_date) => {
   return new Promise((resolve, reject) => {
     pool.query(
       `INSERT INTO receipt (r_date, s_id, sh_id)
-       SELECT NOW(), s.s_id, sh.sh_id
+       SELECT ?, s.s_id, sh.sh_id
        FROM store AS s
        JOIN shopper AS sh ON sh.username = ?
        WHERE s.s_id = ?`,
-      [username, s_id],
+      [r_date, username, s_id],
       (error) => {
         if (error) return reject(error);
 
@@ -46,8 +46,11 @@ export const handler = async (event) =>{
         if ( !event.username ) {
             throw new Error("Username is required")
         }
+        if ( !event.r_date ) {
+            throw new Error("Date is required")
+        }
 
-        const r_id = await createReceipt(event.s_id, event.username)
+        const r_id = await createReceipt(event.s_id, event.username, event.r_date)
         result = { r_id: r_id }
         code = 200
 
