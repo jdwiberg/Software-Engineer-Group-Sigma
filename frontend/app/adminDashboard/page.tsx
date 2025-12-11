@@ -65,7 +65,6 @@ export default function AdminDashboard() {
           revenue: data.totalRevenue,
           sales: data.sales,
         })
-        //setChains(data.storeChainRevenues ?? [])
       } catch (err) {
         console.error("Failed to fetch admin stats", err)
       }
