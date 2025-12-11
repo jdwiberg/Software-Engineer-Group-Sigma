@@ -213,7 +213,7 @@ export default function Review() {
     }
 
     return (
-    <div style={{ display: 'flex', gap: '20px' }}>
+    <div className="review-page">
         <div style={{ flex: 1 }}>
         <h2>Search Recent Purchases</h2>
         <select

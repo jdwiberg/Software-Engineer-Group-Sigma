@@ -90,7 +90,9 @@ export default function Receipts() {
               setError(data.error)
           } else {
               setMessage(body.message)
-              setReceipts(groupByReceipt(body.items))
+              const grouped = groupByReceipt(body.items || []);
+              grouped.sort((a, b) => new Date(b.r_date).getTime() - new Date(a.r_date).getTime());
+              setReceipts(grouped)
               setLoading(false)
           }
       } catch (err) {
@@ -134,7 +136,7 @@ export default function Receipts() {
         <button onClick={() => router.push("/shopperDashboard/createReceipt")}>Create Receipt</button>
         {receipts.length > 0? (
             receipts.map((r: any) => (
-            <div key={r.r_id}>
+            <div className="receipt" key={r.r_id}>
                 <h2>{r.c_name}</h2>
                 <h3>Total: ${calcTotoal(r).toFixed(2)}</h3>
                 <button onClick={() => deleteReceipt(r.r_id)}>{(deleting ? "Deleting..." : "Delete Receipt")}</button>
