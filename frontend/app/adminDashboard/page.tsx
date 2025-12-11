@@ -68,9 +68,11 @@ export default function AdminDashboard() {
 
   return (
     <div className="p-6">
-      
-      <h1 className="text-3xl font-bold mb-4">Admin Dashboard</h1>
+      <div>
       <button type="button" onClick={() => router.push("./")}>Logout</button>
+      </div>
+      <h1 className="text-3xl font-bold mb-4">Admin Dashboard</h1>
+      
 
       {/* Tabs */}
       <div className="flex space-x-4 mb-6">

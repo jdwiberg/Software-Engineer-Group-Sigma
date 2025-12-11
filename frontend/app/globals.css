@@ -31,3 +31,20 @@ body {
   text-security: disc;         /* Non-standard, limited support */
 }
 
+.center-page {
+  display: flex;
+  flex-direction: column; /* 👈 stack vertically */
+  justify-content: center; /* center vertically */
+  align-items: center;     /* center horizontally */
+  height: 80vh;
+
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column; /* 👈 stack vertically */
+  justify-content: center; /* center vertically */
+  align-items: center;     /* center horizontally */
+}
+
+
